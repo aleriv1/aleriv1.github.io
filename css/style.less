@@ -1,0 +1,81 @@
+/* #region */
+
+@import "cssres.css";
+
+/* #endregion */
+
+/* #region lection */
+
+.example,
+.exmp {
+  background-color: #2f5e3a5e;
+
+  &-header {
+    background-color: #0a584771;
+  }
+}
+
+.lection,
+.lect {
+  background-color: #C8A2C8;
+  font-size: 24px;
+}
+
+/* #endregion lection */
+
+/* #region the homework #1 */
+
+.list {
+  &__item-hw1 {
+    &_3 {
+      background-color: #f00;
+    }
+  }
+
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.table {
+  &:extend(.tr);
+  border-radius: 10px;
+  margin-left: calc((100vw - 300px)/2);
+  // background-color: #0f0;
+}
+
+.tr {
+  // background-color: #f00;
+
+}
+
+.tr,
+.td {
+  border-radius: 25px;
+  width: 300px;
+  border: 1px solid #000;
+  text-align: center;
+  // background-color: #00f;
+}
+
+.img {
+  width: 500px;
+  border-radius: 10px;
+  margin-left: calc((100vw - 500px)/2);
+
+  &-cont {
+    // background-color: #7ab56b;
+    // text-align: center;
+  }
+}
+
+.iframe {
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  margin-left: calc((100vw - 500px)/2);
+}
+
+/* #endregion the homework #1 */

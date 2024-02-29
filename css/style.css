@@ -1,0 +1,53 @@
+/* #region */
+@import "cssres.css";
+/* #endregion */
+/* #region lection */
+.example,
+.exmp {
+  background-color: #2f5e3a5e;
+}
+.example-header,
+.exmp-header {
+  background-color: #0a584771;
+}
+.lection,
+.lect {
+  background-color: #C8A2C8;
+  font-size: 24px;
+}
+/* #endregion lection */
+/* #region the homework #1 */
+.list {
+  margin-top: 25px;
+  margin-left: 25px;
+}
+.list__item-hw1_3 {
+  background-color: #f00;
+}
+.table {
+  border-radius: 10px;
+  margin-left: calc((100vw - 300px)/2);
+}
+.tr,
+.td,
+.table {
+  border-radius: 25px;
+  width: 300px;
+  border: 1px solid #000;
+  text-align: center;
+}
+.img {
+  width: 500px;
+  border-radius: 10px;
+  margin-left: calc((100vw - 500px)/2);
+}
+.iframe {
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  margin-left: calc((100vw - 500px)/2);
+}
+/* #endregion the homework #1 */
