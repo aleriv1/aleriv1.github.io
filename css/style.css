@@ -28,6 +28,22 @@
   background-color: #C8A2C8;
   font-size: 24px;
 }
+.the-circle {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border-radius: 50%;
+  border: 5px solid #f00;
+  margin: 30px calc((100vw - 100px)/2 - 10%);
+}
+.container,
+.row,
+.col {
+  border: 1px solid #000;
+}
+.row_first {
+  height: 100px;
+}
 /* #endregion lection */
 /* #region the homework #1 */
 .list {
