@@ -4,7 +4,11 @@
 
 /* #endregion reset css */
 
-/* #region lection */
+/* #region variables */
+@mc0: #c8a2c8; // main color 0
+/* #endregion variables */
+
+/* #region lection common style */
 
 .example,
 .exmp {
@@ -22,6 +26,10 @@
   font-size: 55px;
   font-weight: bold;
   font-style: italic;
+
+  &_btsp {
+    // color: @mc0;
+  }
 }
 
 .cont {
@@ -52,8 +60,13 @@
   // margin-left: calc((100vw - 30px)/2);
 }
 
-.container,
-.row,
+/* #endregion lection  style */
+
+/* #region bootstrap mod */
+
+// .container,
+// .row,
+.col-9,
 .col {
   border: 1px solid #000;
 }
@@ -62,9 +75,35 @@
   &_first {
     height: 100px;
   }
+
+  &_title {
+    // padding: 30px;
+  }
+
+  &_header,
+  &_footer {
+    // height: 40px;
+  }
+
+  &_main-content {
+    height: 250px;
+  }
 }
 
-/* #endregion lection */
+.col {
+  &_title {
+    padding: 30px;
+    text-align: center;
+  }
+
+  &_header,
+  &_footer {
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+/* #endregion bootstrap mod */
 
 /* #region the homework #1 */
 

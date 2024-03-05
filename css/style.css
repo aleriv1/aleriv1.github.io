@@ -1,7 +1,9 @@
 /* #region reset css */
 @import "cssres.css";
 /* #endregion reset css */
-/* #region lection */
+/* #region variables */
+/* #endregion variables */
+/* #region lection common style */
 .example,
 .exmp {
   background-color: #2f5e3a5e;
@@ -36,15 +38,28 @@
   border: 5px solid #f00;
   margin: 30px calc((100vw - 100px)/2 - 10%);
 }
-.container,
-.row,
+/* #endregion lection  style */
+/* #region bootstrap mod */
+.col-9,
 .col {
   border: 1px solid #000;
 }
 .row_first {
   height: 100px;
 }
-/* #endregion lection */
+.row_main-content {
+  height: 250px;
+}
+.col_title {
+  padding: 30px;
+  text-align: center;
+}
+.col_header,
+.col_footer {
+  text-align: center;
+  padding: 10px;
+}
+/* #endregion bootstrap mod */
 /* #region the homework #1 */
 .list {
   margin-top: 25px;
