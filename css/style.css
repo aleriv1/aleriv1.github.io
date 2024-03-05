@@ -59,6 +59,11 @@
   text-align: center;
   padding: 10px;
 }
+@media (max-width: 576px) {
+  .col_footer {
+    display: none;
+  }
+}
 .author {
   color: blue;
 }
