@@ -39,7 +39,7 @@
   margin: 30px calc((100vw - 100px)/2 - 10%);
 }
 /* #endregion lection  style */
-/* #region bootstrap mod */
+/* #region bootstrap mod + homework 3 */
 [class*='col'] {
   border: 1px solid #000;
   padding: 20px;
@@ -59,7 +59,10 @@
   text-align: center;
   padding: 10px;
 }
-/* #endregion bootstrap mod */
+.author {
+  color: blue;
+}
+/* #endregion bootstrap mod + homework 3 */
 /* #region the homework #1 */
 .list {
   margin-top: 25px;
