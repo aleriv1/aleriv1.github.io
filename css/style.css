@@ -40,9 +40,9 @@
 }
 /* #endregion lection  style */
 /* #region bootstrap mod */
-.col-9,
-.col {
+[class*='col'] {
   border: 1px solid #000;
+  padding: 20px;
 }
 .row_first {
   height: 100px;
