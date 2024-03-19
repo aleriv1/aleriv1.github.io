@@ -156,8 +156,13 @@ let zIncrease = increase();
 // #region task3
 
 function century() {
-  let ce = 2024;
-  console.log(`the century is:`, (ce - (ce % 100)) / 100 + 1);
+  let ce = 2000;
+
+  if (ce % 100 === 0) {
+    console.log(`the century is:`, ce / 100);
+  } else {
+    console.log(`the century is:`, (ce - (ce % 100)) / 100 + 1);
+  }
 }
 
 let zCentury = century();
