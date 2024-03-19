@@ -166,93 +166,93 @@ let zCentury = century();
 
 // #region task4
 
-// function numberEvenOddPre() {
-//   // let num = 3;
-//   let num = 552;
-//   let numToStr = num + "";
+function numberEvenOddPre() {
+  // let num = 3;
+  let num = 552;
+  let numToStr = num + "";
 
-//   console.log(`typeof num`, typeof num);
-//   console.log(`typeof numToStr`, typeof numToStr);
-//   console.log(`numToStr.length`, numToStr.length);
+  console.log(`typeof num`, typeof num);
+  console.log(`typeof numToStr`, typeof numToStr);
+  console.log(`numToStr.length`, numToStr.length);
 
-//   let numSum = 0;
-//   for (let i = 0; i < numToStr.length; i++) {
-//     let numPart = +numToStr.slice(i, i + 1);
+  let numSum = 0;
+  for (let i = 0; i < numToStr.length; i++) {
+    let numPart = +numToStr.slice(i, i + 1);
 
-//     numSum = numSum + numPart;
+    numSum = numSum + numPart;
 
-//     console.log(numSum);
+    console.log(numSum);
 
-//     // console.log(numPart, typeof numPart);
-//     // console.log(numToStr.slice(i, i + 1));
-//   }
-//   console.log(`numSum after loop`, numSum);
+    // console.log(numPart, typeof numPart);
+    // console.log(numToStr.slice(i, i + 1));
+  }
+  console.log(`numSum after loop`, numSum);
 
-//   if (numSum % 2 == 0) {
-//     console.log(`the number is even`);
-//   } else {
-//     console.log(`the number is odd`);
-//   }
-// }
+  if (numSum % 2 == 0) {
+    console.log(`the number is even`);
+  } else {
+    console.log(`the number is odd`);
+  }
+}
 
-// function numberSummEvenOdd() {
-//   let num = 552;
-//   console.log(`num is:`, num);
-//   let numToStr = num + ""; // number to string
+function numberSummEvenOdd() {
+  let num = 552;
+  console.log(`num is:`, num);
+  let numToStr = num + ""; // number to string
 
-//   let numSum = 0;
+  let numSum = 0;
 
-//   for (let i = 0; i < numToStr.length; i++) {
-//     let numPart = +numToStr.slice(i, i + 1);
-//     numSum = numSum + numPart;
-//     console.log(`numSum is after ${i + 1} iteration:`, numSum);
-//   }
-//   console.log(`numSum after loop`, numSum);
+  for (let i = 0; i < numToStr.length; i++) {
+    let numPart = +numToStr.slice(i, i + 1);
+    numSum = numSum + numPart;
+    console.log(`numSum is after ${i + 1} iteration:`, numSum);
+  }
+  console.log(`numSum after loop`, numSum);
 
-//   numSum % 2 == 0
-//     ? console.log(`the number is even`)
-//     : console.log(`the number is odd`);
-// }
+  numSum % 2 == 0
+    ? console.log(`the number is even`)
+    : console.log(`the number is odd`);
+}
 
-// let zNumberEvenOdd = numberSummEvenOdd();
+let zNumberEvenOdd = numberSummEvenOdd();
 
 // #endregion task4
 
 // #region task5
 
-// function checkMonth() {
-//   let monthValue = document.getElementById("monthId");
+function checkMonth() {
+  let monthValue = document.getElementById("monthId");
 
-//   console.log(`monthValue.value is`, monthValue.value);
+  console.log(`monthValue.value is`, monthValue.value);
 
-//   let season;
+  let season;
 
-//   switch (true) {
-//     case (monthValue.value >= 1 && monthValue.value < 3) ||
-//       monthValue.value == 12:
-//       season = `winter`;
-//       console.log(`winter`);
-//       break;
+  switch (true) {
+    case (monthValue.value >= 1 && monthValue.value < 3) ||
+      monthValue.value == 12:
+      season = `winter`;
+      console.log(`winter`);
+      break;
 
-//     case monthValue.value >= 3 && monthValue.value < 6:
-//       season = `spring`;
-//       console.log(`spring`);
-//       break;
+    case monthValue.value >= 3 && monthValue.value < 6:
+      season = `spring`;
+      console.log(`spring`);
+      break;
 
-//     case monthValue.value >= 6 && monthValue.value < 9:
-//       season = `summer`;
-//       console.log(`summer`);
-//       break;
+    case monthValue.value >= 6 && monthValue.value < 9:
+      season = `summer`;
+      console.log(`summer`);
+      break;
 
-//     default:
-//       season = `autumn`;
-//       console.log("autumn");
-//       break;
-//   }
+    default:
+      season = `autumn`;
+      console.log("autumn");
+      break;
+  }
 
-//   document.querySelector("#demo-form-1").innerHTML = season;
-// }
+  document.querySelector("#demo-form-1").innerHTML = season;
+}
 
-// let zSeason = checkMonth();
+let zSeason = checkMonth();
 
 // #endregion task5
