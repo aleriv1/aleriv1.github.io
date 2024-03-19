@@ -178,18 +178,25 @@
   height: 50px;
   background-color: green;
 }
-.form {
-  margin: 100px;
-  background: #000;
+.form_js-check {
+  padding-top: 40px;
 }
 .form_input {
   background: #f00;
+}
+.button_form {
+  border-radius: 10px;
+  width: 100px;
+  height: 25px;
+}
+.button_form:hover {
+  background: #c2a8c2;
 }
 /* #region js-hw */
 .section_code {
   padding-left: 50px;
 }
 .code-js {
-  font-size: 24px;
+  font-size: 16px;
 }
 /* #endregion js-hw */
