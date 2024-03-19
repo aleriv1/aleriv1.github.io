@@ -1,5 +1,4 @@
 /* #region reset css */
-@import "cssres.css";
 /* #endregion reset css */
 /* #region variables */
 /* #endregion variables */
@@ -12,12 +11,19 @@
 .exmp-header {
   background-color: #0a584771;
 }
-.header {
+.header,
+.header-main {
   padding: 35px;
   text-align: center;
   font-size: 55px;
   font-weight: bold;
   font-style: italic;
+}
+.header-main_l {
+  font-size: 24px;
+}
+.header_btsp {
+  color: #c8a2c8;
 }
 .cont_lect {
   padding-left: 10%;
@@ -30,6 +36,16 @@
   background-color: #C8A2C8;
   font-size: 24px;
 }
+.lection_another:hover,
+.lect_another:hover {
+  background: #2fa62f;
+  min-height: 500px;
+  transition: 2s;
+}
+.lection-color,
+.lect-color {
+  background: #c8a2c8;
+}
 .the-circle {
   width: 100px;
   height: 100px;
@@ -39,35 +55,6 @@
   margin: 30px calc((100vw - 100px)/2 - 10%);
 }
 /* #endregion lection  style */
-/* #region bootstrap mod + homework 3 */
-[class*='col'] {
-  border: 1px solid #000;
-  padding: 20px;
-}
-.row_first {
-  height: 100px;
-}
-.row_main-content {
-  height: 250px;
-}
-.col_title {
-  padding: 30px;
-  text-align: center;
-}
-.col_header,
-.col_footer {
-  text-align: center;
-  padding: 10px;
-}
-@media (max-width: 576px) {
-  .col_footer {
-    display: none;
-  }
-}
-.author {
-  color: blue;
-}
-/* #endregion bootstrap mod + homework 3 */
 /* #region the homework #1 */
 .list {
   margin-top: 25px;
@@ -91,7 +78,26 @@
 .img {
   width: 500px;
   border-radius: 10px;
+  text-align: center;
   margin-left: calc((100vw - 500px)/2);
+}
+.img-cont {
+  margin: 20px 0;
+  background-color: #7ab56b;
+}
+.img-div {
+  margin: 20px 0;
+  height: 200px;
+  border: 1px solid #000;
+  background-image: url("../img/black-and-white-cats.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.img-obf {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
 }
 .iframe {
   width: 500px;
@@ -103,3 +109,87 @@
   margin-left: calc((100vw - 500px)/2);
 }
 /* #endregion the homework #1 */
+/* #region bootstrap mod + homework 3 */
+.container {
+  padding: 20px;
+}
+.container_round-corner {
+  border-radius: 30px;
+}
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  background-color: green;
+}
+.container-fluid_mod .col {
+  margin: 0;
+  padding: 0;
+}
+[class*='col'] {
+  border: 1px solid #000;
+  padding: 20px;
+}
+.row_first {
+  height: 100px;
+}
+.row_main-content {
+  height: 250px;
+}
+.col_title {
+  padding: 30px;
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.col_header,
+.col_footer {
+  text-align: center;
+  padding: 10px;
+}
+.col_footer {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+@media (max-width: 576px) {
+  .col_footer {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .col_footer {
+    background: green;
+  }
+}
+.author {
+  color: blue;
+}
+.menu-list {
+  padding: 10px;
+}
+.menu-list__item {
+  display: inline-block;
+}
+.menu-list__item_ver {
+  display: block;
+}
+/* #endregion bootstrap mod + homework 3 */
+#main {
+  width: 100px;
+  height: 50px;
+  background-color: green;
+}
+.form {
+  margin: 100px;
+  background: #000;
+}
+.form_input {
+  background: #f00;
+}
+/* #region js-hw */
+.section_code {
+  padding-left: 50px;
+}
+.code-js {
+  font-size: 24px;
+}
+/* #endregion js-hw */
