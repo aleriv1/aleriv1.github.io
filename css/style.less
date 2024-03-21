@@ -333,3 +333,65 @@
   }
 
 }
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+
+  &-cont {
+    display: grid;
+    grid-template: 50px 50px 50px 50px 50px 50px 50px 50px / 50px 50px 50px 50px 50px 50px 50px 50px;
+    // color: #00000077;
+    // grid-template-columns: auto auto auto auto auto auto auto auto;
+    // grid-template-columns: 10px 10px 10px 10px 10px 10px 10px 10px;
+    // grid-template-rows: 10px 10px 10px 10px 10px 10px 10px 10px;
+  }
+
+  @chessBoardColor: #1f681f4f;
+
+  &-cont__item {
+    // width: 30px;
+    // height: 10px;
+    border: 1px solid #000;
+
+    &:nth-child(2n):nth-child(-n+8) {
+      // &:nth-child(2n+9):nth-child(-n+16) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+9):nth-child(-n+16) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+18):nth-child(-n+24) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+25):nth-child(-n+32) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+34):nth-child(-n+40) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+41):nth-child(-n+48) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+50):nth-child(-n+56) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+57):nth-child(-n+64) {
+      background: @chessBoardColor;
+    }
+
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+}
