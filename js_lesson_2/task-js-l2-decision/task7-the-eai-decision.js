@@ -1,5 +1,9 @@
+//todo: Из предыдущего задания (task6) сгенерируйте динамически шахматное поле из массива в HTML
+// и раставьте шахматы в соответсвующем порядке.
+
 // #region task1
 
+// console.log(`test`);
 let chessBoard = [];
 
 for (let i = 0; i < 8; i++) {
@@ -44,18 +48,3 @@ console.log(chessStr);
 let gridCont = (document.querySelector(".grid-cont").innerHTML = chessStr);
 
 // #endregion task 2
-
-console.log("//---");
-
-// #region task 3
-
-const queue = ["Иван", "Мария", "Саша", "Даша"];
-const outside = ["Aмфибрахий"];
-
-outside.unshift(queue.pop());
-outside.unshift(queue.shift());
-queue.push(outside.pop());
-
-console.log("В очереди: " + queue + "\n " + "Вне банка: " + outside);
-
-// #endregion task 3
