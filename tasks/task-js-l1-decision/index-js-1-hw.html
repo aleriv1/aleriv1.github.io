@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+  <title>JS, homework #0</title>
+</head>
+
+<body>
+  <h1 class="header-main">JS, itmo, homework #0</h1>
+
+  <section class="section section_code section_code_0-0">
+    <h2 class="header header_code">
+      task0-0
+    </h2>
+
+    <code class="code-js code-js_hw-todo">
+      // todo:
+      <br>
+      Создайте example.html и подключите к нему script1.js:
+      <br>
+      <br>
+      1.Арифметика
+      <br>
+      <br>
+      ● Объявите переменные result со значением 8 и multiplier
+      <br>
+      ● Присвойте multiplier значение 2.5
+      <br>
+      ● Присвойте result вычисление 8 умножить на multiplier , затем прибавить
+      674, все это разделить на 3.3
+      <br>
+      <br>
+      2. Верно ли утверждение? - multiplier !== '2,5'
+      <br>
+      <br>
+      3. Создайте переменную cat со значением ‘Кот Василий’
+      <br>
+      <br>
+      ● Добавьте к ней ‘ лежит на печи’, чтобы значением cat стала строка ‘Кот
+      Василий лежит на печи’
+      <br>
+      <br>
+      4. Сравните между собой оператором == null, undefined, 0, 1, true, false, ''
+      <br>
+      // ---
+      <br>
+      <br>
+    </code>
+
+    <code class="code-js code-js_hw-decision">
+      let result = 8;
+      <br>
+      let multiplier;
+      <br>
+      multiplier = 2.5;
+      <br>
+      <br>
+      restul = (8 * multiplier + 674) / 3.3;
+      <br>
+      <br>
+      console.log(`multiplier !== '2,5':`, multiplier !== "2,5");
+      <br>
+      // true
+      <br>
+      <br>
+      let cat = `Кот Василий`;
+      <br>
+      console.log(`let cat =`, cat);
+      <br>
+      // cat = cat + ` лежит на печи`;
+      <br>
+      cat = `${cat} + лежит на печи`;
+      <br>
+      console.log("cat = `${cat} + лежит на печи`;");
+      <br>
+      <br>
+      console.log(`let cat =`, cat);
+      <br>
+      <br>
+      console.log(`null==undefined`, null == undefined);
+      <br>
+      console.log(`null==0`, null == 0);
+      <br>
+      console.log(`null==1`, null == 1);
+      <br>
+      console.log(`null==true`, null == true);
+      <br>
+      console.log(`null==false`, null == false);
+      <br>
+      <br>
+      console.log(`undefined==0`, undefined == 0);
+      <br>
+      console.log(`undefined==1`, undefined == 1);
+      <br>
+      console.log(`undefined==true`, undefined == true);
+      <br>
+      console.log(`undefined==false`, undefined == false);
+      <br>
+      <br>
+      console.log(`0==1`, 0 == 1);
+      <br>
+      console.log(`0==true`, 0 == true);
+      <br>
+      console.log(`0==false`, 0 == false);
+      <br>
+      <br>
+      console.log(`1==true`, 1 == true);
+      <br>
+      console.log(`1==false`, 1 == false);
+    </code>
+  </section>
+
+  <section class="section section_code section_code_0-1">
+    <h2 class="header header_code">
+      task0-1
+    </h2>
+    <code class="code-js code-js_hw-todo">
+      // todo:
+        Решите задачи, подключив script2.js
+        <br>
+        <br>
+        1. Напишите алгоритм проверки пароля, где в результате будет собрана
+        приветственная надпись text:
+        <br>
+        ○ если пароль не 123532, “Пароль не верный, вы не авторизованы”
+        <br>
+        ○ если пароль совпал с 123532: “Добро пожаловать”
+        <br>
+        ○ если это администратор: “Добро пожаловать, администратор”
+        <br>
+        <br>
+        2. Студент за семестр набрал 75(N*) баллов по математике, какая будет
+        итоговая оценка, если:
+        <br>
+        ○ 60 и более - удовлетворительно
+        <br>
+        ○ более 74 - хорошо
+        <br>
+        ○ более 90 - отлично
+        <br>
+        //---
+    </code>
+    <pre class="code-js code-js_hw-decision">
+
+      1. The decision
+
+function checkLogin() {
+  let login = document.getElementById("login");
+  let password = document.getElementById("password");
+
+  if (login.value) {
+    if (password.value != "123") {
+      console.log("you are not authorized");
+    } else if (login.value === "admin") {
+      console.log("Welcome, admin!");
+    } else {
+      console.log("Welcome!");
+    }
+    return false;
+  } else {
+    console.log("something went wrong");
+  }
+}
+
+    2. The decision
+
+function checkPoints() {
+  let pointsValue = document.getElementById("points");
+  console.log("value", pointsValue.value);
+  // let pointsValue = 75;
+
+  let pValue;
+  switch (true) {
+    case pointsValue.value > 90:
+      pValue = `the value is great`;
+      console.log(`the value is great`);
+      break;
+    case pointsValue.value > 74:
+      pValue = `the value is good`;
+      console.log(`the value is good`);
+      break;
+    case pointsValue.value >= 60:
+      pValue = `the value is not so bad`;
+      console.log(`the value is not so bad`);
+    default:
+      pValue = "you must learn";
+      console.log("you must learn");
+      break;
+  }
+
+  // document.getElementById("demo-form-0").innerHTML = pValue;
+  document.querySelector("#demo-form-0").innerHTML = pValue;
+
+}
+    </pre>
+
+    <form class="form form_js-check" onsubmit="checkLogin();" method="get" action="#">
+      <input type="text" value="" id="login">
+      <input type="password" name="" id="password">
+      <input type="submit" value="Отправить">
+    </form>
+
+    <form class="form form__js-check" method="get" action="#">
+      <label for="points" class="label-form">
+        enter your points
+        <input type="text" value="75" id="points">
+        <!-- <input type="text"  id="points"> -->
+      </label>
+      <button type="button" class="button button_form" onclick="checkPoints();">Button</button>
+    </form>
+
+    <p id="demo-form-0"></p>
+
+
+  </section>
+
+  <section class=" section section_code section_code_1">
+    <h2 class="header header_code">
+      task1
+    </h2>
+
+    <code class="code-js code-js_hw-todo">
+
+      // todo: Даны две переменные a, b им присвоены целочисленные значения.
+      <br>
+      // Необходимо программно поменять местами содержимое двух переменных, в b должно быть значение а и наоборот. 
+      <br>
+      // ---
+      <br>
+      <br>
+    </code>
+
+    <code class="code-js code-js_hw-decision">
+      let a = 12;
+      <br>
+      let b = 21;
+      <br>
+      <br>
+      console.log(`At first: let a = `, a, `let b = `, b);
+      <br>
+      <br>
+      let m = b;
+      <br>
+      <br>
+      b = a;
+      <br>
+      a = m;
+      <br>
+      <br>
+      console.log(`At the end: let a = `, a, `let b = `, b);
+
+    </code>
+  </section>
+
+  <section class="section section_code section_code_2">
+    <h2 class="header header_code">
+      task2
+    </h2>
+    <pre class="code-js code-js_hw-todo">
+// todo: Даны три переменные a и b и с им присвоены целочисленные значения.
+// Необходимо вывести значения по возрастанию.
+// Пример:
+let a = 10;
+let b = 7;
+let c = 8;
+
+// Вывод: 7 8 10
+
+    </pre>
+    <pre class="code-js code-js_hw-decision">
+      function increase() {
+  let a = 10;
+  let b = 7;
+  let c = 8;
+
+  // The solution with array (I saww additional materal -- I saw it previously)
+  const incrArr = [];
+
+  incrArr.push(a, b, c);
+  console.log(`incrArr before sort:`, incrArr);
+
+  incrArr.sort(function (a, b) {
+    return a - b;
+  });
+
+  console.log(`incrArr after sort`, incrArr);
+
+  // ---
+  // The solution with if
+
+  let incrRec = "";
+
+  if (a > b) {
+    if (b > c) {
+      incrRec = `${c} ${b} ${a}`;
+    } else if (a > c) {
+      incrRec = `${b} ${c} ${a}`;
+    } else {
+      incrRec = `${b} ${a} ${c}`;
+    }
+  } else {
+    if (a > c) {
+      incrRec = `${c} ${a} ${b}`;
+    } else if (b > c) {
+      incrRec = `${a} ${c} ${b}`;
+    } else {
+      incrRec = `${a} ${b} ${c}`;
+    }
+  }
+  console.log(incrRec);
+}
+
+let zIncrease = increase();
+
+    </pre>
+  </section>
+
+  <section class="section section_code section_code_3">
+    <h2 class="header header_code">
+      task3
+    </h2>
+    <pre class="code-js code-js_hw-todo">
+//todo: Дан номер некоторого года (положительное целое число). 
+// Вывести соответствующий ему номер столетия, учитывая, что, 
+// к примеру, началом 20 столетия был 1901 год.
+    </pre>
+    <pre class="code-js code-js_hw-decision">
+function century() {
+  let ce = 2024;
+  console.log(`the century is:`, (ce - (ce % 100)) / 100 + 1);
+}
+
+let zCentury = century();
+    </pre>
+  </section>
+
+  <section class="section section_code section_code_4">
+    <h2 class="header header_code">
+      task4
+    </h2>
+    <pre class="code-js code-js_hw-todo">
+//todo: Задано число. Проверить на  истинность (true или false) что 
+// сумма цифр данного трехзначного числа является четным числом. Числа меняются !
+// Пример:
+
+let x = 552
+
+// Сумма чисел: 5 + 5 + 2 = 12 
+// 12 - четное число (true)
+    </pre>
+    <pre class="code-js code-js_hw-decision">
+function numberSummEvenOdd() {
+  let num = 552;
+  console.log(`num is:`, num);
+  let numToStr = num + ""; // number to string
+
+  let numSum = 0;
+
+  for (let i = 0; i < numToStr.length; i++) {
+    let numPart = +numToStr.slice(i, i + 1);
+    numSum = numSum + numPart;
+    console.log(`numSum is after ${i + 1} iteration:`, numSum);
+  }
+  console.log(`numSum after loop`, numSum);
+
+  numSum % 2 == 0
+    ? console.log(`the number is even`)
+    : console.log(`the number is odd`);
+}
+    </pre>
+  </section>
+
+  <section class="section section_code section_code_5">
+    <h2 class="header header_code">
+      task5
+    </h2>
+    <pre class="code-js code-js_hw-todo">
+// todo: Дан номер месяца (1 — январь, 2 — февраль, ...). 
+// Вывести название соответствующего времени года("зима", "весна" и т.д.). 
+// Примечание: решить задачу через конструкцию switch
+    </pre>
+    <pre class="code-js code-js_hw-decision">
+function checkMonth() {
+  let monthValue = document.getElementById("monthId");
+
+  console.log(`monthValue.value is`, monthValue.value);
+
+  let season;
+
+  switch (true) {
+    case (monthValue.value >= 1 && monthValue.value < 3) ||
+      monthValue.value == 12:
+      season = `winter`;
+      console.log(`winter`);
+      break;
+
+    case monthValue.value >= 3 && monthValue.value < 6:
+      season = `spring`;
+      console.log(`spring`);
+      break;
+
+    case monthValue.value >= 6 && monthValue.value < 9:
+      season = `summer`;
+      console.log(`summer`);
+      break;
+
+    default:
+      season = `autumn`;
+      console.log("autumn");
+      break;
+  }
+
+  document.querySelector("#demo-form-1").innerHTML = season;
+}
+
+let zSeason = checkMonth();
+    </pre>
+    <form action="#" class="form-month">
+      <label for="monthId" class="label">
+        <input type="text" name="month-name" id="monthId" value="8">
+      </label>
+      <button type="button" onclick="checkMonth();">What season?</button>
+    </form>
+    <p class="text" id="demo-form-1"></p>
+  </section>
+
+
+  <!-- <script src="js/app-hw-1.js"></script> -->
+  <script src="app-hw-1.js"></script>
+</body>
+
+</html>
