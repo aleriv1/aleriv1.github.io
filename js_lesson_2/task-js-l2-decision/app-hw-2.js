@@ -26,6 +26,7 @@ console.log("//---");
 
 // #region task 2
 
+// let chessStr = `<div class='grid-cont'>`;
 let chessStr = "";
 
 for (let item of chessBoard) {
@@ -43,8 +44,9 @@ for (let item of chessBoard) {
 console.log(chessStr);
 let gridCont = (document.querySelector(".grid-cont").innerHTML = chessStr);
 
-let gridItem;
 // #endregion task 2
+
+console.log("//---");
 
 // #region task 3
 
@@ -55,12 +57,6 @@ outside.unshift(queue.pop());
 outside.unshift(queue.shift());
 queue.push(outside.pop());
 
-// console.log(String(queue));
-
 console.log("В очереди: " + queue + "\n " + "Вне банка: " + outside);
-
-// console.log(queue.shift(), queue);
-// console.log(queue.pop(), queue);
-// console.log(queue.push(`Амфибрахий`), queue);
 
 // #endregion task 3

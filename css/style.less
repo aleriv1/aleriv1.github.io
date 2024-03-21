@@ -344,22 +344,16 @@
   &-cont {
     display: grid;
     grid-template: 50px 50px 50px 50px 50px 50px 50px 50px / 50px 50px 50px 50px 50px 50px 50px 50px;
-    // color: #00000077;
-    // grid-template-columns: auto auto auto auto auto auto auto auto;
-    // grid-template-columns: 10px 10px 10px 10px 10px 10px 10px 10px;
-    // grid-template-rows: 10px 10px 10px 10px 10px 10px 10px 10px;
   }
 
   @chessBoardColor: #1f681f4f;
+  // @chessBoardColor: #c2a8c2;
 
   &-cont__item {
-    // width: 30px;
-    // height: 10px;
     font-style: italic;
     border: 1px solid #000;
 
     &:nth-child(2n):nth-child(-n+8) {
-      // &:nth-child(2n+9):nth-child(-n+16) {
       background: @chessBoardColor;
     }
 
