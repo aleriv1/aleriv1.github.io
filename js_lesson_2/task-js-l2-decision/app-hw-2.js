@@ -48,4 +48,19 @@ let gridItem;
 
 // #region task 3
 
+const queue = ["Иван", "Мария", "Саша", "Даша"];
+const outside = ["Aмфибрахий"];
+
+outside.unshift(queue.pop());
+outside.unshift(queue.shift());
+queue.push(outside.pop());
+
+// console.log(String(queue));
+
+console.log("В очереди: " + queue + "\n " + "Вне банка: " + outside);
+
+// console.log(queue.shift(), queue);
+// console.log(queue.pop(), queue);
+// console.log(queue.push(`Амфибрахий`), queue);
+
 // #endregion task 3
