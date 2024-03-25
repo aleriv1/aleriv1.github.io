@@ -1,9 +1,8 @@
 // todo: Сохраните результат шахматной партии в виде двухмерного массива board, называть фигуры можно
 // произвольно, например “black queen”.
 
-// #region task1
+// #region task6
 
-// console.log(`test`);
 let chessBoard = [];
 
 for (let i = 0; i < 8; i++) {
@@ -23,4 +22,4 @@ chessBoard[7][6] = "white king";
 
 console.log(chessBoard);
 
-// #endregion task 1
+// #endregion task6

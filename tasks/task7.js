@@ -1,9 +1,10 @@
 //todo: Из предыдущего задания (task6) сгенерируйте динамически шахматное поле из массива в HTML
 // и раставьте шахматы в соответсвующем порядке.
 
-// #region task1
+// #region task6
+// todo: Сохраните результат шахматной партии в виде двухмерного массива board, называть фигуры можно
+// произвольно, например “black queen”.
 
-// console.log(`test`);
 let chessBoard = [];
 
 for (let i = 0; i < 8; i++) {
@@ -23,11 +24,9 @@ chessBoard[7][6] = "white king";
 
 console.log(chessBoard);
 
-// #endregion task 1
+//
 
-console.log("//---");
-
-// #region task 2
+// #region task 7
 
 // let chessStr = `<div class='grid-cont'>`;
 let chessStr = "";
@@ -47,4 +46,4 @@ for (let item of chessBoard) {
 console.log(chessStr);
 let gridCont = (document.querySelector(".grid-cont").innerHTML = chessStr);
 
-// #endregion task 2
+// #endregion task 7
