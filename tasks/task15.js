@@ -6,23 +6,14 @@
 let calendarArr = [];
 
 let dN = 0;
+
 for (let i = 0; i < 6; i++) {
   let calendarArrSub = [];
-  const d = new Date();
   for (let iSub = 0; iSub < 7; iSub++) {
-    // calendarArrSub.push(iSub);
-    // calendarArrSub.push(2023, 2, -7);
-    calendarArrSub.push(new Date(2011, 1, -7 + dN).toDateString());
+    calendarArrSub.push(new Date(2024, 2, -3 + dN).toDateString());
     dN += 1;
   }
 
   calendarArr.push(calendarArrSub);
 }
 console.log(calendarArr);
-
-console.log(`---`);
-
-let now = new Date();
-console.log(now);
-// console.log(new Date(0));
-// console.log(new Date(24 * 3600 * 1000));
