@@ -33,7 +33,7 @@
 .lect {
   border-radius: 15px;
   padding: 25px;
-  background-color: #C8A2C8;
+  background-color: #7aca8c;
   font-size: 24px;
 }
 .lection_another:hover,
@@ -240,3 +240,23 @@
 .grid-cont__item:nth-child(2n+57):nth-child(-n+64) {
   background: #1f681f4f;
 }
+/*  #region app calendar */
+#field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin: 10vw;
+  border: 5px solid #5dc774;
+  border-radius: 25px;
+}
+.div-bg {
+  box-sizing: border-box;
+  background: #c8a2c8;
+  padding: 10%;
+  font-size: 24px;
+  border-radius: 15px;
+  height: 40%;
+  margin: 10px;
+}
+/*  #endregion app calendar */
