@@ -40,7 +40,7 @@ const tplMessage = `
 {{/if}}
 {{/each}}`;
 
-const Chat = {
+export const Chat = {
   data: messages,
   tmpl: tplMessage,
   init: function () {
@@ -50,6 +50,11 @@ const Chat = {
     Chat.render();
   },
 
+  addMessage: function (item) {
+    Chat.data.push(item);
+    Caht.partialRender(item);
+  },
+
   render: function () {
     let template = Handlebars.compile(Chat.tmpl);
     let htmlChat = template({ messages: Chat.data, userID: userID });
@@ -57,9 +62,17 @@ const Chat = {
     let root = document.querySelector('div[data-id="chat"]');
     root.innerHTML = htmlChat;
   },
+
+  partialRender: function (item) {
+    let template = Handlebars.compile(Chat.tmpl);
+    let htmlItem = template({ messages: [item], userID: userID });
+    console.log(htmlItem);
+    let root = document.querySelector('div[data-id="chat"]');
+    root.innerHTML = root.innerHTML + htmlItem;
+  },
 };
 
-Chat.init();
+// Chat.init();
 
 // Handlebars.registerHelper("checkUser", function (currIDUser) {
 //   return currIDUser == userID;
