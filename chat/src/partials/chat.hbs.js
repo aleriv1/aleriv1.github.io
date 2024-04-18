@@ -41,19 +41,37 @@ const tplMessage = `
 {{/each}}`;
 
 const Chat = {
-  init: function () {},
-  render: function () {},
+  data: messages,
+  tmpl: tplMessage,
+  init: function () {
+    Handlebars.registerHelper("checkUser", function (currIDUser) {
+      return currIDUser == userID;
+    });
+    Chat.render();
+  },
+
+  render: function () {
+    let template = Handlebars.compile(Chat.tmpl);
+    let htmlChat = template({ messages: Chat.data, userID: userID });
+    Handlebars.registerPartial("chat", htmlChat);
+    let root = document.querySelector('div[data-id="chat"]');
+    root.innerHTML = htmlChat;
+  },
 };
 
-Handlebars.registerHelper("checkUser", function (currIDUser) {
-  return currIDUser == userID;
-});
+Chat.init();
 
-let template = Handlebars.compile(tplMessage);
-let htmlChat = template({ messages: messages, userID: userID });
-Handlebars.registerPartial("chat", htmlChat);
-let root = document.querySelector('div[data-id="chat"]');
-root.innerHTML = htmlChat;
+// Handlebars.registerHelper("checkUser", function (currIDUser) {
+//   return currIDUser == userID;
+// });
+
+// let template = Handlebars.compile(tplMessage);
+// let htmlChat = template({ messages: messages, userID: userID });
+// Handlebars.registerPartial("chat", htmlChat);
+// let root = document.querySelector('div[data-id="chat"]');
+// root.innerHTML = htmlChat;
+
+// ---
 
 // import Handlebars from "handlebars";
 
