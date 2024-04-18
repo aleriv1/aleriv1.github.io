@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <title>Document</title>
+</head>
+
+<body id="root">
+
+
+  <!-- <script type="module" src="./js/partial/menu.hbs.js"></script>
+  <script type="module" src="./js/partial/footer.hbs.js"></script> -->
+
+  <!-- type = module -- deprecated -- отложенные, и в strict mode -->
+  <!-- <script type="module" src="./js/app12.js"></script> -->
+
+  <script src="./js/bundle.js"></script>
+</body>
+
+</html>
+
+
+<!-- <script>
+
+    // Компиляция шаблона
+    let menu = Handlebars.compile(`<li>{{link_one}}</li><li>{{ link_two }}</li>`)
+    // регистрация плоского
+    let htmlMenu = menu({ link_one: `Главная`, link_two: `О нас` })
+
+    let template = Handlebars.compile(`<div>
+      {{> menu}}
+
+    <div class="entry">
+      {{#if author}}
+      <h1>{{firstName}} {{lastName}}</h1>
+      {{/if}}
+      </div>
+
+      {{> footer}}
+      </div>`)
+
+    // регистрация в качестве объекта меню
+    Handlebars.registerPartial(
+      "menu",
+      // "<li>Главная</li><li>О нас</li>"
+      // "<li>{{link_one}}</li><li>{{ link_two }}</li>"
+      htmlMenu
+    )
+
+    let footer = Handlebars.compile(`<div>{{company}}@copy</div>`)
+    let htmlFooter = footer({ company: `lilya` })
+
+    Handlebars.registerPartial(
+      "footer",
+      // "<divv>@copy</div>"
+      htmlFooter
+    )
+
+    // let body = { body: `contnent` }
+    let body = {
+      author: true,
+      firstName: "Yehuda",
+      lastName: "Katz",
+    }
+
+
+
+    let str = template(body)
+    let root = document.querySelector(`#root`)
+    root.innerHTML = str
+
+  </script> -->

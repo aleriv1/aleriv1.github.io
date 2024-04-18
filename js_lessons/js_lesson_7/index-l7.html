@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+  <title>js, the class #7</title>
+
+</head>
+
+<body>
+  <h1 class="header-main">js, the class #7</h1>
+
+  <pre class="lect">
+
+    Навешивание событий на root-й элемент
+    Ортогональность программирования -- каждая функция должна заниматься одним действием.
+
+    Это -- структура данных.
+
+    let grid = [
+    {
+    id: `28.02.2024`,
+    event: [
+    { id: 1, time: `10.00`, name: `Завтрак` },
+    { id: 2, time: `10:00`, name: `Уборка` },
+    { id: 3, time: `14:00`, name: `Ужин` },
+    ],
+    },
+
+    {
+    id: `29.02.2024`,
+    event: [
+    { id: 1, time: `10.00`, name: `Завтрак` },
+    { id: 2, time: `10:00`, name: `Уборка` },
+    { id: 3, time: `14:00`, name: `Ужин` },
+    ],
+    },
+    ];
+
+    Нужен идентификатор.
+
+    Без return -- процедура
+
+    data - id
+
+    Атрибуты data - 
+    htmlbook
+
+    ---
+
+    Promise
+    --
+    Настройка json
+    fetch() -- ajax запрос
+    fetch() -- это web api
+    Запрос к серверу в отдельном поптоке -- асинхронно
+
+    promise -- это тот же самый callback, который ловит ответ (в response)
+
+    для объекта response происходит преобразование в json
+
+    get запрос
+    main type -- в какой тип данных передаётся (text (?)html -- там пишется текст html, либо в json -- то т)
+    
+    Первый параметром -- что хотим получить от сервера,
+    далее -- опции.
+    method:
+    body:   // тело запроса 
+    headers: {
+      // добавляем необходимые заголовки
+
+    }
+
+    далее -- промисы
+
+    .then((response) => response.json())
+    .then((data)=> {
+      // это финишный callback
+      console.log(data)
+    })
+
+    (end point -- конечная точка, куда мы обращаемся)
+
+    ---
+
+    форматы для передачи:
+
+    HTML
+    XHTML
+    XML
+
+    multipart/formdata
+    
+    ---
+
+    docker 
+
+    // rest сервера
+
+    ---
+
+    
+// чем json отличается от объекта
+// объект:
+// let obj = {name: 'Bob'} => {"name":"bob"}
+
+пайлоад 
+
+--
+
+Запросы к серверу
+
+(node.js -- однопоточная машина)
+    
+  </pre>
+  <script src="script-l7.js"></script>
+</body>
+
+</html>

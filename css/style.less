@@ -1,0 +1,436 @@
+/* #region reset css */
+
+// @import "cssres.css";
+
+/* #endregion reset css */
+
+/* #region variables */
+
+@mc0: #c8a2c8; // main color 0
+
+@bdr: 20px;
+
+@mtb: 20px; // margin top and bottom
+
+/* #endregion variables */
+
+/* #region lection common style */
+
+.example,
+.exmp {
+  background-color: #2f5e3a5e;
+
+  &-header {
+    background-color: #0a584771;
+  }
+}
+
+.header {
+
+  padding: 35px;
+  text-align: center;
+  font-size: 55px;
+  font-weight: bold;
+  font-style: italic;
+
+  &-main {
+    &:extend(.header);
+
+    &_l {
+      font-size: 24px;
+    }
+  }
+
+  &_btsp {
+    color: @mc0;
+  }
+
+}
+
+.cont {
+  &_lect {
+    // border: 1px solid #000;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+.lection,
+.lect {
+  border-radius: 15px;
+  padding: 25px;
+  // background-color: #C8A2C8;
+  background-color: #7aca8c;
+  font-size: 24px;
+
+  &_another {
+    &:hover {
+      background: #2fa62f;
+      min-height: 500px;
+      // padding-top: 45px;
+      // padding-bottom: 45px;
+      transition: 2s;
+
+    }
+  }
+
+  &-color {
+    background: @mc0;
+  }
+}
+
+
+.the-circle {
+  // box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border-radius: 50%;
+  border: 5px solid #f00;
+  margin: 30px calc((100vw - 100px)/2 - 10%);
+  // margin-left: calc((100vw - 30px)/2);
+}
+
+/* #endregion lection  style */
+
+/* #region the homework #1 */
+
+.list {
+  &__item-hw1 {
+    &_3 {
+      background-color: #f00;
+    }
+  }
+
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.table {
+  &:extend(.tr);
+  border-radius: 10px;
+  margin-left: calc((100vw - 300px)/2);
+  // background-color: #0f0;
+}
+
+// .tr {
+//   // background-color: #f00;
+// }
+
+.tr,
+.td {
+  border-radius: 25px;
+  width: 300px;
+  border: 1px solid #000;
+  text-align: center;
+  // background-color: #00f;
+}
+
+.img {
+
+  width: 500px;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: calc((100vw - 500px)/2);
+
+  &-cont {
+    margin: 20px 0;
+    background-color: #7ab56b;
+    // text-align: center;
+  }
+
+  &-div {
+    margin: @mtb 0;
+    height: 200px;
+    border: 1px solid #000;
+    background-image: url("../img/black-and-white-cats.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &-obf {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+  }
+
+}
+
+.iframe {
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  margin-left: calc((100vw - 500px)/2);
+}
+
+/* #endregion the homework #1 */
+
+/* #region bootstrap mod + homework 3 */
+
+.container {
+  padding: 20px;
+
+  // background: #f00;
+
+  &_round-corner {
+    border-radius: 30px;
+    // border: 1px solid #f00;
+  }
+
+  &-fluid {
+    // height: 100px;
+    padding: 0;
+    margin: 0;
+    background-color: green;
+
+    &_mod {
+      .row {
+        // margin: 0;
+        // padding: 0;
+      }
+
+      .col {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+// .container,
+// .row,
+// .col-9,
+// .col-md-9,
+[class*='col'] {
+  border: 1px solid #000;
+  padding: 20px;
+}
+
+.row {
+  &_first {
+    height: 100px;
+  }
+
+  &_title {
+    // padding: 30px;
+    // border-top-left-radius: 10px;
+    // border: 1px solid #f00;
+  }
+
+  &_header,
+  &_footer {
+    // height: 40px;
+  }
+
+  &_main-content {
+    height: 250px;
+  }
+}
+
+.col {
+  &_title {
+    padding: 30px;
+    text-align: center;
+    border-top-left-radius: @bdr;
+    border-top-right-radius: @bdr;
+
+
+  }
+
+  &_header,
+  &_footer {
+    text-align: center;
+    padding: 10px;
+
+  }
+
+  &_footer {
+    border-bottom-left-radius: @bdr;
+    border-bottom-right-radius: @bdr;
+
+    @media (max-width: 576px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      background: green;
+    }
+  }
+}
+
+.author {
+  color: blue;
+}
+
+.menu-list {
+  padding: 10px;
+
+  &__item {
+    display: inline-block;
+
+    &_ver {
+      display: block;
+    }
+  }
+}
+
+/* #endregion bootstrap mod + homework 3 */
+
+
+/* #region js-hw */
+
+/* #endregion js-hw */
+
+// .main {
+#main {
+  width: 100px;
+  height: 50px;
+  background-color: green;
+}
+
+
+.form {
+
+  // margin: 100px;
+  // background: #000;
+  &_js-check {
+    padding-top: 40px;
+  }
+
+  &_input {
+    background: #f00;
+  }
+}
+
+.button {
+
+  &_form {
+    border-radius: 10px;
+    width: 100px;
+    height: 25px;
+
+    &:hover {
+      background: #c2a8c2;
+    }
+  }
+}
+
+/* #region js-hw */
+
+.section {
+  &_code {
+    padding-left: 50px;
+  }
+}
+
+.code {
+  &-js {
+    // margin-top: 40px;
+    // padding-top: 40px;
+    font-size: 16px;
+  }
+
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+
+  &-cont {
+    display: grid;
+    grid-template: 50px 50px 50px 50px 50px 50px 50px 50px / 50px 50px 50px 50px 50px 50px 50px 50px;
+  }
+
+  @chessBoardColor: #1f681f4f;
+  // @chessBoardColor: #c2a8c2;
+
+  &-cont__item {
+
+    font-style: italic;
+    border: 1px solid #000;
+
+    &:nth-child(2n):nth-child(-n+8) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+9):nth-child(-n+16) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+18):nth-child(-n+24) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+25):nth-child(-n+32) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+34):nth-child(-n+40) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+41):nth-child(-n+48) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+50):nth-child(-n+56) {
+      background: @chessBoardColor;
+    }
+
+    &:nth-child(2n+57):nth-child(-n+64) {
+      background: @chessBoardColor;
+    }
+
+    display: flex;
+    text-align: center;
+    align-items: center;
+
+  }
+}
+
+/*  #region app calendar */
+
+#field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+  text-align: center;
+  // padding-left: 10vw;
+  // padding-right: 10vw;
+  margin: 10vw;
+  // height: 30vh;
+  border: 5px solid #5dc774;
+  border-radius: 25px;
+}
+
+.div-bg {
+  box-sizing: border-box;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  background: #c8a2c8;
+  padding: 10%;
+  font-size: 24px;
+  border-radius: 15px;
+  height: 40%;
+  // width: 50%;
+  // margin-left: 10px;
+  margin: 10px;
+}
+
+/*  #endregion app calendar */
+
+// #region lesson 7
+
+
+
+// #endregion lesson 7

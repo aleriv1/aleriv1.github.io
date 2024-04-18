@@ -1,0 +1,29 @@
+.main {
+    /* background-color: aqua; */
+
+}
+
+.container {
+    display: flex;
+    margin: 0 0 50px 0px;
+}
+
+.hiden {
+    display: none;
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    margin: 0 0 0px 5px;
+    border-radius: 10px;
+}
+
+.flex {
+    display: flex;
+}

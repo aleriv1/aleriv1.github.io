@@ -1,0 +1,262 @@
+/* #region reset css */
+/* #endregion reset css */
+/* #region variables */
+/* #endregion variables */
+/* #region lection common style */
+.example,
+.exmp {
+  background-color: #2f5e3a5e;
+}
+.example-header,
+.exmp-header {
+  background-color: #0a584771;
+}
+.header,
+.header-main {
+  padding: 35px;
+  text-align: center;
+  font-size: 55px;
+  font-weight: bold;
+  font-style: italic;
+}
+.header-main_l {
+  font-size: 24px;
+}
+.header_btsp {
+  color: #c8a2c8;
+}
+.cont_lect {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.lection,
+.lect {
+  border-radius: 15px;
+  padding: 25px;
+  background-color: #7aca8c;
+  font-size: 24px;
+}
+.lection_another:hover,
+.lect_another:hover {
+  background: #2fa62f;
+  min-height: 500px;
+  transition: 2s;
+}
+.lection-color,
+.lect-color {
+  background: #c8a2c8;
+}
+.the-circle {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border-radius: 50%;
+  border: 5px solid #f00;
+  margin: 30px calc((100vw - 100px)/2 - 10%);
+}
+/* #endregion lection  style */
+/* #region the homework #1 */
+.list {
+  margin-top: 25px;
+  margin-left: 25px;
+}
+.list__item-hw1_3 {
+  background-color: #f00;
+}
+.table {
+  border-radius: 10px;
+  margin-left: calc((100vw - 300px)/2);
+}
+.tr,
+.td,
+.table {
+  border-radius: 25px;
+  width: 300px;
+  border: 1px solid #000;
+  text-align: center;
+}
+.img {
+  width: 500px;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: calc((100vw - 500px)/2);
+}
+.img-cont {
+  margin: 20px 0;
+  background-color: #7ab56b;
+}
+.img-div {
+  margin: 20px 0;
+  height: 200px;
+  border: 1px solid #000;
+  background-image: url("../img/black-and-white-cats.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.img-obf {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+.iframe {
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  margin-left: calc((100vw - 500px)/2);
+}
+/* #endregion the homework #1 */
+/* #region bootstrap mod + homework 3 */
+.container {
+  padding: 20px;
+}
+.container_round-corner {
+  border-radius: 30px;
+}
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  background-color: green;
+}
+.container-fluid_mod .col {
+  margin: 0;
+  padding: 0;
+}
+[class*='col'] {
+  border: 1px solid #000;
+  padding: 20px;
+}
+.row_first {
+  height: 100px;
+}
+.row_main-content {
+  height: 250px;
+}
+.col_title {
+  padding: 30px;
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.col_header,
+.col_footer {
+  text-align: center;
+  padding: 10px;
+}
+.col_footer {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+@media (max-width: 576px) {
+  .col_footer {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .col_footer {
+    background: green;
+  }
+}
+.author {
+  color: blue;
+}
+.menu-list {
+  padding: 10px;
+}
+.menu-list__item {
+  display: inline-block;
+}
+.menu-list__item_ver {
+  display: block;
+}
+/* #endregion bootstrap mod + homework 3 */
+/* #region js-hw */
+/* #endregion js-hw */
+#main {
+  width: 100px;
+  height: 50px;
+  background-color: green;
+}
+.form_js-check {
+  padding-top: 40px;
+}
+.form_input {
+  background: #f00;
+}
+.button_form {
+  border-radius: 10px;
+  width: 100px;
+  height: 25px;
+}
+.button_form:hover {
+  background: #c2a8c2;
+}
+/* #region js-hw */
+.section_code {
+  padding-left: 50px;
+}
+.code-js {
+  font-size: 16px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+.grid-cont {
+  display: grid;
+  grid-template: 50px 50px 50px 50px 50px 50px 50px 50px / 50px 50px 50px 50px 50px 50px 50px 50px;
+}
+.grid-cont__item {
+  font-style: italic;
+  border: 1px solid #000;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+.grid-cont__item:nth-child(2n):nth-child(-n+8) {
+  background: #1f681f4f;
+}
+.grid-cont__item:nth-child(2n+9):nth-child(-n+16) {
+  background: #1f681f4f;
+}
+.grid-cont__item:nth-child(2n+18):nth-child(-n+24) {
+  background: #1f681f4f;
+}
+.grid-cont__item:nth-child(2n+25):nth-child(-n+32) {
+  background: #1f681f4f;
+}
+.grid-cont__item:nth-child(2n+34):nth-child(-n+40) {
+  background: #1f681f4f;
+}
+.grid-cont__item:nth-child(2n+41):nth-child(-n+48) {
+  background: #1f681f4f;
+}
+.grid-cont__item:nth-child(2n+50):nth-child(-n+56) {
+  background: #1f681f4f;
+}
+.grid-cont__item:nth-child(2n+57):nth-child(-n+64) {
+  background: #1f681f4f;
+}
+/*  #region app calendar */
+#field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin: 10vw;
+  border: 5px solid #5dc774;
+  border-radius: 25px;
+}
+.div-bg {
+  box-sizing: border-box;
+  background: #c8a2c8;
+  padding: 10%;
+  font-size: 24px;
+  border-radius: 15px;
+  height: 40%;
+  margin: 10px;
+}
+/*  #endregion app calendar */

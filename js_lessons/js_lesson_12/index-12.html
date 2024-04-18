@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="./css/style/"> -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <title>js12, templates</title>
+</head>
+
+<body id="root">
+  <h1 class="header-main"></h1>
+
+  <pre class="lect">
+
+    На session storage сделать сохранение формы; то есть
+    строка запроса, заголовок, body
+    В заголовке cookie -- ключ-значение
+    заголовок транспортируется до сервера
+    coockie -- кешируется --
+    в куки
+
+    После того, как создаётся сессия -- создаётся временный файл -- на дисковой подсистеме -- который хранится на сервере.
+
+    Только сервер может писать сессию.
+
+    Клиент может отдать данные
+    У клиента только id сессии
+    То есть данные не болтаются по протоколу.
+    
+  </pre>
+
+  <pre class="lect">
+
+  Шаблонизациия
+
+</pre>
+
+</body>
+<script src="./js/app12.js"></script>
+<script>
+
+  // compile the template
+  // var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+
+
+  let template = Handlebars.compile(`{{#each persons}}
+    {{>person person=.}}
+  {{/each}}`);
+
+  // let template = Handlebars.compile(`{{firstname}} {{loud lastname}}`);
+
+  // Handlebars.registerHelper('loud', function (aString) {
+  //   return aString.toUpperCase()
+  // })
+
+  Handlebars.registerPartial(
+    "person",
+    // "{{person.name}} is {{person.age}} years old.\n"
+    "{{person.name}} is {{person.age}} years old.<br>"
+  )
+
+  let data = {
+    // people: [
+    //   "Yehuda Katz",
+    //   "Alan Johnson",
+    //   "Charles Jolley",
+    // ],
+  }
+
+  let str1 = template({
+    persons: [
+      { name: "Nils", age: 20 },
+      { name: "Teddy", age: 10 },
+      { name: "Nelson", age: 40 },
+    ],
+  }
+  )
+
+  // let template = Handlebars.registerHelper('loud', function (aString) {
+  //   // return aString.toUpperCase()
+  //   return aString.slice(0, 1)
+  // })
+
+  // execute the compiled template and print the output to the console
+
+
+  // console.log(template({ doesWhat: "rocks!" }));
+  // console.log(template({ doesWhat: "lilya!" }));
+  let root = document.querySelector(`#root`)
+  // let str = template({ doesWhat: "lilya!" })
+  // let str = template(data)
+  let str = template({
+    firstname: "Yehuda",
+    lastname: "Katz",
+
+  })
+  // console.log(root)
+  // root.append()
+  root.innerHTML = str1
+  // root.innerHTML = str
+
+</script>
+
+</html>

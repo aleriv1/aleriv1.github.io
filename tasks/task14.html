@@ -1,0 +1,60 @@
+<!-- // todo: реализовать overlay на tailwind. В статье демонстрируется подход к реализации спинера.
+// https://www.tailwindcsscomponent.com/full-page-overlay-loading-screen#what-is-tailwind-css
+// Запустить код, заменить спинер на сплошную заливку полупрозрачным фоном. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="tailwindcss.css">
+
+  <link rel="stylesheet" href="fontawesome.min.css">
+
+  <style>
+    .loader {
+      border-top-color: #3498db;
+      -webkit-animation: spin 1s ease-in-out infinite;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <title>Tailwind spinner</title>
+
+</head>
+
+<body>
+
+  <div class="w-full h-full fixed flex justify-center items-center bg-white opacity-75 z-50">
+
+    <i class="fas fa-circle-notch fa-spin fa-5x loader ease-linear  text text-red-900"></i>
+
+  </div>
+
+  <script src="fontawesome-all.min.js"></script>
+</body>
+
+</html>

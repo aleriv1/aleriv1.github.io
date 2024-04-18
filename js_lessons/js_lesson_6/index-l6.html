@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+  <title>js, lesson #6</title>
+</head>
+
+<body>
+  <h1 class="header-main">js, lesson #6</h1>
+  <pre class="lect">
+    Тестировать свой код: console.assert
+    To ask, why is my task are not get plus.
+    Параметры -- переменная.
+    Аргументы -- значения.
+    Передача в момент call, вызова.
+
+    function add(par1, par2) {}
+    // это декларация функции
+
+
+    const fn = function(par1,par2) {}
+    // Это funtion expression
+
+    ()=>{}
+    ()=>{}
+    let pi = e=>{e}
+    // arrow function, стрелочная функция
+
+    Есть массив аргументов
+
+    Оператор спред ..., прочитать, понять.    
+
+    Когда параметров боль
+
+    ---
+    let root = document.querySelector(`#field`);
+
+      // function callback(event) {
+      function callback(e) {
+        // console.log(event);
+        console.log(e);
+        // console.log(`lilya`);
+}
+
+    root.addEventListener("click", callback);
+    ---
+    vue -- работает как нативный -- но с более удобной оболочкой
+
+
+    Функция emit -- ?
+    
+    ---
+
+    Понять, что это node -- в консоли увидеть методы, например addEventListener
+
+    ---
+
+    let b = document.querySelector('button')
+    undefined
+    b.click()
+    script.js:59 PointerEvent {isTrusted: false, pointerId: -1, width: 1, height: 1, pressure: 0, …}
+    undefined
+    b.click()
+    script.js:59 PointerEvent {isTrusted: false, pointerId: -1, width: 1, height: 1, pressure: 0, …}
+    undefined
+    
+    
+    Завести массив для каждого дня -- в него всё (для дня).
+
+    Надо работать с моделью
+
+  </pre>
+
+  <h1>admin</h1>
+  <!-- прежде писали таки; в onclick -- был callback -->
+  <!-- <div id="field" onclick="callback();">click</div> -->
+  <!-- <div id="field">click</div> -->
+  <div id="field">
+
+    <section onclick="alert(`section`)">
+      <!-- <section> -->
+      <button type="button">
+        click
+      </button>
+    </section>
+
+  </div>
+
+
+  <!-- <script src="script.js"></script> -->
+  <script src="script-app.js"></script>
+</body>
+
+</html>
