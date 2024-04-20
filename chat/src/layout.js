@@ -1,5 +1,5 @@
 // export чтобы писать логику в app
-export const tmlLayout = `
+export const tmpLayout = `
 
 <div class="flex h-screen antialiased text-gray-800">
 <div class="flex flex-row h-full w-full overflow-x-hidden">

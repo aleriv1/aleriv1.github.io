@@ -6,15 +6,24 @@ let myuuid = uuidv4();
 
 console.log("Your UUID is: " + myuuid);
 
-import "./partials/chat.hbs.js";
+// import "./partials/chat.hbs.js";
 
 import Handlebars from "handlebars";
 
 import { Chat } from "./partials/chat.hbs.js";
 Chat.init();
 
-const template = Handlebars.compile("Name: {{name}}");
-console.log(template({ name: "lilya" }));
+import "./partials/button.hbs.js";
+
+import { tmpLayout } from "./layout";
+
+let template = Handlebars.compile(tmpLayout);
+let htmlApp = template();
+let root = document.querySelector(`#app`);
+root.innerHTML = htmlApp;
+
+// const template = Handlebars.compile("Name: {{name}}");
+// console.log(template({ name: "lilya" }));
 
 const button = document.querySelector(`button[data-id="sendButton"]`);
 // console.log(button);

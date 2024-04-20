@@ -61,8 +61,8 @@ export const Chat = {
     let template = Handlebars.compile(Chat.tmpl);
     let htmlChat = template({ messages: Chat.data, userID: userID });
     Handlebars.registerPartial("chat", htmlChat);
-    let root = document.querySelector('div[data-id="chat"]');
-    root.innerHTML = htmlChat;
+    // let root = document.querySelector('div[data-id="chat"]');
+    // root.innerHTML = htmlChat;
   },
 
   partialRender: function (item) {

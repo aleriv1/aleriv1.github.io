@@ -69,6 +69,6 @@ const htmlButton = `
       </span>
     </button>
   </div>
-</div>;
+</div>
 `;
-Handlebars.registerPartial("htmlButton", htmlChat);
+Handlebars.registerPartial("button", htmlButton);
