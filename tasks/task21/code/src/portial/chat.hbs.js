@@ -57,10 +57,6 @@ export const Chat = {
     let htmlItem = template({ messages: [item] });
     let root = document.querySelector('div[data-id="chat"]');
     root.innerHTML = root.innerHTML + htmlItem;
-    console.log(htmlItem);
-  },
-
-  delMsg: function () {
-    let closeEl = document.querySelector(`.close`);
+    // console.log(htmlItem);
   },
 };

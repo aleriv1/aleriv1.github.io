@@ -1,0 +1,8 @@
+.close {
+  color: red;
+  font-weight: bold;
+  opacity: 0;
+}
+.close:hover {
+  opacity: 1;
+}

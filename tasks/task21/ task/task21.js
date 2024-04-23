@@ -1,3 +1,12 @@
+//todo:
+// 1. Реализовать очистку чата. В интерфейсе отрисовать кнопку удалить. При ее нажатии удаляется вся переписка.
+// 2. На контейнер сообщения повесить элемент удаления. При наведении на сообщение всплывает "X", при его нажатии удалятся сообщение.
+
+// для полноценной проверки -- надо запустить сервер в папке code
+
+// чести решения
+// #region код из app.js
+
 console.log("app.js");
 import Handlebars from "handlebars";
 import { v4 as uuidv4 } from "uuid";
@@ -29,14 +38,8 @@ button.addEventListener("click", function () {
   }
 
   delMsg = document.getElementsByClassName(`close`);
-  // for (let i = 0; i < delMsg.length; i++) {
   Array.from(delMsg).forEach((element) => {
-    // Почему не работает for
-    // for (let i = 0; i < 3; i++) {
-    //   console.log(`lylya msg`);
-    //   delMsg.addEventListener("click", function () {
     element.addEventListener("click", function () {
-      //   console.log(`lylya`);
       event.target.parentNode.parentNode.remove();
     });
   });
@@ -51,3 +54,5 @@ delConvButton.addEventListener("click", function () {
     root.removeChild(root.firstChild);
   }
 });
+
+// #endregion
