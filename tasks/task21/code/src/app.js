@@ -29,14 +29,8 @@ button.addEventListener("click", function () {
   }
 
   delMsg = document.getElementsByClassName(`close`);
-  // for (let i = 0; i < delMsg.length; i++) {
   Array.from(delMsg).forEach((element) => {
-    // Почему не работает for
-    // for (let i = 0; i < 3; i++) {
-    //   console.log(`lylya msg`);
-    //   delMsg.addEventListener("click", function () {
     element.addEventListener("click", function () {
-      //   console.log(`lylya`);
       event.target.parentNode.parentNode.remove();
     });
   });
