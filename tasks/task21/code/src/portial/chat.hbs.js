@@ -46,6 +46,9 @@ export const Chat = {
     Storage.addMessage(item);
     Chat.partialRender(item);
   },
+  delMsgDataChat: function (item) {
+    Storage.delMsgData(item);
+  },
 
   render: function () {
     let template = Handlebars.compile(Chat.tmpl);

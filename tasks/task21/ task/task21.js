@@ -4,7 +4,7 @@
 
 // для полноценной проверки -- надо запустить сервер в папке code -- там без node модулей
 
-// здесь -- части решения
+// здесь -- части решения из разных файлов
 // #region код из app.js
 
 console.log("app.js");
@@ -34,9 +34,8 @@ button.addEventListener("click", function () {
       message: inputDOM.value,
     };
     Chat.addMessage(item);
-    // console.log(item);
   }
-
+  // #region Удаление одного сообщения
   delMsg = document.getElementsByClassName(`close`);
   Array.from(delMsg).forEach((element) => {
     element.addEventListener("click", function () {
@@ -45,6 +44,9 @@ button.addEventListener("click", function () {
   });
   console.log(`delMsg`, delMsg);
 });
+// #endregion Удаление одного сообщения
+
+// #region Очистка всего чата
 
 const delConvButton = document.querySelector(`button[data-id="delConvButton"]`);
 delConvButton.addEventListener("click", function () {
@@ -53,6 +55,58 @@ delConvButton.addEventListener("click", function () {
   while (root.firstChild) {
     root.removeChild(root.firstChild);
   }
+  // #endregion Очистка всего чата
 });
 
 // #endregion
+
+// #region из data.js
+
+export const Storage = {
+  addMessage: function (item) {
+    if (!window.localStorage["messages"]) {
+      window.localStorage["messages"] = JSON.stringify([item]);
+    } else {
+      const messages = JSON.parse(window.localStorage["messages"]);
+      console.log(`messages after parse`, messages);
+      console.log(`typeof messages after parse`, typeof messages);
+      messages.push(item);
+      window.localStorage["messages"] = JSON.stringify(messages);
+    }
+  },
+  getListMessage: function () {
+    if (!window.localStorage["messages"]) {
+      return [];
+    }
+    return JSON.parse(window.localStorage["messages"]);
+  },
+  // #region Удаление из localStorage
+
+  delMsgData: function (item) {
+    const messages = JSON.parse(window.localStorage["messages"]);
+    messages.splice(messages.indexOf(item), 1);
+    window.localStorage["messages"] = JSON.stringify(messages);
+  },
+
+  // #endregion Удаление из localStorage
+
+  destroy: function () {
+    window.localStorage.clear();
+  },
+};
+
+// #endregion из data.js
+
+// #region из файла стилей -- для отображения х по hover
+
+/* .close {
+  color: red;
+  font-weight: bold;
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+} */
+
+// #endregion из файла стилей -- для отображения х по hover

@@ -16,9 +16,10 @@ const button = document.querySelector('button[data-id="sendButton"]');
 let delMsg;
 button.addEventListener("click", function () {
   const inputDOM = document.querySelector('input[data-id="message"]');
+  let item;
   if (inputDOM.value) {
     let myuuid = uuidv4();
-    let item = {
+    item = {
       id: myuuid,
       id_user: 100,
       name: "VG",
@@ -32,6 +33,7 @@ button.addEventListener("click", function () {
   Array.from(delMsg).forEach((element) => {
     element.addEventListener("click", function () {
       event.target.parentNode.parentNode.remove();
+      Chat.delMsgDataChat(item);
     });
   });
   console.log(`delMsg`, delMsg);
