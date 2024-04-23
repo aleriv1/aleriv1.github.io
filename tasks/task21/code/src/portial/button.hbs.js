@@ -41,6 +41,9 @@ const htmlButton = `<div class="flex flex-row items-center h-16 rounded-xl bg-wh
             </span>
         </button>
     </div>
-</div>`
+    <div class="ml-4">
+        <button data-id="delConvButton" type="button" class="flex items-center justify-center bg-red-500 hover:bg-orange-600 rounded-xl text-white px-4 py-1 flex-shrink-0">DelConv</button>
+    </div>
+</div>`;
 
-Handlebars.registerPartial("button", htmlButton)
+Handlebars.registerPartial("button", htmlButton);

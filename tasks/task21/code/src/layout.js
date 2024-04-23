@@ -1,4 +1,4 @@
-    export const tmplLayout = `<div class="flex h-screen antialiased text-gray-800">
+export const tmplLayout = `<div class="flex h-screen antialiased text-gray-800">
         <div class="flex flex-row h-full w-full overflow-x-hidden">
 
             <div class="flex flex-col flex-auto h-full p-6">
@@ -12,4 +12,4 @@
                 </div>
             </div>
         </div>
-    </div>`
+    </div>`;

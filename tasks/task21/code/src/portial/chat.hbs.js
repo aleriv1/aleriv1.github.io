@@ -12,8 +12,9 @@ const tplMessage = `
                 class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                 {{  name }}
             </div>
-            <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+            <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl flex">
                 <div>{{ message }}</div>
+                <p class="close ml-4">X</p>
             </div>
         </div>
     </div>
@@ -57,5 +58,9 @@ export const Chat = {
     let root = document.querySelector('div[data-id="chat"]');
     root.innerHTML = root.innerHTML + htmlItem;
     console.log(htmlItem);
+  },
+
+  delMsg: function () {
+    let closeEl = document.querySelector(`.close`);
   },
 };
