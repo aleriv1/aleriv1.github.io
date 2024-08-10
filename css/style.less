@@ -105,7 +105,7 @@ a {
 
     @media (min-width: 769px) {
       margin-left: 24px;
-      margin-right: 20px;
+      margin-right: 0;
     }
   }
 
@@ -115,12 +115,11 @@ a {
 
   &__divider {
 
-    &--first,
-    &--second {
+    &--first {
       display: none;
     }
 
-    &--third {
+    &--second {
       margin-left: 17px;
       margin-right: 20px;
 
@@ -132,6 +131,7 @@ a {
     @media (min-width: 768px) {
       &--first {
         display: block;
+        margin-left: 20px;
         margin-right: 21px;
       }
     }

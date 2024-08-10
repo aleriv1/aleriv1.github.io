@@ -188,28 +188,28 @@ a:hover {
 @media (min-width: 769px) {
   .header__nav {
     margin-left: 24px;
-    margin-right: 20px;
+    margin-right: 0;
   }
 }
 .header__burger {
   cursor: pointer;
 }
-.header__divider--first,
-.header__divider--second {
+.header__divider--first {
   display: none;
 }
-.header__divider--third {
+.header__divider--second {
   margin-left: 17px;
   margin-right: 20px;
 }
 @media (min-width: 768px) {
-  .header__divider--third {
+  .header__divider--second {
     margin: 0 20px;
   }
 }
 @media (min-width: 768px) {
   .header__divider--first {
     display: block;
+    margin-left: 20px;
     margin-right: 21px;
   }
 }
