@@ -194,6 +194,13 @@ a:hover {
 .header__divider--first {
   display: none;
 }
+@media (min-width: 768px) {
+  .header__divider--first {
+    display: block;
+    margin-left: 20px;
+    margin-right: 21px;
+  }
+}
 .header__divider--second {
   margin-left: 17px;
   margin-right: 20px;
@@ -201,13 +208,6 @@ a:hover {
 @media (min-width: 768px) {
   .header__divider--second {
     margin: 0 20px;
-  }
-}
-@media (min-width: 768px) {
-  .header__divider--first {
-    display: block;
-    margin-left: 20px;
-    margin-right: 21px;
   }
 }
 @media (min-width: 768px) {
@@ -341,11 +341,11 @@ a:hover {
   }
 }
 .services__top-wrapper {
-  margin: 24px 0;
+  margin: 24px 0 0;
 }
 @media (min-width: 1120px) {
   .services__top-wrapper {
-    margin: 42px 0 8px;
+    margin: 42px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -353,16 +353,22 @@ a:hover {
 }
 .services__fade-wrapper {
   position: relative;
+  overflow-y: visible;
 }
 .services__fade-wrapper:after {
   content: '';
   position: absolute;
   display: block;
   right: 0;
-  top: 0;
+  top: 24px;
   width: 24px;
   height: 40px;
   background: linear-gradient(90deg, #0000, #F8F8F8);
+}
+@media (min-width: 768px) {
+  .services__fade-wrapper:after {
+    top: 32px;
+  }
 }
 @media (min-width: 1120px) {
   .services__fade-wrapper:after {
@@ -372,18 +378,24 @@ a:hover {
 .services__list {
   display: flex;
   overflow-x: scroll;
+  overflow-y: visible;
   padding-left: 16px;
-  margin-bottom: 24px;
+  padding-right: 16px;
+  padding-top: 24px;
+  padding-bottom: 24px;
   position: relative;
 }
 @media (min-width: 768px) {
   .services__list {
     padding-left: 24px;
-    margin-bottom: 32px;
+    padding-top: 32px;
+    padding-bottom: 32px;
   }
 }
 @media (min-width: 1120px) {
   .services__list {
+    padding-top: 8px;
+    padding-bottom: 16px;
     flex-wrap: wrap;
     padding-left: 34px;
     overflow: visible;
@@ -464,11 +476,6 @@ a:hover {
   font: normal normal normal 14px/18px 'TT Lakes', sans-serif;
   color: #1b1c21;
   display: block;
-  /* @media (max-width: 767px) {
-      &:not(:first-child) {
-        display: none;
-      }
-    } */
 }
 @media (min-width: 768px) {
   .services__text {
