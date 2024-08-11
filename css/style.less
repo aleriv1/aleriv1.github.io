@@ -109,9 +109,9 @@ a {
     }
   }
 
-  &__burger {
-    cursor: pointer;
-  }
+  // &__burger {
+  //   cursor: pointer;
+  // }
 
   &__divider {
 
@@ -334,7 +334,6 @@ a {
     margin-bottom: 24px;
     position: relative;
 
-
     // &:after {
     //   content: '';
     //   position: absolute;
@@ -365,7 +364,25 @@ a {
   }
 
   &__item {
-    // height: 40px;
+
+    @media (min-width: @dw) {
+
+      &:nth-child(5) {
+        display: block;
+      }
+    }
+
+    // &:has(button:focus) {
+    //   border: 2px solid #B8FFEC;
+    //   border-radius: 6px;
+    //   background-color: #fff;
+    // }
+  }
+
+
+  &__button {
+    outline: 0;
+    background: inherit;
     border: 2px solid #0000;
     border-radius: 6px;
     font-family: 'TT Lakes';
@@ -374,73 +391,22 @@ a {
     line-height: 24px;
     color: #7e7e82;
     white-space: nowrap;
-    // padding: 8px 9px 8px 17px;
     padding: 6px 7px 6px 15px;
 
-    @media (min-width: 768px) {
-      &:nth-child(5) {
-        display: none;
-      }
-    }
-
     @media (min-width: @dw) {
-      // padding: 9px 22px 7px 23px;
       padding: 7px 20px 5px 21px;
-      // padding: 7px 18px 5px 18px;
     }
 
-    // #region diffrenet buttons
-    // &:first-child {
-    //   .selected-btn()
-    // }
-
-
-    &:nth-child(1) {
-      display: none;
-
-      @media (min-width: @dw) {
-        display: block;
-        .selected-btn()
-      }
-    }
-
-    &:nth-child(2) {
-      .selected-btn();
-
-      @media (min-width: @dw) {
-        .not-selected-btn()
-      }
-    }
-
-    @media (min-width: @dw) {
-      &:nth-child(3) {
-        display: none;
-      }
-
-      &:nth-child(5) {
-        display: block;
-      }
-    }
-
-
-    // #endregion different buttons
-
-
-    &:has(a:focus) {
+    &:focus {
+      outline: 0;
       border: 2px solid #B8FFEC;
       border-radius: 6px;
       background-color: #fff;
     }
-  }
 
-  &__link {
-
-    text-decoration: none;
-
-    &:visited {
-      color: #7e7e82;
+    &:active {
+      box-shadow: 0 0 5px 2px hsl(164, 100%, 50%);
     }
-
   }
 
   &__details {

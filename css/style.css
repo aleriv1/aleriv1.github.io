@@ -191,9 +191,6 @@ a:hover {
     margin-right: 0;
   }
 }
-.header__burger {
-  cursor: pointer;
-}
 .header__divider--first {
   display: none;
 }
@@ -393,7 +390,14 @@ a:hover {
     row-gap: 7px;
   }
 }
-.services__item {
+@media (min-width: 1120px) {
+  .services__item:nth-child(5) {
+    display: block;
+  }
+}
+.services__button {
+  outline: 0;
+  background: inherit;
   border: 2px solid #0000;
   border-radius: 6px;
   font-family: 'TT Lakes';
@@ -404,56 +408,19 @@ a:hover {
   white-space: nowrap;
   padding: 6px 7px 6px 15px;
 }
-@media (min-width: 768px) {
-  .services__item:nth-child(5) {
-    display: none;
-  }
-}
 @media (min-width: 1120px) {
-  .services__item {
+  .services__button {
     padding: 7px 20px 5px 21px;
   }
 }
-.services__item:nth-child(1) {
-  display: none;
-}
-@media (min-width: 1120px) {
-  .services__item:nth-child(1) {
-    display: block;
-    border: 2px solid #B8FFEC;
-    border-radius: 6px;
-    background-color: #fff;
-  }
-}
-.services__item:nth-child(2) {
+.services__button:focus {
+  outline: 0;
   border: 2px solid #B8FFEC;
   border-radius: 6px;
   background-color: #fff;
 }
-@media (min-width: 1120px) {
-  .services__item:nth-child(2) {
-    background-color: inherit;
-    border: 2px solid #0000;
-  }
-}
-@media (min-width: 1120px) {
-  .services__item:nth-child(3) {
-    display: none;
-  }
-  .services__item:nth-child(5) {
-    display: block;
-  }
-}
-.services__item:has(a:focus) {
-  border: 2px solid #B8FFEC;
-  border-radius: 6px;
-  background-color: #fff;
-}
-.services__link {
-  text-decoration: none;
-}
-.services__link:visited {
-  color: #7e7e82;
+.services__button:active {
+  box-shadow: 0 0 5px 2px hsl(164, 100%, 50%);
 }
 @media (min-width: 768px) {
   .services__details {
