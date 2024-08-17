@@ -11,67 +11,96 @@
 <body class="body">
 
   <header class="header">
-    <nav class="nav header__nav"><a href="" class="nav__link"><img class="header__burger" src="img/burger.svg"
-          alt="Иконка для отображения меню навигации" title="Меню сайта"></a></nav>
-    <img src=" img/divider.svg" alt="" class="header__divider header__divider--first">
-    <a href="/" class="logo header__logo"><img class="logo__img" src=" img/Group.svg" alt="Логотип компании CPS"></a>
-
-    <ul class="contact-us">
-      <li class="contact-us__item"><a class="contact-us__link" href=""><img class="contact-us__icon" src="img/call.svg"
-            alt="Иконка для звонка" title="Позвоните нам"></a></li>
-      <li class="contact-us__item"><a class="contact-us__link" href=""><img class="contact-us__icon" src="img/chat.svg"
-            alt="Иконка для сообщения в чате" title="Напишите нам"></a></li>
-      <li class="contact-us__item"><a class="contact-us__link" href=""><img class="contact-us__icon"
-            src="img/profile.svg" alt="Иконка профиля, контактных данных" title="Контакты"></img>
-        </a>
-      </li>
-    </ul>
-
-    <img src=" img/divider.svg" alt="" class="header__divider header__divider--second">
-
-    <ul class="repair-check repair-check--hdr">
-
-      <li class="repair-check__item"><a href="" class="repair-check__link"><span class="repair-check__text">оставить
-            заявку</span><img src="img/repair.svg" alt="Икона оформления заказа ремонта" title="Заказ ремонта"
-            class="repair-check__icon"></a>
-      </li>
-
-      <li class="repair-check__item"><a href="" class="repair-check__link"><span class="span repair-check__text">статус
-            ремонта</span><img src="img/checkstatus.svg" alt="Икона проверки статуса заказа ремонта"
-            title="Статус заказа ремонта" class="repair-check__icon"></a></li>
-    </ul>
+    <nav class="nav header__nav">
+      <a href="" class="nav__link">
+        <img class="header__burger" src="img/burger.svg" alt="Иконка для отображения меню навигации" title="Меню сайта">
+      </a>
+      <a href="/" class="logo header__logo">
+        <img class="logo__img" src=" img/Group.svg" alt="Логотип компании CPS">
+      </a>
+    </nav>
+    <div class="header__right-group">
+      <ul class="contact-us">
+        <li class="contact-us__item">
+          <a class="contact-us__link" href="">
+            <img class="contact-us__icon" src="img/call.svg" alt="Иконка для звонка" title="Позвоните нам">
+          </a>
+        </li>
+        <li class="contact-us__item">
+          <a class="contact-us__link" href="">
+            <img class="contact-us__icon" src="img/chat.svg" alt="Иконка для сообщения в чате" title="Напишите нам">
+          </a>
+        </li>
+        <li class="contact-us__item">
+          <a class="contact-us__link" href="">
+            <img class="contact-us__icon" src="img/profile.svg" alt="Иконка профиля, контактных данных"
+              title="Контакты">
+          </a>
+        </li>
+      </ul>
+      <ul class="repair-check repair-check--hdr">
+        <li class="repair-check__item">
+          <a href="" class="repair-check__link">
+            <span class="repair-check__text">Оставить заявку</span>
+            <img src="img/repair.svg" alt="Икона оформления заказа ремонта" title="Заказ ремонта"
+              class="repair-check__icon">
+          </a>
+        </li>
+        <li class="repair-check__item">
+          <a href="" class="repair-check__link">
+            <span class="span repair-check__text">статус ремонта</span>
+            <img src="img/checkstatus.svg" alt="Икона проверки статуса заказа ремонта" title="Статус заказа ремонта"
+              class="repair-check__icon">
+          </a>
+        </li>
+      </ul>
+    </div>
   </header>
 
   <main class="main">
     <section class="services">
 
       <div class="services__top-wrapper">
-
         <h1 class="services__heading">Услуги и сервисы</h1>
-
         <ul class="repair-check repair-check--srv services__repair-check">
-
-          <li class="repair-check__item"><a href="" class="repair-check__link"><span class="repair-check__text">Оставить
-                заявку</span><img src="img/repair.svg" alt="" class="repair-check__icon"></a></li>
-
-          <li class="repair-check__item"><a href="" class="repair-check__link"><span
-                class="span repair-check__text">Статус
-                ремонта</span><img src="img/checkstatus.svg" alt="" class="repair-check__icon"></a></li>
+          <li class="repair-check__item">
+            <a href="" class="repair-check__link">
+              <span class="repair-check__text">Оставить заявку</span>
+              <img src="img/repair.svg" alt="" class="repair-check__icon">
+            </a>
+          </li>
+          <li class="repair-check__item">
+            <a href="" class="repair-check__link">
+              <span class="span repair-check__text">Статус ремонта</span>
+              <img src="img/checkstatus.svg" alt="" class="repair-check__icon">
+            </a>
+          </li>
         </ul>
-
       </div>
 
-      <div class="services__fade-wrapper">
+      <nav class="services__fade-wrapper">
         <ul class="services__list">
-          <li class="services__item"><button autofocus class="services__button">Ремонтируемые
-              устройства</button></li>
-          <li class="services__item"><button class="services__button">Дополнительные услуги</button></li>
-          <li class="services__item"><button class="services__button">Цены на услуги</button></li>
-          <li class="services__item"><button class="services__button">Адреса сервисных центров</button></li>
-          <li class="services__item"><button class="services__button">Специальные цены</button></li>
-          <li class="services__item"><button class="services__button">Отзывы</button></li>
+          <li class="services__item">
+            <a autofocus href="#" class="services__link">Ремонтируемые
+              устройства</a>
+          </li>
+          <li class="services__item">
+            <a href="#" class="services__link">Дополнительные услуги</a>
+          </li>
+          <li class="services__item">
+            <a href="#" class="services__link">Цены на услуги</a>
+          </li>
+          <li class="services__item">
+            <a href="#" class="services__link">Адреса сервисных центров</a>
+          </li>
+          <li class="services__item">
+            <a href="#" class="services__link">Специальные цены</a>
+          </li>
+          <li class="services__item">
+            <a href="#" class="services__link">Отзывы</a>
+          </li>
         </ul>
-      </div>
+      </nav>
 
       <section class="services__details">
         <div class="services__reading">
@@ -85,10 +114,13 @@
               рекомендациям
               и, в свою очередь, советуют нас родным и близким.</p>
           </div>
-          <p class="expand"><a href="" class="expand__link">Читать далее</a></p>
-
+          <button class="expand">
+            Читать далее
+          </button>
         </div>
         <img class="services__img" src="img/cps.jpg" alt="Логотип компании на CPS зелёного цвета на стене">
+        <!-- <div class="services__img"><img class="services__img-content" src="img/cps.jpg" -->
+        <!-- alt="Логотип компании на CPS зелёного цвета на стене"></div> -->
       </section>
 
     </section>
