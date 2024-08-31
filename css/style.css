@@ -269,6 +269,9 @@ html {
 .contact-us__item:not(:last-child) {
   margin-right: 16px;
 }
+.contact-us--side-menu {
+  margin-bottom: 16px;
+}
 .repair-check {
   font-size: 0;
   position: relative;
@@ -601,6 +604,9 @@ html {
   width: 320px;
   height: 100vh;
   box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .side-menu__header {
   display: flex;
@@ -614,6 +620,7 @@ html {
   padding: 0;
   border-radius: 50%;
   background: #FF3E79 no-repeat 50%;
+  cursor: pointer;
 }
 .side-menu__button--close {
   background-image: url(../img/close-cross.svg);
@@ -621,6 +628,16 @@ html {
 }
 .side-menu__button--search {
   background-image: url(../img/search-icon.svg);
+}
+.side-menu__button--call {
+  background-image: url(../img/call-icon.svg);
+}
+.side-menu__button--chat {
+  background-image: url(../img/chat-icon.svg);
+  background-position: 50% 53%;
+}
+.side-menu__button--account {
+  background-image: url(../img/account-icon.svg);
 }
 .side-menu__logo {
   margin-right: 78px;
@@ -644,15 +661,33 @@ html {
   top: -4px;
   left: -24px;
 }
-/* .icon-box {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #FF3E79 no-repeat 50%;
-
-  &--close {
-    background-image: url(../img/close-cross.svg);
-  }
-
-} */
+.side-menu__address {
+  display: flex;
+  flex-direction: column;
+}
+.side-menu__mail {
+  font: 500 normal 16px/24px "TT Lakes", sans-serif;
+  color: #1b1c21;
+  margin-bottom: 12px;
+}
+.side-menu__tel {
+  font: bold normal 24px/32px "TT Lakes", sans-serif;
+  margin-bottom: 40px;
+}
+.side-menu .language-list {
+  display: flex;
+}
+.side-menu .language-list__item {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font: 16px/24px "TT Lakes", sans-serif;
+  color: #1b1c21;
+}
+.side-menu .language-list__item:not(:last-child) {
+  margin-right: 7px;
+}
+.side-menu .language-list__item--selected {
+  color: #737382;
+}
 /* #endregion side menu */

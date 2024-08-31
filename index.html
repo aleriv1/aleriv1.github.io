@@ -10,25 +10,65 @@
 
 <body>
   <section class="side-menu">
-    <header class="side-menu__header">
-      <button type="button" class="button side-menu__button side-menu__button--close">
-      </button>
-      <a href="/" class="logo side-menu__logo">
-        <img class="logo__img" src=" img/Group.svg" alt="Логотип компании CPS">
-      </a>
-      <button type="button" class="button side-menu__button side-menu__button--search">
-      </button>
-    </header>
-    <ul class="side-menu__list">
-      <li class="side-menu__item side-menu__item--active">Ремонт техники</li>
-      <li class="side-menu__item">Услуги и сервисы</li>
-      <li class="side-menu__item">Корпоративным клиентам</li>
-      <li class="side-menu__item">Продавцам техники</li>
-      <li class="side-menu__item">Партнёрам</li>
-      <li class="side-menu__item">Производителям</li>
-      <li class="side-menu__item">Наши сервисные центры</li>
-      <li class="side-menu__item">Контакты</li>
-    </ul>
+    <section class="side-menu__top">
+      <header class="side-menu__header">
+        <button type="button" class="side-menu__button side-menu__button--close" title="Кнопка закрытия меню">
+        </button>
+        <a href="/" class="logo side-menu__logo">
+          <img class="logo__img" src=" img/Group.svg" alt="Логотип компании CPS">
+        </a>
+        <button type="button" class="side-menu__button side-menu__button--search" title="Кнопка поля поиска">
+        </button>
+      </header>
+      <ul class="side-menu__list">
+        <li class="side-menu__item side-menu__item--active">Ремонт техники</li>
+        <li class="side-menu__item">Услуги и сервисы</li>
+        <li class="side-menu__item">Корпоративным клиентам</li>
+        <li class="side-menu__item">Продавцам техники</li>
+        <li class="side-menu__item">Партнёрам</li>
+        <li class="side-menu__item">Производителям</li>
+        <li class="side-menu__item">Наши сервисные центры</li>
+        <li class="side-menu__item">Контакты</li>
+      </ul>
+    </section>
+
+    <footer class="side-menu__footer">
+
+      <ul class="contact-us contact-us--side-menu">
+        <li class="contact-us__item">
+          <!-- <a class="contact-us__link" href="">
+            <img class="contact-us__icon" src="img/call.svg" alt="Иконка для звонка" title="Позвоните нам">
+          </a> -->
+          <button type="button" class="side-menu__button side-menu__button--call"></button>
+        </li>
+        <li class="contact-us__item">
+          <!-- <a class="contact-us__link" href="">
+            <img class="contact-us__icon" src="img/chat.svg" alt="Иконка для сообщения в чате" title="Напишите нам">
+          </a> -->
+          <button type="button" class="side-menu__button side-menu__button--chat"></button>
+        </li>
+        <li class="contact-us__item">
+          <!-- <a class="contact-us__link" href="">
+            <img class="contact-us__icon" src="img/profile.svg" alt="Иконка профиля, контактных данных"
+              title="Контакты">
+          </a> -->
+          <button type="button" class="side-menu__button side-menu__button--account"></button>
+        </li>
+      </ul>
+
+      <address class="side-menu__address">
+        <a href="mailto:mail@cps.com" class="side-menu__mail">mail@cps.com</a>
+        <a href="tel:88008908900" class="side-menu__tel">8 800 890 8900</a>
+      </address>
+
+      <ul class="language-list">
+        <li class="language-list__item language-list__item--selected">ru</li>
+        <li class="language-list__item">en</li>
+        <li class="language-list__item">cn</li>
+      </ul>
+
+    </footer>
+
   </section>
 </body>
 
