@@ -152,26 +152,6 @@ html {
   &__nav {
     display: flex;
     position: relative;
-
-
-    @media (min-width: 768px) {
-      // margin-left: 24px;
-      // margin-right: 0;
-      // margin-right: 20px;
-      // padding-right: 20px;
-
-      // &:after {
-      //   content: "";
-      //   display: block;
-      //   width: 2px;
-      //   height: 32px;
-      //   position: absolute;
-      //   right: 0;
-      //   // right: -20px;
-      //   top: 4px;
-      //   background-image: url(../img/divider.svg);
-      // }
-    }
   }
 
   &__right-group {
@@ -212,7 +192,7 @@ html {
   }
 
   @media (min-width: @dw) {
-    display: none; // now; in final layout it will be an element in flexbox container
+    display: none;
   }
 }
 
@@ -305,24 +285,12 @@ html {
 /* #region main */
 
 .main {
-  // .centering(320px);
-  // .centering(@mcs);
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  // align-items: flex-end;
-  // align-items: stretch;
   min-width: 320px;
-
-
-  @media (min-width: 768px) {
-    // .centering(768px);
-    // .centering(@tcs);
-  }
 
   @media (min-width: @dw) {
     .centering-fix(@dw);
-    // .centering(@dcs)
   }
 }
 
@@ -740,6 +708,5 @@ html {
   }
 
 }
-
 
 /* #endregion side menu */
