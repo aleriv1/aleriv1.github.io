@@ -1,140 +1,33 @@
-/* #region reset css */
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
+/* #region common */
 ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+body {
   margin: 0;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
 }
-
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-
-body {
-  line-height: 1;
-}
-
-ol,
-ul {
+ul,
+ol {
   list-style: none;
 }
-
-blockquote,
-q {
-  quotes: none;
+.body {
+  background-color: #F8F8F8;
 }
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
+a {
+  text-decoration: none;
 }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+a,
+a:visited,
+a:hover {
+  color: inherit;
 }
-/* #endregion reset css */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+/* #endregion common */
 /* #region fonts */
 @font-face {
   font-family: 'TT Lakes';
@@ -158,32 +51,6 @@ table {
   font-style: normal;
 }
 /* #endregion fonts */
-/* #region common */
-.body {
-  background-color: #F8F8F8;
-}
-a {
-  text-decoration: none;
-}
-a,
-a:visited,
-a:hover {
-  color: inherit;
-}
-html {
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-/* #endregion common */
 /* #region header */
 .header {
   background-color: #fff;
@@ -621,6 +488,10 @@ html {
   border-radius: 50%;
   background: #FF3E79 no-repeat 50%;
   cursor: pointer;
+  transition: opacity 0.3s linear;
+}
+.side-menu__button:hover {
+  opacity: 0.5;
 }
 .side-menu__button--close {
   background-image: url(../img/close-cross.svg);

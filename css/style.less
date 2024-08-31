@@ -1,7 +1,3 @@
-/* #region reset css */
-@import (inline) "rescss.css";
-/* #endregion reset css */
-
 // #region variables & mixins
 
 @tc: #c8a2c8; // test color
@@ -42,6 +38,48 @@
 
 // #endregion variables & mixins
 
+/* #region common */
+
+// @import (inline) "rescss.css";
+
+ul,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+
+.body {
+  background-color: #F8F8F8;
+}
+
+a {
+  text-decoration: none;
+
+  &,
+  &:visited,
+  &:hover {
+    color: inherit;
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* #endregion common */
+
 /* #region fonts */
 
 @font-face {
@@ -79,44 +117,7 @@
 
 /* #endregion fonts */
 
-/* #region common */
-
-.body {
-  background-color: #F8F8F8;
-}
-
-a {
-  text-decoration: none;
-
-  &,
-  &:visited,
-  &:hover {
-    color: inherit;
-  }
-}
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
-/* #endregion common */
-
-
 /* #region header */
-
 
 .header {
 
@@ -126,7 +127,6 @@ html {
   height: 88px;
   display: flex;
   align-items: center;
-  // justify-content: center;
   justify-content: space-between;
 
   min-width: 320px;
@@ -208,7 +208,6 @@ html {
   }
 
   @media (min-width: 768px) {
-    // .centering(768px);
     .centering(@tcs);
 
     &__logo {
@@ -220,7 +219,6 @@ html {
     display: none; // now; in final layout it will be an element in flexbox container
   }
 }
-
 
 .logo {
   display: block;
@@ -302,11 +300,6 @@ html {
       margin-right: 8px;
       font: 500 normal 16px/24px "TT Lakes", sans-serif;
       color: #1B1C21;
-      // font-family: "TT Lakes", sans-serif;
-
-
-      // vertical-align: 90%;
-      // vertical-align: 15px;
     }
   }
 }
@@ -370,13 +363,9 @@ html {
       left: 0;
 
       @media (min-width: @dw) {
-
-        // content: '';
         width: 3px;
         height: 40px;
-        // display: block;
         background: url(../img/highlight-full.svg);
-        // position: absolute;
         left: 1px;
       }
 
@@ -384,12 +373,9 @@ html {
   }
 
   &__top-wrapper {
-
-    // margin: 24px 0;
     margin: 24px 0 0;
 
     @media (min-width: @dw) {
-      // margin: 42px 0 8px;
       margin: 42px 0 0;
       display: flex;
       justify-content: space-between;
@@ -412,7 +398,6 @@ html {
       height: 40px;
       background: linear-gradient(90deg, #0000, #F8F8F8);
 
-      // background-color: red;
       @media (min-width: 768px) {
         top: 32px;
       }
@@ -430,13 +415,11 @@ html {
     padding-left: @mcs;
     padding-right: @mcs;
     padding-top: 24px;
-    // margin-bottom: 24px;
     padding-bottom: 24px;
     position: relative;
 
     @media (min-width: 768px) {
       padding-left: @tcs;
-      // margin-bottom: 32px;
       padding-top: 32px;
       padding-bottom: 32px;
     }
@@ -447,7 +430,6 @@ html {
       flex-wrap: wrap;
       padding-left: @dcs;
       overflow: visible;
-      // row-gap: 16px;
     }
   }
 
@@ -459,16 +441,9 @@ html {
         display: block;
       }
     }
-
-    // &:has(button:focus) {
-    //   border: 2px solid #B8FFEC;
-    //   border-radius: 6px;
-    //   background-color: #fff;
-    // }
   }
 
   .test-focus {
-
     outline: 0;
     border: 2px solid #B8FFEC;
     border-radius: 6px;
@@ -476,8 +451,6 @@ html {
   }
 
   &__link {
-
-    // margin-top: 8px;
     display: inline-block;
     outline: 0;
     background: inherit;
@@ -510,17 +483,14 @@ html {
 
     &:active {
       box-shadow: 0 0 5px 2px hsl(164, 100%, 50%);
-      // filter: drop-shadow(0 0 5px hsl(164, 100%, 50%));
     }
   }
 
   &__details {
     display: flex;
     flex-direction: column;
-    // align-items: center;
 
     @media (min-width: 640px) {
-      // @media (min-width: 500px) {
       flex-direction: row;
     }
 
@@ -535,7 +505,6 @@ html {
     padding: 0 @mcs @mcs;
 
     @media (min-width: 768px) {
-      // margin-right: 48px;
       padding: 0 48px 0 @tcs;
     }
 
@@ -548,20 +517,12 @@ html {
   &__paragraphs {
     display: flex;
     flex-direction: column;
-
     margin-bottom: 16px;
     overflow-y: hidden;
-    // width: 288px;
-    // padding-right: @mcs;
     min-width: 288px;
     height: 90px;
 
-    // @media (min-width: 500px) {
-    // min-width: 148px;
-    // }
-
     @media (min-width: 768px) {
-      // width: 312px;
       min-width: 312px;
       height: 160px;
       margin-bottom: 10px;
@@ -578,8 +539,6 @@ html {
     font: normal normal normal 14px/18px 'TT Lakes', sans-serif;
     color: #1b1c21;
 
-    // display: block;
-
     @media (min-width: 768px) {
       line-height: 20px;
 
@@ -594,28 +553,17 @@ html {
       display: inline-block;
       min-width: 320px;
       max-width: 100%;
-      // padding: 1px1 0;
-      // margin: 30px 0;
       object-fit: contain;
-      // object-fit: cover;
     }
 
-    // display: inline-block;
-    // object-fit: contain;
     object-fit: cover;
-    // flex-basis: 100%;
     flex-basis: 50%;
     flex-shrink: 2;
-    // flex-grow: 0;
-    // flex-grow: 2;
-    // width: 320px;
     min-width: 320px;
     max-width: 100%;
 
     @media (min-width: 768px) {
-      // width: 360px;
       min-width: 360px;
-      // height: 208px;
     }
 
     @media (min-width: @dw) {
@@ -652,16 +600,9 @@ html {
     position: absolute;
     left: 0;
   }
-
-  // &__icon {
-  //   vertical-align: middle;
-  //   margin-right: 8px;
-  // }
 }
 
-
 /* #endregion main */
-
 
 /* #region side menu */
 
@@ -676,7 +617,6 @@ html {
 
 
   &__header {
-    // padding: 19px 24px 46px;
     display: flex;
     align-items: center;
     margin-bottom: 46px;
@@ -690,6 +630,11 @@ html {
     border-radius: 50%;
     background: #FF3E79 no-repeat 50%;
     cursor: pointer;
+    transition: opacity .3s linear;
+
+    &:hover {
+      opacity: .5;
+    }
 
     &--close {
       background-image: url(../img/close-cross.svg);
