@@ -18,8 +18,6 @@
 }
 
 .centering(@w) {
-  // padding-left: calc((100vw - @w) / 2);
-  // padding-right: calc((100vw - @w) / 2);
   padding-left: @w;
   padding-right: @w;
 }
@@ -39,8 +37,6 @@
 // #endregion variables & mixins
 
 /* #region common */
-
-// @import (inline) "rescss.css";
 
 ul,
 body {
@@ -633,7 +629,7 @@ html {
     transition: opacity .3s linear;
 
     &:hover {
-      opacity: .5;
+      opacity: .6;
     }
 
     &--close {
@@ -661,13 +657,26 @@ html {
 
   &__logo {
     margin-right: 78px;
+    transition: filter .3s linear;
+
+    &:hover {
+      filter: drop-shadow(0 0 2px #41F6D7);
+    }
   }
 
   &__item {
+    cursor: pointer;
     font: 500 normal 16px/24px "TT Lakes", sans-serif;
     color: #1B1C21;
     margin-bottom: 32px;
     position: relative;
+    transition: background-color .5s linear, box-shadow .5s ease;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: #41f6d83f; // #41F6D7
+      box-shadow: 0 0 5px #000;
+    }
 
     &--active {
       color: #7E7E82;
@@ -712,6 +721,13 @@ html {
       font-style: normal;
       font: 16px/24px "TT Lakes", sans-serif;
       color: #1b1c21;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color .3s linear;
+
+      &:hover {
+        background: #0000002c;
+      }
 
       &:not(:last-child) {
         margin-right: 7px;

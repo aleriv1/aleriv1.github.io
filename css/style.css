@@ -491,7 +491,7 @@ html {
   transition: opacity 0.3s linear;
 }
 .side-menu__button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 .side-menu__button--close {
   background-image: url(../img/close-cross.svg);
@@ -512,12 +512,23 @@ html {
 }
 .side-menu__logo {
   margin-right: 78px;
+  transition: filter 0.3s linear;
+}
+.side-menu__logo:hover {
+  filter: drop-shadow(0 0 2px #41F6D7);
 }
 .side-menu__item {
+  cursor: pointer;
   font: 500 normal 16px/24px "TT Lakes", sans-serif;
   color: #1B1C21;
   margin-bottom: 32px;
   position: relative;
+  transition: background-color 0.5s linear, box-shadow 0.5s ease;
+  border-radius: 6px;
+}
+.side-menu__item:hover {
+  background-color: #41f6d83f;
+  box-shadow: 0 0 5px #000;
 }
 .side-menu__item--active {
   color: #7E7E82;
@@ -554,6 +565,12 @@ html {
   font-style: normal;
   font: 16px/24px "TT Lakes", sans-serif;
   color: #1b1c21;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s linear;
+}
+.side-menu .language-list__item:hover {
+  background: #0000002c;
 }
 .side-menu .language-list__item:not(:last-child) {
   margin-right: 7px;
