@@ -42,17 +42,18 @@
 
 .my-swiper__wrapper {
   // background-color: #c2a8c2;
+  transition: max-height .5s;
 
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
-    height: 184px;
+    // height: 184px;
+    max-height: 184px;
     overflow: hidden;
   }
 
   @media (min-width: 1440px) {
-
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 32px;
   }

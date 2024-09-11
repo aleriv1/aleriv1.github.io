@@ -72,11 +72,14 @@ console.log(`expand is: ${expand} | mySwWr is: ${mySwWr}`);
 expand.addEventListener("click", () => {
   if (buttonShow) {
     buttonShow = false;
-    mySwWr.style.height = "auto";
+    // mySwWr.style.height = "auto";
+    // mySwWr.style.height = "256px";
+    mySwWr.style.maxHeight = "500px";
     expand.innerHTML = "Скрыть";
   } else {
     buttonShow = true;
-    mySwWr.style.height = "184px";
+    // mySwWr.style.height = "184px";
+    mySwWr.style.maxHeight = "184px";
     expand.innerHTML = "Показать всё";
   }
 });

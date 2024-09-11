@@ -21,12 +21,15 @@
 .my-swiper__slide--3 {
   background-color: orange;
 }
+.my-swiper__wrapper {
+  transition: max-height 0.5s;
+}
 @media (min-width: 768px) {
   .my-swiper__wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
-    height: 184px;
+    max-height: 184px;
     overflow: hidden;
   }
 }
