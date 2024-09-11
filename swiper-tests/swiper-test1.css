@@ -1,0 +1,11 @@
+.slide_1 {
+  background-color: purple;
+}
+.mySwiper-wrapper {
+  background-color: #c2a8c2;
+}
+@media (min-width: 768px) {
+  .mySwiper-wrapper {
+    display: flex;
+  }
+}
