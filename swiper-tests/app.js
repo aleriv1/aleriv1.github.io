@@ -17,7 +17,7 @@ function swiperMode() {
         // Optional parameters
         // direction: "vertical",
         loop: true,
-        slidesPerView: 1.2,
+        slidesPerView: 1.25,
         // slidesPerView: auto,
         spaceBetween: 20,
 
@@ -30,15 +30,15 @@ function swiperMode() {
         },
 
         // Navigation arrows
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
+        // navigation: {
+        //   nextEl: ".swiper-button-next",
+        //   prevEl: ".swiper-button-prev",
+        // },
 
         // And if we need scrollbar
-        scrollbar: {
-          el: ".swiper-scrollbar",
-        },
+        // scrollbar: {
+        //   el: ".swiper-scrollbar",
+        // },
       });
     }
   }
@@ -73,13 +73,16 @@ expand.addEventListener("click", () => {
   if (buttonShow) {
     buttonShow = false;
     // mySwWr.style.height = "auto";
-    // mySwWr.style.height = "256px";
-    mySwWr.style.maxHeight = "500px";
+    mySwWr.style.maxHeight = "350px";
     expand.innerHTML = "Скрыть";
+    expand.style.marginTop = "46px";
+    expand.style.setProperty("--rotExp", "rotate(180deg)");
+    // expand
   } else {
     buttonShow = true;
-    // mySwWr.style.height = "184px";
-    mySwWr.style.maxHeight = "184px";
+    mySwWr.style.maxHeight = "160px";
     expand.innerHTML = "Показать всё";
+    expand.style.marginTop = "24px";
+    expand.style.setProperty("--rotExp", "rotate(0)");
   }
 });

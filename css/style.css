@@ -460,12 +460,15 @@ html {
   width: 20px;
   height: 24px;
   display: block;
-  background-image: url(../img/expand.svg);
+  background-image: var(--bgiExp, url(../img/expand.svg));
+  transform: var(--rotExp, rotate(0deg));
+  transition: transform 1s;
   position: absolute;
   left: 0;
 }
 .expand--brands {
   display: none;
+  margin-top: 24px;
 }
 @media (min-width: 768px) {
   .expand--brands {
