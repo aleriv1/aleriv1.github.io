@@ -17,6 +17,9 @@ function swiperMode() {
         // Optional parameters
         // direction: "vertical",
         loop: true,
+        slidesPerView: 1.2,
+        // slidesPerView: auto,
+        spaceBetween: 20,
 
         // If we need pagination
         pagination: {

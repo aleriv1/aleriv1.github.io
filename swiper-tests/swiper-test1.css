@@ -1,11 +1,20 @@
-.slide_1 {
+.my-swiper__slide {
+  width: 100px;
+}
+.my-swiper__slide--1 {
   background-color: purple;
 }
-.mySwiper-wrapper {
+.my-swiper__slide--2 {
+  background-color: green;
+}
+.my-swiper__wrapper {
   background-color: #c2a8c2;
 }
 @media (min-width: 768px) {
-  .mySwiper-wrapper {
+  .my-swiper__wrapper {
     display: flex;
   }
+}
+.swiper-slide {
+  height: 100px;
 }
