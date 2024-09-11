@@ -1,5 +1,28 @@
+@import "../css/style.css";
+/* * {
+  padding: 0;
+  margin: 0;
+} */
+
+.zero() {
+  padding: 0;
+  margin: 0;
+}
+
+
+@sww: 240px; // swiper width
+@swh: 72px; // swiper hight
+
+
+.body {
+
+  .zero();
+  background-color: #F2F2F2;
+}
+
 .my-swiper {
   &__slide {
+    background-color: #c8a2c8;
 
     width: 100px;
 
@@ -10,23 +33,58 @@
     &--2 {
       background-color: green;
     }
+
+    &--3 {
+      background-color: orange;
+    }
   }
 }
 
 .my-swiper__wrapper {
-  background-color: #c2a8c2;
+  // background-color: #c2a8c2;
 
   @media (min-width: 768px) {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    height: 184px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1440px) {
+
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 32px;
   }
 }
 
 .swiper-slide {
-  // width: 80%;
+  // width: 80% !important;
+  min-width: @sww !important;
+  height: @swh;
+
+  @media (min-width: 768px) {
+    width: 100%;
+  }
+
 
   &:not(:last-child) {
     // margin-right: 20px;
   }
 
-  height: 100px;
+
+}
+
+.brand-container {
+  position: relative;
+  padding-left: 16px;
+  // display: flex;
+  // flex-direction: column;
+  // height: 50%;
+}
+
+.swiper-pagination {
+  // position: absolute;
+  top: @swh !important;
+  // top: 0 !important;
 }
