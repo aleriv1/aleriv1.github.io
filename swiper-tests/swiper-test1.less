@@ -1,5 +1,9 @@
-@import "../css/style.css";
+@import "../css/style.less";
 
+
+:root {
+  --swiper-pagination-bullet-size: 12px;
+}
 
 .zero() {
   padding: 0;
@@ -12,34 +16,63 @@
 
 
 .body {
-
   .zero();
   background-color: #F2F2F2;
 }
 
+.repair {
+  &__header {
+    .zero();
+    background-image: linear-gradient(#f8f8f8, #ffffff);
+    height: 80px;
+    margin-bottom: 16px;
+    padding: 16px 16px 0;
+    font: normal normal 16px/24px 'TT Lakes', sans-serif;
+    text-transform: uppercase;
+    color: #7e7382;
+  }
+}
+
 .my-swiper {
   &__slide {
-    background-color: #c8a2c8;
+    background-color: #ffffff;
 
     width: 100px;
+    height: @swh;
 
-    &--1 {
-      background-color: purple;
+    &:before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      display: block;
+      background-image: url(../img/go-btn.svg);
+      position: absolute;
+      top: 16px;
+      right: 16px;
     }
 
-    &--2 {
-      background-color: green;
+    @media (min-width: 768px) {
+      width: 100%;
     }
 
-    &--3 {
-      background-color: orange;
-    }
+
+    // &--1 {
+    //   background-color: purple;
+    // }
+
+    // &--2 {
+    //   background-color: green;
+    // }
+
+    // &--3 {
+    //   background-color: orange;
+    // }
   }
 }
 
 .my-swiper__wrapper {
-  // background-color: #c2a8c2;
   transition: max-height 1s;
+  position: relative;
 
   @media (min-width: 768px) {
     display: grid;
@@ -49,21 +82,14 @@
     overflow: hidden;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: @dw) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 16px 32px;
   }
-}
 
-.swiper-slide {
-  // min-width: @sww !important;
-  height: @swh;
-
-  @media (min-width: 768px) {
-    width: 100%;
-  }
 
 }
+
 
 .brand-container {
   position: relative;
@@ -74,7 +100,7 @@
     padding-right: 24px;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: @dw) {
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -82,5 +108,5 @@
 
 .swiper-pagination {
   // position: absolute;
-  top: @swh !important;
+  top: @swh+16px !important;
 }
