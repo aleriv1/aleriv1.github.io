@@ -610,6 +610,7 @@ html {
   color: #7e7382;
 }
 .my-swiper__slide {
+  position: relative;
   background-color: #ffffff;
   width: 100px;
   height: 72px;

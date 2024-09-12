@@ -1,15 +1,8 @@
 /* #region common */
-ul,
-body {
-  margin: 0;
-  padding: 0;
-}
-ul,
-ol {
-  list-style: none;
-}
 .body {
   background-color: #F8F8F8;
+  padding: 0;
+  margin: 0;
 }
 a {
   text-decoration: none;
@@ -126,6 +119,9 @@ html {
   height: 51px;
 }
 .contact-us {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: none;
 }
 @media (min-width: 768px) {
@@ -140,6 +136,9 @@ html {
   margin-bottom: 16px;
 }
 .repair-check {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   font-size: 0;
   position: relative;
   display: flex;
@@ -284,6 +283,9 @@ html {
   }
 }
 .services__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   overflow-x: scroll;
   overflow-y: visible;
@@ -475,6 +477,9 @@ html {
     display: block;
   }
 }
+.expand--opened {
+  margin-top: 46px;
+}
 /* #endregion main */
 /* #region side menu */
 .side-menu {
@@ -528,6 +533,11 @@ html {
 .side-menu__logo:hover {
   filter: drop-shadow(0 0 2px #41F6D7);
 }
+.side-menu__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 .side-menu__item {
   cursor: pointer;
   font: 500 normal 16px/24px "TT Lakes", sans-serif;
@@ -568,6 +578,9 @@ html {
   margin-bottom: 40px;
 }
 .side-menu .language-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
 }
 .side-menu .language-list__item {
@@ -590,3 +603,132 @@ html {
   color: #737382;
 }
 /* #endregion side menu */
+/* #region swiper */
+:root {
+  --swiper-pagination-bullet-size: 12px;
+}
+.body {
+  padding: 0;
+  margin: 0;
+  background-color: #F2F2F2;
+}
+.repair__header {
+  padding: 0;
+  margin: 0;
+  background-image: linear-gradient(#f8f8f8, #ffffff);
+  height: 80px;
+  margin-bottom: 16px;
+  padding: 16px 16px 0;
+  font: normal normal 16px/24px 'TT Lakes', sans-serif;
+  text-transform: uppercase;
+  color: #7e7382;
+}
+.my-swiper__slide {
+  position: relative;
+  background-color: #ffffff;
+  width: 100px;
+  height: 72px;
+}
+.my-swiper__slide:before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-image: url(../img/go-btn.svg);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+@media (min-width: 768px) {
+  .my-swiper__slide {
+    width: 100%;
+  }
+}
+.my-swiper__slide--lenovo {
+  background-image: url("../img/lenovo.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__slide--samsung {
+  background-image: url("../img/samsung.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__slide--apple {
+  background-image: url("../img/apple.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__slide--viewsonic {
+  background-image: url("../img/viewsonic.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__slide--bosh {
+  background-image: url("../img/bosh.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__slide--hp {
+  background-image: url("../img/hp.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__slide--acer {
+  background-image: url("../img/acer.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__slide--sony {
+  background-image: url("../img/sony.png");
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+.my-swiper__link {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.my-swiper__wrapper {
+  transition: max-height 1s;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .my-swiper__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px 24px;
+    max-height: 160px;
+    overflow: hidden;
+  }
+}
+@media (min-width: 1120px) {
+  .my-swiper__wrapper {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px 32px;
+  }
+}
+.my-swiper__wrapper--opened {
+  max-height: 350px;
+}
+.brand-container {
+  position: relative;
+  padding-left: 16px;
+}
+@media (min-width: 768px) {
+  .brand-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+@media (min-width: 1120px) {
+  .brand-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+.swiper-pagination {
+  top: 88px !important;
+}
+/* #endregion swiper */

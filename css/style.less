@@ -22,36 +22,26 @@
   padding-right: @w;
 }
 
-
-.selected-btn() {
-  border: 2px solid #B8FFEC;
-  border-radius: 6px;
-  background-color: #fff;
+.zero() {
+  padding: 0;
+  margin: 0;
 }
 
-.not-selected-btn() {
-  background-color: inherit;
-  border: 2px solid #0000;
+.list-res() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 // #endregion variables & mixins
 
 /* #region common */
 
-ul,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-ul,
-ol {
-  list-style: none;
-}
 
 
 .body {
   background-color: #F8F8F8;
+  .zero();
 }
 
 a {
@@ -203,6 +193,7 @@ html {
 }
 
 .contact-us {
+  .list-res();
   display: none;
 
   @media (min-width: 768px) {
@@ -219,6 +210,7 @@ html {
 }
 
 .repair-check {
+  .list-res();
   font-size: 0;
   position: relative;
 
@@ -373,6 +365,7 @@ html {
   }
 
   &__list {
+    .list-res();
     display: flex;
     overflow-x: scroll;
     overflow-y: visible;
@@ -576,6 +569,11 @@ html {
     @media (min-width: 768px) {
       display: block;
     }
+
+  }
+
+  &--opened {
+    margin-top: 46px;
   }
 
 }
@@ -646,6 +644,10 @@ html {
     }
   }
 
+  &__list {
+    .list-res();
+  }
+
   &__item {
     cursor: pointer;
     font: 500 normal 16px/24px "TT Lakes", sans-serif;
@@ -695,6 +697,7 @@ html {
   }
 
   .language-list {
+    .list-res();
     display: flex;
 
     &__item {
@@ -724,3 +727,148 @@ html {
 }
 
 /* #endregion side menu */
+
+/* #region swiper */
+
+:root {
+  --swiper-pagination-bullet-size: 12px;
+}
+
+@sww: 240px; // swiper width
+@swh: 72px; // swiper hight
+
+
+.body {
+  .zero();
+  background-color: #F2F2F2;
+}
+
+.repair {
+  &__header {
+    .zero();
+    background-image: linear-gradient(#f8f8f8, #ffffff);
+    height: 80px;
+    margin-bottom: 16px;
+    padding: 16px 16px 0;
+    font: normal normal 16px/24px 'TT Lakes', sans-serif;
+    text-transform: uppercase;
+    color: #7e7382;
+  }
+}
+
+.brands-bg(@url) {
+  background-image: url(@url);
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+
+.my-swiper {
+  &__slide {
+    position: relative;
+    background-color: #ffffff;
+
+    width: 100px;
+    height: @swh;
+
+    &:before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      display: block;
+      background-image: url(../img/go-btn.svg);
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+
+
+    }
+
+    &--lenovo {
+      .brands-bg("../img/lenovo.png");
+    }
+
+    &--samsung {
+      .brands-bg("../img/samsung.png");
+    }
+
+    &--apple {
+      .brands-bg("../img/apple.png");
+    }
+
+    &--viewsonic {
+      .brands-bg("../img/viewsonic.png");
+    }
+
+    &--bosh {
+      .brands-bg("../img/bosh.png");
+    }
+
+    &--hp {
+      .brands-bg("../img/hp.png");
+    }
+
+    &--acer {
+      .brands-bg("../img/acer.png");
+    }
+
+    &--sony {
+      .brands-bg("../img/sony.png");
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.my-swiper__wrapper {
+  transition: max-height 1s;
+  position: relative;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px 24px;
+    max-height: 160px;
+    overflow: hidden;
+  }
+
+  @media (min-width: @dw) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px 32px;
+  }
+
+  &--opened {
+    max-height: 350px;
+  }
+
+}
+
+
+.brand-container {
+  position: relative;
+  padding-left: 16px;
+
+  @media (min-width: 768px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (min-width: @dw) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.swiper-pagination {
+  top: @swh+16px !important;
+}
+
+/* #endregion swiper */
