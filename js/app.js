@@ -12,7 +12,6 @@ let init = false;
 
 // #region expand action var
 
-// let expand = document.querySelector(".expand--brands");
 let expand = document.querySelector(".expand");
 
 let mySwWr = document.querySelector(".my-swiper__wrapper");
