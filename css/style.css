@@ -616,13 +616,23 @@ html {
   margin: 0;
   padding: 0;
   background-image: linear-gradient(#f8f8f8, #ffffff);
-  height: 80px;
   margin-bottom: 16px;
-  padding: 16px 16px 0;
+  padding: 16px 16px;
   font: normal normal 16px/24px 'TT Lakes', sans-serif;
   text-transform: uppercase;
   color: #7e7382;
   background-image: linear-gradient(90deg, #f8f8f8, #ffffff);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+@media (min-width: 768px) {
+  .repair__header {
+    padding: 16px 24px;
+  }
+}
+@media (min-width: 1120px) {
+  .repair__header {
+    padding: 16px 32px;
+  }
 }
 .my-swiper {
   position: relative;
@@ -632,6 +642,10 @@ html {
   background-color: #ffffff;
   width: 100px;
   height: 72px;
+  z-index: 1;
+}
+.my-swiper__slide:hover {
+  box-shadow: inset 0 0 5px 2px #41F6D7;
 }
 .my-swiper__slide:before {
   content: '';
@@ -642,6 +656,10 @@ html {
   position: absolute;
   top: 16px;
   right: 16px;
+}
+.my-swiper__slide:before:hover {
+  box-shadow: 0 0 5px 2px #41F6D7;
+  z-index: 10;
 }
 @media (min-width: 768px) {
   .my-swiper__slide {
