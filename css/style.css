@@ -1,8 +1,8 @@
 /* #region common */
 .body {
   background-color: #F8F8F8;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 a {
   text-decoration: none;
@@ -608,13 +608,13 @@ html {
   --swiper-pagination-bullet-size: 12px;
 }
 .body {
-  padding: 0;
   margin: 0;
+  padding: 0;
   background-color: #F2F2F2;
 }
 .repair__header {
-  padding: 0;
   margin: 0;
+  padding: 0;
   background-image: linear-gradient(#f8f8f8, #ffffff);
   height: 80px;
   margin-bottom: 16px;
@@ -622,6 +622,7 @@ html {
   font: normal normal 16px/24px 'TT Lakes', sans-serif;
   text-transform: uppercase;
   color: #7e7382;
+  background-image: linear-gradient(90deg, #f8f8f8, #ffffff);
 }
 .my-swiper {
   position: relative;
@@ -710,6 +711,9 @@ html {
   }
 }
 .my-swiper__wrapper {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   transition: max-height 1s;
   position: relative;
 }

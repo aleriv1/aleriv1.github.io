@@ -23,13 +23,12 @@
 }
 
 .zero() {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .list-res() {
-  margin: 0;
-  padding: 0;
+  .zero();
   list-style: none;
 }
 
@@ -751,6 +750,7 @@ html {
     font: normal normal 16px/24px 'TT Lakes', sans-serif;
     text-transform: uppercase;
     color: #7e7382;
+    background-image: linear-gradient(90deg, #f8f8f8, #ffffff);
   }
 }
 
@@ -845,6 +845,7 @@ html {
 }
 
 .my-swiper__wrapper {
+  .list-res();
   transition: max-height 1s;
   position: relative;
 
@@ -864,7 +865,6 @@ html {
   &--opened {
     max-height: 350px;
   }
-
 }
 
 
