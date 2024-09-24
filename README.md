@@ -1,6 +1,6 @@
 # Webpack Static Site Starter Kit
 
-## test lilya
+## test lilya is the best!
 
 ## Требования к проекту
 
