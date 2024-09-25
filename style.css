@@ -867,6 +867,32 @@ button.swiper-pagination-bullet {
   backface-visibility: hidden;
   overflow: hidden;
 }
+
+/* #region my addition */
+
+.swiper-pagination1,
+.swiper-pagination2 {
+  position: absolute;
+  text-align: center;
+  transition: 300ms opacity;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+.swiper1,
+.swiper2 {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  /* Fix of Webkit flickering */
+  z-index: 1;
+  display: block;
+}
+
+/* #endregion my addion */
 }
 /* #region swiper variables */
 :root {
@@ -921,7 +947,7 @@ html {
 
 /* #endregion fonts */
 .header {
-  background-color: #fff;
+  background-color: #ffffff;
   padding-left: 16px;
   padding-right: 16px;
   height: 88px;
@@ -1155,7 +1181,7 @@ html {
     outline: 0;
     border: 2px solid #b8ffec;
     border-radius: 6px;
-    background-color: #fff; }
+    background-color: #ffffff; }
   .services__link:active {
     box-shadow: 0 0 5px 2px #00ffbb; }
 
@@ -1355,7 +1381,12 @@ html {
       color: #737382; }
 
 .repair {
-  margin-bottom: 52px; }
+  padding-top: 24px;
+  padding-bottom: 28px; }
+  @media (min-width: 768px) {
+    .repair {
+      padding-top: 32px;
+      padding-bottom: 0; } }
   .repair__header {
     margin: 0;
     padding: 0;
@@ -1410,9 +1441,6 @@ html {
       position: absolute;
       top: 16px;
       right: 16px; }
-      .my-swiper__slide:before:hover {
-        box-shadow: 0 0 5px 2px #41f6d7;
-        z-index: 10; }
     .my-swiper__slide--lenovo {
       background-image: url(./static/lenovo.png);
       background-repeat: no-repeat;
@@ -1445,6 +1473,20 @@ html {
       background-image: url(./static/sony.png);
       background-repeat: no-repeat;
       background-position: 16px 50%; }
+    .my-swiper__slide--repair-type {
+      box-sizing: border-box;
+      height: 160px;
+      font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+      padding: 16px; }
+      .my-swiper__slide--repair-type:before {
+        content: '';
+        width: 40px;
+        height: 40px;
+        display: block;
+        background-image: url(./static/go-btn.svg);
+        position: absolute;
+        top: 104px;
+        right: 16px; }
   .my-swiper__link {
     position: relative;
     display: inline-block;
@@ -1482,15 +1524,11 @@ html {
       padding-left: 32px;
       padding-right: 32px; } }
 
-.swiper-pagination, .swiper-pagination1 {
+.swiper-pagination, .swiper-pagination2 {
   top: 88px !important; }
 
 .swiper-pagination1 {
-  position: absolute;
-  text-align: center;
-  transition: 300ms opacity;
-  transform: translate3d(0, 0, 0);
-  z-index: 10; }
+  top: 176px !important; }
 
 
 /*# sourceMappingURL=style.css.map*/
