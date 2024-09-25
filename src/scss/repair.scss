@@ -1,5 +1,12 @@
 .repair {
-  margin-bottom: 52px;
+  // margin-bottom: 52px;
+  padding-top: 24px;
+  padding-bottom: 28px;
+
+  @media (min-width: 768px) {
+    padding-top: 32px;
+    padding-bottom: 0;
+  }
 
   &__header {
     @include zero();

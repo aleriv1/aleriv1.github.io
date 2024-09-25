@@ -4,5 +4,8 @@
   // transition: 300ms opacity;
   // transform: translate3d(0, 0, 0);
   // z-index: 10;
-  @extend .swiper-pagination;
+
+  // @extend .swiper-pagination;
+
+  top: 160px + 16px !important;
 }
