@@ -7577,8 +7577,6 @@ let init = false
 /* media query */
 function swiperMode() {
   let mobile = window.matchMedia('(min-width: 0px) and (max-width: 767px)')
-
-  // let swipers = document.querySelectorAll('.swiper')
   // Enable (for mobile)
   if (mobile.matches) {
     if (!init) {
@@ -7593,11 +7591,6 @@ function swiperMode() {
           clickable: true,
           type: 'bullets'
         }
-        // pagination: {
-        //   el: '.swiper-pagination1',
-        //   clickable: true,
-        //   type: 'bullets'
-        // }
       })
       swiper1 = new Swiper('.swiper1', {
         loop: true,
@@ -7610,39 +7603,13 @@ function swiperMode() {
           type: 'bullets'
         }
       })
-      //
-      // let swipers = document.querySelectorAll('.swiper')
-      // for (let i = 0; i < swipers.length; i++) {
-      // swiper = new Swiper('.swiper', {
-      // loop: true,
-      // slidesPerView: 1.25,
-      // spaceBetween: 20,
-      //
-      // pagination: {
-      // el: '.swiper-pagination',
-      // clickable: true,
-      // type: 'bullets'
-      // }
-      // })
-      // }
     }
   } else {
     if (init === true) {
-      // let swipers = document.querySelectorAll('.swiper')
-      // let swipers = document.querySelectorAll(`.swiper/\d/`)
-
       let swipers = []
-      // swipers.push(document.querySelector('.swiper'))
       swipers.push(swiper0)
       swipers.push(swiper1)
-      // swipers.push(document.querySelector('.swiper1'))
-
-      // console.log(swipers)
-
-      // swiper0.destroy(true, true)
-
       for (let i = 0; i < swipers.length; i++) {
-        // swipers[i].swiper.destroy(true, true)
         swipers[i].destroy(true, true)
       }
       init = false

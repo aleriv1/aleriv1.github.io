@@ -1,0 +1,20 @@
+.nav {
+  &__link {
+    padding-right: 17px;
+
+    @media (min-width: 768px) {
+      padding-right: 42px;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 2px;
+        height: 32px;
+        position: absolute;
+        left: 60px;
+        top: 4px;
+        background-image: url(../img/divider.svg);
+      }
+    }
+  }
+}

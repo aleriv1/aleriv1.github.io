@@ -1,0 +1,16 @@
+.contact-us {
+  @include list-res();
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 16px;
+  }
+
+  &--side-menu {
+    margin-bottom: 16px;
+  }
+}

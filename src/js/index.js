@@ -1,11 +1,9 @@
-// import '../scss/swiper-bundle.min.css'
+// import '../scss/swiper/'
 import '../scss/style.scss'
 
 import './swiper-bundle.min.js'
-// import './src/js/swiper-my.js'
-// import './swiper-bundle.min.js'
-// import './swiper-my.js'
 console.log('Works!')
 
-import './swiper-bundle-test.js'
+import './swiper-with-my-addition.js'
+
 import './show-more.js'

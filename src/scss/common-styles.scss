@@ -1,0 +1,28 @@
+/* #region common */
+
+.body {
+  background-color: $bdbc;
+  @include zero();
+}
+
+a {
+  text-decoration: none;
+
+  &,
+  &:visited,
+  &:hover {
+    color: inherit;
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* #endregion common */

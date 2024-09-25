@@ -1,0 +1,61 @@
+.repair-check {
+  @include list-res();
+  font-size: 0;
+  position: relative;
+
+  display: flex;
+
+  &--hdr {
+    padding-left: 42px;
+
+    &:after {
+      content: '';
+      width: 2px;
+      height: 32px;
+      display: block;
+      background-image: url(../img/divider.svg);
+      position: absolute;
+      left: 20px;
+      top: 4px;
+    }
+
+    @media (min-width: $dw) {
+      display: none;
+    }
+  }
+
+  &--srv {
+    display: none;
+
+    @media (min-width: $dw) {
+      display: flex;
+      padding-right: 32px;
+    }
+  }
+
+  &__item:first-child {
+    margin-right: 16px;
+
+    @media (min-width: $dw) {
+      margin-right: 32px;
+    }
+  }
+
+  &__link {
+    @media (min-width: $dw) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__text {
+    display: none;
+
+    @media (min-width: $dw) {
+      display: inline;
+      margin-right: 8px;
+      font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+      color: #1b1c21;
+    }
+  }
+}
