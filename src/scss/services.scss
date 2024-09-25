@@ -1,0 +1,219 @@
+.services {
+  &__heading {
+    font-family: 'TT Lakes';
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 40px;
+    color: #1b1c21;
+    padding: 0 $mcs;
+    position: relative;
+
+    @media (min-width: 768px) {
+      padding-left: $tcs;
+    }
+
+    @media (min-width: $dw) {
+      padding-left: $dcs;
+    }
+
+    &:before {
+      content: '';
+      width: 4px;
+      height: 40px;
+      display: block;
+      background: url(../img/highlight.svg);
+      position: absolute;
+      left: 0;
+
+      @media (min-width: $dw) {
+        width: 3px;
+        height: 40px;
+        background: url(../img/highlight-full.svg);
+        left: 1px;
+      }
+    }
+  }
+
+  &__top-wrapper {
+    margin: 24px 0 0;
+
+    @media (min-width: $dw) {
+      margin: 42px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__fade-wrapper {
+    position: relative;
+
+    overflow-y: visible;
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      right: 0;
+      top: 24px;
+      width: 24px;
+      height: 40px;
+      background: linear-gradient(90deg, #0000, #f8f8f8);
+
+      @media (min-width: 768px) {
+        top: 32px;
+      }
+
+      @media (min-width: $dw) {
+        display: none;
+      }
+    }
+  }
+
+  &__list {
+    @include list-res();
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: visible;
+    padding-left: $mcs;
+    padding-right: $mcs;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    position: relative;
+
+    @media (min-width: 768px) {
+      padding-left: $tcs;
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    @media (min-width: $dw) {
+      padding-top: 8px;
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+      padding-left: $dcs;
+      overflow: visible;
+    }
+  }
+
+  &__item {
+    @media (min-width: $dw) {
+      &:nth-child(5) {
+        display: block;
+      }
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    outline: 0;
+    background: inherit;
+    border: 2px solid #0000;
+    border-radius: 6px;
+    font-family: 'TT Lakes';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    white-space: nowrap;
+    padding: 6px 7px 6px 15px;
+
+    @media (min-width: $dw) {
+      padding: 7px 20px 5px 21px;
+    }
+
+    &,
+    &:visited,
+    &:hover {
+      color: #7e7e82;
+    }
+
+    &:focus {
+      outline: 0;
+      border: 2px solid #b8ffec;
+      border-radius: 6px;
+      background-color: #fff;
+    }
+
+    &:active {
+      box-shadow: 0 0 5px 2px hsl(164, 100%, 50%);
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  &__reading {
+    flex-basis: 50%;
+    flex-shrink: 1;
+    padding: 0 $mcs $mcs;
+
+    @media (min-width: 768px) {
+      padding: 0 48px 0 $tcs;
+    }
+
+    @media (min-width: $dw) {
+      padding: 0 36px 0 $dcs;
+    }
+  }
+
+  &__paragraphs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    overflow-y: hidden;
+    min-width: 288px;
+    height: 90px;
+
+    @media (min-width: 768px) {
+      min-width: 312px;
+      height: 160px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: $dw) {
+      width: 490px;
+      height: 160px;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__text {
+    font: normal normal normal 14px/18px 'TT Lakes', sans-serif;
+    color: #1b1c21;
+
+    @media (min-width: 768px) {
+      line-height: 20px;
+
+      &:not(:last-child) {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  &__img {
+    object-fit: cover;
+    flex-basis: 50%;
+    flex-shrink: 2;
+    min-width: 320px;
+    max-width: 100%;
+
+    @media (min-width: 768px) {
+      min-width: 360px;
+    }
+
+    @media (min-width: $dw) {
+      width: 531px;
+      height: 307px;
+    }
+  }
+}

@@ -1,0 +1,112 @@
+.side-menu {
+  padding: 19px 24px 46px;
+  width: 320px;
+  height: 100vh;
+  box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02),
+    16px 0px 52px rgba(14, 24, 80, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 46px;
+  }
+
+  &__button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    padding: 0;
+    border-radius: 50%;
+    background: #ff3e79 no-repeat 50%;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &--close {
+      background-image: url(../img/close-cross.svg);
+      margin-right: 17px;
+    }
+
+    &--search {
+      background-image: url(../img/search-icon.svg);
+    }
+
+    &--call {
+      background-image: url(../img/call-icon.svg);
+    }
+
+    &--chat {
+      background-image: url(../img/chat-icon.svg);
+      background-position: 50% 53%;
+    }
+
+    &--account {
+      background-image: url(../img/account-icon.svg);
+    }
+  }
+
+  &__logo {
+    margin-right: 78px;
+    transition: filter 0.3s linear;
+
+    &:hover {
+      filter: drop-shadow(0 0 2px #41f6d7);
+    }
+  }
+
+  &__list {
+    @include list-res();
+  }
+
+  &__item {
+    cursor: pointer;
+    font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+    color: #1b1c21;
+    margin-bottom: 32px;
+    position: relative;
+    transition: background-color 0.5s linear, box-shadow 0.5s ease;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: #41f6d83f; // #41F6D7
+      box-shadow: 0 0 5px #000;
+    }
+
+    &--active {
+      color: #7e7e82;
+
+      &:before {
+        content: '';
+        width: 4px;
+        height: 32px;
+        background-image: url(../img/highlight.svg);
+        background-size: 4px 32px;
+        position: absolute;
+        top: -4px;
+        left: -24px;
+      }
+    }
+  }
+
+  &__address {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__mail {
+    font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+    color: #1b1c21;
+    margin-bottom: 12px;
+  }
+
+  &__tel {
+    font: bold normal 24px/32px 'TT Lakes', sans-serif;
+    margin-bottom: 40px;
+  }
+}

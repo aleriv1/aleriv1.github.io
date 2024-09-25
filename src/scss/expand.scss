@@ -1,0 +1,43 @@
+.expand {
+  cursor: pointer;
+  font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+  color: #1b1c21;
+  padding-bottom: $mcs;
+  position: relative;
+  padding-left: 32px;
+
+  border: 0;
+  outline: unset;
+  background-color: inherit;
+
+  @media (min-width: 768px) {
+    padding-left: 33px;
+  }
+
+  &:before {
+    content: '';
+    width: 20px;
+    height: 24px;
+    display: block;
+    // background-image: url(../img/expand.svg);
+    background-image: var(--bgiExp, url(../img/expand.svg));
+    transform: var(--rotExp, rotate(0deg));
+    transition: transform 1s;
+    position: absolute;
+    left: 0;
+  }
+
+  &--brands {
+    display: none;
+
+    margin-top: 24px;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  &--opened {
+    margin-top: 46px;
+  }
+}

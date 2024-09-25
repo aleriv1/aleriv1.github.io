@@ -17,3 +17,13 @@
   @include zero();
   list-style: none;
 }
+
+/* #region swiper */
+
+@mixin brands-bg($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+}
+
+/* #endregion swiper */

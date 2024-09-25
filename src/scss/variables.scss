@@ -8,6 +8,17 @@ $mcs: 16px; // mobile content space
 $tcs: 24px; // tablet content space
 $dcs: 34px; // desktop content space
 
+/* #region swiper variables */
+
+:root {
+  --swiper-pagination-bullet-size: 12px;
+}
+
+$sww: 240px; // swiper width
+$swh: 72px; // swiper hight
+
+/* #endregion swiper variables */
+
 /* #region colors */
 
 $bdbc: #f8f8f8; // body bacground-color

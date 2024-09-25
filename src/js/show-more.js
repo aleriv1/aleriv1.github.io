@@ -1,38 +1,14 @@
-console.log('test show-more.js')
+// console.log('test show-more.js')
 
 // #region expand action var
 
-// let expand = document.querySelector('.expand')
 let expands = document.querySelectorAll('.expand')
 
 let mySwWr = document.querySelector('.my-swiper__wrapper')
 
-// let buttonShow = true
-
 // #endregion expand action var
 
 // #region expand actions
-
-// expand.addEventListener('click', (e) => {
-// if (buttonShow) {
-// buttonShow = false
-//
-// mySwWr.classList.toggle('my-swiper__wrapper--opened')
-//
-// expand.classList.toggle('expand--opened')
-// expand.style.setProperty('--rotExp', 'rotate(180deg)')
-// expand.innerHTML = 'Скрыть'
-// } else {
-// buttonShow = true
-//
-// mySwWr.classList.toggle('my-swiper__wrapper--opened')
-//
-// expand.classList.toggle('expand--opened')
-// expand.style.setProperty('--rotExp', 'rotate(0)')
-// expand.innerHTML = 'Показать всё'
-// }
-// })
-//
 
 for (let i = 0; i < expands.length; i++) {
   let buttonShow = true

@@ -1,4 +1,6 @@
-console.log('swiper-with-my-addition test')
+// console.log('swiper-with-my-addition test')
+
+// #region swiper bundle
 
 /**
  * Swiper 11.1.12
@@ -7560,19 +7562,20 @@ var Swiper = (function () {
 })()
 //# sourceMappingURL=swiper-bundle.min.js.map
 
+// #endregion swiper bundle
+
+// #region my swiper
+
 // #region swiper var
 
 let swiper0 = Swiper
 // let swiper0
-// let swiper = Swiper
 let swiper1 = Swiper
 // let swiper1
 
 let init = false
 
 // #endregion swiper var
-
-// #region swiper
 
 /* media query */
 function swiperMode() {

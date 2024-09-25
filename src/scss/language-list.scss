@@ -1,0 +1,27 @@
+.language-list {
+  @include list-res();
+  display: flex;
+
+  &__item {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-style: normal;
+    font: 16px/24px 'TT Lakes', sans-serif;
+    color: #1b1c21;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s linear;
+
+    &:hover {
+      background: #0000002c;
+    }
+
+    &:not(:last-child) {
+      margin-right: 7px;
+    }
+
+    &--selected {
+      color: #737382;
+    }
+  }
+}

@@ -1,13 +1,23 @@
 @import 'variables';
 // @import url('swiper-bundle.min.css') (max-width: 767px);
 @import url('swiper-bundle.css') (max-width: 767px);
-// @import '/swiper';
-
 @import 'mixins';
-@import 'style-pre';
+// @import 'style-pre';
 @import 'common-styles.scss';
 @import 'fonts.scss';
 @import 'header.scss';
 @import 'nav.scss';
 @import 'logo.scss';
 @import 'contact-us.scss';
+@import 'repair-check.scss';
+@import 'main.scss';
+@import 'highlight-line-wrapper.scss';
+@import 'services.scss';
+@import 'expand.scss';
+@import 'side-menu.scss';
+@import 'language-list.scss';
+@import 'repair.scss';
+@import 'my-swiper.scss';
+@import 'brand-container.scss';
+@import 'swiper-pagination.scss';
+@import 'swiper-pagination1.scss';
