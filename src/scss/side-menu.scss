@@ -67,19 +67,19 @@
   &__item {
     cursor: pointer;
     font: 500 normal 16px/24px 'TT Lakes', sans-serif;
-    color: #1b1c21;
+    color: $text-color-0;
     margin-bottom: 32px;
     position: relative;
     transition: background-color 0.5s linear, box-shadow 0.5s ease;
     border-radius: 6px;
 
     &:hover {
-      background-color: #41f6d83f; // #41F6D7
+      background-color: $hover-color-0; // #41F6D7
       box-shadow: 0 0 5px #000;
     }
 
     &--active {
-      color: #7e7e82;
+      color: $nav-link-color-0;
 
       &:before {
         content: '';
@@ -101,7 +101,7 @@
 
   &__mail {
     font: 500 normal 16px/24px 'TT Lakes', sans-serif;
-    color: #1b1c21;
+    color: $text-color-0;
     margin-bottom: 12px;
   }
 

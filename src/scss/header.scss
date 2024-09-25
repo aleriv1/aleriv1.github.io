@@ -1,5 +1,5 @@
 .header {
-  background-color: #fff;
+  background-color: $body-contrast-color;
   @include centering($mcs);
 
   height: 88px;

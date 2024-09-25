@@ -7,7 +7,7 @@
     font-weight: 500;
     font-style: normal;
     font: 16px/24px 'TT Lakes', sans-serif;
-    color: #1b1c21;
+    color: $btn-color-0;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s linear;
@@ -21,7 +21,7 @@
     }
 
     &--selected {
-      color: #737382;
+      color: $lng-selected-color;
     }
   }
 }

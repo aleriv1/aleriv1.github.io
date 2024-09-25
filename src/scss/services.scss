@@ -4,7 +4,7 @@
     font-weight: bold;
     font-size: 28px;
     line-height: 40px;
-    color: #1b1c21;
+    color: $main-heading-color;
     padding: 0 $mcs;
     position: relative;
 
@@ -124,14 +124,14 @@
     &,
     &:visited,
     &:hover {
-      color: #7e7e82;
+      color: $nav-link-color-0;
     }
 
     &:focus {
       outline: 0;
       border: 2px solid #b8ffec;
       border-radius: 6px;
-      background-color: #fff;
+      background-color: $body-contrast-color;
     }
 
     &:active {
@@ -189,7 +189,7 @@
 
   &__text {
     font: normal normal normal 14px/18px 'TT Lakes', sans-serif;
-    color: #1b1c21;
+    color: $text-color-0;
 
     @media (min-width: 768px) {
       line-height: 20px;
