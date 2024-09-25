@@ -7572,6 +7572,7 @@ let swiper0 = Swiper
 // let swiper0
 let swiper1 = Swiper
 // let swiper1
+let swiper2 = Swiper
 
 let init = false
 
@@ -7606,12 +7607,24 @@ function swiperMode() {
           type: 'bullets'
         }
       })
+      swiper2 = new Swiper('.swiper2', {
+        loop: true,
+        slidesPerView: 1.25,
+        spaceBetween: 20,
+        //
+        pagination: {
+          el: '.swiper-pagination2',
+          clickable: true,
+          type: 'bullets'
+        }
+      })
     }
   } else {
     if (init === true) {
       let swipers = []
       swipers.push(swiper0)
       swipers.push(swiper1)
+      swipers.push(swiper2)
       for (let i = 0; i < swipers.length; i++) {
         swipers[i].destroy(true, true)
       }
