@@ -56,7 +56,7 @@
     transition: filter 0.3s linear;
 
     &:hover {
-      filter: drop-shadow(0 0 2px #41f6d7);
+      filter: drop-shadow(0 0 2px $accent-color);
     }
   }
 
@@ -74,7 +74,7 @@
     border-radius: 6px;
 
     &:hover {
-      background-color: $hover-color-0; // #41F6D7
+      background-color: $hover-color-0;
       box-shadow: 0 0 5px #000;
     }
 
