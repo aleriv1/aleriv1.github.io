@@ -14,6 +14,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
+    "prebuild": "webpack --mode development",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "webpack --mode development",

@@ -1,0 +1,19 @@
+@mixin centering-fix($w) {
+  padding-left: calc((100vw - #{$w}) / 2);
+  padding-right: calc((100vw - #{$w}) / 2);
+}
+
+@mixin centering($w) {
+  padding-left: $w;
+  padding-right: $w;
+}
+
+@mixin zero() {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin list-res() {
+  @include zero();
+  list-style: none;
+}

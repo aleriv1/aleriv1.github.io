@@ -1,3 +1,11 @@
 @import 'variables';
 @import 'mixins';
 @import 'style-pre';
+
+@import url('swiper-bundle.min.css') (max-width: 767px);
+
+// @import './swiper-bundle.min.css' (max-width: 767px);
+
+// @media (max-width: 767px) {
+//   @import 'swiper-bundle.min.css';
+// }
