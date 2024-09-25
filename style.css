@@ -1511,6 +1511,10 @@ html {
         gap: 16px 32px; } }
     .my-swiper__wrapper--opened {
       max-height: 350px; }
+    @media (min-width: 768px) {
+      .my-swiper__wrapper--price {
+        display: flex;
+        flex-direction: column; } }
 
 .brand-container {
   position: relative;
