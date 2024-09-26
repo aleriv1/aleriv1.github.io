@@ -905,6 +905,7 @@ button.swiper-pagination-bullet {
 /* #endregion swiper */
 /* #region common */
 .body {
+  position: relative;
   box-sizing: border-box;
   background-color: #f8f8f8;
   margin: 0;
@@ -922,6 +923,10 @@ a {
 
 .no-final-border {
   border-bottom: unset !important; }
+
+.test-cont {
+  position: relative;
+  z-index: 0; }
 
 /* #endregion common */
 /* #region fonts */
@@ -968,7 +973,8 @@ a {
       margin-right: 251px; } }
   .header__nav {
     display: flex;
-    position: relative; }
+    position: relative;
+    z-index: 0; }
   .header__right-group {
     display: flex; }
   .header__divider--first {
@@ -1281,40 +1287,23 @@ a {
     margin-top: 46px; }
 
 .side-menu {
+  background: #ffffff;
+  position: absolute;
+  top: 0;
+  left: -320px;
+  z-index: 1000;
   padding: 19px 24px 46px;
   width: 320px;
   height: 100vh;
   box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  transition: left 0.5s; }
   .side-menu__header {
     display: flex;
     align-items: center;
     margin-bottom: 46px; }
-  .side-menu__button {
-    width: 40px;
-    height: 40px;
-    border: 0;
-    padding: 0;
-    border-radius: 50%;
-    background: #ff3e79 no-repeat 50%;
-    cursor: pointer;
-    transition: opacity 0.3s linear; }
-    .side-menu__button:hover {
-      opacity: 0.6; }
-    .side-menu__button--close {
-      background-image: url(./static/close-cross.svg);
-      margin-right: 17px; }
-    .side-menu__button--search {
-      background-image: url(./static/search-icon.svg); }
-    .side-menu__button--call {
-      background-image: url(./static/call-icon.svg); }
-    .side-menu__button--chat {
-      background-image: url(./static/chat-icon.svg);
-      background-position: 50% 53%; }
-    .side-menu__button--account {
-      background-image: url(./static/account-icon.svg); }
   .side-menu__logo {
     margin-right: 78px;
     transition: -webkit-filter 0.3s linear;
@@ -1359,6 +1348,8 @@ a {
   .side-menu__tel {
     font: bold normal 24px/32px 'TT Lakes', sans-serif;
     margin-bottom: 40px; }
+  .side-menu--open {
+    left: 0; }
 
 .language-list {
   margin: 0;
@@ -1579,7 +1570,8 @@ a {
   top: 176px !important; }
 
 .swiper-pagination2 {
-  top: 211px !important; }
+  top: 211px !important;
+  height: 12px; }
 
 @media (min-width: 768px) {
   .swiper-slide__inner-part {
@@ -1720,6 +1712,10 @@ a {
       padding-left: 24px;
       padding-right: 24px;
       padding-bottom: 24px; } }
+  @media (min-width: 1120px) {
+    .footer {
+      padding-left: calc((100vw - 1120px) / 2);
+      padding-right: calc((100vw - 1120px) / 2); } }
   .footer__part:not(:last-child) {
     margin-bottom: 16px; }
   @media (min-width: 768px) {
@@ -1739,6 +1735,41 @@ a {
     @media (min-width: 768px) {
       .footer__text--info-not-offer {
         text-align: right; } }
+
+.layout-button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: #ff3e79 no-repeat 50%;
+  cursor: pointer;
+  transition: opacity 0.3s linear; }
+  .layout-button:hover {
+    opacity: 0.6; }
+  .layout-button--close {
+    background-image: url(./static/close-cross.svg);
+    margin-right: 17px; }
+  .layout-button--search {
+    background-image: url(./static/search-icon.svg); }
+  .layout-button--call {
+    background-image: url(./static/call-icon.svg); }
+  .layout-button--chat {
+    background-image: url(./static/chat-icon.svg);
+    background-position: 50% 53%; }
+  .layout-button--account {
+    background-image: url(./static/account-icon.svg); }
+
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.blur-on {
+  background: #979797ee;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500; }
 
 
 /*# sourceMappingURL=style.css.map*/
