@@ -21,7 +21,7 @@
     position: relative;
     background-color: $body-contrast-color;
 
-    width: 100px;
+    // width: 100px;
     height: $swh;
     z-index: 1;
 
@@ -95,6 +95,21 @@
         right: 16px;
       }
     }
+
+    &--price {
+      border-radius: 0;
+      border: 0;
+      @media (min-width: 768px) {
+        &:first-child {
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+        }
+        &:last-child {
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+      }
+    }
   }
 
   &__link {
@@ -130,6 +145,7 @@
       @media (min-width: 768px) {
         display: flex;
         flex-direction: column;
+        gap: 0;
       }
     }
   }

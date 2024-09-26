@@ -7609,7 +7609,7 @@ function swiperMode() {
       })
       swiper2 = new Swiper('.swiper2', {
         loop: true,
-        slidesPerView: 1.25,
+        slidesPerView: 1.2,
         spaceBetween: 20,
         //
         pagination: {
