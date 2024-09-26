@@ -1489,9 +1489,12 @@ a {
         top: 104px;
         right: 16px; }
     .my-swiper__slide--price {
+      box-sizing: border-box;
       border-radius: 0;
       border: 0;
-      position: relative; }
+      position: relative;
+      height: 200px;
+      padding: 16px; }
       .my-swiper__slide--price:before {
         content: none; }
       @media (min-width: 768px) {
@@ -1499,20 +1502,7 @@ a {
           flex-shrink: 0;
           height: 64px;
           padding-left: 16px;
-          padding-right: 16px;
-          /* &::after {
-          content: '';
-          position: absolute;
-          display: block;
-          bottom: 1px;
-          left: 100px;
-          height: 688px;
-          width: 1px;
-          background: red;
-          background-repeat: no-repeat;
-          transform: rotate(90deg);
-          transform-origin: 0 100%;
-        } */ }
+          padding-right: 16px; }
           .my-swiper__slide--price:first-child {
             border-top-left-radius: 6px;
             border-top-right-radius: 6px; }
@@ -1562,15 +1552,19 @@ a {
       padding-left: 32px;
       padding-right: 32px; } }
 
-.swiper-pagination, .swiper-pagination2 {
+.swiper-pagination {
   top: 88px !important; }
 
 .swiper-pagination1 {
   top: 176px !important; }
 
-.swiper-slide__inner-part {
-  height: 100%;
-  border-bottom: 1px solid #eaeaea; }
+.swiper-pagination2 {
+  top: 216px !important; }
+
+@media (min-width: 768px) {
+  .swiper-slide__inner-part {
+    height: 100%;
+    border-bottom: 1px solid #eaeaea; } }
 
 .price-cols-container {
   padding: 0 24px;
@@ -1579,14 +1573,58 @@ a {
     .price-cols-container {
       display: flex; } }
 
+.price-heading {
+  margin: 0;
+  padding: 0;
+  font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+  color: #7e7e82; }
+  @media (min-width: 768px) {
+    .price-heading--inner {
+      display: none; } }
+
+.price-text {
+  margin: 0;
+  padding: 0; }
+
+.price-time-order {
+  display: flex; }
+
+.price-time {
+  width: 81px;
+  margin-right: 28px; }
+
+.price-order-button {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: #ff3e79;
+  outline: none;
+  border: none;
+  width: 119px;
+  height: 32px;
+  border-radius: 28px;
+  font: normal bold 12px/24px 'TT Lakes', sans-serif;
+  color: #ffffff;
+  text-transform: uppercase;
+  -moz-text-align-last: left;
+       text-align-last: left;
+  padding-left: 12px; }
+  .price-order-button::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 7px;
+    height: 10px;
+    background-image: url(./static/dropdown.svg);
+    top: 11px;
+    right: 16px; }
+
 .price-cols {
   padding: 0 16px;
   width: 100%; }
   .price-cols__wrapper {
     display: flex; }
   .price-cols__col {
-    font: 500 normal 16px/24px 'TT Lakes', sans-serif;
-    color: #7e7e82;
     padding-bottom: 16px; }
     .price-cols__col:nth-child(1) {
       flex-grow: 1;
