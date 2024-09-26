@@ -11,7 +11,7 @@
   &__header {
     @include zero();
     background-image: linear-gradient(#f8f8f8, #ffffff);
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     padding: 16px 16px;
     font: normal normal 16px/24px 'TT Lakes', sans-serif;
     text-transform: uppercase;
@@ -22,7 +22,7 @@
       padding: 16px 24px;
     }
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       padding: 16px 32px;
     }
   }

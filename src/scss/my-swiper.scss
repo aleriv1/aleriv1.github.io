@@ -17,12 +17,19 @@
     }
   }
 
+  &--price {
+    margin-bottom: 44px;
+    @media (min-width: 768) {
+      margin-bottom: 24px;
+    }
+  }
+
   &__slide {
     position: relative;
     background-color: $body-contrast-color;
 
-    // width: 100px;
-    height: $swh;
+    width: 100px;
+    height: $swiper-height;
     z-index: 1;
 
     border-radius: 6px;
@@ -97,9 +104,25 @@
     }
 
     &--price {
-      border-radius: 0;
+      box-sizing: border-box;
       border: 0;
+      position: relative;
+
+      height: 195px;
+      padding: 16px;
+
+      &:before {
+        content: none;
+      }
       @media (min-width: 768px) {
+        border-radius: 0;
+        flex-shrink: 0;
+        height: 64px;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+
         &:first-child {
           border-top-left-radius: 6px;
           border-top-right-radius: 6px;
@@ -132,7 +155,7 @@
       overflow: hidden;
     }
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 16px 32px;
     }
@@ -146,6 +169,7 @@
         display: flex;
         flex-direction: column;
         gap: 0;
+        max-height: none;
       }
     }
   }

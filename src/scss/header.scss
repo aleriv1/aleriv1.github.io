@@ -1,6 +1,6 @@
 .header {
   background-color: $body-contrast-color;
-  @include centering($mcs);
+  @include centering($mobile-content-space);
 
   height: 88px;
   display: flex;
@@ -10,10 +10,10 @@
   min-width: 320px;
 
   @media (min-width: 768px) {
-    @include centering($tcs);
+    @include centering($table-content-space);
   }
 
-  @media (min-width: $dw) {
+  @media (min-width: $desktop-width) {
     display: none;
   }
 

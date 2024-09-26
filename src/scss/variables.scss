@@ -1,12 +1,10 @@
-$tc: #c8a2c8; // test color
+$mobile-width: 320px;
+$table-width: 768px;
+$desktop-width: 1120px;
 
-$mw: 320px; // mobile width
-$tw: 768px; // tablet width
-$dw: 1120px; // desktop width
-
-$mcs: 16px; // mobile content space
-$tcs: 24px; // tablet content space
-$dcs: 34px; // desktop content space
+$mobile-content-space: 16px;
+$table-content-space: 24px;
+$desktop-content-space: 34px;
 
 /* #region swiper variables */
 
@@ -14,22 +12,24 @@ $dcs: 34px; // desktop content space
   --swiper-pagination-bullet-size: 12px;
 }
 
-$sww: 240px; // swiper width
-$swh: 72px; // swiper hight
+$swiper-width: 240px;
+$swiper-height: 72px;
 
 /* #endregion swiper variables */
 
 /* #region colors */
 
 $body-bg-color: #f8f8f8; // body bacground-color
-$body-contrast-color: #ffffff; // contrast body color
+$body-contrast-color: #ffffff;
 $nav-link-color-0: #7e7e82; // navigation link color 0
 $main-heading-color: #1b1c21;
 $text-color-0: #1b1c21;
-$btn-color-0: #1b1c21; // buttont color 0
+$btn-color-0: #1b1c21; // button color 0
+$btn-color-1: #ff3e79; // button color 1
 $hover-color-0: #41f6d83f;
 $lng-selected-color: #737382; // language selected color
 $swiper-header-color: #7e7382;
 $accent-color: #41f6d7;
+$divider-line-color: #eaeaea;
 
 /* #endregion colors */

@@ -3,7 +3,7 @@
   flex-direction: column;
   min-width: 320px;
 
-  @media (min-width: $dw) {
-    @include centering-fix($dw);
+  @media (min-width: $desktop-width) {
+    @include centering-fix($desktop-width);
   }
 }

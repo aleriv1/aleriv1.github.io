@@ -1,6 +1,7 @@
 /* #region common */
 
 .body {
+  box-sizing: border-box;
   background-color: $body-bg-color;
   @include zero();
 }
@@ -15,14 +16,13 @@ a {
   }
 }
 
-html {
-  box-sizing: border-box;
-}
-
 *,
 *:before,
 *:after {
   box-sizing: inherit;
 }
 
+.no-final-border {
+  border-bottom: unset !important;
+}
 /* #endregion common */

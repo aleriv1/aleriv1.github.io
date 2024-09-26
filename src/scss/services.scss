@@ -5,15 +5,15 @@
     font-size: 28px;
     line-height: 40px;
     color: $main-heading-color;
-    padding: 0 $mcs;
+    padding: 0 $mobile-content-space;
     position: relative;
 
     @media (min-width: 768px) {
-      padding-left: $tcs;
+      padding-left: $table-content-space;
     }
 
-    @media (min-width: $dw) {
-      padding-left: $dcs;
+    @media (min-width: $desktop-width) {
+      padding-left: $desktop-content-space;
     }
 
     &:before {
@@ -25,7 +25,7 @@
       position: absolute;
       left: 0;
 
-      @media (min-width: $dw) {
+      @media (min-width: $desktop-width) {
         width: 3px;
         height: 40px;
         background: url(../img/highlight-full.svg);
@@ -37,7 +37,7 @@
   &__top-wrapper {
     margin: 24px 0 0;
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       margin: 42px 0 0;
       display: flex;
       justify-content: space-between;
@@ -64,7 +64,7 @@
         top: 32px;
       }
 
-      @media (min-width: $dw) {
+      @media (min-width: $desktop-width) {
         display: none;
       }
     }
@@ -75,29 +75,29 @@
     display: flex;
     overflow-x: scroll;
     overflow-y: visible;
-    padding-left: $mcs;
-    padding-right: $mcs;
+    padding-left: $mobile-content-space;
+    padding-right: $mobile-content-space;
     padding-top: 24px;
     padding-bottom: 24px;
     position: relative;
 
     @media (min-width: 768px) {
-      padding-left: $tcs;
+      padding-left: $table-content-space;
       padding-top: 32px;
       padding-bottom: 32px;
     }
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       padding-top: 8px;
       padding-bottom: 16px;
       flex-wrap: wrap;
-      padding-left: $dcs;
+      padding-left: $desktop-content-space;
       overflow: visible;
     }
   }
 
   &__item {
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       &:nth-child(5) {
         display: block;
       }
@@ -117,7 +117,7 @@
     white-space: nowrap;
     padding: 6px 7px 6px 15px;
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       padding: 7px 20px 5px 21px;
     }
 
@@ -155,14 +155,14 @@
   &__reading {
     flex-basis: 50%;
     flex-shrink: 1;
-    padding: 0 $mcs $mcs;
+    padding: 0 $mobile-content-space $mobile-content-space;
 
     @media (min-width: 768px) {
-      padding: 0 48px 0 $tcs;
+      padding: 0 48px 0 $table-content-space;
     }
 
-    @media (min-width: $dw) {
-      padding: 0 36px 0 $dcs;
+    @media (min-width: $desktop-width) {
+      padding: 0 36px 0 $desktop-content-space;
     }
   }
 
@@ -180,7 +180,7 @@
       margin-bottom: 10px;
     }
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       width: 490px;
       height: 160px;
       margin-bottom: 14px;
@@ -188,7 +188,7 @@
   }
 
   &__text {
-    font: normal normal normal 14px/18px 'TT Lakes', sans-serif;
+    font: normal normal 14px/18px 'TT Lakes', sans-serif;
     color: $text-color-0;
 
     @media (min-width: 768px) {
@@ -211,7 +211,7 @@
       min-width: 360px;
     }
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       width: 531px;
       height: 307px;
     }

@@ -19,7 +19,7 @@
       top: 4px;
     }
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       display: none;
     }
   }
@@ -27,7 +27,7 @@
   &--srv {
     display: none;
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       display: flex;
       padding-right: 32px;
     }
@@ -36,13 +36,13 @@
   &__item:first-child {
     margin-right: 16px;
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       margin-right: 32px;
     }
   }
 
   &__link {
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       display: flex;
       align-items: center;
     }
@@ -51,7 +51,7 @@
   &__text {
     display: none;
 
-    @media (min-width: $dw) {
+    @media (min-width: $desktop-width) {
       display: inline;
       margin-right: 8px;
       font: 500 normal 16px/24px 'TT Lakes', sans-serif;
