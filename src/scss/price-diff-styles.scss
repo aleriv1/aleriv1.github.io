@@ -1,0 +1,117 @@
+/* #region anohter price classes */
+
+.price {
+  &:not(:last-child) {
+    padding-bottom: 16px;
+  }
+  &:first-child {
+    min-height: 56px;
+  }
+  &:nth-child(2),
+  &:nth-child(3) {
+    min-height: 38px;
+  }
+  @media (min-width: 768px) {
+    & {
+      min-height: unset !important;
+      padding: unset !important;
+    }
+    &:nth-child(1) {
+      margin-right: 24px;
+      flex: 1 0 348px;
+    }
+    &:nth-child(2) {
+      flex: 1 0 74px;
+      margin-right: 24px;
+    }
+    &:nth-child(3) {
+      flex: 1 0 200px;
+    }
+  }
+}
+
+.price-heading {
+  @include zero();
+  font: 500 normal 14px/16px 'TT Lakes', sans-serif;
+  color: $nav-link-color-0;
+
+  &--inner {
+    padding-bottom: 4px;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.price-text {
+  @include zero();
+  font: normal normal 14px/18px 'TT Lakes', sans-serif;
+  color: $text-color-0;
+}
+
+.price-time-order {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.price-time {
+  min-width: 81px;
+  margin-right: 28px;
+  flex: 1 0;
+}
+
+.price-order-button {
+  position: relative;
+  @include zero();
+  background: $btn-color-1;
+  outline: none;
+  border: none;
+
+  width: 119px;
+  height: 32px;
+  border-radius: 28px;
+  font: normal bold 12px/24px 'TT Lakes', sans-serif;
+  color: $body-contrast-color;
+  text-transform: uppercase;
+  text-align-last: left;
+  padding-left: 12px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 7px;
+    height: 10px;
+    background-image: url(../img/dropdown.svg);
+    top: 11px;
+    right: 16px;
+  }
+}
+
+.price-details {
+  @media (max-width: 767px) {
+    padding-right: 16px;
+  }
+}
+
+.price-clarification {
+  @include zero();
+  font: normal normal 14px/20px 'TT Lakes', sans-serif;
+  color: $text-color-0;
+  padding-bottom: 13px;
+  max-width: 400px;
+  @media (min-width: 768px) {
+    max-width: 421px;
+  }
+}
+
+.commercial-offer {
+  position: relative;
+  font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+}
+.more-arrow {
+  vertical-align: top;
+}
+
+/* #endregion anohter price classes */

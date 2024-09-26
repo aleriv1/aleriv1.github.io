@@ -1,0 +1,14 @@
+.swiper-container {
+  position: relative;
+  padding-left: 16px;
+
+  @media (min-width: 768px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
