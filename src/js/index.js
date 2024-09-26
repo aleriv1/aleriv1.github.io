@@ -7,3 +7,5 @@ import './swiper-bundle.min.js'
 import './swiper-with-my-addition.js'
 
 import './show-more.js'
+
+import './menu-toggle.js'

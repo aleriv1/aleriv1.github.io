@@ -14,6 +14,7 @@
 
 <body class="body">
 
+  <div class="blur"></div>
   <header class="header">
 
     <nav class="nav header__nav">
@@ -65,8 +66,65 @@
 
     </section>
 
-
   </header>
+
+  <section class="side-menu">
+    <section class="side-menu__top">
+
+      <header class="side-menu__header">
+        <button type="button" class="layout-button layout-button--close layout-button--close-menu"
+          title="Кнопка закрытия меню">
+        </button>
+        <a href="/" class="logo side-menu__logo">
+          <img class="logo__img" src=" img/Group.svg" alt="Логотип компании CPS">
+        </a>
+        <button type="button" class="layout-button layout-button--search" title="Кнопка поля поиска">
+        </button>
+      </header>
+
+      <nav class="side-menu__navigation">
+        <ul class="side-menu__list">
+          <li class="side-menu__item side-menu__item--active">Ремонт техники</li>
+          <li class="side-menu__item">Услуги и сервисы</li>
+          <li class="side-menu__item">Корпоративным клиентам</li>
+          <li class="side-menu__item">Продавцам техники</li>
+          <li class="side-menu__item">Партнёрам</li>
+          <li class="side-menu__item">Производителям</li>
+          <li class="side-menu__item">Наши сервисные центры</li>
+          <li class="side-menu__item">Контакты</li>
+        </ul>
+      </nav>
+
+    </section>
+
+    <footer class="side-menu__footer">
+
+      <ul class="contact-us contact-us--side-menu">
+        <li class="contact-us__item">
+          <button type="button" class="layout-button layout-button--call" title="Кнопка заказа звонка"></button>
+        </li>
+        <li class="contact-us__item">
+          <button type="button" class="layout-button layout-button--chat" title="Кнопка чата"></button>
+        </li>
+        <li class="contact-us__item">
+          <button type="button" class="layout-button layout-button--account" title="Кнопка аккаунта"></button>
+        </li>
+      </ul>
+
+      <address class="side-menu__address">
+        <a href="mailto:mail@cps.com" class="side-menu__mail">mail@cps.com</a>
+        <a href="tel:88008908900" class="side-menu__tel">8 800 890 8900</a>
+      </address>
+
+      <ul class="language-list">
+        <li class="language-list__item language-list__item--selected">ru</li>
+        <li class="language-list__item">en</li>
+        <li class="language-list__item">cn</li>
+      </ul>
+
+    </footer>
+  </section>
+
 
   <main class="main">
 
@@ -387,6 +445,7 @@
         публичной офертой</p>
     </div>
   </footer>
+
 
 </body>
 
