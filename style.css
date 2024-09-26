@@ -1422,6 +1422,7 @@ html {
   .my-swiper__slide {
     position: relative;
     background-color: #ffffff;
+    width: 100px;
     height: 72px;
     z-index: 1;
     border-radius: 6px;
@@ -1489,13 +1490,21 @@ html {
     .my-swiper__slide--price {
       border-radius: 0;
       border: 0; }
+      .my-swiper__slide--price:before {
+        content: '';
+        background: none; }
       @media (min-width: 768px) {
-        .my-swiper__slide--price:first-child {
-          border-top-left-radius: 6px;
-          border-top-right-radius: 6px; }
-        .my-swiper__slide--price:last-child {
-          border-bottom-left-radius: 6px;
-          border-bottom-right-radius: 6px; } }
+        .my-swiper__slide--price {
+          flex-shrink: 0;
+          height: 64px; }
+          .my-swiper__slide--price:not(:last-child) {
+            border-bottom: 1px solid #000; }
+          .my-swiper__slide--price:first-child {
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px; }
+          .my-swiper__slide--price:last-child {
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px; } }
   .my-swiper__link {
     position: relative;
     display: inline-block;
@@ -1524,7 +1533,8 @@ html {
       .my-swiper__wrapper--price {
         display: flex;
         flex-direction: column;
-        gap: 0; } }
+        gap: 0;
+        max-height: none; } }
 
 .swiper-container {
   position: relative;
