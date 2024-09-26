@@ -1712,17 +1712,33 @@ a {
 /* #endregion anohter price classes */
 .footer {
   display: flex;
-  flex-direction: column; }
-  .footer__part {
+  flex-direction: column;
+  padding-bottom: 19px; }
+  @media (min-width: 768px) {
+    .footer {
+      flex-direction: row;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 24px; } }
+  .footer__part:not(:last-child) {
     margin-bottom: 16px; }
-    .footer__part:last-child {
-      margin-bottom: 19px; }
+  @media (min-width: 768px) {
+    .footer__part {
+      margin-bottom: 0;
+      flex: 1 0 214px; } }
   .footer__text {
     margin: 0;
     padding: 0;
+    text-indent: 0;
     font: 500 normal 14px/16px 'TT Lakes', sans-serif;
     color: #7e7e82;
     text-align: center; }
+    @media (min-width: 768px) {
+      .footer__text--copyright {
+        text-align: left; } }
+    @media (min-width: 768px) {
+      .footer__text--info-not-offer {
+        text-align: right; } }
 
 
 /*# sourceMappingURL=style.css.map*/
