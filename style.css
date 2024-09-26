@@ -1422,7 +1422,6 @@ html {
   .my-swiper__slide {
     position: relative;
     background-color: #ffffff;
-    width: 100px;
     height: 72px;
     z-index: 1;
     border-radius: 6px;
@@ -1487,6 +1486,16 @@ html {
         position: absolute;
         top: 104px;
         right: 16px; }
+    .my-swiper__slide--price {
+      border-radius: 0;
+      border: 0; }
+      @media (min-width: 768px) {
+        .my-swiper__slide--price:first-child {
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px; }
+        .my-swiper__slide--price:last-child {
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px; } }
   .my-swiper__link {
     position: relative;
     display: inline-block;
@@ -1514,17 +1523,18 @@ html {
     @media (min-width: 768px) {
       .my-swiper__wrapper--price {
         display: flex;
-        flex-direction: column; } }
+        flex-direction: column;
+        gap: 0; } }
 
-.brand-container {
+.swiper-container {
   position: relative;
   padding-left: 16px; }
   @media (min-width: 768px) {
-    .brand-container {
+    .swiper-container {
       padding-left: 24px;
       padding-right: 24px; } }
   @media (min-width: 1120px) {
-    .brand-container {
+    .swiper-container {
       padding-left: 32px;
       padding-right: 32px; } }
 
