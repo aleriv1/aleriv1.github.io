@@ -74,7 +74,8 @@
     @include list-res();
     display: flex;
     overflow-x: scroll;
-    overflow-y: visible;
+    // overflow-x: hidden;
+    // overflow-y: visible;
     padding-left: $mobile-content-space;
     padding-right: $mobile-content-space;
     padding-top: 24px;
@@ -216,4 +217,9 @@
       height: 307px;
     }
   }
+}
+
+.grid-hack {
+  display: grid;
+  grid-template-columns: 1fr;
 }

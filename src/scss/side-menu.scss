@@ -14,9 +14,10 @@
   justify-content: space-between;
   transition: left 0.5s;
 
-  // @media (min-width: $desktop-width) {
-
-  // }
+  @media (min-width: $desktop-width) {
+    position: relative;
+    left: unset;
+  }
 
   &__header {
     display: flex;

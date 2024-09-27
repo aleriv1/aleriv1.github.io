@@ -11,9 +11,9 @@
     padding-bottom: 24px;
   }
 
-  @media (min-width: $desktop-width) {
-    @include centering-fix($desktop-width);
-  }
+  // @media (min-width: $desktop-width) {
+  //   @include centering-fix($desktop-width);
+  // }
 
   &__part {
     &:not(:last-child) {
