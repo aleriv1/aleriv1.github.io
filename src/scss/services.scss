@@ -169,11 +169,14 @@
 
   &__paragraphs {
     display: flex;
+    position: relative;
     flex-direction: column;
     margin-bottom: 16px;
     overflow-y: hidden;
     min-width: 288px;
-    height: 90px;
+    // height: 90px;
+    max-height: 90px;
+    transition: max-height 0.7s;
 
     @media (min-width: 768px) {
       min-width: 312px;
@@ -186,11 +189,23 @@
       height: 160px;
       margin-bottom: 14px;
     }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      display: block;
+      height: 20px;
+      width: 100%;
+      background-image: linear-gradient(to bottom, transparent, $body-bg-color);
+    }
   }
 
   &__text {
+    @include zero();
     font: normal normal 14px/18px 'TT Lakes', sans-serif;
     color: $text-color-0;
+    padding-bottom: 10px;
 
     @media (min-width: 768px) {
       line-height: 20px;

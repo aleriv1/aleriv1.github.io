@@ -30,6 +30,13 @@ for (let i = 0; i < expands.length; i++) {
       elementToChange.classList.toggle('my-swiper__wrapper--opened')
       //
       expands[i].classList.toggle('expand--opened')
+      // elementToChange.style.height = `${
+      //   parseInt(getComputedStyle(elementToChange).getPropertyValue('height')) +
+      //   10
+      // }px`
+      // console.log(
+      //   parseInt(getComputedStyle(elementToChange).getPropertyValue('height'))
+      // )
       expands[i].style.setProperty('--rotExp', 'rotate(180deg)')
       console.log(expands[i].textContent.replace(/^\s+|\s+$/g, ''))
       expands[i].innerHTML = 'Скрыть'
