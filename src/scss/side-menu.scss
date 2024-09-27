@@ -10,6 +10,11 @@
   padding: 19px 24px 46px;
   transition: left 0.5s;
 
+  @media (min-width: 360px) {
+    width: 360px;
+    left: -360px;
+  }
+
   @media (min-width: $desktop-width) {
     position: relative;
     left: unset;
