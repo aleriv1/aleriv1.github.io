@@ -28,16 +28,6 @@ a {
 }
 
 .gl-wr {
-  // display: flex;
-}
-.cont-wr {
-  flex: 0 0;
-  @media (min-width: 1440px) {
-    max-width: 1120px;
-  }
-}
-
-.gl-wr {
   // display: grid;
   // grid-template-columns: 1fr 1fr;
   display: flex;
@@ -45,6 +35,8 @@ a {
   // width: 100%;
 }
 .cont-wr {
+  display: grid;
+
   flex: 0 0 100%;
   @media (min-width: 1440px) {
     max-width: 1120px;
