@@ -77,6 +77,14 @@
   text-align-last: left;
   padding-left: 12px;
 
+  &:hover {
+    box-shadow: 0 0 5px 5px $accent-color;
+  }
+
+  &:active {
+    box-shadow: 0 0 5px 2px $accent-color;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -109,6 +117,9 @@
 .commercial-offer {
   position: relative;
   font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+  &:hover {
+    text-shadow: 0 0 1px $accent-color;
+  }
 }
 .more-arrow {
   vertical-align: top;
