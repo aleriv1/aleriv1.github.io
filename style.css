@@ -1585,6 +1585,9 @@ a {
         gap: 0;
         max-height: none; } }
 
+.swiper-pagination-bullet-active {
+  background-color: #979797; }
+
 .swiper-container {
   position: relative;
   padding-left: 16px; }
