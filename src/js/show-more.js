@@ -1,5 +1,7 @@
 // console.log('test show-more.js')
 
+import { setHeight, parentElementHeightInitial } from './menu-toggle'
+
 // #region expand action var
 
 let expands = document.querySelectorAll('.expand')
@@ -21,7 +23,7 @@ for (let i = 0; i < expands.length; i++) {
     textClose = 'Читать далее'
   }
   expands[i].addEventListener('click', (e) => {
-    elementToChange =
+    let elementToChange =
       expandSign === 'show'
         ? e.target.previousElementSibling.firstElementChild
         : e.target.previousElementSibling
@@ -35,6 +37,7 @@ for (let i = 0; i < expands.length; i++) {
       expands[i].style.setProperty('--rotExp', 'rotate(180deg)')
       console.log(expands[i].textContent.replace(/^\s+|\s+$/g, ''))
       expands[i].innerHTML = 'Скрыть'
+      setTimeout(setHeight, 700)
     } else {
       buttonShow = true
       //
@@ -44,6 +47,7 @@ for (let i = 0; i < expands.length; i++) {
       expands[i].classList.toggle('expand--opened')
       expands[i].style.setProperty('--rotExp', 'rotate(0)')
       expands[i].innerHTML = textClose
+      setTimeout(setHeight, 700)
     }
   })
 }

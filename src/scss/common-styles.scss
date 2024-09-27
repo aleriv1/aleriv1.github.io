@@ -29,6 +29,8 @@ a {
 
 .global-wrapper {
   display: flex;
+  // align-items: stretch;
+  align-items: stretch;
   @media (min-width: $desktop-width) {
     @include centering-fix($desktop-width);
   }

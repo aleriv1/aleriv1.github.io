@@ -1,24 +1,26 @@
 .side-menu {
   flex: 0 0;
+  width: 320px;
+  height: 100%; // it seems it doesn't work
   background: $body-contrast-color;
   position: absolute;
   top: 0;
   left: -320px;
   z-index: 1000;
   padding: 19px 24px 46px;
-  width: 320px;
-  height: 100vh;
-  box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02),
-    16px 0px 52px rgba(14, 24, 80, 0.2);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: left 0.5s;
 
   @media (min-width: $desktop-width) {
     position: relative;
     left: unset;
     box-shadow: unset;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90vh;
   }
 
   &__header {
@@ -88,5 +90,7 @@
 
   &--open {
     left: 0;
+    box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02),
+      16px 0px 52px rgba(14, 24, 80, 0.2);
   }
 }

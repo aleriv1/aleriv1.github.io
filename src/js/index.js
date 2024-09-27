@@ -2,7 +2,7 @@
 
 import '../scss/style.scss'
 
-import './swiper-bundle.min.js'
+// import './swiper-bundle.min.js'
 
 import './swiper-with-my-addition.js'
 
