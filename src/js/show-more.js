@@ -4,8 +4,6 @@ import { setHeight, parentElementHeightInitial } from './menu-toggle'
 
 let expands = document.querySelectorAll('.expand')
 
-let mySwWr = document.querySelector('.my-swiper__wrapper')
-
 // #endregion expand action var
 
 // #region expand actions

@@ -1,7 +1,7 @@
 // #region variables
 
 const navLink = document.querySelector('.nav__link')
-const sideMenu = document.querySelector('.side-menu')
+export const sideMenu = document.querySelector('.side-menu')
 const closeMenuBtn = document.querySelector('.layout-button--close-menu')
 const blurEl = document.querySelector('.blur')
 
@@ -19,17 +19,17 @@ const deviceWidth = window.matchMedia('(min-width: 1440px)')
 navLink.addEventListener('click', function (evt) {
   evt.preventDefault()
   blurEl.classList.add('blur-on')
-  sideMenu.classList.toggle('side-menu--open')
+  sideMenu.classList.toggle('open-left')
 })
 
 closeMenuBtn.addEventListener('click', function (evt) {
   evt.preventDefault()
-  sideMenu.classList.toggle('side-menu--open')
+  sideMenu.classList.toggle('open-left')
   blurEl.classList.remove('blur-on')
 })
 
 blurEl.addEventListener('click', function () {
-  sideMenu.classList.remove('side-menu--open')
+  sideMenu.classList.remove('open-left')
   blurEl.classList.remove('blur-on')
 })
 

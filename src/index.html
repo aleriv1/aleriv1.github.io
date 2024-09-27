@@ -444,14 +444,16 @@
 
   </div>
 
-  <section class="modal">
+  <section class="modal modal--feedback">
     <div class="modal__wrapper">
       <header class="modal__header">
         <button type="button" class="layout-button layout-button--close layout-button--close-feedback"
           title="Кнопка закрытия меню">
         </button>
       </header>
+
       <h3 class="modal__heading">Обратная связь</h3>
+
       <form action="" class="modal__form">
 
         <input class="modal__input" type="text" name="name" id="fio" placeholder="Имя">
@@ -468,6 +470,31 @@
         конфиденциальности
       </p>
       <button class="order-button order-button--feedback" type="button">Отправить</button>
+    </div>
+  </section>
+
+  <section class="modal modal--call">
+    <div class="modal__wrapper">
+      <header class="modal__header">
+        <button type="button" class="layout-button layout-button--close layout-button--close-call"
+          title="Кнопка закрытия меню">
+        </button>
+      </header>
+
+      <h3 class="modal__heading">Заказать звонок</h3>
+
+      <form action="" class="modal__form">
+
+        <input class="modal__input" type="tel" name="tel" id="phone-call" placeholder="Телефон">
+
+      </form>
+
+      <p class="modal__agreement">
+        Нажимая “отправить”, вы даете согласие на <a class="modal__agreement-link">обработку персональных данных</a> и
+        соглашаетесь с нашей политикой
+        конфиденциальности
+      </p>
+      <button class="order-button order-button--call" type="button">Отправить</button>
     </div>
   </section>
 

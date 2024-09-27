@@ -5,6 +5,7 @@
   box-sizing: border-box;
   background-color: $body-bg-color;
   @include zero();
+  overflow-x: hidden;
 }
 
 a {

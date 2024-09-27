@@ -2,10 +2,12 @@
 
 import '../scss/style.scss'
 
-// import './swiper-bundle.min.js'
-
-import './swiper-with-my-addition.js'
+import './swiper-bundle-with-my-additions.js'
 
 import './show-more.js'
 
 import './menu-toggle.js'
+
+import './feedback-toggle.js'
+
+import './call-toggle.js'
