@@ -61,42 +61,6 @@
   flex: 1 0;
 }
 
-.price-order-button {
-  position: relative;
-  @include zero();
-  background: $btn-color-1;
-  outline: none;
-  border: none;
-
-  width: 119px;
-  height: 32px;
-  border-radius: 28px;
-  font: normal bold 12px/24px 'TT Lakes', sans-serif;
-  color: $body-contrast-color;
-  text-transform: uppercase;
-  text-align-last: left;
-  padding-left: 12px;
-
-  &:hover {
-    box-shadow: 0 0 5px 5px $accent-color;
-  }
-
-  &:active {
-    box-shadow: 0 0 5px 2px $accent-color;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 7px;
-    height: 10px;
-    background-image: url(../img/dropdown.svg);
-    top: 11px;
-    right: 16px;
-  }
-}
-
 .price-details {
   @media (max-width: 767px) {
     padding-right: 16px;

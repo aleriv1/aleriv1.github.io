@@ -8,6 +8,7 @@
   z-index: 1000;
   padding: 24px 16px;
   transition: left 0.5s, right 0.5s;
+  display: none;
 
   @media (min-width: $desktop-width) {
     top: 0;

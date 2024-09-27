@@ -1,9 +1,11 @@
 // #region variables
 
-const navLink = document.querySelector('.nav__link')
 export const sideMenu = document.querySelector('.side-menu')
+export let delay = 150
+const navLink = document.querySelector('.nav__link')
 const closeMenuBtn = document.querySelector('.layout-button--close-menu')
 const blurEl = document.querySelector('.blur')
+const deviceWidth = window.matchMedia('(min-width: 1440px)')
 
 let parentMenuEl = sideMenu.parentElement
 let parentStyleHeightInitial =
@@ -11,8 +13,6 @@ let parentStyleHeightInitial =
 
 let parentStyleHeight =
   getComputedStyle(parentMenuEl).getPropertyValue('height')
-
-const deviceWidth = window.matchMedia('(min-width: 1440px)')
 
 // #endregion variables
 

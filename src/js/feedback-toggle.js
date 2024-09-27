@@ -1,6 +1,6 @@
 // #region variables
 
-import { sideMenu } from './menu-toggle'
+import { sideMenu, delay } from './menu-toggle'
 
 const feedbackBtn = document.querySelectorAll('.layout-button--feedback')
 const feedbackModal = document.querySelector('.modal--feedback')
@@ -14,7 +14,10 @@ const closeFeedbackBtn = document.querySelector(
 for (let i = 0; i < feedbackBtn.length; i++) {
   feedbackBtn[i].addEventListener('click', () => {
     blurEl.classList.add('blur-on')
-    feedbackModal.classList.add('open-right')
+    feedbackModal.classList.add('show-el')
+    setTimeout(() => {
+      feedbackModal.classList.add('open-right')
+    }, delay)
   })
 }
 
@@ -22,9 +25,15 @@ closeFeedbackBtn.addEventListener('click', () => {
   feedbackModal.classList.remove('open-right')
   blurEl.classList.remove('blur-on')
   sideMenu.classList.remove('open-left')
+  setTimeout(() => {
+    feedbackModal.classList.remove('show-el')
+  }, delay)
 })
 
 blurEl.addEventListener('click', () => {
   feedbackModal.classList.remove('open-right')
   blurEl.classList.remove('blur-on')
+  setTimeout(() => {
+    feedbackModal.classList.remove('show-el')
+  }, delay)
 })

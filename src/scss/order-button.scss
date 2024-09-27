@@ -14,6 +14,14 @@
   text-align-last: left;
   padding-left: 12px;
 
+  &:hover {
+    box-shadow: 0 0 5px 5px $accent-color;
+  }
+
+  &:active {
+    box-shadow: 0 0 5px 2px $accent-color;
+  }
+
   &::after {
     content: '';
     position: absolute;
