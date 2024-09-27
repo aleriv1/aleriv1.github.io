@@ -1322,6 +1322,10 @@ a {
   z-index: 1000;
   padding: 19px 24px 46px;
   transition: left 0.5s; }
+  @media (min-width: 360px) {
+    .side-menu {
+      width: 360px;
+      left: -360px; } }
   @media (min-width: 1440px) {
     .side-menu {
       position: relative;
