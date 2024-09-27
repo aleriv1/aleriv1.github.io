@@ -909,7 +909,8 @@ button.swiper-pagination-bullet {
   box-sizing: border-box;
   background-color: #f8f8f8;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  overflow-x: hidden; }
 
 a {
   text-decoration: none; }
@@ -1768,12 +1769,19 @@ a {
     @media (min-width: 1440px) {
       .layout-button--close-menu {
         display: none; } }
+    .layout-button--close-feedback {
+      margin: unset; }
+      @media (min-width: 1440px) {
+        .layout-button--close-feedback {
+          position: absolute;
+          top: 0;
+          left: -89px; } }
   .layout-button--search {
     background-image: url(./static/search-icon.svg); }
   .layout-button--call {
     background-image: url(./static/call-icon.svg); }
-  .layout-button--chat {
-    background-image: url(./static/chat-icon.svg);
+  .layout-button--feedback {
+    background-image: url(./static/feedback-icon.svg);
     background-position: 50% 53%; }
   .layout-button--account {
     background-image: url(./static/account-icon.svg); }
@@ -1786,8 +1794,129 @@ a {
 .blur-on {
   background: #979797ee;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   z-index: 500; }
+
+.modal {
+  width: 320px;
+  height: 100vh;
+  background: #ffffff;
+  position: absolute;
+  top: 0;
+  right: -320px;
+  z-index: 1000;
+  padding: 24px 16px;
+  transition: left 0.5s, right 0.5s; }
+  @media (min-width: 1440px) {
+    .modal {
+      top: 0;
+      right: -513px;
+      width: 440px;
+      padding: 40px 32px; } }
+  .modal__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 90vh; }
+  .modal__header {
+    position: relative;
+    margin-bottom: 40px; }
+    @media (min-width: 1440px) {
+      .modal__header {
+        height: 0;
+        margin: unset; } }
+  .modal__heading {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font: bold normal 24px/32px 'TT Lakes', sans-serif;
+    padding-bottom: 24px; }
+    .modal__heading:before {
+      content: '';
+      width: 4px;
+      height: 32px;
+      background-image: url(./static/highlight.svg);
+      background-size: 4px 32px;
+      position: absolute;
+      top: 0;
+      left: -17px; }
+      @media (min-width: 1440px) {
+        .modal__heading:before {
+          left: -33px;
+          background-image: url(./static/highlight-full.svg); } }
+  .modal__form {
+    display: flex;
+    flex-direction: column; }
+  .modal__input {
+    border: 1px solid #eaeaea;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px; }
+    .modal__input::-webkit-input-placeholder {
+      font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+      color: #b5b6bc; }
+    .modal__input::-moz-placeholder {
+      font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+      color: #b5b6bc; }
+    .modal__input:-ms-input-placeholder {
+      font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+      color: #b5b6bc; }
+    .modal__input::placeholder {
+      font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+      color: #b5b6bc; }
+    .modal__input--text-area {
+      min-height: 118px; }
+  .modal__agreement {
+    margin: 0;
+    padding: 0;
+    font: 500 normal 14px/16px 'TT Lakes', sans-serif;
+    color: #7e7e82;
+    margin-bottom: 23px; }
+  .modal__agreement-link {
+    color: #ff3e79; }
+  .modal--open-right {
+    right: 0;
+    box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2); }
+
+.order-button {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: #ff3e79;
+  outline: none;
+  border: none;
+  width: 119px;
+  height: 32px;
+  border-radius: 28px;
+  font: normal bold 12px/24px 'TT Lakes', sans-serif;
+  color: #ffffff;
+  text-transform: uppercase;
+  -moz-text-align-last: left;
+       text-align-last: left;
+  padding-left: 12px; }
+  .order-button::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 7px;
+    height: 10px;
+    background-image: url(./static/dropdown.svg);
+    top: 11px;
+    right: 16px; }
+  .order-button--feedback {
+    align-self: flex-end;
+    width: 136px;
+    padding-left: 25px; }
+
+.open-left {
+  left: 0;
+  z-index: 5000;
+  box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2); }
+
+.open-right {
+  right: 0;
+  z-index: 5000;
+  box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2); }
 
 
 /*# sourceMappingURL=style.css.map*/
