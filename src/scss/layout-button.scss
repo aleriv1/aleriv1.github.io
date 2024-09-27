@@ -20,6 +20,15 @@
         display: none;
       }
     }
+    &-feedback {
+      margin: unset;
+
+      @media (min-width: 1440px) {
+        position: absolute;
+        top: 0;
+        left: -89px;
+      }
+    }
   }
 
   &--search {
@@ -30,8 +39,8 @@
     background-image: url(../img/call-icon.svg);
   }
 
-  &--chat {
-    background-image: url(../img/chat-icon.svg);
+  &--feedback {
+    background-image: url(../img/feedback-icon.svg);
     background-position: 50% 53%;
   }
 

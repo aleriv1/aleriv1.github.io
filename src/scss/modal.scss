@@ -1,0 +1,100 @@
+.modal {
+  box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02),
+    16px 0px 52px rgba(14, 24, 80, 0.2);
+  // flex: 0 0;
+  width: 320px;
+  // height: 100%; // it seems it doesn't work
+  height: 100vh; // it seems it doesn't work
+  background: $body-contrast-color;
+  position: absolute;
+  top: 0;
+  // right: 0;
+  right: -500px;
+  z-index: 1000;
+  padding: 24px 16px;
+  transition: left 0.5s;
+
+  @media (min-width: $desktop-width) {
+    top: 0;
+    // right: 0;
+    right: -500px;
+    width: 440px;
+    padding: 40px 32px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 90vh;
+  }
+
+  &__header {
+    position: relative;
+    margin-bottom: 40px;
+
+    @media (min-width: 1440px) {
+      height: 0;
+      margin: unset;
+    }
+  }
+
+  &__heading {
+    @include zero();
+    position: relative;
+    font: bold normal 24px/32px 'TT Lakes', sans-serif;
+    padding-bottom: 24px;
+
+    &:before {
+      content: '';
+      width: 4px;
+      height: 32px;
+      background-image: url(../img/highlight.svg);
+      background-size: 4px 32px;
+      position: absolute;
+      top: 0;
+      left: -17px;
+
+      @media (min-width: $desktop-width) {
+        left: -33px;
+        background-image: url(../img/highlight-full.svg);
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    border: 1px solid $form-border-color;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    &::placeholder {
+      font: 500 normal 16px/24px 'TT Lakes', sans-serif;
+      color: $placeholder-color;
+    }
+    &--text-area {
+      min-height: 118px;
+    }
+  }
+
+  &__agreement {
+    @include zero();
+    font: 500 normal 14px/16px 'TT Lakes', sans-serif;
+    color: $nav-link-color-0;
+    margin-bottom: 23px;
+  }
+
+  &__agreement-link {
+    color: $btn-color-1;
+  }
+
+  &--open {
+    left: 0;
+    box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02),
+      16px 0px 52px rgba(14, 24, 80, 0.2);
+  }
+}

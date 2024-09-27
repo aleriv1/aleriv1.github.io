@@ -1,5 +1,3 @@
-// console.log('test show-more.js')
-
 import { setHeight, parentElementHeightInitial } from './menu-toggle'
 
 // #region expand action var

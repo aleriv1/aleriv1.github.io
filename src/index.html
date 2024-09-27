@@ -7,8 +7,7 @@
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>
-    <!-- <%= htmlWebpackPlugin.options.title %> -->
-    Lilya
+    test1
   </title>
 </head>
 
@@ -50,7 +49,7 @@
               <button type="button" class="layout-button layout-button--call" title="Кнопка заказа звонка"></button>
             </li>
             <li class="contact-us__item">
-              <button type="button" class="layout-button layout-button--chat" title="Кнопка чата"></button>
+              <button type="button" class="layout-button layout-button--feedback" title="Кнопка чата"></button>
             </li>
             <li class="contact-us__item">
               <button type="button" class="layout-button layout-button--account" title="Кнопка аккаунта"></button>
@@ -85,22 +84,18 @@
         <section class="header__right-group">
 
           <ul class="contact-us">
+
             <li class="contact-us__item">
-              <a class="contact-us__link" href="">
-                <img class="contact-us__icon" src="img/call.svg" alt="Иконка для звонка" title="Позвоните нам">
-              </a>
+              <button type="button" class="layout-button layout-button--call" title="Кнопка заказа звонка"></button>
             </li>
             <li class="contact-us__item">
-              <a class="contact-us__link" href="">
-                <img class="contact-us__icon" src="img/chat.svg" alt="Иконка для сообщения в чате" title="Напишите нам">
-              </a>
+              <button type="button" class="layout-button layout-button--feedback" title="Кнопка чата"></button>
             </li>
             <li class="contact-us__item">
-              <a class="contact-us__link" href="">
-                <img class="contact-us__icon" src="img/profile.svg" alt="Иконка профиля, контактных данных"
-                  title="Контакты">
-              </a>
+              <button type="button" class="layout-button layout-button--account" title="Кнопка аккаунта"></button>
             </li>
+
+
           </ul>
 
           <ul class="repair-check repair-check--hdr">
@@ -448,6 +443,33 @@
     </div>
 
   </div>
+
+  <section class="modal">
+    <div class="modal__wrapper">
+      <header class="modal__header">
+        <button type="button" class="layout-button layout-button--close layout-button--close-feedback"
+          title="Кнопка закрытия меню">
+        </button>
+      </header>
+      <h3 class="modal__heading">Обратная связь</h3>
+      <form action="" class="modal__form">
+
+        <input class="modal__input" type="text" name="name" id="fio" placeholder="Имя">
+        <input class="modal__input" type="tel" name="tel" id="phone" placeholder="Телефон">
+        <input class="modal__input" type="email" name="email" id="mail" placeholder="Электронная почта">
+        <textarea class="modal__input modal__input--text-area" name="txt-area" id="modal-text1"
+          placeholder="Сообщение"></textarea>
+
+      </form>
+
+      <p class="modal__agreement">
+        Нажимая “отправить”, вы даете согласие на <a class="modal__agreement-link">обработку персональных данных</a> и
+        соглашаетесь с нашей политикой
+        конфиденциальности
+      </p>
+      <button class="order-button order-button--feedback" type="button">Отправить</button>
+    </div>
+  </section>
 
 </body>
 

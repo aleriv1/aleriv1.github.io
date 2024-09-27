@@ -1,0 +1,33 @@
+.order-button {
+  position: relative;
+  @include zero();
+  background: $btn-color-1;
+  outline: none;
+  border: none;
+
+  width: 119px;
+  height: 32px;
+  border-radius: 28px;
+  font: normal bold 12px/24px 'TT Lakes', sans-serif;
+  color: $body-contrast-color;
+  text-transform: uppercase;
+  text-align-last: left;
+  padding-left: 12px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 7px;
+    height: 10px;
+    background-image: url(../img/dropdown.svg);
+    top: 11px;
+    right: 16px;
+  }
+
+  &--feedback {
+    align-self: flex-end;
+    width: 136px;
+    padding-left: 25px;
+  }
+}

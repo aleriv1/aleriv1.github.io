@@ -1,8 +1,6 @@
 @import 'variables';
-// @import url('swiper-bundle.min.css') (max-width: 767px);
 @import url('swiper-bundle.css') (max-width: 767px);
 @import 'mixins';
-// @import 'style-pre';
 @import 'common-styles.scss';
 @import 'fonts.scss';
 @import 'header.scss';
@@ -26,5 +24,7 @@
 @import 'price-cols.scss';
 @import 'price-diff-styles.scss';
 @import 'footer.scss';
-@import 'button.scss';
+@import 'layout-button.scss';
 @import 'blur.scss';
+@import 'modal.scss';
+@import 'order-button.scss';

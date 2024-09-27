@@ -1,5 +1,3 @@
-// console.log('swiper-with-my-addition test')
-
 // #region swiper bundle
 
 /**
