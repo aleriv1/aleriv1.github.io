@@ -926,6 +926,7 @@ a {
   border-bottom: unset !important; }
 
 .global-wrapper {
+  z-index: 10;
   display: flex;
   align-items: stretch; }
   @media (min-width: 1440px) {
@@ -1330,7 +1331,8 @@ a {
     .side-menu {
       position: relative;
       left: unset;
-      box-shadow: unset; } }
+      box-shadow: unset;
+      z-index: 490; } }
   .side-menu__wrapper {
     display: flex;
     flex-direction: column;
@@ -1782,6 +1784,7 @@ a {
     background-image: url(./static/account-icon.svg); }
 
 .blur {
+  z-index: 50000;
   position: absolute;
   top: 0;
   left: 0; }
@@ -1910,12 +1913,10 @@ a {
 
 .open-left {
   left: 0;
-  z-index: 5000;
   box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2); }
 
 .open-right {
   right: 0;
-  z-index: 5000;
   box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2); }
 
 
