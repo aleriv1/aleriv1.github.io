@@ -1367,9 +1367,6 @@ a {
   .side-menu__tel {
     font: bold normal 24px/32px 'TT Lakes', sans-serif;
     margin-bottom: 40px; }
-  .side-menu--open {
-    left: 0;
-    box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2); }
 
 .language-list {
   margin: 0;
@@ -1689,6 +1686,10 @@ a {
   -moz-text-align-last: left;
        text-align-last: left;
   padding-left: 12px; }
+  .price-order-button:hover {
+    box-shadow: 0 0 5px 5px #41f6d7; }
+  .price-order-button:active {
+    box-shadow: 0 0 5px 2px #41f6d7; }
   .price-order-button::after {
     content: '';
     position: absolute;
@@ -1717,6 +1718,8 @@ a {
 .commercial-offer {
   position: relative;
   font: 500 normal 16px/24px 'TT Lakes', sans-serif; }
+  .commercial-offer:hover {
+    text-shadow: 0 0 1px #41f6d7; }
 
 .more-arrow {
   vertical-align: top; }
@@ -1751,6 +1754,8 @@ a {
     @media (min-width: 768px) {
       .footer__text--info-not-offer {
         text-align: right; } }
+  .footer__link:hover {
+    text-shadow: 0 0 1px #41f6d7; }
 
 .layout-button {
   width: 40px;
@@ -1874,9 +1879,6 @@ a {
     margin-bottom: 23px; }
   .modal__agreement-link {
     color: #ff3e79; }
-  .modal--open-right {
-    right: 0;
-    box-shadow: -2px 0px 4px rgba(69, 79, 126, 0.02), 16px 0px 52px rgba(14, 24, 80, 0.2); }
 
 .order-button {
   position: relative;
