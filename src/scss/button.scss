@@ -15,6 +15,11 @@
   &--close {
     background-image: url(../img/close-cross.svg);
     margin-right: 17px;
+    &-menu {
+      @media (min-width: $desktop-width) {
+        display: none;
+      }
+    }
   }
 
   &--search {

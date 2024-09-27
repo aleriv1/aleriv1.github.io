@@ -27,24 +27,19 @@ a {
   border-bottom: unset !important;
 }
 
-.gl-wr {
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
+.global-wrapper {
   display: flex;
-  // background: green;
-  // width: 100%;
+  @media (min-width: $desktop-width) {
+    @include centering-fix($desktop-width);
+  }
 }
-.cont-wr {
+.content-wrapper {
   display: grid;
 
   flex: 0 0 100%;
   @media (min-width: 1440px) {
     max-width: 1120px;
   }
-  // background: green;
-}
-.side-menu {
-  flex: 0 0;
 }
 
 /* #endregion common */
