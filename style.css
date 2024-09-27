@@ -1670,36 +1670,6 @@ a {
   margin-right: 28px;
   flex: 1 0; }
 
-.price-order-button {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  background: #ff3e79;
-  outline: none;
-  border: none;
-  width: 119px;
-  height: 32px;
-  border-radius: 28px;
-  font: normal bold 12px/24px 'TT Lakes', sans-serif;
-  color: #ffffff;
-  text-transform: uppercase;
-  -moz-text-align-last: left;
-       text-align-last: left;
-  padding-left: 12px; }
-  .price-order-button:hover {
-    box-shadow: 0 0 5px 5px #41f6d7; }
-  .price-order-button:active {
-    box-shadow: 0 0 5px 2px #41f6d7; }
-  .price-order-button::after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 7px;
-    height: 10px;
-    background-image: url(./static/dropdown.svg);
-    top: 11px;
-    right: 16px; }
-
 @media (max-width: 767px) {
   .price-details {
     padding-right: 16px; } }
@@ -1774,10 +1744,10 @@ a {
     @media (min-width: 1440px) {
       .layout-button--close-menu {
         display: none; } }
-    .layout-button--close-feedback {
+    .layout-button--close-modal {
       margin: unset; }
       @media (min-width: 1440px) {
-        .layout-button--close-feedback {
+        .layout-button--close-modal {
           position: absolute;
           top: 0;
           left: -89px; } }
@@ -1811,7 +1781,8 @@ a {
   right: -320px;
   z-index: 1000;
   padding: 24px 16px;
-  transition: left 0.5s, right 0.5s; }
+  transition: left 0.5s, right 0.5s;
+  display: none; }
   @media (min-width: 1440px) {
     .modal {
       top: 0;
@@ -1896,6 +1867,10 @@ a {
   -moz-text-align-last: left;
        text-align-last: left;
   padding-left: 12px; }
+  .order-button:hover {
+    box-shadow: 0 0 5px 5px #41f6d7; }
+  .order-button:active {
+    box-shadow: 0 0 5px 2px #41f6d7; }
   .order-button::after {
     content: '';
     position: absolute;
@@ -1909,6 +1884,9 @@ a {
     align-self: flex-end;
     width: 136px;
     padding-left: 25px; }
+
+.show-el {
+  display: block; }
 
 .open-left {
   left: 0;
