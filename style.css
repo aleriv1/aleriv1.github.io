@@ -1873,6 +1873,10 @@ a {
     margin-bottom: 23px; }
   .modal__agreement-link {
     color: #ff3e79; }
+    .modal__agreement-link:hover {
+      color: #41f6d7; }
+    .modal__agreement-link:visited {
+      color: #ff3e79; }
 
 .order-button {
   position: relative;
