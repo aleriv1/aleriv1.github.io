@@ -85,5 +85,11 @@
 
   &__agreement-link {
     color: $btn-color-1;
+    &:hover {
+      color: $accent-color;
+    }
+    &:visited {
+      color: $btn-color-1;
+    }
   }
 }
