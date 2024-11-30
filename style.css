@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #C4C4C4;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.wrapper {
+  margin-top: 62px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.search-input {
+  height: 61px;
+  width: 100%;
+  font-size: 48px;
+  padding: 0 13px;
+}
+
+.autocomplete-list {
+  list-style: none;
+}
+
+.autocomplete-list li {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border: 2px solid #000;
+  height: 44px;
+  background-color: #E3E3E3;
+  font-size: 30px;
+  padding: 0 13px 9px;
+}
+
+.autocomplete-list li:active {
+  background-color: #65CDF9;
+}
+
+.repositories {
+  margin-top: 44px;
+}
+
+.repositories li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 9px 36px 9px 14px;
+  background-color: #E27BEB;
+  list-style: none;
+  font-size: 24px;
+}
+
+
+.delete-btn {
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  color: #FF0000;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+}
