@@ -6,10 +6,16 @@ const TaskList = ({ todos }) => {
 
   const elements = todos.map((item) => {
 
-    const { id, ...taskProps } = item
+    // const { id, ...taskProps } = item
+    const { status, id, ...taskProps } = item
+
+    const taskEditing = status === 'editing' ? <input type="text" className="edit" defaultValue='Editing task'></input> : ""
 
     return (
-      <Task {...taskProps} />
+      <li key={id} className={status} >
+        <Task {...taskProps} />
+        {taskEditing}
+      </li>
     )
   });
 
