@@ -29,7 +29,6 @@ class App extends Component {
       console.log(newTodoData)
 
       return {
-        // todos: newTodoData        
         todoData: newTodoData        
       }
       
@@ -52,7 +51,6 @@ class App extends Component {
       <section className='todoapp'>
         <AppHeader />
         <MainSection todos={this.state.todoData}
-        // <MainSection todos={this.state.todos}
           onDeleted={this.deleteItem} />
       </section>
     )
