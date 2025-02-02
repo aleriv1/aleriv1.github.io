@@ -47,7 +47,6 @@ export default class App extends Component {
   deleteAllDone = () => {
 
     this.setState(({ todoData}) => {
-      // const todoDataWhitoutDone = todoData.filter((task) => !task.done)
 
       return {
         todoData: todoData.filter((task) => !task.done)
