@@ -7,16 +7,15 @@ import MainSection from '../main'
 class App extends Component {
 
   maxId = 100
+
   
   state = {
     todoData: [
-    //   { label: 'Completed task', editing: false, done: true, id: 1, creationTime: 'created 17 seconds ago' },
-    //   { label: 'Editing task', editing: true, done: false, id: 2, creationTime: 'created 5 minutes ago' },
-    //   { label: 'Active task', editing: false, done: false, id: 3, creationTime: 'created 5 minutes ago' },
       this.createTaskItem('Completed task', false, 'created 17 seconds ago'),
       this.createTaskItem('Editing task', true, 'created 5 minutes ago'),
       this.createTaskItem('Active task', false, 'created 5 minutes ago')
-    ]
+    ],
+    filter: 'all',
   }
 
   createTaskItem(label, editing, creatTime) {
@@ -48,29 +47,91 @@ class App extends Component {
     })
   }
 
+  onToggleDone = (id) => {
+    this.setState(({todoData}) => {
+      const idx = todoData.findIndex((el) => el.id === id)
+
+      const oldItem = todoData[idx]
+
+      const newItem = { ...oldItem, done: !oldItem.done}
+
+      const newArray = [
+        ...todoData.slice(0, idx),
+        newItem,
+        ...todoData.slice(idx + 1)
+      ]
+
+      return {
+        todoData: newArray
+      }
+    })
+  }
   
+  // onFilterActive = () => {
+
+  //   this.setState(({todoData}) => {
+  //     return {
+  //       todoData: todoData.filter((el) => !el.done)
+  //     }
+  //   } )
+    
+  // }
+
+  // onFilterCompleted = () =>  {
+  //   this.setState(({todoData})=>{
+
+  //     this.prevState = todoData
+
+  //     const doneTasks = todoData.filter((el) => el.done)
+  //     const activeTasks = todoData.filter((el) => !el.done)
+
+  //     return {
+  //       todoData: todoData.filter((el) => el.done)
+  //     }
+  //   })
+  // }
+  
+onFilterChange = (filter) => {
+  this.setState({
+    filter: filter
+})
+}
+
+taskFilter = (tasks, filter) => {
+  switch (filter) {
+    case 'all':
+      return tasks
+    case 'active':
+      return tasks.filter(tasks => !tasks.done)
+    case 'completed':
+      return tasks.filter(tasks => tasks.done)
+    default:
+     return tasks;
+  }
+}
+
   render() {
+
+    const { todoData, filter } = this.state
+
+    const visibleTasks = this.taskFilter(todoData, filter)
+
+    const taskLeft = todoData.length - todoData.filter((task) => task.done).length
+
     return (
+
       <section className='todoapp'>
         <AppHeader />
-        <MainSection todos={this.state.todoData}
-          onDeleted={this.deleteItem} />
-
+        <MainSection 
+          todos={visibleTasks}
+          onDeleted={this.deleteItem}
+          onToggleDone={this.onToggleDone} 
+          onFilterChange={this.onFilterChange}
+          taskLeft={taskLeft}
+        />
       </section>
-
     )
   }
 }
 
 export default App
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     todoData: [
-  //       { label: 'Completed task', editing: false, id: 1, creationTime: 'created 17 seconds ago' },
-  //       { label: 'Editing task', editing: true, id: 2 },
-  //       { label: 'Active task', editing: false, id: 3, creationTime: 'created 5 minutes ago' }
-  //     ]
-  //   }
-  // }

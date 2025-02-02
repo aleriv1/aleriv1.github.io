@@ -3,10 +3,10 @@ import { Component } from "react"
 
 export default class Task extends Component {
 
-  // state = {
-  //   done: false,
-  //   // edit: false,
-  // }
+  state = {
+    done: false,
+    // edit: false,
+  }
 
   onLabelClick = () => {
     this.setState(({ done }) => {
@@ -18,7 +18,8 @@ export default class Task extends Component {
   }
 
   render() {
-    const { label, editing, done, creationTime, onDeleted } = this.props
+    const { label, editing, done, creationTime, onDeleted, onToggleDone } = this.props
+    // const { label, editing, creationTime, onDeleted } = this.props
 
     // const { done } = this.state
 
@@ -40,7 +41,8 @@ export default class Task extends Component {
         <div className="view">
           <input className="toggle" type="checkbox" />
           <label>
-            <span className="description" onClick={this.onLabelClick}>{label}</span>
+            {/* <span className="description" onClick={this.onLabelClick}>{label}</span> */}
+            <span className="description" onClick={onToggleDone}>{label}</span>
             <span className="created"> {creationTime}</span>
           </label>
           <button className="icon icon-edit"></button>
