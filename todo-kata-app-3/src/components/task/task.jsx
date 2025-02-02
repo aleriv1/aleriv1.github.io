@@ -3,10 +3,10 @@ import { Component } from "react"
 
 export default class Task extends Component {
 
-  state = {
-    done: false,
-    edit: false,
-  }
+  // state = {
+  //   done: false,
+  //   // edit: false,
+  // }
 
   onLabelClick = () => {
     this.setState(({ done }) => {
@@ -18,9 +18,9 @@ export default class Task extends Component {
   }
 
   render() {
-    const { label, editing, creationTime, onDeleted } = this.props
+    const { label, editing, done, creationTime, onDeleted } = this.props
 
-    const { done } = this.state
+    // const { done } = this.state
 
     const taskEditing = editing ? <input type="text" className="edit" defaultValue={label}></input> : ""
 
