@@ -10,16 +10,19 @@ class App extends Component {
   
   state = {
     todoData: [
-      { label: 'Completed task', editing: false, done: false, id: 1, creationTime: 'created 17 seconds ago' },
-      { label: 'Editing task', editing: true, done: false, id: 2, creationTime: 'created 5 minutes ago' },
-      { label: 'Active task', editing: false, done: false, id: 3, creationTime: 'created 5 minutes ago' }
+    //   { label: 'Completed task', editing: false, done: true, id: 1, creationTime: 'created 17 seconds ago' },
+    //   { label: 'Editing task', editing: true, done: false, id: 2, creationTime: 'created 5 minutes ago' },
+    //   { label: 'Active task', editing: false, done: false, id: 3, creationTime: 'created 5 minutes ago' },
+      this.createTaskItem('Completed task', false, 'created 17 seconds ago'),
+      this.createTaskItem('Editing task', true, 'created 5 minutes ago'),
+      this.createTaskItem('Active task', false, 'created 5 minutes ago')
     ]
   }
 
-  createToItem(label, creatTime) {
+  createTaskItem(label, editing, creatTime) {
     return {
       label: label,
-      editing: false,
+      editing: editing,
       done: false,
       id: this.maxId++,
       creatTime: creatTime
