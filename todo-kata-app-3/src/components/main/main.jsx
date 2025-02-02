@@ -3,7 +3,7 @@ import "./main.css"
 import Footer from "../footer"
 import TaskList from "../task-list"
 
-const MainSection = ({ todos, onDeleted, onToggleDone, onFilterChange, taskLeft }) => {
+const MainSection = ({ todos, onDeleted, onToggleDone, onFilterChange, taskLeft, onDeleteAllDone, filter }) => {
   return (
     <section className="main">
       <TaskList todos={todos}
@@ -11,7 +11,9 @@ const MainSection = ({ todos, onDeleted, onToggleDone, onFilterChange, taskLeft 
         onToggleDone={onToggleDone}/>
       <Footer 
       onFilterChange={onFilterChange} 
-      taskLeft = {taskLeft}/>
+      taskLeft = {taskLeft}
+      onDeleteAllDone={onDeleteAllDone}
+      filter={filter}/>
     </section>
   )
 }
