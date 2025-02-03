@@ -5,7 +5,7 @@ export default class Task extends Component {
   state = {
     labelInput: this.props.label,
   };
-  
+
   onLabelChange = (e) => {
     this.setState({
       labelInput: e.target.value,
@@ -14,8 +14,8 @@ export default class Task extends Component {
 
   onSumbit = (e) => {
     e.preventDefault();
-    this.props.onChangeLabel(this.props.id, this.state.labelInput)
-    this.props.onEditTask()
+    this.props.onChangeLabel(this.props.id, this.state.labelInput);
+    this.props.onEditTask();
   };
 
   render() {
