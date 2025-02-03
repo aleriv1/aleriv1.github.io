@@ -1,5 +1,5 @@
-import "./app.scss";
 import { Component } from "react";
+import "./app.scss";
 
 import Header from "../header";
 import Main from "../main";
@@ -16,13 +16,13 @@ export default class App extends Component {
     filter: "all",
   };
 
-  createTaskItem(label, editing, creatTime) {
+  createTaskItem(label, editing, creationTime) {
     return {
       label: label,
       editing: editing,
       done: false,
       id: this.maxId++,
-      creatTime: creatTime,
+      creationTime: creationTime,
     };
   }
 
@@ -36,8 +36,6 @@ export default class App extends Component {
         ...todoData.slice(idx + 1),
       ];
 
-      console.log(newTodoData);
-
       return {
         todoData: newTodoData,
       };
@@ -45,15 +43,13 @@ export default class App extends Component {
   };
 
   deleteAllDone = () => {
-
-    this.setState(({ todoData}) => {
-
+    this.setState(({ todoData }) => {
       return {
-        todoData: todoData.filter((task) => !task.done)
-      }
-    })
-  }
-  
+        todoData: todoData.filter((task) => !task.done),
+      };
+    });
+  };
+
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id);
@@ -110,7 +106,7 @@ export default class App extends Component {
           onToggleDone={this.onToggleDone}
           onFilterChange={this.onFilterChange}
           taskLeft={taskLeft}
-          onDeleteAllDone = {this.deleteAllDone}
+          onDeleteAllDone={this.deleteAllDone}
           filter={filter}
         />
       </section>
