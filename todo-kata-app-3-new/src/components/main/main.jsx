@@ -5,7 +5,8 @@ import TaskList from "../task-list";
 
 const MainSection = ({
   todos,
-  onDeleted,
+  onDeleteTask,
+  onEditTask,
   onToggleDone,
   onFilterChange,
   taskLeft,
@@ -16,8 +17,9 @@ const MainSection = ({
     <section className="main">
       <TaskList
         todos={todos}
-        onDeleted={onDeleted}
+        onDeleteTask={onDeleteTask}
         onToggleDone={onToggleDone}
+        onEditTask={onEditTask}
       />
       <Footer
         onFilterChange={onFilterChange}

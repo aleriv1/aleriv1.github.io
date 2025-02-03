@@ -16,7 +16,7 @@ export default class App extends Component {
     filter: "all",
   };
 
-  createTaskItem(label, editing, creationTime) {
+  createTaskItem(label, editing = false, creationTime = '0 minutes ago') {
     return {
       label: label,
       editing: editing,
@@ -26,8 +26,16 @@ export default class App extends Component {
     };
   }
 
-  deleteItem = (id) => {
-    console.log("test del");
+  editTask = (id) => {
+    // console.log(`edit ${id}`)
+    this.setState(({todoData}) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, 'editing')
+      }
+    })
+  }
+
+  deleteTask = (id) => {
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id);
 
@@ -50,22 +58,46 @@ export default class App extends Component {
     });
   };
 
-  onToggleDone = (id) => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id);
+  addNewTask = (text) => {
+    const newTask = this.createTaskItem(text)
 
-      const oldItem = todoData[idx];
-
-      const newItem = { ...oldItem, done: !oldItem.done };
-
-      const newArray = [
-        ...todoData.slice(0, idx),
-        newItem,
-        ...todoData.slice(idx + 1),
-      ];
+    this.setState(({todoData}) => {
+      const newArr = [...todoData, newTask]
 
       return {
-        todoData: newArray,
+        todoData: newArr
+      }
+    })
+  }
+
+  toggleProperty = (arr, id, propName) => {
+    const idx = arr.findIndex((el) => el.id === id)
+    
+    const oldItem = arr[idx]
+
+    const newItem = { ...oldItem, [propName] : !oldItem[propName] }
+
+    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
+
+  }
+  
+  onToggleDone = (id) => {
+    this.setState(({ todoData }) => {
+      // const idx = todoData.findIndex((el) => el.id === id);
+
+      // const oldItem = todoData[idx];
+
+      // const newItem = { ...oldItem, done: !oldItem.done };
+
+      // const newArray = [
+      //   ...todoData.slice(0, idx),
+      //   newItem,
+      //   ...todoData.slice(idx + 1),
+      // ];
+
+      return {
+        // todoData: newArray,
+        todoData: this.toggleProperty(todoData, id, 'done'),
       };
     });
   };
@@ -99,10 +131,13 @@ export default class App extends Component {
 
     return (
       <section className="todoapp">
-        <Header />
+        <Header
+          onAddNewTask = {this.addNewTask}
+         />
         <Main
           todos={visibleTasks}
-          onDeleted={this.deleteItem}
+          onEditTask = {this.editTask}
+          onDeleteTask={this.deleteTask}
           onToggleDone={this.onToggleDone}
           onFilterChange={this.onFilterChange}
           taskLeft={taskLeft}
