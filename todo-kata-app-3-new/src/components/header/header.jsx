@@ -1,7 +1,7 @@
-import "./header.css"
+import "./header.scss"
 import NewTaskForm from "../new-task-form"
 
-const AppHeader = () => {
+const Header = () => {
   return (
 
     <header className="header">
@@ -11,4 +11,4 @@ const AppHeader = () => {
   )
 }
 
-export default AppHeader
+export default Header

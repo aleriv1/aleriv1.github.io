@@ -1,4 +1,4 @@
-import "./task-list.css"
+import "./task-list.scss"
 
 import Task from "../task"
 

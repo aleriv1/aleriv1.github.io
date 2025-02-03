@@ -1,7 +1,7 @@
 import './app.css'
 
-import AppHeader from '../header'
-import MainSection from '../main'
+import Header from '../header'
+import Main from '../main'
 
 const todoData = [
   { label: 'Completed task', status: 'completed', id: 1, creationTime: 'created 17 seconds ago' },
@@ -12,8 +12,8 @@ const todoData = [
 const App = () => {
   return (
     <section className='todoapp'>
-      <AppHeader />
-      <MainSection todos={todoData} />
+      <Header />
+      <Main todos={todoData} />
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import './new-task-form.css'
+import './new-task-form.scss'
 
 const NewTaskForm = () => {
   return (

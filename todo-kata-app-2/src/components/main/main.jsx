@@ -3,7 +3,7 @@ import "./main.css"
 import Footer from "../footer"
 import TaskList from "../task-list"
 
-const MainSection = ({ todos, onDeleted }) => {
+const Main = ({ todos, onDeleted }) => {
   return (
     <section className="main">
       <TaskList todos={todos}
@@ -13,4 +13,4 @@ const MainSection = ({ todos, onDeleted }) => {
   )
 }
 
-export default MainSection
+export default Main

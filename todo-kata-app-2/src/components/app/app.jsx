@@ -1,8 +1,8 @@
 import './app.css'
 import { Component } from 'react'
 
-import AppHeader from '../header'
-import MainSection from '../main'
+import Header from '../header'
+import Main from '../main'
 
 
 
@@ -49,8 +49,8 @@ class App extends Component {
   render() {
     return (
       <section className='todoapp'>
-        <AppHeader />
-        <MainSection todos={this.state.todoData}
+        <Header />
+        <Main todos={this.state.todoData}
           onDeleted={this.deleteItem} />
 
       </section>

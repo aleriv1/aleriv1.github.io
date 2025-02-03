@@ -3,7 +3,7 @@ import "./main.css"
 import Footer from "../footer"
 import TaskList from "../task-list"
 
-const MainSection = ({ todos }) => {
+const Main = ({ todos }) => {
   return (
     <section className="main">
       <TaskList todos={todos} />
@@ -12,4 +12,4 @@ const MainSection = ({ todos }) => {
   )
 }
 
-export default MainSection
+export default Main

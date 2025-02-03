@@ -1,4 +1,4 @@
-import "./task.css"
+import "./task.scss"
 import { Component } from "react"
 
 export default class Task extends Component {
@@ -19,9 +19,6 @@ export default class Task extends Component {
 
   render() {
     const { label, editing, done, creationTime, onDeleted, onToggleDone } = this.props
-    // const { label, editing, creationTime, onDeleted } = this.props
-
-    // const { done } = this.state
 
     const taskEditing = editing ? <input type="text" className="edit" defaultValue={label}></input> : ""
 

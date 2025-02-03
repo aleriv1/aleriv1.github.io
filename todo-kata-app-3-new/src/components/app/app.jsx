@@ -1,8 +1,8 @@
-import "./app.css";
+import "./app.scss";
 import { Component } from "react";
 
-import AppHeader from "../header";
-import MainSection from "../main";
+import Header from "../header";
+import Main from "../main";
 
 export default class App extends Component {
   maxId = 100;
@@ -103,8 +103,8 @@ export default class App extends Component {
 
     return (
       <section className="todoapp">
-        <AppHeader />
-        <MainSection
+        <Header />
+        <Main
           todos={visibleTasks}
           onDeleted={this.deleteItem}
           onToggleDone={this.onToggleDone}
