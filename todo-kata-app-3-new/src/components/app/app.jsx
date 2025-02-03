@@ -26,8 +26,23 @@ export default class App extends Component {
     };
   }
 
+  changeLabel = (id, text)=> {
+    this.setState(({todoData}) => {
+      const idx = todoData.findIndex((el) => el.id === id)
+      const oldItem = todoData[idx]
+      const newItem = {...oldItem, label: text}
+
+      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+
+      console.log(text)
+      return {
+        todoData: newArr
+      }
+      
+    } )
+  }
+
   editTask = (id) => {
-    // console.log(`edit ${id}`)
     this.setState(({todoData}) => {
       return {
         todoData: this.toggleProperty(todoData, id, 'editing')
@@ -83,6 +98,7 @@ export default class App extends Component {
   
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
+
       // const idx = todoData.findIndex((el) => el.id === id);
 
       // const oldItem = todoData[idx];
@@ -137,6 +153,7 @@ export default class App extends Component {
         <Main
           todos={visibleTasks}
           onEditTask = {this.editTask}
+          onChangeLabel = {this.changeLabel}
           onDeleteTask={this.deleteTask}
           onToggleDone={this.onToggleDone}
           onFilterChange={this.onFilterChange}

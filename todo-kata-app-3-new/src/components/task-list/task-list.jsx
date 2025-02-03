@@ -2,7 +2,7 @@ import "./task-list.scss";
 
 import Task from "../task";
 
-const TaskList = ({ todos, onDeleteTask, onEditTask, onToggleDone }) => {
+const TaskList = ({ todos, onDeleteTask, onEditTask, onChangeLabel, onToggleDone }) => {
   const elements = todos.map((item) => {
     const { id, ...taskProps } = item;
 
@@ -13,6 +13,8 @@ const TaskList = ({ todos, onDeleteTask, onEditTask, onToggleDone }) => {
         onDeleteTask={() => onDeleteTask(id)}
         onToggleDone={() => onToggleDone(id)}
         onEditTask={() => onEditTask(id)}
+        onChangeLabel = {onChangeLabel}
+        id={id}
       />
     );
   });

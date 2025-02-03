@@ -2,8 +2,20 @@ import "./task.scss";
 import { Component } from "react";
 
 export default class Task extends Component {
-  onLabelChange = () => {
-    console.log(".");
+  state = {
+    labelInput: this.props.label,
+  };
+  
+  onLabelChange = (e) => {
+    this.setState({
+      labelInput: e.target.value,
+    });
+  };
+
+  onSumbit = (e) => {
+    e.preventDefault();
+    this.props.onChangeLabel(this.props.id, this.state.labelInput)
+    this.props.onEditTask()
   };
 
   render() {
@@ -46,12 +58,13 @@ export default class Task extends Component {
           <button className="icon icon-edit" onClick={onEditTask}></button>
           <button className="icon icon-destroy" onClick={onDeleteTask}></button>
         </div>
-        <form>
+        <form onSubmit={this.onSumbit}>
           <input
             type="text"
             className="edit"
             onChange={this.onLabelChange}
-            defaultValue={label}
+            value={this.state.labelInput}
+            // defaultValue={label}
           />
         </form>
         {/* {taskEditing} */}

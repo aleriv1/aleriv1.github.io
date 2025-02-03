@@ -7,6 +7,7 @@ const MainSection = ({
   todos,
   onDeleteTask,
   onEditTask,
+  onChangeLabel,
   onToggleDone,
   onFilterChange,
   taskLeft,
@@ -20,6 +21,7 @@ const MainSection = ({
         onDeleteTask={onDeleteTask}
         onToggleDone={onToggleDone}
         onEditTask={onEditTask}
+        onChangeLabel={onChangeLabel}
       />
       <Footer
         onFilterChange={onFilterChange}
