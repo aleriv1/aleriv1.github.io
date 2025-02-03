@@ -1,9 +1,7 @@
 import "./new-task-form.scss";
 
 import { Component } from "react";
-
-// const NewTaskForm = () => {
-class NewTaskForm extends Component  {
+export default class NewTaskForm extends Component  {
   
   state= {
     label: ''
@@ -39,5 +37,3 @@ render() {
   );
 }
 };
-
-export default NewTaskForm;

@@ -29,12 +29,6 @@ export default class Task extends Component {
       onToggleDone,
     } = this.props;
 
-    // const taskEditing = editing ? (
-    //   <input type="text" className="edit" defaultValue={label}></input>
-    // ) : (
-    //   ""
-    // );
-
     let taskItemClassNames = "task-item";
 
     if (done) {
@@ -64,10 +58,8 @@ export default class Task extends Component {
             className="edit"
             onChange={this.onLabelChange}
             value={this.state.labelInput}
-            // defaultValue={label}
           />
         </form>
-        {/* {taskEditing} */}
       </li>
     );
   }

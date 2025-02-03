@@ -34,7 +34,6 @@ export default class App extends Component {
 
       const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
 
-      console.log(text)
       return {
         todoData: newArr
       }
@@ -98,21 +97,7 @@ export default class App extends Component {
   
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
-
-      // const idx = todoData.findIndex((el) => el.id === id);
-
-      // const oldItem = todoData[idx];
-
-      // const newItem = { ...oldItem, done: !oldItem.done };
-
-      // const newArray = [
-      //   ...todoData.slice(0, idx),
-      //   newItem,
-      //   ...todoData.slice(idx + 1),
-      // ];
-
       return {
-        // todoData: newArray,
         todoData: this.toggleProperty(todoData, id, 'done'),
       };
     });
