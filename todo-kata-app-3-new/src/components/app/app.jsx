@@ -1,4 +1,7 @@
 import { Component } from "react";
+
+import { formatDistanceToNow } from "date-fns";
+
 import "./app.scss";
 
 import Header from "../header";
@@ -9,45 +12,61 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      this.createTaskItem("Completed task", false, "created 17 seconds ago"),
-      this.createTaskItem("Editing task", true, "created 5 minutes ago"),
-      this.createTaskItem("Active task", false, "created 5 minutes ago"),
+      // this.createTaskItem("Completed task", false, "created 17 seconds ago"),
+      // this.createTaskItem("Completed task", false, '2025-2-5, 17:45' ),
+      this.createTaskItem("Completed task", false, 17 ),
+      // this.createTaskItem("Editing task", true, "created 5 minutes ago"),
+      this.createTaskItem("Editing task", true, ),
+      // this.createTaskItem("Active task", false, "created 5 minutes ago"),
+      this.createTaskItem("Active task", false, 300 ),
     ],
     filter: "all",
   };
 
-  createTaskItem(label, editing = false, creationTime = '0 minutes ago') {
+  createTaskItem(label, editing = false, timeShift=17) {
+    
+    let creationTime = new Date(Date.now() - timeShift * 1000)
+
+    // currTime.setSeconds(currTime.getSeconds() - timeShift)
+
+    // let timeShifted = `${currTime.getFullYear()}-${currTime.getMonth()+1}-${currTime.getDate()}, ${currTime.getHours()}:${currTime.getMinutes()}:${currTime.getSeconds()}`
+    
+
     return {
       label: label,
       editing: editing,
       done: false,
       id: this.maxId++,
-      creationTime: creationTime,
+      // creationTime: `created ${formatDistanceToNow(new Date(timeShifted), { addSuffix: true, includeSeconds: true })}`
+      creationTime: `created ${formatDistanceToNow(creationTime, { addSuffix: true, includeSeconds: true })}`
     };
   }
 
-  changeLabel = (id, text)=> {
-    this.setState(({todoData}) => {
-      const idx = todoData.findIndex((el) => el.id === id)
-      const oldItem = todoData[idx]
-      const newItem = {...oldItem, label: text}
+  changeLabel = (id, text) => {
+    this.setState(({ todoData }) => {
+      const idx = todoData.findIndex((el) => el.id === id);
+      const oldItem = todoData[idx];
+      const newItem = { ...oldItem, label: text };
 
-      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+      const newArr = [
+        ...todoData.slice(0, idx),
+        newItem,
+        ...todoData.slice(idx + 1),
+      ];
 
       return {
-        todoData: newArr
-      }
-      
-    } )
-  }
+        todoData: newArr,
+      };
+    });
+  };
 
   editTask = (id) => {
-    this.setState(({todoData}) => {
+    this.setState(({ todoData }) => {
       return {
-        todoData: this.toggleProperty(todoData, id, 'editing')
-      }
-    })
-  }
+        todoData: this.toggleProperty(todoData, id, "editing"),
+      };
+    });
+  };
 
   deleteTask = (id) => {
     this.setState(({ todoData }) => {
@@ -73,32 +92,31 @@ export default class App extends Component {
   };
 
   addNewTask = (text) => {
-    const newTask = this.createTaskItem(text)
+    const newTask = this.createTaskItem(text);
 
-    this.setState(({todoData}) => {
-      const newArr = [...todoData, newTask]
+    this.setState(({ todoData }) => {
+      const newArr = [...todoData, newTask];
 
       return {
-        todoData: newArr
-      }
-    })
-  }
+        todoData: newArr,
+      };
+    });
+  };
 
   toggleProperty = (arr, id, propName) => {
-    const idx = arr.findIndex((el) => el.id === id)
-    
-    const oldItem = arr[idx]
+    const idx = arr.findIndex((el) => el.id === id);
 
-    const newItem = { ...oldItem, [propName] : !oldItem[propName] }
+    const oldItem = arr[idx];
 
-    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
+    const newItem = { ...oldItem, [propName]: !oldItem[propName] };
 
-  }
-  
+    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
+  };
+
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
       return {
-        todoData: this.toggleProperty(todoData, id, 'done'),
+        todoData: this.toggleProperty(todoData, id, "done"),
       };
     });
   };
@@ -132,13 +150,11 @@ export default class App extends Component {
 
     return (
       <section className="todoapp">
-        <Header
-          onAddNewTask = {this.addNewTask}
-         />
+        <Header onAddNewTask={this.addNewTask} />
         <Main
           todos={visibleTasks}
-          onEditTask = {this.editTask}
-          onChangeLabel = {this.changeLabel}
+          onEditTask={this.editTask}
+          onChangeLabel={this.changeLabel}
           onDeleteTask={this.deleteTask}
           onToggleDone={this.onToggleDone}
           onFilterChange={this.onFilterChange}
