@@ -1,17 +1,7 @@
-import "./task.css"
+import './task.css'
 
-// const Task = ({ label, status, creationTime, id }) => {
-
-const Task = ({ label, creationTime, id }) => {
-
-  // const taskEditing = status === 'editing' ? <input type="text" className="edit" defaultValue={label}></input> : ""
-
+const Task = ({ label, creationTime }) => {
   return (
-
-    // <li key={id} className={status} >
-    //   {taskEditing}
-    // </li>
-
     <div className="view">
       <input className="toggle" type="checkbox" />
       <label>

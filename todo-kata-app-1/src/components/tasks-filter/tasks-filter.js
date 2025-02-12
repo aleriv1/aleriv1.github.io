@@ -1,4 +1,4 @@
-import "./tasks-filter.css"
+import './tasks-filter.css'
 
 const TasksFilter = () => {
   return (

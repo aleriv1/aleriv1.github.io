@@ -1,7 +1,7 @@
-import "./main.css"
+import './main.css'
 
-import Footer from "../footer"
-import TaskList from "../task-list"
+import Footer from '../footer'
+import TaskList from '../task-list'
 
 const Main = ({ todos }) => {
   return (

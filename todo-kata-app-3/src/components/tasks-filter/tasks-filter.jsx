@@ -1,6 +1,11 @@
 import "./tasks-filter.scss";
+import PropTypes from "prop-types";
 
-const TasksFilter = ({ onFilterChange, filter }) => {
+const TasksFilter = ({
+  onFilterChange = () => console.log("onFilterChagne"),
+  filter,
+}) => {
+
   return (
     <ul className="filters">
       <li>
@@ -29,6 +34,16 @@ const TasksFilter = ({ onFilterChange, filter }) => {
       </li>
     </ul>
   );
+};
+
+// if (typeof filter !== "string") {
+//   // throw new Error("filter must be a string");
+//   console.log('filter must be a string')
+// }
+
+TasksFilter.propTypes = {
+  filter: PropTypes.string.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
 };
 
 export default TasksFilter;

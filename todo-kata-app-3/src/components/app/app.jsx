@@ -7,17 +7,16 @@ import "./app.scss";
 import Header from "../header";
 import Main from "../main";
 
+import TestComponent from "../../test-components/test-components";
+
+
 export default class App extends Component {
   maxId = 100;
 
   state = {
     todoData: [
-      // this.createTaskItem("Completed task", false, "created 17 seconds ago"),
-      // this.createTaskItem("Completed task", false, '2025-2-5, 17:45' ),
       this.createTaskItem("Completed task", false, 17 ),
-      // this.createTaskItem("Editing task", true, "created 5 minutes ago"),
       this.createTaskItem("Editing task", true, ),
-      // this.createTaskItem("Active task", false, "created 5 minutes ago"),
       this.createTaskItem("Active task", false, 300 ),
     ],
     filter: "all",
@@ -27,17 +26,12 @@ export default class App extends Component {
     
     let creationTime = new Date(Date.now() - timeShift * 1000)
 
-    // currTime.setSeconds(currTime.getSeconds() - timeShift)
-
-    // let timeShifted = `${currTime.getFullYear()}-${currTime.getMonth()+1}-${currTime.getDate()}, ${currTime.getHours()}:${currTime.getMinutes()}:${currTime.getSeconds()}`
-    
 
     return {
       label: label,
       editing: editing,
       done: false,
       id: this.maxId++,
-      // creationTime: `created ${formatDistanceToNow(new Date(timeShifted), { addSuffix: true, includeSeconds: true })}`
       creationTime: `created ${formatDistanceToNow(creationTime, { addSuffix: true, includeSeconds: true })}`
     };
   }

@@ -16,5 +16,4 @@ const Footer = ({ onFilterChange, taskLeft, onDeleteAllDone, filter }) => {
     </footer>
   );
 };
-
 export default Footer;
