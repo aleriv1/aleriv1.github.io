@@ -25,7 +25,11 @@ button::-moz-focus-inner {
 }
 
 body {
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font:
+    14px 'Helvetica Neue',
+    Helvetica,
+    Arial,
+    sans-serif;
   line-height: 1.4em;
   background: #f5f5f5;
   color: #111111;
@@ -49,7 +53,8 @@ body {
   background: #fff;
   margin: 130px 0 40px 0;
   position: relative;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+  box-shadow:
+    0 2px 4px 0 rgba(0, 0, 0, 0.2),
     0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
