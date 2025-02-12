@@ -1,31 +1,30 @@
-import "./new-task-form.scss";
+import './new-task-form.scss'
 
-import { Component } from "react";
+import { Component } from 'react'
 export default class NewTaskForm extends Component {
-
   static defaultProps = {
-      onAddNewTask: () => {
-        console.log("Default onAddNewTask called");
-      }
+    onAddNewTask: () => {
+      console.log('Default onAddNewTask called')
+    },
   }
-  
+
   state = {
-    label: "",
-  };
+    label: '',
+  }
 
   onLabelChange = (e) => {
     this.setState({
       label: e.target.value,
-    });
-  };
+    })
+  }
 
   onSubmit = (e) => {
-    e.preventDefault();
-    this.props.onAddNewTask(this.state.label);
+    e.preventDefault()
+    this.props.onAddNewTask(this.state.label)
     this.setState({
-      label: "",
-    });
-  };
+      label: '',
+    })
+  }
 
   render() {
     return (
@@ -39,6 +38,6 @@ export default class NewTaskForm extends Component {
           onChange={this.onLabelChange}
         />
       </form>
-    );
+    )
   }
 }

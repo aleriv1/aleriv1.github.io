@@ -1,13 +1,13 @@
-import "./header.scss";
-import NewTaskForm from "../new-task-form";
+import './header.scss'
+import NewTaskForm from '../new-task-form'
 
-const Header = ({onAddNewTask}) => {
+const Header = ({ onAddNewTask }) => {
   return (
     <header className="header">
       <h1>todos</h1>
-      <NewTaskForm onAddNewTask = {onAddNewTask}/>
+      <NewTaskForm onAddNewTask={onAddNewTask} />
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

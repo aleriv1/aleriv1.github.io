@@ -1,7 +1,7 @@
-import "./main.scss";
+import './main.scss'
 
-import Footer from "../footer";
-import TaskList from "../task-list";
+import Footer from '../footer'
+import TaskList from '../task-list'
 
 const MainSection = ({
   todos,
@@ -23,14 +23,9 @@ const MainSection = ({
         onEditTask={onEditTask}
         onChangeLabel={onChangeLabel}
       />
-      <Footer
-        onFilterChange={onFilterChange}
-        taskLeft={taskLeft}
-        onDeleteAllDone={onDeleteAllDone}
-        filter={filter}
-      />
+      <Footer onFilterChange={onFilterChange} taskLeft={taskLeft} onDeleteAllDone={onDeleteAllDone} filter={filter} />
     </section>
-  );
-};
+  )
+}
 
-export default MainSection;
+export default MainSection

@@ -1,16 +1,10 @@
-import "./task-list.scss";
+import './task-list.scss'
 
-import Task from "../task";
+import Task from '../task'
 
-const TaskList = ({
-  todos,
-  onDeleteTask,
-  onEditTask,
-  onChangeLabel,
-  onToggleDone,
-}) => {
+const TaskList = ({ todos, onDeleteTask, onEditTask, onChangeLabel, onToggleDone }) => {
   const elements = todos.map((item) => {
-    const { id, ...taskProps } = item;
+    const { id, ...taskProps } = item
 
     return (
       <Task
@@ -22,10 +16,10 @@ const TaskList = ({
         onChangeLabel={onChangeLabel}
         id={id}
       />
-    );
-  });
+    )
+  })
 
-  return <ul className="todo-list">{elements}</ul>;
-};
+  return <ul className="todo-list">{elements}</ul>
+}
 
-export default TaskList;
+export default TaskList
