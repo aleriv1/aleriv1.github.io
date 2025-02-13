@@ -23,11 +23,6 @@ const TasksFilter = ({ onFilterChange = () => console.log('onFilterChagne'), fil
   )
 }
 
-// if (typeof filter !== "string") {
-//   // throw new Error("filter must be a string");
-//   console.log('filter must be a string')
-// }
-
 TasksFilter.propTypes = {
   filter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
