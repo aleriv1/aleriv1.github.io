@@ -1,5 +1,6 @@
 import { Component } from 'react'
-import { formatDistanceToNow } from 'date-fns'
+// import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNowStrict } from 'date-fns'
 
 import './app.scss'
 
@@ -26,7 +27,8 @@ export default class App extends Component {
       editing: editing,
       done: false,
       id: this.maxId++,
-      creationTime: `created ${formatDistanceToNow(creationTime, { addSuffix: true, includeSeconds: true })}`,
+      // creationTime: `created ${formatDistanceToNow(creationTime, { addSuffix: true, includeSeconds: true })}`,
+      creationTime: `created ${formatDistanceToNowStrict(creationTime, { addSuffix: true, includeSeconds: true })}`,
     }
   }
 

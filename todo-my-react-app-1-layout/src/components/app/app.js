@@ -8,7 +8,6 @@ const todoData = [
   { label: 'Editing task', status: 'editing', id: 2 },
   { label: 'Active task', status: 'active', id: 3, creationTime: 'created 5 minutes ago' },
 ]
-
 const App = () => {
   return (
     <section className="todoapp">
@@ -17,5 +16,4 @@ const App = () => {
     </section>
   )
 }
-
 export default App
