@@ -6,16 +6,14 @@ import Main from '../main'
 
 class App extends Component {
   deleteItem = (id) => {
-    console.log('test del')
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
-
-      const newTodoData = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
-
-      console.log(newTodoData)
+      // const idx = todoData.findIndex((el) => el.id === id)
+      // const newTodoData = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
+      // const newTodoData = todoData.filter((el) => el.id !== id)
 
       return {
-        todoData: newTodoData,
+        // todoData: newTodoData,
+        todoData: todoData.filter((el) => el.id !== id),
       }
     })
   }
@@ -30,6 +28,7 @@ class App extends Component {
       ],
     }
   }
+
   render() {
     return (
       <section className="todoapp">
