@@ -7,12 +7,7 @@ import Main from '../main'
 class App extends Component {
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
-      // const idx = todoData.findIndex((el) => el.id === id)
-      // const newTodoData = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
-      // const newTodoData = todoData.filter((el) => el.id !== id)
-
       return {
-        // todoData: newTodoData,
         todoData: todoData.filter((el) => el.id !== id),
       }
     })
