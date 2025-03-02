@@ -56,13 +56,7 @@ export default class App extends Component {
 
   deleteTask = (id) => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
-
-      const newTodoData = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
-
-      return {
-        todoData: newTodoData,
-      }
+      return { todoData: todoData.filter((task) => task.id !== id) }
     })
   }
 

@@ -2,12 +2,6 @@ import './new-task-form.scss'
 
 import { Component } from 'react'
 export default class NewTaskForm extends Component {
-  static defaultProps = {
-    onAddNewTask: () => {
-      console.log('Default onAddNewTask called')
-    },
-  }
-
   state = {
     label: '',
   }
