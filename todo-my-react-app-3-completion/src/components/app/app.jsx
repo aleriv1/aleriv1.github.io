@@ -1,6 +1,5 @@
 import { Component } from 'react'
-// import { formatDistanceToNow } from 'date-fns'
-import { formatDistanceToNowStrict } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
 
 import './app.scss'
 
@@ -27,8 +26,7 @@ export default class App extends Component {
       editing: editing,
       done: false,
       id: this.maxId++,
-      // creationTime: `created ${formatDistanceToNow(creationTime, { addSuffix: true, includeSeconds: true })}`,
-      creationTime: `created ${formatDistanceToNowStrict(creationTime, { addSuffix: true, includeSeconds: true })}`,
+      creationTime: `created ${formatDistanceToNow(creationTime, { addSuffix: true, includeSeconds: true })}`,
     }
   }
 
@@ -56,7 +54,13 @@ export default class App extends Component {
 
   deleteTask = (id) => {
     this.setState(({ todoData }) => {
-      return { todoData: todoData.filter((task) => task.id !== id) }
+      const idx = todoData.findIndex((el) => el.id === id)
+
+      const newTodoData = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
+
+      return {
+        todoData: newTodoData,
+      }
     })
   }
 

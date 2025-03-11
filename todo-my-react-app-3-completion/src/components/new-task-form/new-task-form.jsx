@@ -1,6 +1,6 @@
 import './new-task-form.scss'
-
 import { Component } from 'react'
+
 export default class NewTaskForm extends Component {
   state = {
     label: '',

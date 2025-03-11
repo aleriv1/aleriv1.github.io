@@ -20,8 +20,6 @@ export default class Task extends Component {
 
     const { done } = this.state
 
-    const taskEditing = editing ? <input type="text" className="edit" defaultValue={label}></input> : ''
-
     let taskItemClassNames = 'task-item'
 
     if (done) {
@@ -45,7 +43,9 @@ export default class Task extends Component {
           <button className="icon icon-edit"></button>
           <button className="icon icon-destroy" onClick={onDeleted}></button>
         </div>
-        {taskEditing}
+        <form>
+          <input type="text" className="edit" value={label} />
+        </form>
       </li>
     )
   }
