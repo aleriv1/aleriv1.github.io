@@ -1,7 +1,25 @@
 import './task.scss'
+import PropTypes from 'prop-types'
 import { Component } from 'react'
 
 export default class Task extends Component {
+  static propTypes = {
+    label: PropTypes.string.isRequired,
+    editing: PropTypes.string.isRequired,
+    done: PropTypes.bool,
+    creationTime: PropTypes.string,
+    onDeleteTask: PropTypes.func.isRequired,
+    onEditTask: PropTypes.func.isRequired,
+    onToggleDone: PropTypes.func.isRequired,
+    onChangeLabel: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
+  }
+
+  static defaultProps = {
+    done: false,
+    creationTime: '',
+  }
+
   state = {
     labelInput: this.props.label,
   }

@@ -1,4 +1,6 @@
 import './header.scss'
+import PropTypes from 'prop-types'
+
 import NewTaskForm from '../new-task-form'
 
 const Header = ({ onAddNewTask }) => {
@@ -8,6 +10,10 @@ const Header = ({ onAddNewTask }) => {
       <NewTaskForm onAddNewTask={onAddNewTask} />
     </header>
   )
+}
+
+Header.propTypes = {
+  onAddNewTask: PropTypes.func.isRequired,
 }
 
 export default Header

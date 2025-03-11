@@ -1,10 +1,11 @@
 import './main.scss'
+import PropTypes from 'prop-types'
 
 import Footer from '../footer'
 import TaskList from '../task-list'
 
 const MainSection = ({
-  todos,
+  todos = [],
   onDeleteTask,
   onEditTask,
   onChangeLabel,
@@ -12,7 +13,7 @@ const MainSection = ({
   onFilterChange,
   taskLeft,
   onDeleteAllDone,
-  filter,
+  filter = 'all',
 }) => {
   return (
     <section className="main">
@@ -26,6 +27,18 @@ const MainSection = ({
       <Footer onFilterChange={onFilterChange} taskLeft={taskLeft} onDeleteAllDone={onDeleteAllDone} filter={filter} />
     </section>
   )
+}
+
+MainSection.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
+  onEditTask: PropTypes.func.isRequired,
+  onChangeLabel: PropTypes.func.isRequired,
+  onToggleDone: PropTypes.func.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  taskLeft: PropTypes.number.isRequired,
+  onDeleteAllDone: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 }
 
 export default MainSection

@@ -1,11 +1,10 @@
 import './new-task-form.scss'
-
+import PropTypes from 'prop-types'
 import { Component } from 'react'
+
 export default class NewTaskForm extends Component {
-  static defaultProps = {
-    onAddNewTask: () => {
-      console.log('Default onAddNewTask called')
-    },
+  static PropTypes = {
+    onAddNewTask: PropTypes.func.isRequired,
   }
 
   state = {

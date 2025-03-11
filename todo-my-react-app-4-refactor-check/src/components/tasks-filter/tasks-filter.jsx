@@ -1,7 +1,7 @@
 import './tasks-filter.scss'
 import PropTypes from 'prop-types'
 
-const TasksFilter = ({ onFilterChange = () => console.log('onFilterChagne'), filter }) => {
+const TasksFilter = ({ onFilterChange = () => console.log('onFilterChagne'), filter = 'all' }) => {
   return (
     <ul className="filters">
       <li>
