@@ -12,13 +12,13 @@ export default class App extends Component {
   state = {
     todoData: [
       this.createTaskItem('Completed task', false, 17),
-      this.createTaskItem('Editing task', true),
+      this.createTaskItem('Editing task', true, 0),
       this.createTaskItem('Active task', false, 300),
     ],
     filter: 'all',
   }
 
-  createTaskItem(label, editing = false, timeShift = 17) {
+  createTaskItem(label, editing = false, timeShift = 1) {
     let creationTime = new Date(Date.now() - timeShift * 1000)
 
     return {
