@@ -19,7 +19,7 @@ export default class Task extends Component {
   }
 
   render() {
-    const { label, editing, done, creationTime, onDeleteTask, onEditTask, onToggleDone } = this.props
+    const { label, editing, done, creationTime, onDeleteTask, onEditTask, onToggleDone, id } = this.props
 
     let taskItemClassNames = 'task-item'
 
@@ -34,11 +34,9 @@ export default class Task extends Component {
     return (
       <li className={taskItemClassNames}>
         <div className="view">
-          <input className="toggle" type="checkbox" />
-          <label>
-            <span className="description" onClick={onToggleDone}>
-              {label}
-            </span>
+          <input id={id} className="toggle" type="checkbox" onChange={onToggleDone} />
+          <label htmlFor={id}>
+            <span className="description">{label}</span>
             <span className="created"> {creationTime}</span>
           </label>
           <button className="icon icon-edit" onClick={onEditTask}></button>

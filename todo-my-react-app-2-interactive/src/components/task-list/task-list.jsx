@@ -4,9 +4,7 @@ import Task from '../task'
 
 const TaskList = ({ todos, onDeleted }) => {
   const elements = todos.map((item) => {
-    const { id, ...taskProps } = item
-
-    return <Task key={id} {...taskProps} onDeleted={() => onDeleted(id)} />
+    return <Task key={item.id} {...item} onDeleted={() => onDeleted(item.id)} />
   })
 
   return <ul className="todo-list">{elements}</ul>

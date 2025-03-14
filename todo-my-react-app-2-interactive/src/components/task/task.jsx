@@ -16,7 +16,7 @@ export default class Task extends Component {
   }
 
   render() {
-    const { label, editing, creationTime, onDeleted } = this.props
+    const { label, editing, creationTime, onDeleted, id } = this.props
 
     const { done } = this.state
 
@@ -33,11 +33,9 @@ export default class Task extends Component {
     return (
       <li className={taskItemClassNames}>
         <div className="view">
-          <input className="toggle" type="checkbox" />
-          <label>
-            <span className="description" onClick={this.onLabelClick}>
-              {label}
-            </span>
+          <input id={id} className="toggle" type="checkbox" onChange={this.onLabelClick} />
+          <label htmlFor={id}>
+            <span className="description">{label}</span>
             <span className="created"> {creationTime}</span>
           </label>
           <button className="icon icon-edit"></button>
