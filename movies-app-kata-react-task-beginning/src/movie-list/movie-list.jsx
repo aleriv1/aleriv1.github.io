@@ -1,7 +1,5 @@
-// import { Component } from 'react'
 import { format } from 'date-fns'
-// import { Row, Card, Col } from 'antd'
-import { Row, Col, Card, Tooltip } from 'antd'
+import { Row, Col, Card, Tooltip, Tag } from 'antd'
 
 import './movie-list.scss'
 import cutText from '../cut-text/cut-text'
@@ -33,9 +31,14 @@ export default function MovieList({ movies }) {
                 )
               }
               description={
-                <p className="date">
-                  {movie.release_date ? format(new Date(movie.release_date), 'mmmm d, yyyy') : 'no date'}
-                </p>
+                <div>
+                  <p className="date">
+                    {movie.release_date ? format(new Date(movie.release_date), 'MMMM d, yyyy') : 'no date'}
+                  </p>
+                  <Tag>Action</Tag>
+                  <Tag>Drama</Tag>
+                  <p className="description">{cutText(movie.overview || 'There is no description', 100)}</p>
+                </div>
               }
             />
           </Card>

@@ -2,27 +2,21 @@ import { Component } from 'react'
 
 import fetchMoviesByQuery from '../api-service/api-service'
 import MovieList from '../movie-list'
+import './app.scss'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
-    // this.
     this.state = {
       movies: [],
     }
     this.fetchMovies()
   }
 
-  // state = {
-  //   movies: [],
-  // }
-
   fetchMovies() {
-    // const movies = fetchMoviesByQuery('return')
-    // console.log(movies)
-    // this.setState({ movies })
     fetchMoviesByQuery('return').then((movies) => {
-      this.setState({ movies })
+      const limitedMOvies = movies.slice(0, 6)
+      this.setState({ movies: limitedMOvies })
     })
   }
 

@@ -5,5 +5,86 @@
   gap: 36px;
 }
 
+// card
 .movie-card {
+  display: flex;
+  width: 451px;
+  height: 279px;
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+  filter: drop-shadow(0 4px 12px #00000026);
+
+  // poster
+  .ant-card-cover {
+    width: 40%;
+    flex-shrink: 0;
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .ant-card-body {
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+
+  // card text
+  .ant-card-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  // card-title
+  .ant-card-meta-title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-style: 20px;
+    line-height: 28px;
+    color: #000;
+
+    margin-bottom: 7px;
+    word-break: break-word;
+  }
+
+  .ant-card-meta-description {
+    .date {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: #888;
+      margin-top: 0;
+      margin-bottom: 9px;
+    }
+    // genres
+    .ant-tag {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      color: #000000a6;
+      margin-bottom: 7px;
+      width: 46px;
+      height: 20px;
+      padding: 0 4px;
+    }
+
+    .description {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 22px;
+      color: #000;
+      margin: 0 !important;
+    }
+  }
 }
