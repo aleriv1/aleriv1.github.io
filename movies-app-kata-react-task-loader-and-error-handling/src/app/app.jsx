@@ -19,6 +19,9 @@ export default class App extends Component {
   }
 
   fetchMovies() {
+    // Promise.reject(() => {
+    // throw new Error('error')
+    // })
     fetchMoviesByQuery('return')
       .then((movies) => {
         const limitedMovies = movies.slice(0, 6)
@@ -28,16 +31,15 @@ export default class App extends Component {
       })
       .catch((err) => {
         console.log('err is', err)
-        this.setState({ loading: false, error: 'Something went wrong' })
+        this.setState({ loading: false, error: 'Something went wrong, \nbut we do everything \nto RETURN \nyou joy' })
       })
   }
 
   render() {
     return (
-      <div style={{ height: '100%' }}>
+      <div className="app" style={{ height: '100%' }}>
         <Offline>
           <Alert
-            className="alert-cutom"
             message="You are offline"
             type="warning"
             description="Make sure you have an active internet connection"
