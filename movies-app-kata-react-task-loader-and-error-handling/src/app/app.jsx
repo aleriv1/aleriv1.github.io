@@ -15,13 +15,10 @@ export default class App extends Component {
   }
 
   fetchMovies() {
-    // console.log('fetchMovies called')
     fetchMoviesByQuery('return')
       .then((movies) => {
         const limitedMovies = movies.slice(0, 6)
-        // console.log('Before setTimeout, loading:', this.state.loading)
         setTimeout(() => {
-          // console.log('Inside setTimeout, setting loading to false')
           this.setState({ movies: limitedMovies, loading: false })
         }, 1000)
       })

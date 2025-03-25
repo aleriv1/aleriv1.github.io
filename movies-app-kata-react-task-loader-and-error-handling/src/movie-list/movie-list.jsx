@@ -7,7 +7,6 @@ import cutText from '../cut-text/cut-text'
 export default function MovieList({ movies, loading }) {
   const root = document.getElementById('root')
   if (loading && movies.length === 0) {
-    // if (loading) {
     root.classList.add('spinner-root')
     return (
       <div className="loading-container-common" style={{ textAlign: 'center', padding: '50px' }}>
