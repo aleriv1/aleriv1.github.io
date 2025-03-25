@@ -10,7 +10,7 @@ export default function MovieList({ movies, loading }) {
     root.classList.add('spinner-root')
     return (
       <div className="loading-container-common" style={{ textAlign: 'center', padding: '50px' }}>
-        <Spin className="custom-spin" size="large" />
+        <Spin tip="Loading..." />
       </div>
     )
   } else {

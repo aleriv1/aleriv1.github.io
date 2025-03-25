@@ -9,9 +9,18 @@ body {
 }
 
 #root {
-  // background-color: orange;
+  background-color: orange;
   max-width: 1010px;
   width: 100%;
   max-height: 100vh;
   margin: 0 auto;
+}
+
+.alert-cutom {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.root-alert {
+  height: 100vh;
 }
