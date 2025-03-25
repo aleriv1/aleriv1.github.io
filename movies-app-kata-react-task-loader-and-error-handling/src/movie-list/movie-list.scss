@@ -89,10 +89,26 @@
   }
 }
 
-.spin-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%; // Убедитесь, что контейнер занимает нужную высоту
-  min-height: 200px; // Минимальная высота для видимости
+.loading-container {
+  &-common {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: 100%;
+
+    .ant-spin-dot i {
+      width: 150px;
+      height: 150px;
+      margin: 25px 25px;
+    }
+
+    .ant-spin-dot-spin {
+      animation-duration: 1.7s;
+    }
+  }
+}
+
+.spinner-root {
+  height: 100vh;
 }
