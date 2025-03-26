@@ -8,7 +8,7 @@ export default function MovieList({ movies, loading }) {
   if (loading && movies.length === 0) {
     return (
       <div className="loading-container-common">
-        <Spin tip="Loading..." fullscreen />
+        <Spin fullscreen />
       </div>
     )
   }
