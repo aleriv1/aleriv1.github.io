@@ -96,6 +96,12 @@
     align-items: center;
     max-width: 100%;
     height: 100%;
+    text-align: center;
+    padding: 50px;
+
+    // .ant-spin {
+    //   height: 100vh;
+    // }
 
     .ant-spin-dot i {
       width: 150px;
@@ -104,11 +110,7 @@
     }
 
     .ant-spin-dot-spin {
-      animation-duration: 1.7s;
+      animation-duration: 4s;
     }
   }
-}
-
-.spinner-root {
-  height: 100vh;
 }

@@ -29,15 +29,14 @@ export default class App extends Component {
           this.setState({ movies: limitedMovies, loading: false })
         }, 1000)
       })
-      .catch((err) => {
-        console.log('err is', err)
+      .catch(() => {
         this.setState({ loading: false, error: 'Something went wrong, \nbut we do everything \nto RETURN \nyou joy' })
       })
   }
 
   render() {
     return (
-      <div className="app" style={{ height: '100%' }}>
+      <div className="app">
         <Offline>
           <Alert
             message="You are offline"
@@ -52,6 +51,7 @@ export default class App extends Component {
             <Alert message={this.state.error} />
           ) : (
             <MovieList movies={this.state.movies} loading={this.state.loading} />
+            // <MovieList movies={[]} loading={true} />
           )}
         </Online>
       </div>
