@@ -19,6 +19,7 @@ export default class App extends Component {
   }
 
   fetchMovies() {
+    
     // Promise.reject(() => {
     // throw new Error('error')
     // })
