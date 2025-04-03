@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Offline, Online } from 'react-detect-offline'
-import { Alert } from 'antd'
+import { Alert, Input, Pagination, Spin } from 'antd'
+import debounce from 'lodash/debounce'
 
 import fetchMoviesByQuery from '../api-service/api-service'
 import MovieList from '../movie-list'
@@ -14,19 +15,23 @@ export default class App extends Component {
       movies: [],
       loading: true,
       error: null,
+      searchQuery: '',
+      currentPage: 1,
+      totalResults: 0,
     }
-    this.fetchMovies()
+    // this.fetchMovies()
   }
 
-  fetchMovies() {
+  fetchMovies(query = 'return', page = 1) {
     // Promise.reject(() => {
     // throw new Error('error')
     // })
-    fetchMoviesByQuery('return')
-      .then((movies) => {
-        const limitedMovies = movies.slice(0, 6)
+    this.setState({ loading: true, error: null })
+    fetchMoviesByQuery(query, page)
+      .then((data) => {
+        // const limitedMovies = movies.slice(0, 6)
         setTimeout(() => {
-          this.setState({ movies: limitedMovies, loading: false })
+          this.setState({ movies: data.results, loading: false, totalResults: data.total_results })
         }, 1000)
       })
       .catch(() => {
@@ -34,6 +39,14 @@ export default class App extends Component {
       })
   }
 
+  handleSearch(event) {
+    const query = event.target.value
+    this.setState({ searchQuery: query, currentPage: 1 })
+  }
+
+  componentDidMount() {
+    this.fetchMovies()
+  }
   render() {
     return (
       <div className="app">
@@ -47,6 +60,8 @@ export default class App extends Component {
         </Offline>
 
         <Online>
+          <Input placeholder="search" value={searchQuery} onChange={this.handleSearch} disabled={loading} />
+
           {this.state.error ? (
             <Alert message={this.state.error} />
           ) : (
