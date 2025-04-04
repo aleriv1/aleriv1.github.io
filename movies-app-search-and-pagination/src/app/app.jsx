@@ -19,37 +19,43 @@ export default class App extends Component {
   }
 
   _fetchMovies = (query = 'return', page = 1) => {
+    const realQuery = query.trim() || 'return'
+    // const apiPage = Math.floor(((page - 1) * 6) / 20) + 1
     this.setState({ loading: true, error: null })
-    fetchMoviesByQuery(query, page)
+    // fetchMoviesByQuery(query, page)
+    fetchMoviesByQuery(realQuery, page)
       .then((data) => {
         // const moviesPerPage = 6
-        // const startIndex = (page - 1) * moviesPerPage
-        // const endIndex = startIndex + moviesPerPage
-        // const paginatedMovies = data.results.slice(startIndex, endIndex)
-        // this.setState({ movies: paginatedMovies, loading: false, totalResults: data.total_results })
+
         this.setState({ movies: data.results, loading: false, totalResults: data.total_results })
+
+        // this.setState({ movies: data.results, loading: false, totalResults: data.total_results })
       })
       .catch(() => {
         this.setState({ loading: false, error: 'Something went wrong, \nbut we do everything \nto RETURN \nyou joy' })
       })
   }
 
-  debouncedFetchMovies = debounce((query) => {
-    const { currentPage } = this.state
-    this._fetchMovies(query, currentPage)
+  debouncedFetchMovies = debounce((query, page) => {
+    // const { currentPage } = this.state
+    // this._fetchMovies(query, currentPage)
+    this._fetchMovies(query, page)
   }, 300)
 
   handleInputSearch = (event) => {
     const query = event.target.value
     this.setState({ searchQuery: query }, () => {
-      this.debouncedFetchMovies(query)
+      // this.debouncedFetchMovies(query)
+      this.debouncedFetchMovies(query, 1)
     })
   }
 
   onPageChange = (page) => {
+    console.log('searchQuery', this.state.searchQuery)
     const { searchQuery } = this.state
     this.setState({ currentPage: page, loading: true }, () => {
-      this.debouncedFetchMovies(searchQuery)
+      // this.debouncedFetchMovies(searchQuery)
+      this.debouncedFetchMovies(searchQuery, page)
     })
   }
 
