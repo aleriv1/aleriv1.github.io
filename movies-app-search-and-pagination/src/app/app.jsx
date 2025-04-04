@@ -9,19 +9,25 @@ import MovieList from '../movie-list'
 import './app.scss'
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      movies: [],
-      loading: true,
-      error: null,
-      searchQuery: '',
-      currentPage: 1,
-      totalResults: 0,
-    }
-    // this.handleSearch = debounce(this.handleSearch.bind(this), 200)
-    // this.handleSearch = debounce(this._handleSearch, 300)
-    // this.fetchMovies()
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     movies: [],
+  //     loading: true,
+  //     error: null,
+  //     searchQuery: '',
+  //     currentPage: 1,
+  //     totalResults: 0,
+  //   }
+  // }
+
+  state = {
+    movies: [],
+    loading: true,
+    error: null,
+    searchQuery: '',
+    currentPage: 1,
+    totalResults: 0,
   }
 
   _fetchMovies = (query = 'return', page = 1) => {
@@ -50,7 +56,12 @@ export default class App extends Component {
   }
 
   // debouncedFetchMovies = debounce(this._fetchMovies.bind(this), 300)
-  debouncedFetchMovies = debounce(this._fetchMovies, 300)
+  // debouncedFetchMovies = debounce(this._fetchMovies, 300)
+  debouncedFetchMovies = debounce((query) => {
+    const { currentPage } = this.state
+    this._fetchMovies(query, currentPage)
+  }, 300)
+
   // handleSearch(event) {
   // _handleSearch = (event) => {
   handleInputSearch = (event) => {
