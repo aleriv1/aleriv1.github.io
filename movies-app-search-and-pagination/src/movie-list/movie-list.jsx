@@ -5,13 +5,13 @@ import './movie-list.scss'
 import cutText from '../cut-text/cut-text'
 
 export default function MovieList({ movies, loading }) {
-  if (loading && movies.length === 0) {
-    return (
-      <div className="loading-container-common">
-        <Spin fullscreen />
-      </div>
-    )
-  }
+  // if (loading && movies.length === 0) {
+  //   return (
+  //     <div className="loading-container-common">
+  //       <Spin fullscreen />
+  //     </div>
+  //   )
+  // }
 
   return (
     <Row className="row">

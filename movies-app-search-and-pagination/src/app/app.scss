@@ -5,4 +5,17 @@
     border-radius: 10px;
     white-space: pre-wrap;
   }
+
+  // Стили для поля ввода
+  .ant-input {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    display: block;
+  }
+  // Стили для пагинации
+  .ant-pagination {
+    margin: 20px auto;
+    text-align: center;
+  }
 }
