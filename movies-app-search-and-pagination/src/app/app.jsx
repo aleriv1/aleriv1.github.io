@@ -9,18 +9,6 @@ import MovieList from '../movie-list'
 import './app.scss'
 
 export default class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     movies: [],
-  //     loading: true,
-  //     error: null,
-  //     searchQuery: '',
-  //     currentPage: 1,
-  //     totalResults: 0,
-  //   }
-  // }
-
   state = {
     movies: [],
     loading: true,
@@ -34,56 +22,39 @@ export default class App extends Component {
     this.setState({ loading: true, error: null })
     fetchMoviesByQuery(query, page)
       .then((data) => {
-        // const moviesToShow = data.results.slice(0, 6)
-
-        // console.log('data.results', data.results)
-        const moviesPerPage = 6
-        const startIndex = (page - 1) * moviesPerPage
-        const endIndex = startIndex + moviesPerPage
-        const paginatedMovies = data.results.slice(startIndex, endIndex)
-        this.setState({ movies: paginatedMovies, loading: false, totalResults: data.total_results })
-        //
-        // this.setState({ movies: data.results, loading: false, totalResults: data.total_results })
-        // this.setState({ movies: moviesToShow, loading: false, totalResults: data.total_results })
-
-        // setTimeout(() => {
-        //   this.setState({ movies: data.results, loading: false, totalResults: data.total_results })
-        // }, 1000)
+        // const moviesPerPage = 6
+        // const startIndex = (page - 1) * moviesPerPage
+        // const endIndex = startIndex + moviesPerPage
+        // const paginatedMovies = data.results.slice(startIndex, endIndex)
+        // this.setState({ movies: paginatedMovies, loading: false, totalResults: data.total_results })
+        this.setState({ movies: data.results, loading: false, totalResults: data.total_results })
       })
       .catch(() => {
         this.setState({ loading: false, error: 'Something went wrong, \nbut we do everything \nto RETURN \nyou joy' })
       })
   }
 
-  // debouncedFetchMovies = debounce(this._fetchMovies.bind(this), 300)
-  // debouncedFetchMovies = debounce(this._fetchMovies, 300)
   debouncedFetchMovies = debounce((query) => {
     const { currentPage } = this.state
     this._fetchMovies(query, currentPage)
   }, 300)
 
-  // handleSearch(event) {
-  // _handleSearch = (event) => {
   handleInputSearch = (event) => {
     const query = event.target.value
-    // this.setState({ searchQuery: query, currentPage: 1 }, () => {
     this.setState({ searchQuery: query }, () => {
       this.debouncedFetchMovies(query)
     })
   }
 
   onPageChange = (page) => {
-    // console.log('onPageChange', page)
     const { searchQuery } = this.state
     this.setState({ currentPage: page, loading: true }, () => {
-      // this.fetchMovies(searchQuery, page)
       this.debouncedFetchMovies(searchQuery)
     })
   }
 
   componentDidMount() {
     console.log('componentDidMount')
-    // this.fetchMovies()
     this._fetchMovies()
   }
 
@@ -102,13 +73,11 @@ export default class App extends Component {
         </Offline>
 
         <Online>
-          {/* {console.log('movies', movies)} */}
           <Input
             placeholder="search"
             value={searchQuery}
-            // onChange={this.handleSearch}
             onChange={this.handleInputSearch}
-            // disabled={loading}
+            disabled={loading}
             style={{ margin: '20px auto', width: '90%', maxWidth: '600px', display: 'block' }}
           />
 
@@ -126,7 +95,8 @@ export default class App extends Component {
               <Pagination
                 current={currentPage}
                 total={totalResults}
-                pageSize={6}
+                // pageSize={6}
+                pageSize={20}
                 onChange={this.onPageChange}
                 style={{ margin: '20px auto', textAlign: 'center' }}
                 disabled={loading}
