@@ -30,9 +30,38 @@ export default class App extends Component {
     fetchMoviesByQuery(realQuery, apiPage)
       .then((data) => {
         const startIndex = ((page - 1) * MOVIES_PER_PAGE) % 20
-        const visibleMovies = data.results.slice(startIndex, startIndex + MOVIES_PER_PAGE)
+        let visibleMovies = data.results.slice(startIndex, startIndex + MOVIES_PER_PAGE)
 
-        this.setState({ movies: data.results, visibleMovies, loading: false, totalResults: data.total_results })
+        // this.setState({ movies: data.results, visibleMovies, loading: false, totalResults: data.total_results })
+
+        // Если на текущей странице элементов меньше, чем нужно, подгружаем с следующей страницы
+        if (visibleMovies.length < MOVIES_PER_PAGE && data.results.length === 20) {
+          const nextPage = apiPage + 1
+          fetchMoviesByQuery(realQuery, nextPage)
+            .then((nextData) => {
+              const additionalMovies = nextData.results.slice(0, MOVIES_PER_PAGE - visibleMovies.length)
+              visibleMovies = [...visibleMovies, ...additionalMovies] // Склеиваем текущие и следующие фильмы
+              this.setState({
+                movies: data.results,
+                visibleMovies,
+                loading: false,
+                totalResults: data.total_results,
+              })
+            })
+            .catch(() => {
+              this.setState({
+                loading: false,
+                error: 'Something went wrong, \nbut we do everything \nto RETURN \nyou joy',
+              })
+            })
+        } else {
+          this.setState({
+            movies: data.results,
+            visibleMovies,
+            loading: false,
+            totalResults: data.total_results,
+          })
+        }
       })
       .catch(() => {
         this.setState({ loading: false, error: 'Something went wrong, \nbut we do everything \nto RETURN \nyou joy' })
@@ -106,7 +135,6 @@ export default class App extends Component {
               <Pagination
                 current={currentPage}
                 total={totalResults}
-                // pageSize={6}
                 pageSize={20}
                 onChange={this.onPageChange}
                 style={{ margin: '20px auto', textAlign: 'center' }}
