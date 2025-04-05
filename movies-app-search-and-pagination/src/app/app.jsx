@@ -24,23 +24,20 @@ export default class App extends Component {
   _fetchMovies = (query = 'return', page = 1) => {
     const realQuery = query.trim() || 'return'
     const apiPage = Math.floor(((page - 1) * MOVIES_PER_PAGE) / 20) + 1
+
     this.setState({ loading: true, error: null })
-    // fetchMoviesByQuery(query, page)
-    // fetchMoviesByQuery(realQuery, page)
+
     fetchMoviesByQuery(realQuery, apiPage)
       .then((data) => {
         const startIndex = ((page - 1) * MOVIES_PER_PAGE) % 20
         let visibleMovies = data.results.slice(startIndex, startIndex + MOVIES_PER_PAGE)
-
-        // this.setState({ movies: data.results, visibleMovies, loading: false, totalResults: data.total_results })
-
-        // Если на текущей странице элементов меньше, чем нужно, подгружаем с следующей страницы
         if (visibleMovies.length < MOVIES_PER_PAGE && data.results.length === 20) {
           const nextPage = apiPage + 1
           fetchMoviesByQuery(realQuery, nextPage)
             .then((nextData) => {
-              const additionalMovies = nextData.results.slice(0, MOVIES_PER_PAGE - visibleMovies.length)
-              visibleMovies = [...visibleMovies, ...additionalMovies] // Склеиваем текущие и следующие фильмы
+              const remaining = MOVIES_PER_PAGE - visibleMovies.length
+              const additionalMovies = nextData.results.slice(0, remaining)
+              visibleMovies = [...visibleMovies, ...additionalMovies]
               this.setState({
                 movies: data.results,
                 visibleMovies,
@@ -69,35 +66,28 @@ export default class App extends Component {
   }
 
   debouncedFetchMovies = debounce((query, page) => {
-    // const { currentPage } = this.state
-    // this._fetchMovies(query, currentPage)
     this._fetchMovies(query, page)
   }, 300)
 
   handleInputSearch = (event) => {
     const query = event.target.value
     this.setState({ searchQuery: query }, () => {
-      // this.debouncedFetchMovies(query)
       this.debouncedFetchMovies(query, 1)
     })
   }
 
   onPageChange = (page) => {
-    console.log('searchQuery', this.state.searchQuery)
     const { searchQuery } = this.state
     this.setState({ currentPage: page, loading: true }, () => {
-      // this.debouncedFetchMovies(searchQuery)
       this.debouncedFetchMovies(searchQuery, page)
     })
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
     this._fetchMovies()
   }
 
   render() {
-    // const { movies, loading, error, searchQuery, currentPage, totalResults } = this.state
     const { visibleMovies, loading, error, searchQuery, currentPage, totalResults } = this.state
 
     return (
@@ -113,6 +103,7 @@ export default class App extends Component {
 
         <Online>
           <Input
+            className="input-class"
             placeholder="search"
             value={searchQuery}
             onChange={this.handleInputSearch}
@@ -120,7 +111,6 @@ export default class App extends Component {
             style={{ margin: '20px auto', width: '90%', maxWidth: '600px', display: 'block' }}
           />
 
-          {/* {loading && movies.length === 0 ? ( */}
           {loading && visibleMovies.length === 0 ? (
             <div className="loading-container-common">
               <Spin fullscreen />
@@ -132,6 +122,7 @@ export default class App extends Component {
           ) : (
             <>
               <MovieList movies={visibleMovies} loading={loading} />
+              {/* <MovieList movies={visibleMovies} loading={true} /> */}
               <Pagination
                 current={currentPage}
                 total={totalResults}
@@ -139,9 +130,9 @@ export default class App extends Component {
                 onChange={this.onPageChange}
                 style={{ margin: '20px auto', textAlign: 'center' }}
                 disabled={loading}
+                showSizeChanger={false}
               />
             </>
-            // <MovieList movies={[]} loading={true} />
           )}
         </Online>
       </div>
