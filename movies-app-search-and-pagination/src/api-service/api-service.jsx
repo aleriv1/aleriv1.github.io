@@ -4,8 +4,6 @@ export default async function fetchMoviesByQuery(query, page) {
   try {
     const response = await fetch(url)
     const data = await response.json()
-    // console.log('data.results', data.results)
-    console.log('data.toatal_results', data.total_results)
     return { results: data.results, total_results: data.total_results } || []
   } catch (error) {
     console.error('Ошибка получения фильмов', error)
