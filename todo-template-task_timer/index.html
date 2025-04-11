@@ -1,0 +1,90 @@
+<html lang="en" data-framework="es6">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vanilla ES6 • TodoMVC</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <section class="todoapp">
+    <header class="header">
+      <h1>todos</h1>
+      <form class="new-todo-form">
+        <input class="new-todo" placeholder="Task" autofocus>
+        <input class="new-todo-form__timer" placeholder="Min" autofocus>
+        <input class="new-todo-form__timer" placeholder="Sec" autofocus>
+      </form>
+    </header>
+    <section class="main">
+      <ul class="todo-list">
+        <li class="completed">
+          <div class="view">
+            <input class="toggle" type="checkbox">
+            <label>
+              <span class="title">fw</span>
+              <span class="description">
+                <button class="icon icon-play"></button>
+                <button class="icon icon-pause"></button>
+                12:25
+              </span>
+              <span class="description">created 17 seconds ago</span>
+            </label>
+            <button class="icon icon-edit"></button>
+            <button class="icon icon-destroy"></button>
+          </div>
+        </li>
+        <li class="editing">
+          <div class="view">
+            <input class="toggle" type="checkbox">
+            <label>
+              <span class="title">fw</span>
+              <span class="description">
+                <button class="icon icon-play"></button>
+                <button class="icon icon-pause"></button>
+                12:25
+              </span>
+              <span class="description">created 5 minutes ago</span>
+            </label>
+            <button class="icon icon-edit"></button>
+            <button class="icon icon-destroy"></button>
+          </div>
+          <input type="text" class="edit">
+        </li>
+        <li>
+          <div class="view">
+            <input class="toggle" type="checkbox">
+            <label>
+              <span class="title">fw</span>
+              <span class="description">
+                <button class="icon icon-play"></button>
+                <button class="icon icon-pause"></button>
+                12:25
+              </span>
+              <span class="description">created 5 minutes ago</span>
+            </label>
+            <button class="icon icon-edit"></button>
+            <button class="icon icon-destroy"></button>
+          </div>
+        </li>
+      </ul>
+      <footer class="footer">
+        <span class="todo-count">0 items left</span>
+        <ul class="filters">
+          <li>
+            <button class="selected">All</button>
+          </li>
+          <li>
+            <button>Active</button>
+          </li>
+          <li>
+            <button>Completed</button>
+          </li>
+        </ul>
+        <button class="clear-completed">Clear completed</button>
+      </footer>
+    </section>
+  </section>
+</body>
+
+</html>
