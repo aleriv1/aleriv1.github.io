@@ -72,7 +72,7 @@
   color: gray;
 }
 
-.todo-list li label .description {
+.todo-list li label .title {
   word-break: break-all;
   display: block;
   line-height: 1.2;
@@ -81,7 +81,7 @@
   color: #4d4d4d;
 }
 
-.todo-list li.completed label .description {
+.todo-list li.completed label .title {
   color: #cdcdcd;
   text-decoration: line-through;
 }
@@ -102,6 +102,38 @@
 .todo-list li .icon:hover {
   color: #af5b5e;
 }
+
+// #region timer
+
+.todo-list li label .description {
+  font-size: 13px;
+  color: gray;
+  display: flex;
+  align-items: baseline;
+}
+
+.todo-list li .icon-pause,
+.todo-list li .icon-play {
+  position: relative;
+  margin: 0;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.todo-list li .icon-play {
+  font-size: 15px;
+}
+
+.icon-pause:after {
+  content: '⏸';
+}
+
+.icon-play:after {
+  content: '▶';
+}
+
+// #endregion timer
 
 .todo-list li .icon-destroy {
   right: 10px;

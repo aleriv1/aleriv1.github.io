@@ -11,9 +11,11 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      this.createTaskItem('Completed task', false, 17),
+      // this.createTaskItem('Completed task', false, 17),
+      this.createTaskItem('task 0', false, 17),
       this.createTaskItem('Editing task', true, 0),
-      this.createTaskItem('Active task', false, 300),
+      // this.createTaskItem('Active task', false, 300),
+      this.createTaskItem('task 2', false, 300),
     ],
     filter: 'all',
   }
