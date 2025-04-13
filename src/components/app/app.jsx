@@ -231,9 +231,7 @@ export default class App extends Component {
           onDeleteAllDone={this.deleteAllDone}
           filter={filter}
           onStartTimer={this.startTimer}
-          // onStartTimer={(id) => this.startTimer(id)}
           onStopTimer={this.stopTimer}
-          // onStopTimer={(id) => this.stopTimer(id)}
         />
       </section>
     )

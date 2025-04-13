@@ -5,7 +5,7 @@ import { Component } from 'react'
 export default class Task extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
-    editing: PropTypes.string.isRequired,
+    editing: PropTypes.bool.isRequired,
     done: PropTypes.bool,
     creationTime: PropTypes.string,
     onDeleteTask: PropTypes.func.isRequired,
@@ -42,7 +42,7 @@ export default class Task extends Component {
     const secs = timerSeconds % 60
     let time =
       hours > 0
-        ? `${hours.toString.padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
+        ? `${hours.toString().padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
         : `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
     return time
   }
