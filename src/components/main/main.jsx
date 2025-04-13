@@ -14,6 +14,8 @@ const MainSection = ({
   taskLeft,
   onDeleteAllDone,
   filter = 'all',
+  onStartTimer,
+  onStopTimer,
 }) => {
   return (
     <section className="main">
@@ -23,6 +25,8 @@ const MainSection = ({
         onToggleDone={onToggleDone}
         onEditTask={onEditTask}
         onChangeLabel={onChangeLabel}
+        onStartTimer={onStartTimer}
+        onStopTimer={onStopTimer}
       />
       <Footer onFilterChange={onFilterChange} taskLeft={taskLeft} onDeleteAllDone={onDeleteAllDone} filter={filter} />
     </section>

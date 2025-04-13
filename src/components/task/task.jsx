@@ -36,8 +36,32 @@ export default class Task extends Component {
     this.props.onEditTask()
   }
 
+  formatTime = (timerSeconds) => {
+    const hours = Math.floor(timerSeconds / 3600)
+    const minutes = Math.floor((timerSeconds % 3600) / 60)
+    const secs = timerSeconds % 60
+    let time =
+      hours > 0
+        ? `${hours.toString.padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
+        : `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
+    return time
+  }
+
   render() {
-    const { label, editing, done, creationTime, onDeleteTask, onEditTask, onToggleDone, id } = this.props
+    const {
+      label,
+      editing,
+      done,
+      creationTime,
+      timerSeconds,
+      isTimerRunning,
+      onDeleteTask,
+      onEditTask,
+      onToggleDone,
+      id,
+      onStartTimer,
+      onStopTimer,
+    } = this.props
 
     let taskItemClassNames = 'task-item'
 
@@ -56,9 +80,9 @@ export default class Task extends Component {
           <label htmlFor={id}>
             <span className="title">{label}</span>
             <span className="description">
-              <button className="icon icon-play" onClick={this.startTimer} disabled={this.state.isRunning}></button>
-              <button className="icon icon-pause" onClick={this.stopTimer} disabled={this.isRunning}></button>
-              12:25
+              <button className="icon icon-play" onClick={onStartTimer} disabled={isTimerRunning}></button>
+              <button className="icon icon-pause" onClick={onStopTimer} disabled={!isTimerRunning}></button>
+              {this.formatTime(timerSeconds)}
             </span>
             <span className="created"> {creationTime}</span>
           </label>

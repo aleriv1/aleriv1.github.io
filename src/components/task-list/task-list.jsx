@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Task from '../task'
 
-const TaskList = ({ todos = [], onDeleteTask, onEditTask, onChangeLabel, onToggleDone }) => {
+const TaskList = ({ todos = [], onDeleteTask, onEditTask, onChangeLabel, onToggleDone, onStartTimer, onStopTimer }) => {
   const elements = todos.map((item) => {
     return (
       <Task
@@ -14,6 +14,8 @@ const TaskList = ({ todos = [], onDeleteTask, onEditTask, onChangeLabel, onToggl
         onEditTask={() => onEditTask(item.id)}
         onChangeLabel={onChangeLabel}
         id={item.id}
+        onStartTimer={() => onStartTimer(item.id)}
+        onStopTimer={() => onStopTimer(item.id)}
       />
     )
   })

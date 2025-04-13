@@ -20,6 +20,56 @@ export default class App extends Component {
     filter: 'all',
   }
 
+  timerIntervals = []
+
+  startTimer = (id) => {
+    // console.log('startTimer', id)
+    this.setState(({ todoData }) => {
+      const idx = todoData.findIndex((el) => el.id === id)
+      const oldItem = todoData[idx]
+      const newItem = { ...oldItem, isTimerRunning: true }
+
+      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+
+      this.startTimerInterval(id, newItem)
+
+      return { todoData: newArr }
+    })
+  }
+
+  stopTimer = (id) => {
+    // console.log('stopTimer', id)
+    this.setState(({ todoData }) => {
+      const idx = todoData.findIndex((el) => el.id === id)
+      const oldItem = todoData[idx]
+      const newItem = { ...oldItem, isTimerRunning: false }
+
+      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+
+      clearInterval(this.timerIntervals[id])
+
+      return { todoData: newArr }
+    })
+  }
+
+  startTimerInterval = (id) => {
+    // console.log(this.timerIntervals, id, this.state.todoData.timerSeconds)
+    if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
+
+    this.timerIntervals[id] = setInterval(() => {
+      // console.log('test')
+      this.setState(({ todoData }) => {
+        const idx = todoData.findIndex((el) => el.id === id)
+        const oldItem = todoData[idx]
+        const newItem = { ...oldItem, timerSeconds: oldItem.timerSeconds + 1 }
+
+        const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+
+        return { todoData: newArr }
+      })
+    }, 1000)
+  }
+
   createTaskItem(label, editing = false, timeShift = 1) {
     let creationTime = new Date(Date.now() - timeShift * 1000)
 
@@ -29,6 +79,8 @@ export default class App extends Component {
       done: false,
       id: this.maxId++,
       creationTime: `created ${formatDistanceToNowStrict(creationTime, { addSuffix: true, includeSeconds: true })}`,
+      timerSeconds: 0,
+      isTimerRunning: false,
     }
   }
 
@@ -136,6 +188,10 @@ export default class App extends Component {
           taskLeft={taskLeft}
           onDeleteAllDone={this.deleteAllDone}
           filter={filter}
+          onStartTimer={this.startTimer}
+          // onStartTimer={(id) => this.startTimer(id)}
+          onStopTimer={this.stopTimer}
+          // onStopTimer={(id) => this.stopTimer(id)}
         />
       </section>
     )
