@@ -23,7 +23,6 @@ export default class App extends Component {
   timerIntervals = []
 
   startTimer = (id) => {
-    console.log('startTimer', id)
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id)
       const task = todoData[idx]
@@ -41,7 +40,6 @@ export default class App extends Component {
   }
 
   stopTimer = (id) => {
-    console.log('stopTimer', id)
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id)
       const task = todoData[idx]
@@ -56,11 +54,9 @@ export default class App extends Component {
   }
 
   startTimerInterval = (id) => {
-    // console.log(this.timerIntervals, id, this.state.todoData.timerSeconds)
     if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
 
     this.timerIntervals[id] = setInterval(() => {
-      // console.log('test')
       this.setState(({ todoData }) => {
         const idx = todoData.findIndex((el) => el.id === id)
         const oldItem = todoData[idx]
@@ -122,15 +118,6 @@ export default class App extends Component {
 
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
   }
-
-  // onToggleDone = (id) => {
-  //   if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
-  //   this.setState(({ todoData }) => {
-  //     return {
-  //       todoData: this.toggleProperty(todoData, id, 'done'),
-  //     }
-  //   })
-  // }
 
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
