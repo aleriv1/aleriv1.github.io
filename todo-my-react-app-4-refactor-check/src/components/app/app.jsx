@@ -30,6 +30,18 @@ export default class App extends Component {
     }
   }
 
+  addNewTask = (text) => {
+    const newTask = this.createTaskItem(text)
+
+    this.setState(({ todoData }) => {
+      const newArr = [...todoData, newTask]
+
+      return {
+        todoData: newArr,
+      }
+    })
+  }
+
   changeLabel = (id, text) => {
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id)
@@ -40,6 +52,24 @@ export default class App extends Component {
 
       return {
         todoData: newArr,
+      }
+    })
+  }
+
+  toggleProperty = (arr, id, propName) => {
+    const idx = arr.findIndex((el) => el.id === id)
+
+    const oldItem = arr[idx]
+
+    const newItem = { ...oldItem, [propName]: !oldItem[propName] }
+
+    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
+  }
+
+  onToggleDone = (id) => {
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, 'done'),
       }
     })
   }
@@ -62,36 +92,6 @@ export default class App extends Component {
     this.setState(({ todoData }) => {
       return {
         todoData: todoData.filter((task) => !task.done),
-      }
-    })
-  }
-
-  addNewTask = (text) => {
-    const newTask = this.createTaskItem(text)
-
-    this.setState(({ todoData }) => {
-      const newArr = [...todoData, newTask]
-
-      return {
-        todoData: newArr,
-      }
-    })
-  }
-
-  toggleProperty = (arr, id, propName) => {
-    const idx = arr.findIndex((el) => el.id === id)
-
-    const oldItem = arr[idx]
-
-    const newItem = { ...oldItem, [propName]: !oldItem[propName] }
-
-    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
-  }
-
-  onToggleDone = (id) => {
-    this.setState(({ todoData }) => {
-      return {
-        todoData: this.toggleProperty(todoData, id, 'done'),
       }
     })
   }
