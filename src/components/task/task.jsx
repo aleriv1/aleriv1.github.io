@@ -22,62 +22,6 @@ export default class Task extends Component {
 
   state = {
     labelInput: this.props.label,
-    time: 0,
-    isRunning: false,
-  }
-
-  timer = null
-
-  componentDidMount() {
-    document.addEventListener('visibilitychange', this.handleVisibilityChange)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer)
-    document.removeEventListener('visibilitychange', this.handleVisibilityChange)
-  }
-  //   this.timer = setInterval(() => {
-  //     this.setState((prevState) => ({
-  //       time: prevState.time + 1,
-  //     }))
-  //   })
-  // }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.timer)
-
-  startTimer = () => {
-    console.log('this.state.isRunning', this.state.isRunning)
-    // if (!this.state.isRunning) {
-    if (this.timer) return
-
-    // console.log('startTimer')
-    this.setState({ isRunning: true })
-    this.timer = setInterval(() => {
-      this.setState((prevState) => ({
-        time: prevState.time + 1,
-      }))
-    }, 1000)
-    // }
-  }
-
-  stopTimer = () => {
-    if (this.state.isRunning) {
-      // console.log('stopTimer')
-      clearInterval(this.timer)
-      this.setState({ isRunning: false })
-    }
-  }
-
-  handleVisibilityChange = () => {
-    if (document.hidden && this.state.isRunning) {
-      clearInterval(this.timer)
-      this.timer = null
-      // console.log(`time ${this.state.time}`, `this.state.isRunning ${this.state.isRunning}`, 'clear')
-    } else if (!document.hidden && this.state.isRunning && !this.timer) {
-      this.startTimer()
-      // console.log(`time ${this.state.time}`, `this.state.isRunning ${this.state.isRunning}`, 'start')
-    }
   }
 
   onLabelChange = (e) => {
@@ -114,8 +58,7 @@ export default class Task extends Component {
             <span className="description">
               <button className="icon icon-play" onClick={this.startTimer} disabled={this.state.isRunning}></button>
               <button className="icon icon-pause" onClick={this.stopTimer} disabled={this.isRunning}></button>
-              {/* 12:25 */}
-              {this.state.time}
+              12:25
             </span>
             <span className="created"> {creationTime}</span>
           </label>
