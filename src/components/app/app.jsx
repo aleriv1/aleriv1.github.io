@@ -23,28 +23,31 @@ export default class App extends Component {
   timerIntervals = []
 
   startTimer = (id) => {
-    // console.log('startTimer', id)
+    console.log('startTimer', id)
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id)
-      const oldItem = todoData[idx]
-      const newItem = { ...oldItem, isTimerRunning: true }
+      const task = todoData[idx]
 
-      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+      if (task.done) return null
 
-      this.startTimerInterval(id, newItem)
+      const taskRunning = { ...task, isTimerRunning: true }
+
+      const newArr = [...todoData.slice(0, idx), taskRunning, ...todoData.slice(idx + 1)]
+
+      this.startTimerInterval(id, taskRunning)
 
       return { todoData: newArr }
     })
   }
 
   stopTimer = (id) => {
-    // console.log('stopTimer', id)
+    console.log('stopTimer', id)
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id)
-      const oldItem = todoData[idx]
-      const newItem = { ...oldItem, isTimerRunning: false }
+      const task = todoData[idx]
+      const taskStopped = { ...task, isTimerRunning: false }
 
-      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+      const newArr = [...todoData.slice(0, idx), taskStopped, ...todoData.slice(idx + 1)]
 
       clearInterval(this.timerIntervals[id])
 
@@ -120,10 +123,28 @@ export default class App extends Component {
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
   }
 
+  // onToggleDone = (id) => {
+  //   if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
+  //   this.setState(({ todoData }) => {
+  //     return {
+  //       todoData: this.toggleProperty(todoData, id, 'done'),
+  //     }
+  //   })
+  // }
+
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
+      const newTodoData = this.toggleProperty(todoData, id, 'done')
+      const task = newTodoData.find((el) => el.id === id)
+
+      if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
+
+      const updatedTask = task.done ? { ...task, isTimerRunning: false } : task
+
+      const updatedTodoData = newTodoData.map((item) => (item.id === id ? updatedTask : item))
+
       return {
-        todoData: this.toggleProperty(todoData, id, 'done'),
+        todoData: updatedTodoData,
       }
     })
   }
@@ -137,12 +158,15 @@ export default class App extends Component {
   }
 
   deleteTask = (id) => {
+    clearInterval(this.timerIntervals[id])
     this.setState(({ todoData }) => {
       return { todoData: todoData.filter((task) => task.id !== id) }
     })
   }
 
   deleteAllDone = () => {
+    const tasksToDelete = this.state.todoData.filter((task) => task.done)
+    tasksToDelete.forEach((task) => clearInterval(this.timerIntervals[task.id]))
     this.setState(({ todoData }) => {
       return {
         todoData: todoData.filter((task) => !task.done),
@@ -166,6 +190,37 @@ export default class App extends Component {
     } else {
       return tasks
     }
+  }
+
+  handleVisibilityChange = () => {
+    if (document.hidden) {
+      this.state.todoData.forEach((task) => {
+        if (task.isTimerRunning) {
+          this.stopTimer(task.id)
+        }
+      })
+    } else {
+      this.state.todoData.forEach((task) => {
+        if (task.isTimerRunning) {
+          this.startTimer(task.id)
+        }
+      })
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('visibilitychange', this.handleVisibilityChange)
+    this.state.todoData.forEach((task) => {
+      if (task.isTimerRunning) {
+        this.startTimerInterval(task.id)
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('visibilitychange', this.handleVisibilityChange)
+    Object.values(this.timerIntervals).forEach((interval) => clearInterval(interval))
+    this.timerINtervals = []
   }
 
   render() {
