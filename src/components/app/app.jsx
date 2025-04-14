@@ -43,18 +43,10 @@ export default class App extends Component {
       const task = todoData.find((el) => el.id === id)
       const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: true } : task))
 
-      // const idx = todoData.findIndex((el) => el.id === id)
-      // const task = todoData[idx]
-
       if (task.done) return null
-
-      // const taskUpdatedStart = { ...task, isTimerRunning: true }
-
-      // const newArr = [...todoData.slice(0, idx), taskUpdatedStart, ...todoData.slice(idx + 1)]
 
       this.startTimerInterval(id)
 
-      // return { todoData: newArr }
       return { todoData: updatedTasks }
     })
   }
