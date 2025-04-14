@@ -22,51 +22,82 @@ export default class App extends Component {
 
   timerIntervals = []
 
-  startTimer = (id) => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
-      const task = todoData[idx]
-
-      if (task.done) return null
-
-      const taskRunning = { ...task, isTimerRunning: true }
-
-      const newArr = [...todoData.slice(0, idx), taskRunning, ...todoData.slice(idx + 1)]
-
-      this.startTimerInterval(id, taskRunning)
-
-      return { todoData: newArr }
-    })
-  }
-
-  stopTimer = (id) => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
-      const task = todoData[idx]
-      const taskStopped = { ...task, isTimerRunning: false }
-
-      const newArr = [...todoData.slice(0, idx), taskStopped, ...todoData.slice(idx + 1)]
-
-      clearInterval(this.timerIntervals[id])
-
-      return { todoData: newArr }
-    })
-  }
-
   startTimerInterval = (id) => {
     if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
 
     this.timerIntervals[id] = setInterval(() => {
       this.setState(({ todoData }) => {
         const idx = todoData.findIndex((el) => el.id === id)
-        const oldItem = todoData[idx]
-        const newItem = { ...oldItem, timerSeconds: oldItem.timerSeconds + 1 }
+        const task = todoData[idx]
+        const taskUpdatedTime = { ...task, timerSeconds: task.timerSeconds + 1 }
 
-        const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+        const newArr = [...todoData.slice(0, idx), taskUpdatedTime, ...todoData.slice(idx + 1)]
 
         return { todoData: newArr }
       })
     }, 1000)
+  }
+
+  startTimer = (id) => {
+    this.setState(({ todoData }) => {
+      const task = todoData.find((el) => el.id === id)
+      const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: true } : task))
+
+      // const idx = todoData.findIndex((el) => el.id === id)
+      // const task = todoData[idx]
+
+      if (task.done) return null
+
+      // const taskUpdatedStart = { ...task, isTimerRunning: true }
+
+      // const newArr = [...todoData.slice(0, idx), taskUpdatedStart, ...todoData.slice(idx + 1)]
+
+      this.startTimerInterval(id)
+
+      // return { todoData: newArr }
+      return { todoData: updatedTasks }
+    })
+  }
+
+  stopTimer = (id) => {
+    this.setState(({ todoData }) => {
+      const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: false } : task))
+
+      clearInterval(this.timerIntervals[id])
+
+      return { todoData: updatedTasks }
+    })
+  }
+
+  handleVisibilityChange = () => {
+    if (document.hidden) {
+      this.state.todoData.forEach((task) => {
+        if (task.isTimerRunning) {
+          this.stopTimer(task.id)
+        }
+      })
+    } else {
+      this.state.todoData.forEach((task) => {
+        if (task.isTimerRunning) {
+          this.startTimer(task.id)
+        }
+      })
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('visibilitychange', this.handleVisibilityChange)
+    this.state.todoData.forEach((task) => {
+      if (task.isTimerRunning) {
+        this.startTimerInterval(task.id)
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('visibilitychange', this.handleVisibilityChange)
+    Object.values(this.timerIntervals).forEach((interval) => clearInterval(interval))
+    this.timerINtervals = []
   }
 
   createTaskItem(label, editing = false, timeShift = 1) {
@@ -177,37 +208,6 @@ export default class App extends Component {
     } else {
       return tasks
     }
-  }
-
-  handleVisibilityChange = () => {
-    if (document.hidden) {
-      this.state.todoData.forEach((task) => {
-        if (task.isTimerRunning) {
-          this.stopTimer(task.id)
-        }
-      })
-    } else {
-      this.state.todoData.forEach((task) => {
-        if (task.isTimerRunning) {
-          this.startTimer(task.id)
-        }
-      })
-    }
-  }
-
-  componentDidMount() {
-    document.addEventListener('visibilitychange', this.handleVisibilityChange)
-    this.state.todoData.forEach((task) => {
-      if (task.isTimerRunning) {
-        this.startTimerInterval(task.id)
-      }
-    })
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('visibilitychange', this.handleVisibilityChange)
-    Object.values(this.timerIntervals).forEach((interval) => clearInterval(interval))
-    this.timerINtervals = []
   }
 
   render() {
