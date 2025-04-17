@@ -53,7 +53,7 @@ export default class NewTaskForm extends Component {
       <form className="new-todo-form" onSubmit={this.onSubmit}>
         <input
           type="text"
-          className="new-todo"
+          className="new-todo-form__task"
           // placeholder="What needs to be done?"
           placeholder="Tasks"
           autoFocus
