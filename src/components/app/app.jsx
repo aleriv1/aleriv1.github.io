@@ -23,14 +23,37 @@ export default class App extends Component {
   timerIntervals = []
 
   startTimerInterval = (id) => {
+    console.log('startTimerInterval', id)
     if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
 
     this.timerIntervals[id] = setInterval(() => {
       this.setState(({ todoData }) => {
         const idx = todoData.findIndex((el) => el.id === id)
         const task = todoData[idx]
-        const taskUpdatedTime = { ...task, timerSeconds: task.timerSeconds + 1 }
+        // const taskUpdatedTime = { ...task, timerSeconds: task.timerSeconds + 1 }
+        if (task.done) {
+          clearInterval(this.timerIntervals[id])
+          return { todoData }
+        }
 
+        let newSeconds
+        if (task.initialSeconds > 0) {
+          newSeconds = task.timerSeconds > 0 ? task.timerSeconds - 1 : 0
+          if (newSeconds === 0) {
+            clearInterval(this.timerIntervals[id])
+            return {
+              todoData: [
+                ...todoData.slice(0, idx),
+                { ...task, timerSeconds: 0, isTimerRunning: false },
+                ...todoData.slice(idx + 1),
+              ],
+            }
+          } else {
+            newSeconds = task.timerSeconds + 1
+          }
+        }
+
+        const taskUpdatedTime = { ...task, timerSeconds: newSeconds }
         const newArr = [...todoData.slice(0, idx), taskUpdatedTime, ...todoData.slice(idx + 1)]
 
         return { todoData: newArr }
@@ -42,7 +65,6 @@ export default class App extends Component {
     this.setState(({ todoData }) => {
       const task = todoData.find((el) => el.id === id)
       const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: true } : task))
-
       if (task.done) return null
 
       this.startTimerInterval(id)
@@ -54,7 +76,6 @@ export default class App extends Component {
   stopTimer = (id) => {
     this.setState(({ todoData }) => {
       const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: false } : task))
-
       clearInterval(this.timerIntervals[id])
 
       return { todoData: updatedTasks }
@@ -89,25 +110,26 @@ export default class App extends Component {
   componentWillUnmount() {
     document.removeEventListener('visibilitychange', this.handleVisibilityChange)
     Object.values(this.timerIntervals).forEach((interval) => clearInterval(interval))
-    this.timerINtervals = []
+    this.timerIntervals = []
   }
 
-  createTaskItem(label, editing = false, timeShift = 1) {
+  createTaskItem(label, editing = false, timeShift = 1, initialSeconds = 0) {
     let creationTime = new Date(Date.now() - timeShift * 1000)
 
     return {
-      label: label,
-      editing: editing,
+      label,
+      editing,
       done: false,
       id: this.maxId++,
       creationTime: `created ${formatDistanceToNowStrict(creationTime, { addSuffix: true, includeSeconds: true })}`,
       timerSeconds: 0,
+      initialSeconds,
       isTimerRunning: false,
     }
   }
 
-  addNewTask = (text) => {
-    const newTask = this.createTaskItem(text)
+  addNewTask = (text, initialSeconds) => {
+    const newTask = this.createTaskItem(text, false, 1, initialSeconds)
 
     this.setState(({ todoData }) => {
       const newArr = [...todoData, newTask]
@@ -115,6 +137,8 @@ export default class App extends Component {
       return {
         todoData: newArr,
       }
+
+      // todoData: [...todoData, newTask]
     })
   }
 

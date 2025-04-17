@@ -30,7 +30,7 @@ export default class Task extends Component {
     })
   }
 
-  onSumbit = (e) => {
+  onSubmit = (e) => {
     e.preventDefault()
     this.props.onChangeLabel(this.props.id, this.state.labelInput)
     this.props.onEditTask()
@@ -40,11 +40,9 @@ export default class Task extends Component {
     const hours = Math.floor(timerSeconds / 3600)
     const minutes = Math.floor((timerSeconds % 3600) / 60)
     const secs = timerSeconds % 60
-    let time =
-      hours > 0
-        ? `${hours.toString().padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
-        : `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
-    return time
+    return hours > 0
+      ? `${hours.toString().padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
+      : `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
   }
 
   render() {
@@ -54,6 +52,7 @@ export default class Task extends Component {
       done,
       creationTime,
       timerSeconds,
+      initialSeconds,
       isTimerRunning,
       onDeleteTask,
       onEditTask,
@@ -73,6 +72,8 @@ export default class Task extends Component {
       taskItemClassNames += ' editing'
     }
 
+    const isTimerFinished = initialSeconds > 0 && timerSeconds === 0
+
     return (
       <li className={taskItemClassNames}>
         <div className="view">
@@ -80,7 +81,11 @@ export default class Task extends Component {
           <label htmlFor={id}>
             <span className="title">{label}</span>
             <span className="description">
-              <button className="icon icon-play" onClick={onStartTimer} disabled={isTimerRunning}></button>
+              <button
+                className="icon icon-play"
+                onClick={onStartTimer}
+                disabled={isTimerRunning || isTimerFinished || done}
+              ></button>
               <button className="icon icon-pause" onClick={onStopTimer} disabled={!isTimerRunning}></button>
               {this.formatTime(timerSeconds)}
             </span>
@@ -89,7 +94,7 @@ export default class Task extends Component {
           <button className="icon icon-edit" onClick={onEditTask}></button>
           <button className="icon icon-destroy" onClick={onDeleteTask}></button>
         </div>
-        <form onSubmit={this.onSumbit}>
+        <form onSubmit={this.onSubmit}>
           <input type="text" className="edit" onChange={this.onLabelChange} value={this.state.labelInput} />
         </form>
       </li>
