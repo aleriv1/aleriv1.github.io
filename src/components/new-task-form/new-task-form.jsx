@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Component } from 'react'
 
 export default class NewTaskForm extends Component {
-  static PropTypes = {
+  static propTypes = {
     onAddNewTask: PropTypes.func.isRequired,
   }
 
@@ -38,6 +38,7 @@ export default class NewTaskForm extends Component {
     const { label, minutes, seconds } = this.state
     if (label.trim()) {
       const totalSeconds = (parseInt(minutes) || 0) * 60 + (parseInt(seconds) || 0)
+      console.log('totalSeconds', totalSeconds)
       this.props.onAddNewTask(label, totalSeconds)
       this.setState({
         label: '',
@@ -51,6 +52,7 @@ export default class NewTaskForm extends Component {
     const { label, minutes, seconds } = this.state
     return (
       <form className="new-todo-form" onSubmit={this.onSubmit}>
+        {/* {console.log('render new task form')} */}
         <input
           type="text"
           className="new-todo-form__task"
@@ -74,6 +76,7 @@ export default class NewTaskForm extends Component {
           value={seconds}
           onChange={this.onSecondsChange}
         />
+        <button type="submit" style={{ display: 'none' }}></button>
       </form>
     )
   }

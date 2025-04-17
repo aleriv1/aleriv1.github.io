@@ -37,12 +37,13 @@ export default class Task extends Component {
   }
 
   formatTime = (timerSeconds) => {
-    const hours = Math.floor(timerSeconds / 3600)
+    // const hours = Math.floor(timerSeconds / 3600)
     const minutes = Math.floor((timerSeconds % 3600) / 60)
     const secs = timerSeconds % 60
-    return hours > 0
-      ? `${hours.toString().padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
-      : `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
+    // return hours > 0
+    // ? `${hours.toString().padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
+    // : `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
+    return `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
   }
 
   render() {
@@ -85,6 +86,7 @@ export default class Task extends Component {
                 className="icon icon-play"
                 onClick={onStartTimer}
                 disabled={isTimerRunning || isTimerFinished || done}
+                // disabled={isTimerRunning || done}
               ></button>
               <button className="icon icon-pause" onClick={onStopTimer} disabled={!isTimerRunning}></button>
               {this.formatTime(timerSeconds)}

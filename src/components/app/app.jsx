@@ -11,10 +11,8 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      // this.createTaskItem('Completed task', false, 17),
       this.createTaskItem('task 0', false, 17),
       this.createTaskItem('Editing task', true, 0),
-      // this.createTaskItem('Active task', false, 300),
       this.createTaskItem('task 2', false, 300),
     ],
     filter: 'all',
@@ -30,7 +28,6 @@ export default class App extends Component {
       this.setState(({ todoData }) => {
         const idx = todoData.findIndex((el) => el.id === id)
         const task = todoData[idx]
-        // const taskUpdatedTime = { ...task, timerSeconds: task.timerSeconds + 1 }
         if (task.done) {
           clearInterval(this.timerIntervals[id])
           return { todoData }
@@ -44,13 +41,14 @@ export default class App extends Component {
             return {
               todoData: [
                 ...todoData.slice(0, idx),
-                { ...task, timerSeconds: 0, isTimerRunning: false },
+                { ...task, timerSeconds: 0, isTimerRunning: false, done: true },
                 ...todoData.slice(idx + 1),
               ],
             }
-          } else {
-            newSeconds = task.timerSeconds + 1
           }
+        } else {
+          newSeconds = task.timerSeconds + 1
+          console.log('newSeconds', newSeconds)
         }
 
         const taskUpdatedTime = { ...task, timerSeconds: newSeconds }
@@ -61,11 +59,54 @@ export default class App extends Component {
     }, 1000)
   }
 
+  // startTimerInterval = (id) => {
+  //   if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
+
+  //   this.timerIntervals[id] = setInterval(() => {
+  //     this.setState(({ todoData }) => {
+  //       const idx = todoData.findIndex((el) => el.id === id)
+  //       const task = todoData[idx]
+  //       if (task.done) {
+  //         clearInterval(this.timerIntervals[id])
+  //         return { todoData }
+  //       }
+
+  //       let newSeconds
+  //       if (task.initialSeconds > 0) {
+  //         // Countdown mode
+  //         newSeconds = task.timerSeconds > 0 ? task.timerSeconds - 1 : 0
+  //         if (newSeconds === 0) {
+  //           clearInterval(this.timerIntervals[id])
+  //           return {
+  //             todoData: [
+  //               ...todoData.slice(0, idx),
+  //               { ...task, timerSeconds: 0, isTimerRunning: false },
+  //               ...todoData.slice(idx + 1),
+  //             ],
+  //           }
+  //         }
+  //       } else {
+  //         // Count-up mode
+  //         newSeconds = task.timerSeconds + 1
+  //       }
+
+  //       const taskUpdatedTime = { ...task, timerSeconds: newSeconds }
+  //       const newArr = [...todoData.slice(0, idx), taskUpdatedTime, ...todoData.slice(idx + 1)]
+
+  //       return { todoData: newArr }
+  //     })
+  //   }, 1000)
+  // }
+
   startTimer = (id) => {
+    console.log('startTimer', id)
     this.setState(({ todoData }) => {
       const task = todoData.find((el) => el.id === id)
-      const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: true } : task))
+
+      console.log('task.timerSeconds in startTiemr', task.timerSeconds)
+
       if (task.done) return null
+      const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: true } : task))
 
       this.startTimerInterval(id)
 
@@ -122,17 +163,19 @@ export default class App extends Component {
       done: false,
       id: this.maxId++,
       creationTime: `created ${formatDistanceToNowStrict(creationTime, { addSuffix: true, includeSeconds: true })}`,
-      timerSeconds: 0,
+      timerSeconds: initialSeconds,
       initialSeconds,
       isTimerRunning: false,
     }
   }
 
   addNewTask = (text, initialSeconds) => {
+    console.log('new task is added')
     const newTask = this.createTaskItem(text, false, 1, initialSeconds)
 
     this.setState(({ todoData }) => {
       const newArr = [...todoData, newTask]
+      console.log('initialSeconds', initialSeconds)
 
       return {
         todoData: newArr,
@@ -157,13 +200,14 @@ export default class App extends Component {
   }
 
   toggleProperty = (arr, id, propName) => {
-    const idx = arr.findIndex((el) => el.id === id)
+    // const idx = arr.findIndex((el) => el.id === id)
 
-    const oldItem = arr[idx]
+    // const oldItem = arr[idx]
 
-    const newItem = { ...oldItem, [propName]: !oldItem[propName] }
+    // const newItem = { ...oldItem, [propName]: !oldItem[propName] }
 
-    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
+    // return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
+    return arr.map((task) => (task.id === id ? { ...task, [propName]: !task[propName] } : task))
   }
 
   onToggleDone = (id) => {
