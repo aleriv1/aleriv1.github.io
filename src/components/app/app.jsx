@@ -35,9 +35,7 @@ export default class App extends Component {
 
         let newSeconds
         if (task.initialSeconds > 0 && task.timerSeconds > 0 && !task.isCountingUp) {
-          // newSeconds = task.timerSeconds > 0 ? task.timerSeconds - 1 : 0
           newSeconds = task.timerSeconds - 1
-          // if (newSeconds === 0) {
           if (newSeconds === 0) {
             clearInterval(this.timerIntervals[id])
             return {
@@ -60,45 +58,6 @@ export default class App extends Component {
       })
     }, 1000)
   }
-
-  // startTimerInterval = (id) => {
-  //   if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
-
-  //   this.timerIntervals[id] = setInterval(() => {
-  //     this.setState(({ todoData }) => {
-  //       const idx = todoData.findIndex((el) => el.id === id)
-  //       const task = todoData[idx]
-  //       if (task.done) {
-  //         clearInterval(this.timerIntervals[id])
-  //         return { todoData }
-  //       }
-
-  //       let newSeconds
-  //       if (task.initialSeconds > 0) {
-  //         // Countdown mode
-  //         newSeconds = task.timerSeconds > 0 ? task.timerSeconds - 1 : 0
-  //         if (newSeconds === 0) {
-  //           clearInterval(this.timerIntervals[id])
-  //           return {
-  //             todoData: [
-  //               ...todoData.slice(0, idx),
-  //               { ...task, timerSeconds: 0, isTimerRunning: false },
-  //               ...todoData.slice(idx + 1),
-  //             ],
-  //           }
-  //         }
-  //       } else {
-  //         // Count-up mode
-  //         newSeconds = task.timerSeconds + 1
-  //       }
-
-  //       const taskUpdatedTime = { ...task, timerSeconds: newSeconds }
-  //       const newArr = [...todoData.slice(0, idx), taskUpdatedTime, ...todoData.slice(idx + 1)]
-
-  //       return { todoData: newArr }
-  //     })
-  //   }, 1000)
-  // }
 
   startTimer = (id) => {
     this.setState(({ todoData }) => {
@@ -183,8 +142,6 @@ export default class App extends Component {
       return {
         todoData: newArr,
       }
-
-      // todoData: [...todoData, newTask]
     })
   }
 
@@ -203,13 +160,6 @@ export default class App extends Component {
   }
 
   toggleProperty = (arr, id, propName) => {
-    // const idx = arr.findIndex((el) => el.id === id)
-
-    // const oldItem = arr[idx]
-
-    // const newItem = { ...oldItem, [propName]: !oldItem[propName] }
-
-    // return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
     return arr.map((task) => (task.id === id ? { ...task, [propName]: !task[propName] } : task))
   }
 
@@ -220,7 +170,6 @@ export default class App extends Component {
 
       if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
 
-      // const updatedTask = task.done ? { ...task, isTimerRunning: false, timerSeconds: 0, initialSeconds: 0 } : task
       const updatedTask = task.done
         ? { ...task, isTimerRunning: false, timerSeconds: 0, isCountingUp: false }
         : { ...task, timerSeconds: task.initialSeconds }

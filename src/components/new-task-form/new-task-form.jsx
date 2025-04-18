@@ -56,7 +56,6 @@ export default class NewTaskForm extends Component {
         <input
           type="text"
           className="new-todo-form__task"
-          // placeholder="What needs to be done?"
           placeholder="Tasks"
           autoFocus
           value={label}

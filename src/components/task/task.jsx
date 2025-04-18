@@ -45,7 +45,6 @@ export default class Task extends Component {
   onKeyDown = (e) => {
     if (e.key === 'Escape') {
       console.log('Escape')
-      // e.target.blur()
       this.setState({ labelInput: this.props.label })
       this.props.onEditTask()
     }
@@ -58,14 +57,6 @@ export default class Task extends Component {
       this.inputRef.focus()
     }
   }
-
-  // onKeyDown = (e) => {
-  //   if (e.key === 'Escape') {
-  //     console.log('Escape')
-  //     this.setState({ labelInput: this.props.label }) // Сбрасываем на исходное значение
-  //     this.props.onEditTask() // Выходим из режима редактирования
-  //   }
-  // }
 
   formatTime = (timerSeconds) => {
     const minutes = Math.floor((timerSeconds % 3600) / 60)
@@ -80,7 +71,6 @@ export default class Task extends Component {
       done,
       creationTime,
       timerSeconds,
-      // initialSeconds,
       isTimerRunning,
       onDeleteTask,
       onEditTask,
@@ -100,8 +90,6 @@ export default class Task extends Component {
       taskItemClassNames += ' editing'
     }
 
-    // const isTimerFinished = initialSeconds > 0 && timerSeconds === 0
-
     return (
       <li className={taskItemClassNames}>
         <div className="view">
@@ -109,12 +97,7 @@ export default class Task extends Component {
           <label htmlFor={id}>
             <span className="title">{label}</span>
             <span className="description">
-              <button
-                className="icon icon-play"
-                onClick={onStartTimer}
-                // disabled={isTimerRunning || isTimerFinished || done}
-                disabled={isTimerRunning || done}
-              ></button>
+              <button className="icon icon-play" onClick={onStartTimer} disabled={isTimerRunning || done}></button>
               <button className="icon icon-pause" onClick={onStopTimer} disabled={!isTimerRunning}></button>
               {this.formatTime(timerSeconds)}
             </span>
