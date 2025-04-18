@@ -21,7 +21,6 @@ export default class App extends Component {
   timerIntervals = []
 
   startTimerInterval = (id) => {
-    console.log('startTimerInterval', id)
     if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
 
     this.timerIntervals[id] = setInterval(() => {
@@ -48,7 +47,6 @@ export default class App extends Component {
           }
         } else {
           newSeconds = task.timerSeconds + 1
-          console.log('newSeconds', newSeconds)
         }
 
         const taskUpdatedTime = { ...task, timerSeconds: newSeconds }
@@ -63,11 +61,8 @@ export default class App extends Component {
     this.setState(({ todoData }) => {
       const task = todoData.find((el) => el.id === id)
 
-      console.log('task.timerSeconds in startTiemr', task.timerSeconds)
-
       if (task.done) return null
       const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: true } : task))
-      console.log('startTimer', id)
 
       this.startTimerInterval(id)
 
@@ -132,12 +127,10 @@ export default class App extends Component {
   }
 
   addNewTask = (text, initialSeconds) => {
-    console.log('new task is added')
     const newTask = this.createTaskItem(text, false, 1, initialSeconds)
 
     this.setState(({ todoData }) => {
       const newArr = [...todoData, newTask]
-      console.log('initialSeconds', initialSeconds)
 
       return {
         todoData: newArr,
@@ -170,9 +163,10 @@ export default class App extends Component {
 
       if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
 
-      const updatedTask = task.done
-        ? { ...task, isTimerRunning: false, timerSeconds: 0, isCountingUp: false }
-        : { ...task, timerSeconds: task.initialSeconds }
+      const updatedTask = task.done ? { ...task, isTimerRunning: false, timerSeconds: 0, initialSeconds: 0 } : task
+      // const updatedTask = task.done
+      //   ? { ...task, isTimerRunning: false, timerSeconds: 0, isCountingUp: false }
+      //   : { ...task, timerSeconds: task.initialSeconds }
 
       const updatedTodoData = newTodoData.map((item) => (item.id === id ? updatedTask : item))
 
@@ -183,7 +177,6 @@ export default class App extends Component {
   }
 
   editTask = (id) => {
-    console.log('editTask called with id:', id, 'toggling editing state')
     this.setState(({ todoData }) => {
       const task = todoData.find((el) => el.id === id)
       if (!task.editing) return null

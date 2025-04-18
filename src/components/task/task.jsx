@@ -37,14 +37,12 @@ export default class Task extends Component {
   }
 
   onBlur = () => {
-    console.log('onBlur triggered')
     this.setState({ labelInput: this.props.label })
     this.props.onEditTask()
   }
 
   onKeyDown = (e) => {
     if (e.key === 'Escape') {
-      console.log('Escape')
       this.setState({ labelInput: this.props.label })
       this.props.onEditTask()
     }
