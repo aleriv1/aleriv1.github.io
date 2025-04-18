@@ -27,8 +27,8 @@ TaskList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDeleteTask: PropTypes.func.isRequired,
   onEditTask: PropTypes.func.isRequired,
-  onchangeLabel: PropTypes.func.isRequired,
-  ontoggleDone: PropTypes.func.isRequired,
+  onChangeLabel: PropTypes.func.isRequired,
+  onToggleDone: PropTypes.func.isRequired,
 }
 
 export default TaskList

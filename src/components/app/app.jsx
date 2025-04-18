@@ -34,14 +34,16 @@ export default class App extends Component {
         }
 
         let newSeconds
-        if (task.initialSeconds > 0) {
-          newSeconds = task.timerSeconds > 0 ? task.timerSeconds - 1 : 0
+        if (task.initialSeconds > 0 && task.timerSeconds > 0 && !task.isCountingUp) {
+          // newSeconds = task.timerSeconds > 0 ? task.timerSeconds - 1 : 0
+          newSeconds = task.timerSeconds - 1
+          // if (newSeconds === 0) {
           if (newSeconds === 0) {
             clearInterval(this.timerIntervals[id])
             return {
               todoData: [
                 ...todoData.slice(0, idx),
-                { ...task, timerSeconds: 0, isTimerRunning: false, done: true },
+                { ...task, timerSeconds: 0, isTimerRunning: false, done: true, isCountingUp: true },
                 ...todoData.slice(idx + 1),
               ],
             }
@@ -99,7 +101,6 @@ export default class App extends Component {
   // }
 
   startTimer = (id) => {
-    console.log('startTimer', id)
     this.setState(({ todoData }) => {
       const task = todoData.find((el) => el.id === id)
 
@@ -107,6 +108,7 @@ export default class App extends Component {
 
       if (task.done) return null
       const updatedTasks = todoData.map((task) => (task.id === id ? { ...task, isTimerRunning: true } : task))
+      console.log('startTimer', id)
 
       this.startTimerInterval(id)
 
@@ -166,6 +168,7 @@ export default class App extends Component {
       timerSeconds: initialSeconds,
       initialSeconds,
       isTimerRunning: false,
+      isCountingUp: false,
     }
   }
 
@@ -217,7 +220,10 @@ export default class App extends Component {
 
       if (this.timerIntervals[id]) clearInterval(this.timerIntervals[id])
 
-      const updatedTask = task.done ? { ...task, isTimerRunning: false } : task
+      // const updatedTask = task.done ? { ...task, isTimerRunning: false, timerSeconds: 0, initialSeconds: 0 } : task
+      const updatedTask = task.done
+        ? { ...task, isTimerRunning: false, timerSeconds: 0, isCountingUp: false }
+        : { ...task, timerSeconds: task.initialSeconds }
 
       const updatedTodoData = newTodoData.map((item) => (item.id === id ? updatedTask : item))
 
@@ -228,7 +234,10 @@ export default class App extends Component {
   }
 
   editTask = (id) => {
+    console.log('editTask called with id:', id, 'toggling editing state')
     this.setState(({ todoData }) => {
+      const task = todoData.find((el) => el.id === id)
+      if (!task.editing) return null
       return {
         todoData: this.toggleProperty(todoData, id, 'editing'),
       }

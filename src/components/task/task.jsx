@@ -36,13 +36,40 @@ export default class Task extends Component {
     this.props.onEditTask()
   }
 
+  onBlur = () => {
+    console.log('onBlur triggered')
+    this.setState({ labelInput: this.props.label })
+    this.props.onEditTask()
+  }
+
+  onKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      console.log('Escape')
+      // e.target.blur()
+      this.setState({ labelInput: this.props.label })
+      this.props.onEditTask()
+    }
+  }
+
+  inputRef = null
+
+  componentDidUpdate(preProps) {
+    if (!preProps.editing && this.props.editing && this.inputRef) {
+      this.inputRef.focus()
+    }
+  }
+
+  // onKeyDown = (e) => {
+  //   if (e.key === 'Escape') {
+  //     console.log('Escape')
+  //     this.setState({ labelInput: this.props.label }) // Сбрасываем на исходное значение
+  //     this.props.onEditTask() // Выходим из режима редактирования
+  //   }
+  // }
+
   formatTime = (timerSeconds) => {
-    // const hours = Math.floor(timerSeconds / 3600)
     const minutes = Math.floor((timerSeconds % 3600) / 60)
     const secs = timerSeconds % 60
-    // return hours > 0
-    // ? `${hours.toString().padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
-    // : `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
     return `${minutes.toString().padStart(2, 0)}:${secs.toString().padStart(2, 0)}`
   }
 
@@ -53,7 +80,7 @@ export default class Task extends Component {
       done,
       creationTime,
       timerSeconds,
-      initialSeconds,
+      // initialSeconds,
       isTimerRunning,
       onDeleteTask,
       onEditTask,
@@ -73,7 +100,7 @@ export default class Task extends Component {
       taskItemClassNames += ' editing'
     }
 
-    const isTimerFinished = initialSeconds > 0 && timerSeconds === 0
+    // const isTimerFinished = initialSeconds > 0 && timerSeconds === 0
 
     return (
       <li className={taskItemClassNames}>
@@ -85,8 +112,8 @@ export default class Task extends Component {
               <button
                 className="icon icon-play"
                 onClick={onStartTimer}
-                disabled={isTimerRunning || isTimerFinished || done}
-                // disabled={isTimerRunning || done}
+                // disabled={isTimerRunning || isTimerFinished || done}
+                disabled={isTimerRunning || done}
               ></button>
               <button className="icon icon-pause" onClick={onStopTimer} disabled={!isTimerRunning}></button>
               {this.formatTime(timerSeconds)}
@@ -97,7 +124,15 @@ export default class Task extends Component {
           <button className="icon icon-destroy" onClick={onDeleteTask}></button>
         </div>
         <form onSubmit={this.onSubmit}>
-          <input type="text" className="edit" onChange={this.onLabelChange} value={this.state.labelInput} />
+          <input
+            type="text"
+            className="edit"
+            onChange={this.onLabelChange}
+            onBlur={this.onBlur}
+            onKeyDown={this.onKeyDown}
+            value={this.state.labelInput}
+            ref={(input) => (this.inputRef = input)}
+          />
         </form>
       </li>
     )
