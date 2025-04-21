@@ -126,7 +126,7 @@ export default class App extends Component {
               <Pagination
                 current={currentPage}
                 total={totalResults}
-                pageSize={20}
+                pageSize={MOVIES_PER_PAGE}
                 onChange={this.onPageChange}
                 style={{ margin: '20px auto', textAlign: 'center' }}
                 disabled={loading}
