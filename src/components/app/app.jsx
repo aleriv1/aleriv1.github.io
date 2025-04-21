@@ -179,7 +179,7 @@ export default class App extends Component {
   editTask = (id) => {
     this.setState(({ todoData }) => {
       const task = todoData.find((el) => el.id === id)
-      if (!task.editing) return null
+      console.log('task.editing', task.editing)
       return {
         todoData: this.toggleProperty(todoData, id, 'editing'),
       }

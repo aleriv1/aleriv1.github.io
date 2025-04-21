@@ -37,6 +37,8 @@ export default class Task extends Component {
   }
 
   onBlur = () => {
+    console.log('onBlur')
+    if (!this.props.editing) return
     this.setState({ labelInput: this.props.label })
     this.props.onEditTask()
   }
