@@ -1,0 +1,46 @@
+.app {
+  height: 100%;
+  .ant-alert {
+    margin-top: 100px;
+    border-radius: 10px;
+    white-space: pre-wrap;
+  }
+
+  // Стили для поля ввода
+  .ant-input {
+    // display: flex;
+    display: block;
+    // width: 1010px !important;
+    // margin: 20px !important;
+    // width: 50%;
+  }
+  .input-class {
+    width: 50%;
+    min-width: 94%;
+    max-width: 1010px;
+    // border: 0;
+    // margin: 0 !important;
+  }
+  // Стили для пагинации
+  .ant-pagination {
+    margin: 20px auto;
+    text-align: center;
+    // justify-content: center;
+    display: flex;
+    justify-content: center;
+    li {
+      color: #fff;
+    }
+  }
+  .ant-pagination-item {
+    // font-size: 34px;
+    background-color: #f7f7f7;
+    font-size: 12px;
+  }
+  .ant-pagination-item-active {
+    background-color: #1890ff;
+    a {
+      color: #fff;
+    }
+  }
+}
