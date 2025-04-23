@@ -14,6 +14,7 @@
   border: none;
   border-radius: 0;
   filter: drop-shadow(0 4px 12px #00000026);
+  position: relative;
 
   // poster
   .ant-card-cover {
@@ -62,6 +63,22 @@
   }
 
   .ant-card-meta-description {
+    position: relative;
+    .rating-circle {
+      position: absolute;
+      top: -30px;
+      right: 0px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
     .date {
       font-family: 'Inter', sans-serif;
       font-style: normal;
@@ -83,7 +100,7 @@
       line-height: 15px;
       color: #000000a6;
       margin-bottom: 7px;
-      width: 46px;
+      // width: 46px;
       height: 20px;
       padding: 0 4px;
     }

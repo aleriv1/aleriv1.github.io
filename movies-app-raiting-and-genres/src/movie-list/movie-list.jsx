@@ -21,7 +21,7 @@ export default function MovieList({ movies, loading, guestSessionId }) {
   }
 
   const getRatingColor = (rating) => {
-    rating < 3 ? '#E90000' : rating < 5 ? '#E97E00' : rating < 7 ? '#E9D100' : '#66E900'
+    return rating < 3 ? '#E90000' : rating < 5 ? '#E97E00' : rating < 7 ? '#E9D100' : '#66E900'
   }
 
   const handleRate = async (movieId, value) => {
@@ -66,7 +66,10 @@ export default function MovieList({ movies, loading, guestSessionId }) {
                 }
                 description={
                   <div>
-                    <div className="rating-circle" style={{ backgroundColor: getRatingColor(movie.vote_average) }}>
+                    <div
+                      className="rating-circle"
+                      style={{ border: `3px solid ${getRatingColor(movie.vote_average)}` }}
+                    >
                       {movie.vote_average.toFixed(1)}
                     </div>
                     <p className="date">
@@ -75,8 +78,6 @@ export default function MovieList({ movies, loading, guestSessionId }) {
                     {getGenreNames(movie.genre_ids).map((genre) => (
                       <Tag key={genre}>{genre}</Tag>
                     ))}
-                    {/* <Tag>Action</Tag> */}
-                    {/* <Tag>Drama</Tag> */}
                     <p className="description">{cutText(movie.overview || 'There is no description', 100)}</p>
                     <Rate allowHalf value={movie.rating || 0} onChange={(value) => handleRate(movie.id, value)} />
                   </div>
