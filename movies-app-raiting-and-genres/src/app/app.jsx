@@ -1,10 +1,11 @@
 import { Component } from 'react'
 import { Offline, Online } from 'react-detect-offline'
-import { Alert, Input, Pagination, Spin } from 'antd'
+import { Alert, Input, Pagination, Spin, Tabs } from 'antd'
 import debounce from 'lodash/debounce'
 
-import fetchMoviesByQuery from '../api-service/api-service'
 import MovieList from '../movie-list'
+import { fetchMoviesByQuery, fetchGuestSession, fetchGenres, fetchRatedMovies } from '../api-service/api-service'
+import { GenreProvider } from '../genre-context/genre-context'
 
 import './app.scss'
 
@@ -14,11 +15,17 @@ export default class App extends Component {
   state = {
     movies: [],
     visibleMovies: [],
+    ratedMovies: [],
     loading: true,
     error: null,
     searchQuery: '',
     currentPage: 1,
     totalResults: 0,
+    ratedCurrentPage: 1,
+    ratedTotalResults: 0,
+    genres: [],
+    guestSessionId: null,
+    activeTab: 'search',
   }
 
   _fetchMovies = (query = 'return', page = 1) => {
@@ -65,77 +72,210 @@ export default class App extends Component {
       })
   }
 
+  _fetchRatedMovies = (page = 1) => {
+    const { guestSessionId } = this.state
+    this.setState({ loading: true, error: null })
+
+    fetchRatedMovies(guestSessionId, page)
+      .then((data) => {
+        this.setState({
+          ratedMovies: data.results,
+          loading: false,
+          ratedTotalResults: data.total_results,
+        })
+      })
+      .catch(() => {
+        this.setState({
+          loading: false,
+          error: 'Failed to fetch rated movies',
+        })
+      })
+  }
+
   debouncedFetchMovies = debounce((query, page) => {
     this._fetchMovies(query, page)
   }, 300)
 
   handleInputSearch = (event) => {
     const query = event.target.value
-    this.setState({ searchQuery: query }, () => {
+    this.setState({ searchQuery: query, currentPage: 1 }, () => {
       this.debouncedFetchMovies(query, 1)
     })
   }
 
   onPageChange = (page) => {
-    const { searchQuery } = this.state
-    this.setState({ currentPage: page, loading: true }, () => {
-      this.debouncedFetchMovies(searchQuery, page)
-    })
+    const { searchQuery, activeTab } = this.state
+    this.setState(
+      activeTab === 'search' ? { currentPage: page, loading: true } : { ratedCurrentPage: page, loading: true },
+      () => {
+        if (activeTab === 'search') {
+          this.debouncedFetchMovies(searchQuery, page)
+        } else {
+          this._fetchRatedMovies(page)
+        }
+      }
+    )
+  }
+
+  onTabChange = (key) => {
+    this.setState({ activeTab: key })
+    if (key === 'rated') {
+      this._fetchRatedMovies(this.state.ratedCurrentPage)
+    }
   }
 
   componentDidMount() {
+    const storedSession = localStorage.getItem('guestSession')
+    let sessionId = null
+
+    if (storedSession) {
+      const { guestSessionId, expiresAt } = JSON.parse(storedSession)
+      const currentTime = new Date().getTime()
+      if (new Date(expiresAt).getTime() > currentTime) {
+        sessionId = guestSessionId
+        this.setState({ guestSessionId: sessionId }, () => {
+          this._fetchRatedMovies()
+        })
+      }
+    }
+
+    if (!sessionId) {
+      fetchGuestSession()
+        .then(({ guestSessionId, expiresAt }) => {
+          localStorage.setItem('guestSession', JSON.stringify({ guestSessionId, expiresAt }))
+          this.setState({ guestSessionId }, () => {
+            this._fetchRatedMovies()
+          })
+        })
+        .catch(() => {
+          this.setState({ error: 'Failed to create guest session' })
+        })
+    }
+
+    fetchGenres()
+      .then((genres) => {
+        this.setState({ genres })
+      })
+      .catch(() => {
+        this.setState({ error: 'Failed to fetch genres' })
+      })
+
     this._fetchMovies()
   }
 
   render() {
-    const { visibleMovies, loading, error, searchQuery, currentPage, totalResults } = this.state
+    const {
+      visibleMovies = [],
+      ratedMovies = [],
+      loading,
+      error,
+      searchQuery,
+      currentPage,
+      ratedCurrentPage,
+      totalResults,
+      ratedTotalResults,
+      activeTab,
+      genres,
+    } = this.state
 
     return (
-      <div className="app">
-        <Offline>
-          <Alert
-            message="You are offline"
-            type="warning"
-            description="Make sure you have an active internet connection"
-            banner={true}
-          />
-        </Offline>
+      <GenreProvider value={genres}>
+        <div className="app">
+          <Offline>
+            <Alert
+              message="You are offline"
+              type="warning"
+              description="Make sure you have an active internet connection"
+              banner={true}
+            />
+          </Offline>
 
-        <Online>
-          <Input
-            className="input-class"
-            placeholder="search"
-            value={searchQuery}
-            onChange={this.handleInputSearch}
-            disabled={loading}
-            style={{ margin: '20px auto', width: '90%', maxWidth: '600px', display: 'block' }}
-          />
-
-          {loading && visibleMovies.length === 0 ? (
-            <div className="loading-container-common">
-              <Spin fullscreen />
-            </div>
-          ) : error ? (
-            <Alert message={error} />
-          ) : visibleMovies.length === 0 ? (
-            <Alert message="No movies found" />
-          ) : (
-            <>
-              <MovieList movies={visibleMovies} loading={loading} />
-              {/* <MovieList movies={visibleMovies} loading={true} /> */}
-              <Pagination
-                current={currentPage}
-                total={totalResults}
-                pageSize={MOVIES_PER_PAGE}
-                onChange={this.onPageChange}
-                style={{ margin: '20px auto', textAlign: 'center' }}
-                disabled={loading}
-                showSizeChanger={false}
-              />
-            </>
-          )}
-        </Online>
-      </div>
+          <Online>
+            <Tabs
+              activeKey={activeTab}
+              onChange={this.onTabChange}
+              items={[
+                {
+                  key: 'search',
+                  label: 'Search',
+                  children: (
+                    <>
+                      <Input
+                        className="input-class"
+                        placeholder="Type to search..."
+                        value={searchQuery}
+                        onChange={this.handleInputSearch}
+                        disabled={loading}
+                        style={{ margin: '20px auto', width: '90%', maxWidth: '600px', display: 'block' }}
+                      />
+                      {loading && visibleMovies.length === 0 ? (
+                        <div className="loading-container-common">
+                          <Spin fullscreen />
+                        </div>
+                      ) : error ? (
+                        <Alert message={error} />
+                      ) : visibleMovies.length === 0 ? (
+                        <Alert message="No movies found" />
+                      ) : (
+                        <>
+                          <MovieList
+                            movies={visibleMovies}
+                            loading={loading}
+                            guestSessionId={this.state.guestSessionId}
+                          />
+                          <Pagination
+                            current={currentPage}
+                            total={totalResults}
+                            pageSize={MOVIES_PER_PAGE}
+                            onChange={this.onPageChange}
+                            style={{ margin: '20px auto', textAlign: 'center' }}
+                            disabled={loading}
+                            showSizeChanger={false}
+                          />
+                        </>
+                      )}
+                    </>
+                  ),
+                },
+                {
+                  key: 'rated',
+                  label: 'Rated',
+                  children: (
+                    <>
+                      {loading && ratedMovies.length === 0 ? (
+                        <div className="loading-container-common">
+                          <Spin fullscreen />
+                        </div>
+                      ) : error ? (
+                        <Alert message={error} />
+                      ) : ratedMovies.length === 0 ? (
+                        <Alert message="No rated movies found" />
+                      ) : (
+                        <>
+                          <MovieList
+                            movies={ratedMovies}
+                            loading={loading}
+                            guestSessionId={this.state.guestSessionId}
+                          />
+                          <Pagination
+                            current={ratedCurrentPage}
+                            total={ratedTotalResults}
+                            pageSize={MOVIES_PER_PAGE}
+                            onChange={this.onPageChange}
+                            style={{ margin: '20px auto', textAlign: 'center' }}
+                            disabled={loading}
+                            showSizeChanger={false}
+                          />
+                        </>
+                      )}
+                    </>
+                  ),
+                },
+              ]}
+            />
+          </Online>
+        </div>
+      </GenreProvider>
     )
   }
 }
