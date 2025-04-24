@@ -16,6 +16,7 @@ export default class App extends Component {
     movies: [],
     visibleMovies: [],
     ratedMovies: [],
+    visibleRatedMovies: [],
     loading: true,
     error: null,
     searchQuery: '',
@@ -74,15 +75,48 @@ export default class App extends Component {
 
   _fetchRatedMovies = (page = 1) => {
     const { guestSessionId } = this.state
+
+    const apiPage = Math.floor(((page - 1) * MOVIES_PER_PAGE) / 20) + 1
+
     this.setState({ loading: true, error: null })
 
-    fetchRatedMovies(guestSessionId, page)
+    fetchRatedMovies(guestSessionId, apiPage)
       .then((data) => {
-        this.setState({
-          ratedMovies: data.results,
-          loading: false,
-          ratedTotalResults: data.total_results,
-        })
+        const startIndex = ((page - 1) * MOVIES_PER_PAGE) % 20
+        console.log('startIndex', startIndex)
+        let visibleMovies = data.results.slice(startIndex, startIndex + MOVIES_PER_PAGE)
+        console.log('visibleMovies', visibleMovies)
+
+        const hasMorepages = data.total_pages && apiPage < data.total_pages
+
+        if (visibleMovies.length < MOVIES_PER_PAGE && data.results.length === 20 && hasMorepages) {
+          const nextPage = apiPage + 1
+          fetchRatedMovies(guestSessionId, nextPage)
+            .then((nextData) => {
+              const remaining = MOVIES_PER_PAGE - visibleMovies.length
+              const additionalMovies = nextData.results.slice(0, remaining)
+              visibleMovies = [...visibleMovies, ...additionalMovies]
+              this.setState({
+                ratedMovies: data.results,
+                visibleRatedmovies: visibleMovies,
+                loading: false,
+                ratedTotalResults: data.total_results,
+              })
+            })
+            .catch(() => {
+              this.setState({
+                loading: false,
+                error: 'Failed to fetch additional rated movies',
+              })
+            })
+        } else {
+          this.setState({
+            ratedMovies: data.results,
+            visibleRatedMovies: visibleMovies,
+            loading: false,
+            ratedTotalResults: data.total_results,
+          })
+        }
       })
       .catch(() => {
         this.setState({
@@ -104,6 +138,7 @@ export default class App extends Component {
   }
 
   onPageChange = (page) => {
+    console.log('page', page)
     const { searchQuery, activeTab } = this.state
     this.setState(
       activeTab === 'search' ? { currentPage: page, loading: true } : { ratedCurrentPage: page, loading: true },
@@ -167,6 +202,7 @@ export default class App extends Component {
     const {
       visibleMovies = [],
       ratedMovies = [],
+      visibleRatedMovies = [],
       loading,
       error,
       searchQuery,
@@ -252,8 +288,11 @@ export default class App extends Component {
                         <Alert message="No rated movies found" />
                       ) : (
                         <>
+                          {console.log('ratedMovies', ratedMovies)}
+                          {console.log('ratedTotalResults', ratedTotalResults)}
                           <MovieList
-                            movies={ratedMovies}
+                            // movies={ratedMovies}
+                            movies={visibleRatedMovies}
                             loading={loading}
                             guestSessionId={this.state.guestSessionId}
                           />

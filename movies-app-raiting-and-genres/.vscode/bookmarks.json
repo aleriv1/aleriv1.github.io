@@ -4,8 +4,18 @@
 			"path": "src/app/app.jsx",
 			"bookmarks": [
 				{
-					"line": 93,
-					"column": 34,
+					"line": 285,
+					"column": 50,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "../../../program-files-(c-data-obmen)/vscp/data/user-data/User/keybindings.json",
+			"bookmarks": [
+				{
+					"line": 1893,
+					"column": 20,
 					"label": ""
 				}
 			]
