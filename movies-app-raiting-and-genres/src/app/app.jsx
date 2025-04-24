@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Offline, Online } from 'react-detect-offline'
+// import { Offline, Online } from 'react-detect-offline'
 import { Alert, Input, Pagination, Spin, Tabs } from 'antd'
 import debounce from 'lodash/debounce'
 
@@ -83,9 +83,7 @@ export default class App extends Component {
     fetchRatedMovies(guestSessionId, apiPage)
       .then((data) => {
         const startIndex = ((page - 1) * MOVIES_PER_PAGE) % 20
-        console.log('startIndex', startIndex)
         let visibleMovies = data.results.slice(startIndex, startIndex + MOVIES_PER_PAGE)
-        console.log('visibleMovies', visibleMovies)
 
         const hasMorepages = data.total_pages && apiPage < data.total_pages
 
@@ -138,7 +136,6 @@ export default class App extends Component {
   }
 
   onPageChange = (page) => {
-    console.log('page', page)
     const { searchQuery, activeTab } = this.state
     this.setState(
       activeTab === 'search' ? { currentPage: page, loading: true } : { ratedCurrentPage: page, loading: true },
@@ -164,10 +161,10 @@ export default class App extends Component {
     let sessionId = null
 
     if (storedSession) {
-      const { guestSessionId, expiresAt } = JSON.parse(storedSession)
+      const { guestSessionId: guestSession, expiresAt } = JSON.parse(storedSession)
       const currentTime = new Date().getTime()
       if (new Date(expiresAt).getTime() > currentTime) {
-        sessionId = guestSessionId
+        sessionId = guestSession
         this.setState({ guestSessionId: sessionId }, () => {
           this._fetchRatedMovies()
         })
@@ -217,102 +214,101 @@ export default class App extends Component {
     return (
       <GenreProvider value={genres}>
         <div className="app">
-          <Offline>
+          {/* <Offline>
             <Alert
               message="You are offline"
               type="warning"
               description="Make sure you have an active internet connection"
               banner={true}
             />
-          </Offline>
+          </Offline> */}
 
-          <Online>
-            <Tabs
-              activeKey={activeTab}
-              onChange={this.onTabChange}
-              items={[
-                {
-                  key: 'search',
-                  label: 'Search',
-                  children: (
-                    <>
-                      <Input
-                        className="input-class"
-                        placeholder="Type to search..."
-                        value={searchQuery}
-                        onChange={this.handleInputSearch}
-                        disabled={loading}
-                        style={{ margin: '20px auto', width: '90%', maxWidth: '600px', display: 'block' }}
-                      />
-                      {loading && visibleMovies.length === 0 ? (
-                        <div className="loading-container-common">
-                          <Spin fullscreen />
-                        </div>
-                      ) : error ? (
-                        <Alert message={error} />
-                      ) : visibleMovies.length === 0 ? (
-                        <Alert message="No movies found" />
-                      ) : (
-                        <>
-                          <MovieList
-                            movies={visibleMovies}
-                            loading={loading}
-                            guestSessionId={this.state.guestSessionId}
-                          />
-                          <Pagination
-                            current={currentPage}
-                            total={totalResults}
-                            pageSize={MOVIES_PER_PAGE}
-                            onChange={this.onPageChange}
-                            style={{ margin: '20px auto', textAlign: 'center' }}
-                            disabled={loading}
-                            showSizeChanger={false}
-                          />
-                        </>
-                      )}
-                    </>
-                  ),
-                },
-                {
-                  key: 'rated',
-                  label: 'Rated',
-                  children: (
-                    <>
-                      {loading && ratedMovies.length === 0 ? (
-                        <div className="loading-container-common">
-                          <Spin fullscreen />
-                        </div>
-                      ) : error ? (
-                        <Alert message={error} />
-                      ) : ratedMovies.length === 0 ? (
-                        <Alert message="No rated movies found" />
-                      ) : (
-                        <>
-                          {console.log('ratedMovies', ratedMovies)}
-                          {console.log('ratedTotalResults', ratedTotalResults)}
-                          <MovieList
-                            // movies={ratedMovies}
-                            movies={visibleRatedMovies}
-                            loading={loading}
-                            guestSessionId={this.state.guestSessionId}
-                          />
-                          <Pagination
-                            current={ratedCurrentPage}
-                            total={ratedTotalResults}
-                            pageSize={MOVIES_PER_PAGE}
-                            onChange={this.onPageChange}
-                            style={{ margin: '20px auto', textAlign: 'center' }}
-                            disabled={loading}
-                            showSizeChanger={false}
-                          />
-                        </>
-                      )}
-                    </>
-                  ),
-                },
-              ]}
-            />
-          </Online>
+          {/* <Online> */}
+          <Tabs
+            activeKey={activeTab}
+            onChange={this.onTabChange}
+            items={[
+              {
+                key: 'search',
+                label: 'Search',
+                children: (
+                  <>
+                    <Input
+                      className="input-class"
+                      placeholder="Type to search..."
+                      value={searchQuery}
+                      onChange={this.handleInputSearch}
+                      disabled={loading}
+                      style={{ margin: '20px auto', width: '90%', maxWidth: '600px', display: 'block' }}
+                    />
+                    {loading && visibleMovies.length === 0 ? (
+                      <div className="loading-container-common">
+                        <Spin fullscreen />
+                      </div>
+                    ) : error ? (
+                      <Alert message={error} />
+                    ) : visibleMovies.length === 0 ? (
+                      <Alert message="No movies found" />
+                    ) : (
+                      <>
+                        <MovieList
+                          movies={visibleMovies}
+                          ratedMovies={ratedMovies}
+                          loading={loading}
+                          guestSessionId={this.state.guestSessionId}
+                        />
+                        <Pagination
+                          current={currentPage}
+                          total={totalResults}
+                          pageSize={MOVIES_PER_PAGE}
+                          onChange={this.onPageChange}
+                          style={{ margin: '20px auto', textAlign: 'center' }}
+                          disabled={loading}
+                          showSizeChanger={false}
+                        />
+                      </>
+                    )}
+                  </>
+                ),
+              },
+              {
+                key: 'rated',
+                label: 'Rated',
+                children: (
+                  <>
+                    {loading && ratedMovies.length === 0 ? (
+                      <div className="loading-container-common">
+                        <Spin fullscreen />
+                      </div>
+                    ) : error ? (
+                      <Alert message={error} />
+                    ) : ratedMovies.length === 0 ? (
+                      <Alert message="No rated movies found" />
+                    ) : (
+                      <>
+                        <MovieList
+                          // movies={ratedMovies}
+                          movies={visibleRatedMovies}
+                          loading={loading}
+                          guestSessionId={this.state.guestSessionId}
+                        />
+                        <Pagination
+                          current={ratedCurrentPage}
+                          total={ratedTotalResults}
+                          pageSize={MOVIES_PER_PAGE}
+                          onChange={this.onPageChange}
+                          style={{ margin: '20px auto', textAlign: 'center' }}
+                          disabled={loading}
+                          showSizeChanger={false}
+                        />
+                      </>
+                    )}
+                  </>
+                ),
+              },
+            ]}
+          />
+          {/* </Online> */}
         </div>
       </GenreProvider>
     )
