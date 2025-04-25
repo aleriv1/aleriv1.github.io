@@ -126,7 +126,7 @@ export default class App extends Component {
 
   debouncedFetchMovies = debounce((query, page) => {
     this._fetchMovies(query, page)
-  }, 300)
+  }, 500)
 
   handleInputSearch = (event) => {
     const query = event.target.value

@@ -6,6 +6,7 @@ import './movie-list.scss'
 import cutText from '../cut-text/cut-text'
 import { GenreContext } from '../genre-context/genre-context'
 import { rateMovie } from '../api-service/api-service'
+import tmdbImagePlaceholder from '../assets/tmdb-image-placeholder.png'
 
 export default function MovieList({ movies, ratedMovies, loading, guestSessionId }) {
   const genres = useContext(GenreContext)
@@ -51,7 +52,8 @@ export default function MovieList({ movies, ratedMovies, loading, guestSessionId
                 ) : movie.poster_path ? (
                   <img alt={movie.title} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                 ) : (
-                  <div className="image-placeholder" />
+                  // <div className="image-placeholder" />
+                  <img src={tmdbImagePlaceholder} alt="poster" />
                 )
               }
             >
@@ -71,7 +73,8 @@ export default function MovieList({ movies, ratedMovies, loading, guestSessionId
                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                           />
                         ) : (
-                          <div className="image-placeholder-additional" />
+                          // <div className="image-placeholder-additional" />
+                          <img className="image-placeholder-additional" src={tmdbImagePlaceholder} alt="poster" />
                         )}
                         <div className="header-group-wrapper">
                           {movie.title.length > 20 ? (

@@ -40,6 +40,9 @@ export async function fetchRatedMovies(guestSessionId, page) {
 
   const response = await fetch(url)
   if (!response.ok) {
+    if (response.status === 404) {
+      return { results: [], total_results: 0 }
+    }
     throw new Error(`Http error: ${response.status}`)
   }
   const data = await response.json()
