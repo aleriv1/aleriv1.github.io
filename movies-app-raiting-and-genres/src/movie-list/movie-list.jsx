@@ -101,7 +101,6 @@ export default function MovieList({ movies, ratedMovies, loading, guestSessionId
                       <p className="description-text">{cutText(movie.overview || 'There is no description', 100)}</p>
                       <Rate
                         allowHalf
-                        // value={movie.rating || 0}
                         value={userRating || movie.rating}
                         onChange={(value) => handleRate(movie.id, value)}
                         count={10}
