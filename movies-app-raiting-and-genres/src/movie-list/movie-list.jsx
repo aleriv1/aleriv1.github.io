@@ -52,8 +52,7 @@ export default function MovieList({ movies, ratedMovies, loading, guestSessionId
                 ) : movie.poster_path ? (
                   <img alt={movie.title} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                 ) : (
-                  // <div className="image-placeholder" />
-                  <img src={tmdbImagePlaceholder} alt="poster" />
+                  <img className="image-placeholder" src={tmdbImagePlaceholder} alt="poster" />
                 )
               }
             >
@@ -73,7 +72,6 @@ export default function MovieList({ movies, ratedMovies, loading, guestSessionId
                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                           />
                         ) : (
-                          // <div className="image-placeholder-additional" />
                           <img className="image-placeholder-additional" src={tmdbImagePlaceholder} alt="poster" />
                         )}
                         <div className="header-group-wrapper">
