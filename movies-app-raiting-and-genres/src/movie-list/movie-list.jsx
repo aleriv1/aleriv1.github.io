@@ -50,7 +50,11 @@ export default function MovieList({ movies, ratedMovies, loading, guestSessionId
                     <Spin />
                   </div>
                 ) : movie.poster_path ? (
-                  <img alt={movie.title} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                  <img
+                    className="poster"
+                    alt={movie.title}
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  />
                 ) : (
                   <img className="image-placeholder" src={tmdbImagePlaceholder} alt="poster" />
                 )

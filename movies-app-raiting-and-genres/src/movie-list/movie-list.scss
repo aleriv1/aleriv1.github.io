@@ -3,6 +3,12 @@
   padding-bottom: 36px;
   justify-content: center;
   gap: 36px;
+  padding-left: 15px;
+  padding-right: 15px;
+  // @media (max-width: 575px) {
+  //   padding-left: 10px;
+  //   padding-right: 10px;
+  // }
 }
 
 // card
@@ -16,10 +22,19 @@
   filter: drop-shadow(0 4px 12px #00000026);
   position: relative;
 
+  @media (max-width: 575px) {
+    width: 100%;
+    max-width: 451px;
+    // margin-right: 10px;
+    // margin-left: 10px !important;
+    // min-width: 451px;
+  }
+
   // poster
   .ant-card-cover {
     width: 40%;
     flex-shrink: 0;
+    border-radius: 0;
 
     @media (max-width: 575px) {
       display: none;
@@ -63,6 +78,10 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
+  }
+
+  .poster {
+    border-radius: 0;
   }
 
   .ant-card-meta-description {
@@ -181,6 +200,7 @@
 }
 
 .image-placeholder {
+  border-radius: 0 !important;
   width: 40%;
   &-additional {
     width: 60px;

@@ -10,6 +10,7 @@ import { GenreProvider } from '../genre-context/genre-context'
 import './app.scss'
 
 const MOVIES_PER_PAGE = 6
+const SEARCH_QUERY_KEY = 'movieSearchQuery'
 
 export default class App extends Component {
   state = {
@@ -27,6 +28,20 @@ export default class App extends Component {
     genres: [],
     guestSessionId: null,
     activeTab: 'search',
+  }
+
+  _saveSearchQuery = (query) => {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(SEARCH_QUERY_KEY, query)
+    }
+  }
+
+  _loadSearchQuery = () => {
+    if (typeof localStorage !== 'undefined') {
+      const savedQuery = localStorage.getItem(SEARCH_QUERY_KEY)
+      return savedQuery || ''
+    }
+    return ''
   }
 
   _fetchMovies = (query = 'return', page = 1) => {
@@ -126,11 +141,12 @@ export default class App extends Component {
 
   debouncedFetchMovies = debounce((query, page) => {
     this._fetchMovies(query, page)
-  }, 500)
+  }, 700)
 
   handleInputSearch = (event) => {
     const query = event.target.value
     this.setState({ searchQuery: query, currentPage: 1 }, () => {
+      this._saveSearchQuery(query)
       this.debouncedFetchMovies(query, 1)
     })
   }
@@ -192,7 +208,11 @@ export default class App extends Component {
         this.setState({ error: 'Failed to fetch genres' })
       })
 
-    this._fetchMovies()
+    const savedQuery = this._loadSearchQuery()
+    this.setState({ searchQuery: savedQuery }, () => {
+      this._fetchMovies(savedQuery)
+    })
+    // this._fetchMovies()
   }
 
   render() {
@@ -239,7 +259,6 @@ export default class App extends Component {
                         value={searchQuery}
                         onChange={this.handleInputSearch}
                         disabled={loading}
-                        style={{ margin: '20px auto', width: '90%', maxWidth: '600px', display: 'block' }}
                       />
                       {loading && visibleMovies.length === 0 ? (
                         <div className="loading-container-common">
