@@ -1,19 +1,13 @@
 import './header.scss'
-import PropTypes from 'prop-types'
-
 import NewTaskForm from '../new-task-form'
 
-const Header = ({ onAddNewTask }) => {
+const Header = () => {
   return (
     <header className="header">
       <h1>todos</h1>
-      <NewTaskForm onAddNewTask={onAddNewTask} />
+      <NewTaskForm />
     </header>
   )
-}
-
-Header.propTypes = {
-  onAddNewTask: PropTypes.func.isRequired,
 }
 
 export default Header
