@@ -4,7 +4,7 @@ import { formatDistanceToNowStrict } from 'date-fns'
 import './app.scss'
 
 import Header from '../header'
-import Main from '../main'
+import Main from '../main-sec'
 
 export default class App extends Component {
   maxId = 100

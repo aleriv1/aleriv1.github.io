@@ -1,4 +1,4 @@
-import './main.scss'
+import './main-sec.scss'
 import PropTypes from 'prop-types'
 
 import Footer from '../footer'
