@@ -164,17 +164,21 @@ export const TaskProvider = ({ children }) => {
   }
 
   const handleVisibilityChange = () => {
+    console.log('visibility change')
     if (document.hidden) {
       state.todoData.forEach((task) => {
         if (task.isTimerRunning) {
           dispatch({ type: 'STOP_TIMER', payload: task.id })
           clearInterval(timerIntervals.current[task.id])
+          console.log('clearInterval')
+          timerIntervals.current[task.id] = null
+          console.log('timerIntervals = null')
         }
       })
     } else {
       state.todoData.forEach((task) => {
         if (task.isTimerRunning) {
-          dispatch({ type: 'START_TIMER', payload: task.id })
+          // dispatch({ type: 'START_TIMER', payload: task.id })
           startTimerInterval(task.id)
         }
       })
@@ -182,19 +186,22 @@ export const TaskProvider = ({ children }) => {
   }
 
   useEffect(() => {
+    console.log('useEffect: Adding visibilitychange listener')
     document.addEventListener('visibilitychange', handleVisibilityChange)
     state.todoData.forEach((task) => {
       if (task.isTimerRunning) {
+        console.log(`Starting timer for task ${task.id} on mount`)
         startTimerInterval(task.id)
       }
     })
 
     return () => {
+      console.log('useEffect: Removing visibilitychange listener')
       document.removeEventListener('visibilitychange', handleVisibilityChange)
       Object.values(timerIntervals.current).forEach((interval) => clearInterval(interval))
       timerIntervals.current = {}
     }
-  }, [])
+  }, [state.todoData])
 
   const taskFilter = (tasks, filter) => {
     if (filter === 'all') return tasks
