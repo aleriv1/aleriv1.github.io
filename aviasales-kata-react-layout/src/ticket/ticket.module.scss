@@ -16,6 +16,25 @@
   align-items: center;
 }
 
+.title {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: $title-ticket-color;
+  margin: 0;
+}
+
+.details {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  // text-transform: uppercase;
+  line-height: 21px;
+  color: $text-color;
+}
+
 .price {
   font-size: 20px;
   font-weight: bold;
@@ -30,25 +49,25 @@
 
 .segment {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
+  justify-content: space-between;
   gap: 5px;
   font-size: 14px;
-  color: $text-color;
+  // color: $text-color;
 }
 
-.route {
-  font-weight: bold;
-}
-
-.details {
+.route,
+.duration,
+.stops {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 
-.duration {
-  color: #888;
-}
+// .duration {
+//   color: #888;
+// }
 
-.stops {
-  color: #888;
-}
+// .stops {
+//   color: #888;
+// }
