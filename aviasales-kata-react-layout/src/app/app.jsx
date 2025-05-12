@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import Sidebar from '../sidebar/sidebar'
 import TicketLIst from '../ticket-list/ticket-list'
 import Tabs from '../tabs/tabs'
