@@ -1,0 +1,40 @@
+@use '../variables.scss' as *;
+
+.sidebar {
+  flex: 0 0 100%;
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 768px) {
+    flex: 0 0 220px;
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  h3 {
+    font-size: 14px;
+    color: $text-color;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-color;
+  }
+
+  input {
+    margin-right: 8px;
+  }
+}
