@@ -7,11 +7,13 @@
   padding: 15px;
   margin-bottom: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  align-self: stretch;
 
   @media (min-width: 768px) {
     flex: 0 0 220px;
     margin-right: 20px;
     margin-bottom: 0;
+    align-self: flex-start;
   }
 
   h3 {
@@ -24,8 +26,12 @@
 
 .checkboxGroup {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+  }
 
   label {
     display: flex;
