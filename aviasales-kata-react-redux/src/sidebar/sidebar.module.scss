@@ -121,11 +121,10 @@
   background-color: white;
   transition: background-color 0.3s;
 
-  // Добавляем галочку через псевдоэлемент
   &:checked {
     border-color: $primary-color;
     &:after {
-      content: '✓'; // Символ галочки
+      content: '✓';
       color: $primary-color;
       font-size: 14px;
       position: absolute;
