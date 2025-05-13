@@ -1,5 +1,6 @@
 // import React from 'react'
 
+import Header from '../header/header'
 import Sidebar from '../sidebar/sidebar'
 import TicketLIst from '../ticket-list/ticket-list'
 import Tabs from '../tabs/tabs'
@@ -52,10 +53,14 @@ const mockTickets = [
 const App = () => {
   return (
     <div className={styles.app}>
-      <Sidebar />
-      <div className={styles.main}>
-        <Tabs /> <TicketLIst tickets={mockTickets} />
-        <button className={styles.button}>Показать еще 5 билетов!</button>
+      <Header />
+      <div className={styles.layout}>
+        <Sidebar />
+        <main className={styles.main}>
+          <Tabs />
+          <TicketLIst tickets={mockTickets} />
+          <button className={styles.button}>Показать еще 5 билетов!</button>
+        </main>
       </div>
     </div>
   )

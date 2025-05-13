@@ -30,7 +30,6 @@
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  // text-transform: uppercase;
   line-height: 21px;
   color: $text-color;
 }
@@ -49,11 +48,10 @@
 
 .segment {
   display: flex;
-  // flex-direction: column;
   justify-content: space-between;
   gap: 5px;
   font-size: 14px;
-  // color: $text-color;
+  padding-right: 40px;
 }
 
 .route,
@@ -63,11 +61,3 @@
   justify-content: space-between;
   flex-direction: column;
 }
-
-// .duration {
-//   color: #888;
-// }
-
-// .stops {
-//   color: #888;
-// }

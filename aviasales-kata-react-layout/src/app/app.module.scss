@@ -3,6 +3,13 @@
 .app {
   display: flex;
   flex-direction: column;
+  max-width: 734px;
+  margin: auto;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: $background-color;
   font-family: Arial, sans-serif;
@@ -28,8 +35,10 @@
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 12px;
   text-align: center;
+  text-transform: uppercase;
   cursor: pointer;
   margin-top: 10px;
 
