@@ -1,16 +1,9 @@
-// import React from 'react';
-
 import styles from './ticket.module.scss'
 
 const Ticket = ({ ticket, index }) => {
-  // const string = ticket.price.toString()
-
-  // console.log(string)
-  // console.log(ticket.price.toString())
   return (
     <div key={index} className={styles.ticket}>
       <div className={styles.header}>
-        {/* <span className={styles.price}>{ticket.price} Р</span> */}
         <span className={styles.price}>
           {`${ticket.price.toString().slice(0, 2)} ${ticket.price.toString().slice(2)}`} Р
         </span>

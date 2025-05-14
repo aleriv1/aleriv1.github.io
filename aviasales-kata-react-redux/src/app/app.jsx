@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import Header from '../header/header'
 import Sidebar from '../sidebar/sidebar'
 import TicketLIst from '../ticket-list/ticket-list'

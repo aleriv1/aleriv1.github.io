@@ -106,7 +106,6 @@
 }
 
 .customCheckbox {
-  // Скрываем стандартный чекбокс
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -121,11 +120,10 @@
   background-color: white;
   transition: background-color 0.3s;
 
-  // Добавляем галочку через псевдоэлемент
   &:checked {
     border-color: $primary-color;
     &:after {
-      content: '✓'; // Символ галочки
+      content: '✓';
       color: $primary-color;
       font-size: 14px;
       position: absolute;
@@ -137,10 +135,6 @@
       transform: translate(15%, -10%);
     }
   }
-
-  // &:focus {
-  //   box-shadow: 0 0 3px $primary-color;
-  // }
 }
 
 .cheboxLable {
