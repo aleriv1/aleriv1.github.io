@@ -1,0 +1,35 @@
+@use '../variables.scss' as *;
+
+.tabs {
+  display: flex;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    color: $text-color;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    @media (min-width: 425px) {
+      font-size: 14px;
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: white;
+    }
+
+    &:nth-child(1) {
+      border-radius: 5px 0 0 5px;
+    }
+    &:nth-child(3) {
+      border-radius: 0 5px 5px 0;
+    }
+  }
+}
