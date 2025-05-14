@@ -25,7 +25,8 @@ const Ticket = ({ ticket, index }) => {
           </span>
           <span className={styles.stops}>
             <h3 className={styles.title}>
-              {segment.stops.length} пересад{segment.stops.length === 1 ? 'ка' : 'ки'}
+              {segment.stops.length ? segment.stops.length : 'Без'} пересад
+              {segment.stops.length === 0 ? 'ок' : segment.stops.length === 1 ? 'ка' : 'ки'}
             </h3>
             <span className={styles.details}>{segment.stops.join(', ')}</span>
           </span>

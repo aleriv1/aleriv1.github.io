@@ -10,7 +10,7 @@ const mockTickets = [
     price: 13400,
     carrier: 'S7',
     segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB'] },
+      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG'] },
       { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG'] },
     ],
   },
@@ -19,7 +19,7 @@ const mockTickets = [
     carrier: 'S7',
     segments: [
       { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG'] },
+      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG', 'JNB'] },
     ],
   },
   {
@@ -27,23 +27,23 @@ const mockTickets = [
     carrier: 'S7',
     segments: [
       { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG'] },
+      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG', 'NNN'] },
     ],
   },
   {
     price: 13400,
     carrier: 'S7',
     segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG'] },
+      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB', 'NNN'] },
+      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG', 'KGG', 'NNN'] },
     ],
   },
   {
     price: 13400,
     carrier: 'S7',
     segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG'] },
+      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: [] },
+      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: [] },
     ],
   },
 ]
