@@ -1,12 +1,16 @@
-# React + Vite
+# Aviasales App #4 - Завершение
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[ТЗ по тестовому и макет](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend)
 
-Currently, two official plugins are available:
+В случае проблем с оригинальным апи - можете использовать наш аналог `https://aviasales-test-api.kata.academy/search`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Настройте получение полного набора данных (порядка десяти тысяч билетов) и обработку ошибок. Убедитесь, что key в рендере выбран правильно.
+2.  Настройте работу фильтров и сортировки
+3.  Добавьте лоадер, по которому будет видно, что не все данные еще загружены. При этом до завершения получения данных уже можно видеть и работать с неполным набором (см пример на сайте aviasales).
+4.  Проверьте приложение на отсутствие ошибок линтера, ошибок в консоли и приведите код в порядок.
+5.  Заливайте приложение на Vercel (now.sh). Ссылку разместите в readme.
 
-## Expanding the ESLint configuration
+Особенности работы фильтров:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Количество пересадок - это точное количество пересадок в одну из сторон.
+- Если по результатам фильтрации нет рейсов (например, ни одна галочка не выбрана) - должно быть сообщение "Рейсов, подходящих под заданные фильтры, не найдено"

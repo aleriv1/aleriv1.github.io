@@ -1,12 +1,17 @@
-# React + Vite
+# Aviasales App #2 - Redux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[ТЗ по тестовому и макет](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend)
 
-Currently, two official plugins are available:
+1.  Установите пакеты для redux, настройте работу redux
+2.  Реализуйте хранение состояния сортировки в сторе редакса
+3.  Реализуйте хранения состояния чекбоксов в сторе редакса
+4.  Реализуйте функционал включения/выключения фильтров, описанный ниже
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Фильтры:
 
-## Expanding the ESLint configuration
+- Если включается галочка "Все" - проставляются галочки всем остальным фильтрам
+- Если снимается галочка "Все" - снимаются все остальные фильтры
+- Если при включенной галочке "Все" снимается любая другая галочка - галочка "Все" тоже снимается
+- Если проставить каждую галочку по пересадкам - галочка "Все" автоматически включится
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Результат должен быть запушин в репозиторий гитхаб. Ссылку на репозиторий с кодом всех выполненных заданий отправите в конце модуля, в специальное поле, после выполнения финального задания по данному проекту

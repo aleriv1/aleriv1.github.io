@@ -1,12 +1,12 @@
-# React + Vite
+# Aviasales App #3 - Получение данных
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[ТЗ по тестовому и макет](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend)
 
-Currently, two official plugins are available:
+В случае проблем с оригинальным апи - можете использовать наш аналог `https://aviasales-test-api.kata.academy/search`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Установите redux-thunk и добавьте в приложение
+2.  Настройке работу Redux DevTools
+3.  Пользуясь описанием апи, получите первую порцию билетов и положите в store
+4.  Отрендерьте данные из стора на страницу
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Результат должен быть запушин в репозиторий гитхаб. Ссылку на репозиторий с кодом всех выполненных заданий отправите в конце модуля, в специальное поле, после выполнения финального задания по данному проекту

@@ -4,7 +4,7 @@ import Ticket from '../ticket/ticket'
 
 const TicketList = ({ tickets }) => {
   const filters = useSelector((state) => state.filters)
-  const sortType = useSelector((state) => state.sortType)
+  const sortType = useSelector((state) => state.tickets.sortType)
 
   const hasActiveFilters = filters.noStops || filters.oneStop || filters.twoStops || filters.threeStops
 

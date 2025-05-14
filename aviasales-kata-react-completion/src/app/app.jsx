@@ -11,8 +11,8 @@ import styles from './app.module.scss'
 
 const App = () => {
   const dispatch = useDispatch()
-  const tickets = useSelector((state) => state.tickets)
-  const loading = useSelector((state) => state.loading)
+  const tickets = useSelector((state) => state.tickets.tickets)
+  const loading = useSelector((state) => state.ui.loading)
   const [visibleTickets, setVisibleTickets] = useState(5)
 
   useEffect(() => {

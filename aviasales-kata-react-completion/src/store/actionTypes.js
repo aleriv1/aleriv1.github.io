@@ -1,0 +1,7 @@
+export const TOGGLE_FILTER = 'TOGGLE_FILTER'
+export const TOGGLE_ALL_FILTERS = 'TOGGLE_ALL_FILTERS'
+export const SET_SEARCH_ID = 'SET_SEARCH_ID'
+export const SET_TICKETS = 'SET_TICKETS'
+export const SET_LOADING = 'SET_LOADING'
+export const SET_ERROR = 'SET_ERROR'
+export const SET_SORT_TYPE = 'SET_SORT_TYPE'
