@@ -1,5 +1,14 @@
 import styles from './ticket.module.scss'
 
+const formatTime = (date, duration) => {
+  const departure = new Date(date)
+  const arrival = new Date(departure.getTime() + duration * 60 * 1000)
+
+  const format = (d) => `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`
+
+  return `${format(departure)} - ${format(arrival)}`
+}
+
 const Ticket = ({ ticket, index }) => {
   return (
     <div key={index} className={styles.ticket}>
@@ -15,7 +24,7 @@ const Ticket = ({ ticket, index }) => {
             <h3 className={styles.title}>
               {segment.origin} - {segment.destination}
             </h3>
-            <span className={styles.details}>{segment.date}</span>
+            <span className={styles.details}>{formatTime(segment.date, segment.duration)}</span>
           </div>
           <span className={styles.duration}>
             <h3 className={styles.title}>В пути</h3>{' '}

@@ -1,54 +1,22 @@
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
 import Header from '../header/header'
 import Sidebar from '../sidebar/sidebar'
-import TicketLIst from '../ticket-list/ticket-list'
+import TicketList from '../ticket-list/ticket-list'
 import Tabs from '../tabs/tabs'
+import { fetchSearchId } from '../store'
 
 import styles from './app.module.scss'
 
-const mockTickets = [
-  {
-    price: 13400,
-    carrier: 'S7',
-    segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG'] },
-    ],
-  },
-  {
-    price: 13400,
-    carrier: 'S7',
-    segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG', 'JNB'] },
-    ],
-  },
-  {
-    price: 13400,
-    carrier: 'S7',
-    segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG', 'NNN'] },
-    ],
-  },
-  {
-    price: 13400,
-    carrier: 'S7',
-    segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: ['HKG', 'JNB', 'NNN'] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: ['HKG', 'KGG', 'NNN'] },
-    ],
-  },
-  {
-    price: 13400,
-    carrier: 'S7',
-    segments: [
-      { origin: 'MOW', destination: 'HKT', date: '10:45 - 08:00', duration: 1275, stops: [] },
-      { origin: 'MOW', destination: 'HKT', date: '11:20 - 00:50', duration: 810, stops: [] },
-    ],
-  },
-]
-
 const App = () => {
+  const dispatch = useDispatch()
+  const tickets = useSelector((state) => state.tickets)
+
+  useEffect(() => {
+    dispatch(fetchSearchId())
+  }, [dispatch])
+
   return (
     <div className={styles.app}>
       <Header />
@@ -56,7 +24,8 @@ const App = () => {
         <Sidebar />
         <main className={styles.main}>
           <Tabs />
-          <TicketLIst tickets={mockTickets} />
+          {/* <TicketList tickets={tickets} /> */}
+          <TicketList tickets={tickets.slice(0, 5)} />
           <button className={styles.button}>Показать еще 5 билетов!</button>
         </main>
       </div>
