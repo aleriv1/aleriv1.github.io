@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Header from '../header/header'
@@ -12,10 +12,16 @@ import styles from './app.module.scss'
 const App = () => {
   const dispatch = useDispatch()
   const tickets = useSelector((state) => state.tickets)
+  const loading = useSelector((state) => state.loading)
+  const [visibleTickets, setVisibleTickets] = useState(5)
 
   useEffect(() => {
     dispatch(fetchSearchId())
   }, [dispatch])
+
+  const handleShowMore = () => {
+    setVisibleTickets((prev) => prev + 5)
+  }
 
   return (
     <div className={styles.app}>
@@ -24,9 +30,16 @@ const App = () => {
         <Sidebar />
         <main className={styles.main}>
           <Tabs />
-          {/* <TicketList tickets={tickets} /> */}
-          <TicketList tickets={tickets.slice(0, 5)} />
-          <button className={styles.button}>Показать еще 5 билетов!</button>
+          {loading && <div className={styles.loader}>Загрузка билетов...</div>}
+          {tickets.length === 0 && !loading && (
+            <div className={styles.noTickets}>Рейсов, подходящих под заданные фильтры, не найдено</div>
+          )}
+          <TicketList tickets={tickets.slice(0, visibleTickets)} />
+          {visibleTickets < tickets.length && (
+            <button className={styles.button} onClick={handleShowMore}>
+              Показать еще 5 билетов!
+            </button>
+          )}
         </main>
       </div>
     </div>

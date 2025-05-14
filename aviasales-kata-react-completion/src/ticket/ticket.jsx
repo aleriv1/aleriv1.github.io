@@ -10,13 +10,16 @@ const formatTime = (date, duration) => {
 }
 
 const Ticket = ({ ticket, index }) => {
+  const cutDigits = ticket.price > 99999 ? 3 : 2
   return (
     <div key={index} className={styles.ticket}>
       <div className={styles.header}>
         <span className={styles.price}>
-          {`${ticket.price.toString().slice(0, 2)} ${ticket.price.toString().slice(2)}`} Р
+          {`${ticket.price.toString().slice(0, cutDigits)} ${ticket.price.toString().slice(cutDigits)}`} Р
         </span>
-        <span className={styles.logo}>{ticket.carrier}</span>
+        <span className={styles.logo}>
+          <img src={`https://pics.avs.io/99/36/${ticket.carrier}.png`} alt={ticket.carr} />
+        </span>
       </div>
       {ticket.segments.map((segment, idx) => (
         <div key={idx} className={styles.segment}>

@@ -6,6 +6,9 @@ const TOGGLE_FILTER = 'TOGGLE_FILTER'
 const TOGGLE_ALL_FILTERS = 'TOGGLE_ALL_FILTERS'
 const SET_SEARCH_ID = 'SET_SEARCH_ID'
 const SET_TICKETS = 'SET_TICKETS'
+const SET_LOADING = 'SET_LOADING'
+const SET_ERROR = 'SET_ERROR'
+const SET_SORT_TYPE = 'SET_SORT_TYPE'
 // #endregion actions
 
 // #region action creators
@@ -28,27 +31,62 @@ export const setTickets = (tickets) => ({
   type: SET_TICKETS,
   payload: tickets,
 })
+
+export const setLoading = (isLoading) => ({
+  type: SET_LOADING,
+  payload: isLoading,
+})
+
+export const setError = (error) => ({
+  type: SET_ERROR,
+  payload: error,
+})
+
+export const setSortType = (sortType) => ({
+  type: SET_SORT_TYPE,
+  payload: sortType,
+})
 // #endregion action creators
 
 // #region async actions
 export const fetchSearchId = () => async (dispatch) => {
   try {
+    dispatch(setLoading(true))
     const response = await fetch('https://aviasales-test-api.kata.academy/search')
+    if (!response.ok) throw new Error('Ошибка при получении searchId')
     const data = await response.json()
     dispatch(setSearchId(data.searchId))
     dispatch(fetchTickets(data.searchId))
   } catch (error) {
-    console.error('Ошибка при получении searchId:', error)
+    dispatch(setError(error.message))
+    // Повторная попытка через 3 секунды
+    setTimeout(() => dispatch(fetchSearchId()), 3000)
+  } finally {
+    dispatch(setLoading(false))
   }
 }
 
-export const fetchTickets = (searchId) => async (dispatch) => {
+export const fetchTickets = (searchId) => async (dispatch, getState) => {
   try {
+    dispatch(setLoading(true))
     const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+    if (!response.ok) throw new Error('Ошибка при получении билетов')
     const data = await response.json()
-    dispatch(setTickets(data.tickets))
+
+    // Добавляем новые билеты к существующим
+    const currentTickets = getState().tickets
+    dispatch(setTickets([...currentTickets, ...data.tickets]))
+
+    // Если поиск не завершен, продолжаем запрашивать
+    if (!data.stop) {
+      dispatch(fetchTickets(searchId))
+    }
   } catch (error) {
-    console.error('Ошибка при получении билетов:', error)
+    dispatch(setError(error.message))
+    // Повторная попытка через 3 секунды
+    setTimeout(() => dispatch(fetchTickets(searchId)), 3000)
+  } finally {
+    dispatch(setLoading(false))
   }
 }
 // #endregion async actions
@@ -64,7 +102,11 @@ const initialState = {
   },
   searchId: null,
   tickets: [],
+  loading: false,
+  error: null,
+  sortType: 'cheapest',
 }
+
 /* eslint-disable indent */
 const filterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -105,6 +147,15 @@ const filterReducer = (state = initialState, action) => {
 
     case SET_TICKETS:
       return { ...state, tickets: action.payload }
+
+    case SET_LOADING:
+      return { ...state, loading: action.payload }
+
+    case SET_ERROR:
+      return { ...state, error: action.payload }
+
+    case SET_SORT_TYPE:
+      return { ...state, sortType: action.payload }
 
     default:
       return state
