@@ -1,4 +1,4 @@
-import logo from '../assets/aviasales-logo.png'
+import logo from '../../assets/aviasales-logo.png'
 
 import styles from './header.module.scss'
 

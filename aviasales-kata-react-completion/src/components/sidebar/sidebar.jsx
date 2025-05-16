@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { toggleFilter, toggleAllFilters } from '../store'
+import { toggleFilter, toggleAllFilters } from '../../store'
 
 import styles from './sidebar.module.scss'
 
