@@ -1,3 +1,15 @@
+@use '../../variables.scss' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  &__left {
+    // background: red;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .articleDetail {
   padding: 20px;
   background: #fff;
@@ -49,4 +61,19 @@
       text-decoration: underline;
     }
   }
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+
+  .tag {
+    border: 1px solid $tag-color;
+  }
+}
+
+.articleImage {
+  width: 50%;
+  // max-width: 80px;
+  height: auto;
 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
-import ArticleList from './components/ArticleList'
-import ArticleDetail from './components/ArticleDetail'
+import ArticleList from './components/ArticleList/ArticleList'
+import ArticleDetail from './components/ArticleDetail/ArticleDetail'
 import './App.scss'
 
 function App() {
@@ -10,7 +10,9 @@ function App() {
     <Router>
       <div className="app">
         <header className="header">
-          <div className="logo">Realworld Blog</div>
+          <Link to="/">
+            <div className="logo">Realworld Blog</div>
+          </Link>
           <div className="auth-buttons">
             <button>Sign In</button>
             <button>Sign Up</button>

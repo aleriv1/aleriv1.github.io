@@ -1,3 +1,5 @@
+@use '../../variables.scss' as *;
+
 .articleList {
   padding: 20px;
   background-color: #e9ecef;
@@ -79,10 +81,20 @@
         cursor: not-allowed;
         opacity: 0.5;
       }
+      &.active {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+      }
     }
     span {
       margin: 0 10px;
       font-weight: bold;
     }
   }
+}
+
+.articleImage {
+  width: 50%;
+  height: auto;
 }

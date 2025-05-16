@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
-import mockAva from '../assets/mockAva.png'
+// import mockAva from '../../assets/mockAva.png'
+import { mockArticles } from '../../mockData'
 
 import styles from './ArticleDetail.module.scss'
-import { mockArticles } from './mockData'
 
 const API_URL = 'https://blog-platform.kata.academy/api'
 
@@ -14,7 +14,8 @@ function ArticleDetail() {
   const [article, setArticle] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [useMock] = useState(true)
+  // const [useMock] = useState(true)
+  const [useMock] = useState(false)
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -47,22 +48,34 @@ function ArticleDetail() {
   return (
     <div className={styles.articleDetail}>
       <h1>{article.title}</h1>
-      <span>
-        {article.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </span>
-      <span className={styles.articleDescription}>{article.description}</span>
-      <div className={styles.articleAuthor}>
-        <div>
-          <span>{article.author.username}</span>
-          <span>{new Date(article.createdAt).toLocaleDateString()}</span>
+      <div className={styles.header}>
+        <div className={styles.header__left}>
+          <span className={styles.tags}>
+            {/* {article.tags.map((tag) => ( */}
+            {article.tagList.map((tag) => (
+              <span className={styles.tag} key={tag}>
+                {tag}
+              </span>
+            ))}
+          </span>
+          <span className={styles.articleDescription}>{article.description}</span>
         </div>
-        {/* <img src={article.author.image} alt={article.author.username} /> */}
-        <img src={mockAva} alt={article.author.username} />
+        <div className={styles.articleAuthor}>
+          <div>
+            <span>{article.author.username}</span>
+            <span>{new Date(article.createdAt).toLocaleDateString()}</span>
+          </div>
+          <img src={article.author.image} alt={article.author.username} />
+          {/* <img src={mockAva} alt={article.author.username} /> */}
+        </div>
       </div>
-      <ReactMarkdown>{article.body}</ReactMarkdown>
-      <Link to="/articles">Назад к списку</Link>
+      <ReactMarkdown
+        components={{
+          img: (props) => <img className={styles.articleImage} {...props} />,
+        }}
+      >
+        {article.body}
+      </ReactMarkdown>
     </div>
   )
 }
