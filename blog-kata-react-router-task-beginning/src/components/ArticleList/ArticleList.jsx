@@ -61,7 +61,11 @@ function ArticleList() {
     for (let i = 1; i <= totalPages; i++) {
       {
         pages.push(
-          <button key={i} onClick={() => handlePageChange(i)} className={page === i ? styles.active : ''}>
+          <button
+            key={i}
+            onClick={() => handlePageChange(i)}
+            className={page === i ? styles.activeButton : styles.notActiveButton}
+          >
             {i}
           </button>
         )
@@ -110,11 +114,11 @@ function ArticleList() {
         </div>
       ))}
       <div className={styles.pagination}>
-        <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>
+        <button onClick={() => handlePageChange(page - 1)} className={styles.arroButton} disabled={page === 1}>
           {'<'}
         </button>
         {renderPageButtons()}
-        <button onClick={() => handlePageChange(page + 1)} disabled={page === totalPages}>
+        <button onClick={() => handlePageChange(page + 1)} className={styles.arroButton} disabled={page === totalPages}>
           {'>'}
         </button>
       </div>

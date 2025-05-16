@@ -72,19 +72,31 @@
     justify-content: center;
     margin-top: 20px;
     button {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin: 0 5px;
       padding: 5px 10px;
-      border: 1px solid #ccc;
-      background-color: #fff;
+      border: 0;
+      width: 23px;
+      height: 23px;
+
       cursor: pointer;
       &:disabled {
         cursor: not-allowed;
         opacity: 0.5;
       }
-      &.active {
+      &.activeButton {
         background-color: #007bff;
         color: #fff;
-        border-color: #007bff;
+        border-radius: 5px;
+      }
+      &.notActiveButton {
+        background: none;
+        outline: none;
+        border: 0;
       }
     }
     span {

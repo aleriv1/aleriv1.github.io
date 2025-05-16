@@ -3,19 +3,19 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 import ArticleList from './components/ArticleList/ArticleList'
 import ArticleDetail from './components/ArticleDetail/ArticleDetail'
-import './App.scss'
+import styles from './App.module.scss'
 
 function App() {
   return (
     <Router>
-      <div className="app">
-        <header className="header">
-          <Link to="/">
-            <div className="logo">Realworld Blog</div>
+      <div className={styles.app}>
+        <header className={styles.header}>
+          <Link to="/" className={styles.logoLink}>
+            <div className={styles.logo}>Realworld Blog</div>
           </Link>
-          <div className="auth-buttons">
-            <button>Sign In</button>
-            <button>Sign Up</button>
+          <div className={styles.authButtons}>
+            <button className={styles.signIn}>Sign In</button>
+            <button className={styles.signUp}>Sign Up</button>
           </div>
         </header>
         <Switch>
