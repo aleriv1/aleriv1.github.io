@@ -1,0 +1,48 @@
+.app {
+  font-family: Arial, sans-serif;
+  background-color: #e9ecef;
+  min-height: 100vh;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .auth-buttons {
+      button {
+        margin-left: 10px;
+        padding: 5px 15px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
+
+        &:last-child {
+          background-color: #28a745;
+          color: #fff;
+          border-color: #28a745;
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  color: #666;
+  text-align: center;
+  padding: 20px;
+}
+
+.error {
+  color: #ff4444;
+  text-align: center;
+  padding: 20px;
+}
