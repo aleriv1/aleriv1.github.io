@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import { format } from 'date-fns'
 
 // import mockAva from '../../assets/mockAva.png'
 import { mockArticles } from '../../mockData'
@@ -31,7 +32,7 @@ function ArticleList() {
           data = mockArticles.slice(start, end)
         } else {
           const offset = (page - 1) * limit // Вычисляем offset
-          console.log(offset)
+          // console.log(offset)
           // const response = await fetch(`${API_URL}/articles?limit=10&page=${page}`)
           const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`)
           if (!response.ok) throw new Error('Ошибка загрузки')
@@ -57,7 +58,7 @@ function ArticleList() {
 
   const renderPageButtons = () => {
     const pages = []
-    console.log('renderPageButtons')
+    // console.log('renderPageButtons')
     for (let i = 1; i <= totalPages; i++) {
       {
         pages.push(
@@ -74,41 +75,42 @@ function ArticleList() {
     return pages
   }
 
+  // console.log(format(new Date(), 'MMMM d, yyyy'))
+  // const format = (d) => `${d.getMonth()} ${d.getDate()}`
+
   return (
     <div className={styles.articleList}>
       {loading && <div className={styles.loading}>Загрузка...</div>}
       {error && <div className={styles.error}>{error}</div>}
       {articles.map((article) => (
         <div key={article.slug} className={styles.articleItem}>
-          <div className={styles.articleTop}>
-            <Link to={`/articles/${article.slug}`}>
-              <h2>
-                {article.title} <span>❤️ {article.favoritesCount}</span>
+          <div className={styles.articleContent}>
+            <Link className={styles.articleTitleLink} to={`/articles/${article.slug}`}>
+              <h2 className={styles.articleTitle}>
+                {article.title} <span className={styles.likes}>❤️ {article.favoritesCount}</span>
               </h2>
             </Link>
-            <div className={styles.articleMeta}>
-              <span>
-                {/* {article.tags.map((tag) => ( */}
-                {article.tagList.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </span>
-              {/* <ReactMarkdown>{article.description}</ReactMarkdown> */}
-              <ReactMarkdown
-                components={{
-                  img: (props) => <img className={styles.articleImage} {...props} />,
-                }}
-              >
-                {article.body}
-              </ReactMarkdown>
-            </div>
+            <span className={styles.tags}>
+              {article.tagList.map((tag) => (
+                <span className={styles.tag} key={tag}>
+                  {tag}
+                </span>
+              ))}
+            </span>
+            <ReactMarkdown
+              components={{
+                img: (props) => <img className={styles.articleImage} {...props} />,
+              }}
+            >
+              {article.body}
+            </ReactMarkdown>
           </div>
-          <div className={styles.articleAuthor}>
-            <div>
-              <span>{article.author.username}</span>
-              <span>{new Date(article.createdAt).toLocaleDateString()}</span>
+          <div className={styles.articleAuthorAndDate}>
+            <div className={styles.userNameAndCreationDate}>
+              <span className={styles.userName}>{article.author.username}</span>
+              <span className={styles.creationDate}>{format(new Date(article.createdAt), 'MMMM d, yyyy')}</span>
             </div>
-            <img src={article.author.image} alt={article.author.username} />
+            <img className={styles.userImage} src={article.author.image} alt={article.author.username} />
             {/* <img src={mockAva} alt={article.author.username} /> */}
           </div>
         </div>

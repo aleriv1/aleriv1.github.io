@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 import ArticleList from './components/ArticleList/ArticleList'
-import ArticleDetail from './components/ArticleDetail/ArticleDetail'
+import ArticleDetail from './components/Article/Article'
 import styles from './App.module.scss'
 
 function App() {

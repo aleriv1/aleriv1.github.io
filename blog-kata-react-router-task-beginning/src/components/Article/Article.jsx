@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import { format } from 'date-fns'
 
 // import mockAva from '../../assets/mockAva.png'
+
 import { mockArticles } from '../../mockData'
 
-import styles from './ArticleDetail.module.scss'
+import styles from './Article.module.scss'
 
 const API_URL = 'https://blog-platform.kata.academy/api'
 
@@ -46,12 +48,14 @@ function ArticleDetail() {
   if (!article) return null
 
   return (
-    <div className={styles.articleDetail}>
-      <h1>{article.title}</h1>
-      <div className={styles.header}>
-        <div className={styles.header__left}>
+    <div className={styles.article}>
+      <div className={styles.articleHeader}>
+        <div className={styles.articleHeader__mainGroup}>
+          <h2 className={styles.articleTitle}>
+            {article.title}
+            <span className={styles.likes}>❤️ {article.favoritesCount}</span>
+          </h2>
           <span className={styles.tags}>
-            {/* {article.tags.map((tag) => ( */}
             {article.tagList.map((tag) => (
               <span className={styles.tag} key={tag}>
                 {tag}
@@ -60,12 +64,13 @@ function ArticleDetail() {
           </span>
           <span className={styles.articleDescription}>{article.description}</span>
         </div>
-        <div className={styles.articleAuthor}>
-          <div>
-            <span>{article.author.username}</span>
-            <span>{new Date(article.createdAt).toLocaleDateString()}</span>
+        <div className={styles.articleAuthorAndDate}>
+          <div className={styles.userNameAndCreationDate}>
+            <span className={styles.userName}>{article.author.username}</span>
+            <span className={styles.creationDate}>{format(new Date(article.createdAt), 'MMMM d, yyyy')}</span>
           </div>
-          <img src={article.author.image} alt={article.author.username} />
+          <img className={styles.userImage} src={article.author.image} alt={article.author.username} />
+
           {/* <img src={mockAva} alt={article.author.username} /> */}
         </div>
       </div>
