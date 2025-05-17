@@ -72,11 +72,11 @@
     }
   }
 
+  .tags {
+    display: flex;
+    gap: 8px;
+  }
   .tag {
-    &s {
-      display: flex;
-      gap: 8px;
-    }
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
