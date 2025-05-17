@@ -1,5 +1,4 @@
-// src/components/Header/Header.jsx
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
@@ -18,7 +17,7 @@ function Header({ onLogout }) {
       <div className={styles.authButtons}>
         {user ? (
           <>
-            <Link to="/articles/new">
+            <Link to="/new-article">
               <button className={styles.createArticle}>Create article</button>
             </Link>
             <Link to="/profile" className={styles.profileLink}>

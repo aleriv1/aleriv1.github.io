@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
 
@@ -31,7 +31,7 @@ function ArticleList() {
         } else {
           const offset = (page - 1) * limit
           const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`)
-          if (!response.ok) throw new Error('Ошибка загрузки')
+          if (!response.ok) throw new Error('Ошибка загрузки ArticleList')
           data = await response.json()
         }
         setArticles(data.articles || data)
@@ -79,11 +79,12 @@ function ArticleList() {
         <div key={article.slug} className={styles.article}>
           <div className={styles.articleHeader}>
             <div className={styles.articleHeader__title}>
-              <Link className={styles.articleTitleLink} to={`/articles/${article.slug}`}>
-                <h2 className={styles.articleTitle}>
-                  {article.title} <span className={styles.likes}>❤️ {article.favoritesCount}</span>
-                </h2>
-              </Link>
+              <div className={styles.articleTitleGroup}>
+                <Link className={styles.articleTitleLink} to={`/articles/${article.slug}`}>
+                  <h2 className={styles.articleTitle}>{article.title}</h2>
+                </Link>
+                <span className={styles.likes}>❤️ {article.favoritesCount}</span>
+              </div>
               <span className={styles.tags}>
                 {article.tagList.map((tag) => (
                   <span className={styles.tag} key={tag}>
@@ -98,7 +99,6 @@ function ArticleList() {
                 <span className={styles.creationDate}>{format(new Date(article.createdAt), 'MMMM d, yyyy')}</span>
               </div>
               <img className={styles.userImage} src={article.author.image} alt={article.author.username} />
-              {/* <img src={mockAva} alt={article.author.username} /> */}
             </div>
           </div>
 

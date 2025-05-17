@@ -13,7 +13,6 @@
 .article {
   background: #fff;
   box-shadow: 0 1px 3px #0000001a;
-
   padding: 20px;
   margin: 20px;
 
@@ -32,7 +31,6 @@
     color: $info-color;
     font-size: 20px;
     line-height: 28px;
-    font-size: 18px;
   }
 
   .likes {
@@ -43,6 +41,12 @@
     color: $text-color;
   }
 
+  .descriptionAndControl {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
   &Description {
     display: inline-block;
     font-family: 'Inter';
@@ -50,13 +54,11 @@
     line-height: 22px;
     color: $secondary-color;
     padding-top: 16px;
-
     width: 80%;
   }
 
   &AuthorAndDate {
     display: flex;
-
     .userNameAndCreationDate {
       flex-shrink: 0;
       display: flex;
@@ -77,13 +79,18 @@
         align-self: flex-end;
       }
     }
-
     .userImage {
       width: 46px;
       height: 46px;
       border-radius: 50%;
       margin-left: 10px;
     }
+  }
+
+  .tagsAndActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   .tags {
@@ -96,7 +103,6 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
-
     box-sizing: border-box;
     padding: 5px;
     border: 1px solid $tag-color;
@@ -106,5 +112,89 @@
   &Image {
     width: 50%;
     height: auto;
+  }
+
+  &Actions {
+    display: flex;
+    gap: 10px;
+
+    .editButton {
+      padding: 5px 15px;
+      background: transparent;
+      color: #52c41a;
+      border: 1px solid #52c41a;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+
+    .deleteButton {
+      padding: 5px 15px;
+      background: transparent;
+      color: #ff4d4f;
+      border: 1px solid #ff4d4f;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &Content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 300px;
+      text-align: center;
+
+      p {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+    }
+
+    &Buttons {
+      display: flex;
+      gap: 10px;
+
+      .noButton {
+        padding: 5px 20px;
+        background: transparent;
+        color: #1890ff;
+        border: 1px solid #1890ff;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+
+      .yesButton {
+        padding: 5px 20px;
+        background: #ff4d4f;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+    }
   }
 }
