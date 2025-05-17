@@ -30,8 +30,8 @@ const TicketList = ({ tickets }) => {
       return durationA - durationB
     }
     if (sortType === 'optimal') {
-      const scoreA = a.price + a.segments.reduce((sum, seg) => sum + seg.duration * 15, 0)
-      const scoreB = b.price + b.segments.reduce((sum, seg) => sum + seg.duration * 15, 0)
+      const scoreA = a.price + a.segments.reduce((sum, seg) => sum + seg.duration * 500, 0)
+      const scoreB = b.price + b.segments.reduce((sum, seg) => sum + seg.duration * 500, 0)
       return scoreA - scoreB
     }
     return 0
