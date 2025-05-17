@@ -17,6 +17,10 @@
     "blog-kata-react-router-task-authentication/*.{js,jsx}": [
       "npm run lint:fix",
       "npm run format"
+    ],
+    "blog-kata-react-router-task-articles/*.{js,jsx}": [
+      "npm run lint:fix",
+      "npm run format"
     ]
   }
 }
