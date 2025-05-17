@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
 import { format } from 'date-fns'
 
 // import mockAva from '../../assets/mockAva.png'
@@ -16,7 +15,6 @@ function ArticleList() {
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  // const [useMock] = useState(true)
   const [useMock] = useState(false)
   const limit = 4
 
@@ -31,9 +29,7 @@ function ArticleList() {
           const end = start + 3
           data = mockArticles.slice(start, end)
         } else {
-          const offset = (page - 1) * limit // Вычисляем offset
-          // console.log(offset)
-          // const response = await fetch(`${API_URL}/articles?limit=10&page=${page}`)
+          const offset = (page - 1) * limit
           const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`)
           if (!response.ok) throw new Error('Ошибка загрузки')
           data = await response.json()
@@ -58,7 +54,6 @@ function ArticleList() {
 
   const renderPageButtons = () => {
     const pages = []
-    // console.log('renderPageButtons')
     for (let i = 1; i <= totalPages; i++) {
       {
         pages.push(
@@ -75,46 +70,42 @@ function ArticleList() {
     return pages
   }
 
-  // console.log(format(new Date(), 'MMMM d, yyyy'))
-  // const format = (d) => `${d.getMonth()} ${d.getDate()}`
-
   return (
     <div className={styles.articleList}>
       {loading && <div className={styles.loading}>Загрузка...</div>}
       {error && <div className={styles.error}>{error}</div>}
+
       {articles.map((article) => (
-        <div key={article.slug} className={styles.articleItem}>
-          <div className={styles.articleContent}>
-            <Link className={styles.articleTitleLink} to={`/articles/${article.slug}`}>
-              <h2 className={styles.articleTitle}>
-                {article.title} <span className={styles.likes}>❤️ {article.favoritesCount}</span>
-              </h2>
-            </Link>
-            <span className={styles.tags}>
-              {article.tagList.map((tag) => (
-                <span className={styles.tag} key={tag}>
-                  {tag}
-                </span>
-              ))}
-            </span>
-            <ReactMarkdown
-              components={{
-                img: (props) => <img className={styles.articleImage} {...props} />,
-              }}
-            >
-              {article.body}
-            </ReactMarkdown>
-          </div>
-          <div className={styles.articleAuthorAndDate}>
-            <div className={styles.userNameAndCreationDate}>
-              <span className={styles.userName}>{article.author.username}</span>
-              <span className={styles.creationDate}>{format(new Date(article.createdAt), 'MMMM d, yyyy')}</span>
+        <div key={article.slug} className={styles.article}>
+          <div className={styles.articleHeader}>
+            <div className={styles.articleHeader__title}>
+              <Link className={styles.articleTitleLink} to={`/articles/${article.slug}`}>
+                <h2 className={styles.articleTitle}>
+                  {article.title} <span className={styles.likes}>❤️ {article.favoritesCount}</span>
+                </h2>
+              </Link>
+              <span className={styles.tags}>
+                {article.tagList.map((tag) => (
+                  <span className={styles.tag} key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </span>
             </div>
-            <img className={styles.userImage} src={article.author.image} alt={article.author.username} />
-            {/* <img src={mockAva} alt={article.author.username} /> */}
+            <div className={styles.articleAuthorAndDate}>
+              <div className={styles.userNameAndCreationDate}>
+                <span className={styles.userName}>{article.author.username}</span>
+                <span className={styles.creationDate}>{format(new Date(article.createdAt), 'MMMM d, yyyy')}</span>
+              </div>
+              <img className={styles.userImage} src={article.author.image} alt={article.author.username} />
+              {/* <img src={mockAva} alt={article.author.username} /> */}
+            </div>
           </div>
+
+          <span className={styles.articleDescription}>{article.description}</span>
         </div>
       ))}
+
       <div className={styles.pagination}>
         <button onClick={() => handlePageChange(page - 1)} className={styles.arroButton} disabled={page === 1}>
           {'<'}

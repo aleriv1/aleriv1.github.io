@@ -21,6 +21,7 @@
     "react": "^19.0.0",
     "react-detect-offline": "^2.4.5",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.4",
     "react-markdown": "^10.1.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^5.3.4",

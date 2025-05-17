@@ -1,15 +1,26 @@
 @use '../../variables.scss' as *;
 
+.loading {
+  display: flex;
+  padding-top: 30px;
+  justify-content: center;
+  align-items: start;
+  height: 100vh;
+  font-size: 40px;
+  font-weight: 600;
+}
+
 .article {
-  padding: 20px;
   background: #fff;
-  margin: 20px;
   box-shadow: 0 1px 3px #0000001a;
+
+  padding: 20px;
+  margin: 20px;
 
   &Header {
     display: flex;
     justify-content: space-between;
-    &__mainGroup {
+    &__title {
       display: flex;
       flex-direction: column;
     }
@@ -33,11 +44,14 @@
   }
 
   &Description {
+    display: inline-block;
     font-family: 'Inter';
     font-size: 12px;
     line-height: 22px;
     color: $secondary-color;
     padding-top: 16px;
+
+    width: 80%;
   }
 
   &AuthorAndDate {

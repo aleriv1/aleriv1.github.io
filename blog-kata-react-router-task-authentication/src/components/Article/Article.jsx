@@ -50,7 +50,7 @@ function ArticleDetail() {
   return (
     <div className={styles.article}>
       <div className={styles.articleHeader}>
-        <div className={styles.articleHeader__mainGroup}>
+        <div className={styles.articleHeader__title}>
           <h2 className={styles.articleTitle}>
             {article.title}
             <span className={styles.likes}>❤️ {article.favoritesCount}</span>
@@ -62,7 +62,6 @@ function ArticleDetail() {
               </span>
             ))}
           </span>
-          <span className={styles.articleDescription}>{article.description}</span>
         </div>
         <div className={styles.articleAuthorAndDate}>
           <div className={styles.userNameAndCreationDate}>
@@ -74,6 +73,7 @@ function ArticleDetail() {
           {/* <img src={mockAva} alt={article.author.username} /> */}
         </div>
       </div>
+      <span className={styles.articleDescription}>{article.description}</span>
       <ReactMarkdown
         components={{
           img: (props) => <img className={styles.articleImage} {...props} />,
