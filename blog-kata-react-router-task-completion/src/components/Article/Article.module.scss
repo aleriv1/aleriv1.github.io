@@ -19,10 +19,15 @@
   &Header {
     display: flex;
     justify-content: space-between;
-    &__title {
-      display: flex;
-      flex-direction: column;
-    }
+  }
+  &TitleGroup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &TitleAndLikes {
+    display: flex;
+    align-items: center;
   }
 
   &Title {

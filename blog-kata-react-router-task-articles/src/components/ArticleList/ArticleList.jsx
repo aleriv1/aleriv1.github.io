@@ -78,8 +78,8 @@ function ArticleList() {
       {articles.map((article) => (
         <div key={article.slug} className={styles.article}>
           <div className={styles.articleHeader}>
-            <div className={styles.articleHeader__title}>
-              <div className={styles.articleTitleGroup}>
+            <div className={styles.articleTitleGroup}>
+              <div className={styles.articleTitleAndLikes}>
                 <Link className={styles.articleTitleLink} to={`/articles/${article.slug}`}>
                   <h2 className={styles.articleTitle}>{article.title}</h2>
                 </Link>

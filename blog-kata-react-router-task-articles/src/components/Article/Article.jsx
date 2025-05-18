@@ -58,8 +58,8 @@ function ArticleDetail() {
   return (
     <div className={styles.article}>
       <div className={styles.articleHeader}>
-        <div className={styles.articleHeader__title}>
-          <div className={styles.articleTitleGroup}>
+        <div className={styles.articleTitleGroup}>
+          <div className={styles.articleTitleAndLikes}>
             <h2 className={styles.articleTitle}>{article.title}</h2>
             <span className={styles.likes}>❤️ {article.favoritesCount}</span>
           </div>
