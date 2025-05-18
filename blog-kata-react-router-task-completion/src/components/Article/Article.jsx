@@ -23,7 +23,7 @@ function ArticleDetail() {
       try {
         const response = await fetch(`https://blog-platform.kata.academy/api/articles/${slug}`, {
           headers: {
-            Authorization: `Token ${localStorage.getItem('token')}`,
+            Authorization: `Token ${localStorage.getItem('token') || ''}`,
           },
         })
         if (!response.ok) throw new Error('Ошибка загрузки')
@@ -37,6 +37,24 @@ function ArticleDetail() {
     }
     fetchArticle()
   }, [slug])
+
+  const handleFavorite = async () => {
+    try {
+      const method = article.favorited ? 'DELETE' : 'POST'
+      const response = await fetch(`https://blog-platform.kata.academy/api/articles/${slug}/favorite`, {
+        method,
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      if (!response.ok) throw new Error('Ошибка изменения лайка')
+      const data = await response.json()
+      setArticle(data.article)
+    } catch (err) {
+      setError(err.message)
+    }
+  }
 
   const handleDelete = async () => {
     const response = await fetch(`https://blog-platform.kata.academy/api/articles/${slug}`, {
@@ -61,7 +79,13 @@ function ArticleDetail() {
         <div className={styles.articleTitleGroup}>
           <div className={styles.articleTitleAndLikes}>
             <h2 className={styles.articleTitle}>{article.title}</h2>
-            <span className={styles.likes}>❤️ {article.favoritesCount}</span>
+            <button
+              onClick={handleFavorite}
+              className={`${styles.likes} ${article.favorited ? styles.favorited : styles.unfavorited}`}
+              disabled={!localStorage.getItem('token')}
+            >
+              ️ {article.favoritesCount}
+            </button>
           </div>
           <div className={styles.tagsAndActions}>
             <span className={styles.tags}>

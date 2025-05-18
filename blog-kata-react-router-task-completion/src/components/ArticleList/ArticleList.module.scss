@@ -7,7 +7,6 @@
   .article {
     background: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -24,7 +23,10 @@
 
     &TitleAndLikes {
       display: flex;
+      // align-items: baseline;
       align-items: baseline;
+      line-height: 28px;
+      // align-items: center;
     }
 
     &Title {
@@ -34,7 +36,6 @@
       color: $info-color;
       font-size: 20px;
       line-height: 28px;
-      font-size: 18px;
       &Link {
         display: inline-block;
         text-decoration: none;
@@ -45,9 +46,48 @@
     .likes {
       font-family: 'Inter';
       font-size: 12px;
-      line-height: 22px;
+      line-height: 28px;
+
       margin-left: 10px;
       color: $text-color;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      &:before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    .favorited {
+      &:before {
+        background-image: url('../../assets/heart-red.png');
+      }
+    }
+
+    .unfavorited {
+      &:before {
+        background-image: url('../../assets/heart-transparent.png');
+      }
+    }
+
+    .likes:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      &:before {
+        cursor: not-allowed;
+      }
     }
 
     .tags {
@@ -61,7 +101,6 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 15px;
-
       box-sizing: border-box;
       padding: 5px;
       border: 1px solid $tag-color;
@@ -113,7 +152,6 @@
       line-height: 22px;
       color: $text-color;
       padding-top: 10px;
-
       width: 80%;
     }
   }
@@ -134,7 +172,6 @@
     border: 0;
     width: 23px;
     height: 23px;
-
     cursor: pointer;
     &:disabled {
       cursor: not-allowed;

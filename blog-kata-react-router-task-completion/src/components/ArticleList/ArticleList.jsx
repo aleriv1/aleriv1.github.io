@@ -30,7 +30,11 @@ function ArticleList() {
           data = mockArticles.slice(start, end)
         } else {
           const offset = (page - 1) * limit
-          const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`)
+          const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`, {
+            headers: {
+              Authorization: `Token ${localStorage.getItem('token') || ''}`,
+            },
+          })
           if (!response.ok) throw new Error('Ошибка загрузки ArticleList')
           data = await response.json()
         }
@@ -45,6 +49,24 @@ function ArticleList() {
 
     fetchArticles()
   }, [page, useMock])
+
+  const handleFavorite = async (slug, favorited) => {
+    try {
+      const method = favorited ? 'DELETE' : 'POST'
+      const response = await fetch(`${API_URL}/articles/${slug}/favorite`, {
+        method,
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      if (!response.ok) throw new Error('Ошибка изменения лайка')
+      const data = await response.json()
+      setArticles((prevArticles) => prevArticles.map((article) => (article.slug === slug ? data.article : article)))
+    } catch (err) {
+      setError(err.message)
+    }
+  }
 
   const handlePageChange = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
@@ -83,7 +105,13 @@ function ArticleList() {
                 <Link className={styles.articleTitleLink} to={`/articles/${article.slug}`}>
                   <h2 className={styles.articleTitle}>{article.title}</h2>
                 </Link>
-                <span className={styles.likes}>❤️ {article.favoritesCount}</span>
+                <button
+                  onClick={() => handleFavorite(article.slug, article.favorited)}
+                  className={`${styles.likes} ${article.favorited ? styles.favorited : styles.unfavorited}`}
+                  disabled={!localStorage.getItem('token')}
+                >
+                  {article.favoritesCount}
+                </button>
               </div>
               <span className={styles.tags}>
                 {article.tagList.map((tag) => (
