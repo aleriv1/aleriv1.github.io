@@ -1,12 +1,48 @@
-# React + Vite
+# Блог-платформа #2 - Аутентификация
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Документация по API](https://api.realworld.io/api-docs/)  
+[Макеты](https://www.figma.com/file/XXBjJXew3xpfbOZUnO9QVB/Blog?node-id=9582%3A0)
 
-Currently, two official plugins are available:
+Корневой URL для API: `https://blog-platform.kata.academy/api`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Добавим механизм аутентификации, регистрации и редактирования профиля.
 
-## Expanding the ESLint configuration
+1.  Создайте страницы входа и регистрации и настройте роутинг (используем react-router v5)
+2.  Сделайте форму регистрации
+3.  Сделайте форму логина
+4.  Сделайте отображение данных пользователя в шапке
+5.  Настройте клиентскую валидацию и обработку ошибок сервера (см ниже подробности)
+6.  Настройте, чтобы при перезагрузке страницы залогиненный пользователь сохранялся, сделайте функционал Log Out
+7.  Реализуйте страницу редактирования профиля (переход на эту страницу - по клику на имени/аватаре пользователя в шапке.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Страницы:
+
+- `/sign-in` - Страница входа.
+- `/sign-up` - Страница регистрации.
+- `/profile` - Страница редактирования информации пользователя (см. метод Update User). Переход на эту страницу происходит по клике на имени-аватарке в шапке.
+
+### Валидация
+
+Для клиентской валидации форм воспользуемся библиотекой [React Hook Form](https://react-hook-form.com/).
+
+Регистрация (все поля обязательны):
+
+- email должен быть корректным почтовым адресом
+- username должен быть от 3 до 20 символов (включительно)
+- password должен быть от 6 до 40 символов (включительно)
+- password и repeat password должны совпадать
+- галочка согласия с обработкой персональных данных должна быть отмечена
+
+Логин:
+
+- email должен быть не пустой, должен быть корректным почтовым адресом
+- password должен быть не пустой
+
+Редактирование профиля:
+
+- username не должен быть пустым
+- email должен быть корректным почтовым адресом, не должен быть пустым
+- new password должен быть от 6 до 40 символом
+- avatar image должен быть корректным url
+
+Серверные ошибки должны нормально подсвечивать соответствующие поля.

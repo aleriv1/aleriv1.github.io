@@ -1,12 +1,17 @@
-# React + Vite
+# Блог-платформа #3 - Статьи
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Документация по API](https://api.realworld.io/api-docs/)  
+[Макеты](https://www.figma.com/file/XXBjJXew3xpfbOZUnO9QVB/Blog?node-id=9582%3A0)
 
-Currently, two official plugins are available:
+Корневой URL для API: `https://blog-platform.kata.academy/api`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Добавьте страницу создания статьи. Правила валидации - title, short description и text обязательны для заполнения.
+2.  Добавьте страницу редактирования статьи. Реиспользуйте форму, использующуюся при создании.
+3.  Добавьте кнопки редактирования/удаления на странице статьи. Сделайте подтверждение на действие удаления.
 
-## Expanding the ESLint configuration
+Страницы:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `/new-article` - Страница создания статьи. При переходе по этой ссылке без аутентификации - перебрасывает на страницу логина (см. паттерн Private Route)
+- `/articles/{slug}/edit` - Страница редактирования статьи.
+
+На странице отображения статьи добавляем кнопки Edit и Delete. По нажатию на Edit происходит переход на страницу редактирования, по Delete - открытие модалки подтверждения и запрос на удаление статьи.

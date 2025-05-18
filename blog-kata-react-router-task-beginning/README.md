@@ -1,12 +1,25 @@
-# React + Vite
+# Блог-платформа #1 - Начало
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Наша задача в этом курсе - реализовать примитивную блог-платформу. В ходе выполения познакомимся с аутентификацией и валидацией форм.
 
-Currently, two official plugins are available:
+Проект реализуем целиком с использованием react hooks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Документация по API](https://api.realworld.io/api-docs/) ([документация api v2](https://bump.sh/doc/realworld))  
+[Макеты](https://www.figma.com/file/XXBjJXew3xpfbOZUnO9QVB/Blog?node-id=9582%3A0)
 
-## Expanding the ESLint configuration
+Корневой URL для API: `https://blog-platform.kata.academy/api`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  Реализуйте страницу со списком статей
+2.  Сделайте пагинацию. Пагинация статей должна быть на стороне сервера - при смене страницы отправляем новый запрос. Не забываем индикаторы загрузки и обработку ошибок.
+3.  Реализуйте страницу одной статьи. Обратите внимание, что полный текст статьи - это Markdown разметка, найдите подходящий модуль для вывода содержимого на экран.
+
+Используйте react-router для навигации по страницам.
+
+Страницы:
+
+- `/` и `/articles` - список всех статей. При клике на заголовок - переход на страницу статьи. Кнопка лайка не активна, т.к. мы не авторизованы.
+- `/articles/{slug}` - Просмотр статьи с полным текстом.
+
+Примечания:
+
+- Адаптивная верстка не обязательна
