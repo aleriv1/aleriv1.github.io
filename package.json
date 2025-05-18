@@ -21,6 +21,10 @@
     "blog-kata-react-router-task-articles/*.{js,jsx}": [
       "npm run lint:fix",
       "npm run format"
+    ],
+    "blog-kata-react-router-task-completion/*.{js,jsx}": [
+      "npm run lint:fix",
+      "npm run format"
     ]
   }
 }

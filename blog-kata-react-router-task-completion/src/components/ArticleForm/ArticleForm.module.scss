@@ -1,0 +1,154 @@
+@use '../../variables.scss' as *;
+
+.articleForm {
+  padding: 20px;
+  margin: 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px #0000001a;
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 20px auto;
+
+  .formHeader {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 20px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-bottom: 5px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+
+      input,
+      textarea {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .tagsSection {
+      .tagList {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .tagItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+
+        .tag {
+          width: 40%;
+          height: 40px;
+          box-sizing: border-box;
+          padding: 5px 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-family: 'Inter', sans-serif;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .tagInput {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+
+        input {
+          width: 40%;
+          height: 40px;
+          box-sizing: border-box;
+          padding: 5px 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-family: 'Inter', sans-serif;
+          font-size: 14px;
+        }
+      }
+
+      .deleteTag {
+        width: 20%;
+        height: 40px;
+        padding: 5px 10px;
+        background: transparent;
+        color: #ff4d4f;
+        border: 1px solid #ff4d4f;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+
+      .addTag {
+        width: 20%;
+        height: 40px;
+        padding: 5px 10px;
+        background: transparent;
+        color: #1890ff;
+        border: 1px solid #1890ff;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+    }
+
+    .submitButton {
+      padding: 10px;
+      background: #1890ff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 40%;
+    }
+  }
+}
+
+.inputGroup {
+  &Title,
+  &Description,
+  &Text {
+    font-family: 'Roboto', sans-serif;
+    color: $form-color;
+  }
+}
+
+.tags {
+  font-family: 'Roboto', sans-serif;
+  color: $form-color;
+}
