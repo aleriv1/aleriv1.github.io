@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
 
-// import mockAva from '../../assets/mockAva.png'
-import { mockArticles } from '../../mockData'
-
 import styles from './ArticleList.module.scss'
 
 const API_URL = 'https://blog-platform.kata.academy/api'
@@ -15,7 +12,6 @@ function ArticleList() {
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [useMock] = useState(false)
   const limit = 4
 
   useEffect(() => {
@@ -24,20 +20,14 @@ function ArticleList() {
       setError(null)
       try {
         let data
-        if (useMock) {
-          const start = (page - 1) * 3
-          const end = start + 3
-          data = mockArticles.slice(start, end)
-        } else {
-          const offset = (page - 1) * limit
-          const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`, {
-            headers: {
-              Authorization: `Token ${localStorage.getItem('token') || ''}`,
-            },
-          })
-          if (!response.ok) throw new Error('Ошибка загрузки ArticleList')
-          data = await response.json()
-        }
+        const offset = (page - 1) * limit
+        const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('token') || ''}`,
+          },
+        })
+        if (!response.ok) throw new Error('Ошибка загрузки ArticleList')
+        data = await response.json()
         setArticles(data.articles || data)
         setTotalPages(Math.ceil(data.articlesCount / limit))
       } catch (err) {
@@ -48,7 +38,7 @@ function ArticleList() {
     }
 
     fetchArticles()
-  }, [page, useMock])
+  }, [page])
 
   const handleFavorite = async (slug, favorited) => {
     try {

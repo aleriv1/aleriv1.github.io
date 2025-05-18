@@ -83,7 +83,9 @@ function SignIn() {
           {errors.password && <span className={styles.error}>{errors.password.message}</span>}
         </label>
 
-        {serverError && <div className={styles.serverError}>{serverError}</div>}
+        {serverError && (
+          <div className={styles.serverError}>Такого пользователя не существует либо Вы ввели неправильный пароль</div>
+        )}
 
         <button type="submit" className={styles.submitButton}>
           Login
