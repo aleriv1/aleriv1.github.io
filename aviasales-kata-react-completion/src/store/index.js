@@ -13,6 +13,7 @@ import {
   SET_LOADING,
   SET_ERROR,
   SET_SORT_TYPE,
+  // SET_VISIBLE_TICKETS,
 } from './actionTypes'
 
 // #region action creators
@@ -50,6 +51,11 @@ export const setSortType = (sortType) => ({
   type: SET_SORT_TYPE,
   payload: sortType,
 })
+
+// export const setVisibleTickets = (count) => ({
+//   type: SET_VISIBLE_TICKETS,
+//   payload: count,
+// })
 // #endregion action creators
 
 // #region async actions
@@ -78,6 +84,9 @@ export const fetchTickets = (searchId) => async (dispatch, getState) => {
 
     const currentTickets = getState().tickets.tickets
     dispatch(setTickets([...currentTickets, ...data.tickets]))
+
+    // const newVisibleCount = Math.min(currentTickets.length + data.tickets.length, currentTickets.length + 5)
+    // dispatch(setVisibleTickets(newVisibleCount))
 
     if (!data.stop) {
       dispatch(fetchTickets(searchId))

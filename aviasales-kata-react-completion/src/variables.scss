@@ -7,4 +7,9 @@ $checkbox-size: 18px;
 
 body {
   background: $background-color;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
