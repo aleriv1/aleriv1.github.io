@@ -1,11 +1,9 @@
 import { SET_SEARCH_ID, SET_TICKETS, SET_SORT_TYPE } from './actionTypes'
-// import { SET_VISIBLE_TICKETS } from './actionTypes'
 
 const initialState = {
   searchId: null,
   tickets: [],
   sortType: 'cheapest',
-  // visibleTickets: 5,
 }
 
 /* eslint-disable indent */
@@ -19,9 +17,6 @@ const ticketsReducer = (state = initialState, action) => {
 
     case SET_SORT_TYPE:
       return { ...state, sortType: action.payload }
-
-    // case SET_VISIBLE_TICKETS:
-    //   return { ...state, visibleTickets: action.payload }
 
     default:
       return state
