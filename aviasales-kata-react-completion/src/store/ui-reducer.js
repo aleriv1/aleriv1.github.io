@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createSelector } from '@reduxjs/toolkit'
 
 import { fetchSearchId, fetchTickets } from './tickets-reducer'
 
@@ -35,9 +35,14 @@ const uiSlice = createSlice({
     builder.addCase(fetchTickets.rejected, (state, action) => {
       state.loading = false
       state.error = action.error.message
-      setTimeout(() => action.meta.dispatch(fetchTickets(action.meta.arg)), 3000)
+      setTimeout(() => action.meta.dispatch(fetchTickets(action.meta.arg)), 1500)
     })
   },
 })
+
+const selectUiState = (state) => state.ui
+
+export const selectLoading = createSelector(selectUiState, (uiState) => uiState.loading)
+export const selectError = createSelector(selectUiState, (uiState) => uiState.error)
 
 export default uiSlice.reducer

@@ -5,17 +5,19 @@ import Header from '../header/header'
 import Sidebar from '../sidebar/sidebar'
 import TicketList from '../ticket-list/ticket-list'
 import Tabs from '../tabs/tabs'
-import { fetchSearchId } from '../../store/tickets-reducer'
+import { fetchSearchId, selectSortType, selectTickets } from '../../store/tickets-reducer'
 import { filterTickets, sortTickets } from '../utils/filter-sort-tickets'
+import { selectLoading } from '../../store/ui-reducer'
+import { selectFilters } from '../../store/filters-reducer'
 
 import styles from './app.module.scss'
 
 const App = () => {
   const dispatch = useDispatch()
-  const tickets = useSelector((state) => state.tickets.tickets)
-  const loading = useSelector((state) => state.ui.loading)
-  const filters = useSelector((state) => state.filters)
-  const sortType = useSelector((state) => state.tickets.sortType)
+  const tickets = useSelector(selectTickets)
+  const loading = useSelector(selectLoading)
+  const filters = useSelector(selectFilters)
+  const sortType = useSelector(selectSortType)
 
   const [visibleTickets, setVisibleTickets] = useState(5)
 

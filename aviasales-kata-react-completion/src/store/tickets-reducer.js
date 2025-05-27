@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 
 export const fetchSearchId = createAsyncThunk('tickets/fetchSearchId', async (_, { dispatch }) => {
   const response = await fetch('https://aviasales-test-api.kata.academy/search')
@@ -42,6 +42,10 @@ const ticketsSlice = createSlice({
     })
   },
 })
+
+const seletTicketsState = (state) => state.tickets
+export const selectTickets = createSelector(seletTicketsState, (ticketState) => ticketState.tickets)
+export const selectSortType = createSelector(seletTicketsState, (ticketState) => ticketState.sortType)
 
 export const { setSortType } = ticketsSlice.actions
 export default ticketsSlice.reducer

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createSelector } from '@reduxjs/toolkit'
 
 const initialState = {
   all: true,
@@ -30,6 +30,10 @@ const filtersSlice = createSlice({
     },
   },
 })
+
+const selectFiltersState = (state) => state.filters
+
+export const selectFilters = createSelector(selectFiltersState, (filterState) => filterState)
 
 export const { toggleFilter, toggleAllFilters } = filtersSlice.actions
 export default filtersSlice.reducer
