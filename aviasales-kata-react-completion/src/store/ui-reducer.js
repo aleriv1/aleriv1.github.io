@@ -1,23 +1,43 @@
-import { SET_LOADING, SET_ERROR } from './actionTypes'
+import { createSlice } from '@reduxjs/toolkit'
+
+import { fetchSearchId, fetchTickets } from './tickets-reducer'
 
 const initialState = {
   loading: false,
   error: null,
 }
 
-/* eslint-disable indent */
-const uiReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_LOADING:
-      return { ...state, loading: action.payload }
+const uiSlice = createSlice({
+  name: 'ui',
+  initialState,
+  reducers: {},
+  // async actions
+  extraReducers: (builder) => {
+    builder.addCase(fetchSearchId.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(fetchSearchId.fulfilled, (state) => {
+      state.loading = false
+    })
+    builder.addCase(fetchSearchId.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+      setTimeout(() => action.meta.dispatch(fetchSearchId()), 3000)
+    })
+    builder.addCase(fetchTickets.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(fetchTickets.fulfilled, (state) => {
+      state.loading = false
+    })
+    builder.addCase(fetchTickets.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+      setTimeout(() => action.meta.dispatch(fetchTickets(action.meta.arg)), 3000)
+    })
+  },
+})
 
-    case SET_ERROR:
-      return { ...state, error: action.payload }
-
-    default:
-      return state
-  }
-}
-/* eslint-disable indent */
-
-export default uiReducer
+export default uiSlice.reducer

@@ -1,4 +1,4 @@
-import { TOGGLE_FILTER, TOGGLE_ALL_FILTERS } from './actionTypes'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   all: true,
@@ -8,42 +8,28 @@ const initialState = {
   threeStops: true,
 }
 
-/* eslint-disable indent */
-const filtersReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case TOGGLE_FILTER: {
-      const newFilters = { ...state, [action.payload]: !state[action.payload] }
-
-      if (action.payload !== 'all' && state.all && !newFilters[action.payload]) {
-        newFilters.all = false
+const filtersSlice = createSlice({
+  name: 'filters',
+  initialState,
+  reducers: {
+    toggleFilter(state, action) {
+      state[action.payload] = !state[action.payload]
+      if (action.payload !== 'all' && state.all && !state[action.payload]) {
+        state.all = false
       }
-
-      if (
-        action.payload !== 'all' &&
-        newFilters.noStops &&
-        newFilters.oneStop &&
-        newFilters.twoStops &&
-        newFilters.threeStops
-      ) {
-        newFilters.all = true
+      if (action.payload !== 'all' && state.noStops && state.oneStop && state.twoStops && state.threeStops) {
+        state.all = true
       }
+    },
+    toggleAllFilters(state, action) {
+      state.all = action.payload
+      state.noStops = action.payload
+      state.oneStop = action.payload
+      state.twoStops = action.payload
+      state.threeStops = action.payload
+    },
+  },
+})
 
-      return newFilters
-    }
-
-    case TOGGLE_ALL_FILTERS:
-      return {
-        all: action.payload,
-        noStops: action.payload,
-        oneStop: action.payload,
-        twoStops: action.payload,
-        threeStops: action.payload,
-      }
-
-    default:
-      return state
-  }
-}
-/* eslint-disable indent */
-
-export default filtersReducer
+export const { toggleFilter, toggleAllFilters } = filtersSlice.actions
+export default filtersSlice.reducer

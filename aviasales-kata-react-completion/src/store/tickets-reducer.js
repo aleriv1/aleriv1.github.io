@@ -1,4 +1,23 @@
-import { SET_SEARCH_ID, SET_TICKETS, SET_SORT_TYPE } from './actionTypes'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+export const fetchSearchId = createAsyncThunk('tickets/fetchSearchId', async (_, { dispatch }) => {
+  const response = await fetch('https://aviasales-test-api.kata.academy/search')
+  if (!response.ok) throw new Error('Ошибка при получении searchId')
+  const data = await response.json()
+  dispatch(fetchTickets(data.searchId))
+  return data.searchId
+})
+
+export const fetchTickets = createAsyncThunk('tickets/fetchTickets', async (searchId, { dispatch, getState }) => {
+  const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+  if (!response.ok) throw new Error('Ошибка при получении билетов')
+  const data = await response.json()
+  const currentTickets = getState().tickets.tickets
+  if (!data.stop) {
+    dispatch(fetchTickets(searchId))
+  }
+  return [...currentTickets, ...data.tickets]
+})
 
 const initialState = {
   searchId: null,
@@ -6,22 +25,23 @@ const initialState = {
   sortType: 'cheapest',
 }
 
-/* eslint-disable indent */
-const ticketsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_SEARCH_ID:
-      return { ...state, searchId: action.payload }
+const ticketsSlice = createSlice({
+  name: 'tickets',
+  initialState,
+  reducers: {
+    setSortType(state, action) {
+      state.sortType = action.payload
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchSearchId.fulfilled, (state, action) => {
+      state.searchId = action.payload
+    })
+    builder.addCase(fetchTickets.fulfilled, (state, action) => {
+      state.tickets = action.payload
+    })
+  },
+})
 
-    case SET_TICKETS:
-      return { ...state, tickets: action.payload }
-
-    case SET_SORT_TYPE:
-      return { ...state, sortType: action.payload }
-
-    default:
-      return state
-  }
-}
-/* eslint-disable indent */
-
-export default ticketsReducer
+export const { setSortType } = ticketsSlice.actions
+export default ticketsSlice.reducer

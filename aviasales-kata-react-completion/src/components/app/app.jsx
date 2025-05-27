@@ -5,7 +5,7 @@ import Header from '../header/header'
 import Sidebar from '../sidebar/sidebar'
 import TicketList from '../ticket-list/ticket-list'
 import Tabs from '../tabs/tabs'
-import { fetchSearchId } from '../../store'
+import { fetchSearchId } from '../../store/tickets-reducer'
 import { filterTickets, sortTickets } from '../utils/filter-sort-tickets'
 
 import styles from './app.module.scss'

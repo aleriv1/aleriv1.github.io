@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setSortType } from '../../store'
+// import { setSortType } from '../../store'
+import { setSortType } from '../../store/tickets-reducer'
 
 import styles from './tabs.module.scss'
 
