@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -8,17 +8,23 @@ import { useLoginMutation, api } from '../../store/api'
 
 import styles from './SignIn.module.scss'
 function SignIn() {
+  const [errorMessage, setErrorMessage] = useState(null)
   const { setUser } = useContext(AuthContext)
   const history = useHistory()
-  const disaptch = useDispatch()
-  const [login, { isLoading: isSubmitting }] = useLoginMutation()
+  const dispatch = useDispatch()
+  const [login, { isLoading: isSubmitting, reset }] = useLoginMutation()
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
+    // setError,
+    clearErrors,
+    reset: resetForm,
   } = useForm()
   const onSubmit = async (data) => {
+    clearErrors()
+    reset()
+    console.log('isSubmitting:', isSubmitting)
     try {
       const result = await login({
         email: data.email,
@@ -27,23 +33,12 @@ function SignIn() {
       localStorage.setItem('token', result.user.token)
       localStorage.setItem('user', JSON.stringify(result.user))
       setUser(result.user)
-      disaptch(api.util.invalidateTags(['Articles', 'Article']))
+      dispatch(api.util.invalidateTags(['Articles', 'Article']))
+      resetForm({ email: data.email, password: data.password })
       history.push('/')
     } catch (err) {
-      if (err.data?.errors) {
-        Object.keys(err.data.errors).forEach((field) => {
-          if (field === 'email or password') {
-            setError('general', { type: 'server', message: 'Неверный email или пароль' })
-          } else {
-            setError(setError('general', { type: 'server', message: 'Ошибка входа' }))
-          }
-        })
-      } else {
-        setError('general', {
-          type: 'server',
-          message: 'Неверный email или пароль',
-        })
-      }
+      console.log('Login error:', err)
+      setErrorMessage('Неверный логин или пароль')
     }
   }
   return (
@@ -78,7 +73,7 @@ function SignIn() {
           />
           {errors.password && <span className={styles.error}>{errors.password.message}</span>}
         </label>
-        {errors.general && <div className={styles.serverError}>{errors.general.message}</div>}
+        {errorMessage && <div className={styles.serverError}>{errorMessage}</div>}
         <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
           Login
         </button>
