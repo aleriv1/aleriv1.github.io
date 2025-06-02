@@ -1,54 +1,51 @@
-import React, { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { AuthContext } from '../../App'
+import { useLoginMutation, api } from '../../store/api'
 
 import styles from './SignIn.module.scss'
-
-const API_URL = 'https://blog-platform.kata.academy/api'
-
 function SignIn() {
   const { setUser } = useContext(AuthContext)
   const history = useHistory()
-  const [serverError, setServerError] = useState(null)
-
+  const disaptch = useDispatch()
+  const [login, { isLoading: isSubmitting }] = useLoginMutation()
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm()
-
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(`${API_URL}/users/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user: {
-            email: data.email,
-            password: data.password,
-          },
-        }),
-      })
-
-      const result = await response.json()
-
-      if (!response.ok) {
-        throw new Error(result.errors || 'Ошибка входа')
-      }
-
+      const result = await login({
+        email: data.email,
+        password: data.password,
+      }).unwrap()
       localStorage.setItem('token', result.user.token)
       localStorage.setItem('user', JSON.stringify(result.user))
       setUser(result.user)
+      disaptch(api.util.invalidateTags(['Articles', 'Article']))
       history.push('/')
     } catch (err) {
-      setServerError(err.message)
+      if (err.data?.errors) {
+        Object.keys(err.data.errors).forEach((field) => {
+          if (field === 'email or password') {
+            setError('general', { type: 'server', message: 'Неверный email или пароль' })
+          } else {
+            setError(setError('general', { type: 'server', message: 'Ошибка входа' }))
+          }
+        })
+      } else {
+        setError('general', {
+          type: 'server',
+          message: 'Неверный email или пароль',
+        })
+      }
     }
   }
-
   return (
     <div className={styles.signIn}>
       <h2 className={styles.title}>Sign In</h2>
@@ -69,7 +66,6 @@ function SignIn() {
           />
           {errors.email && <span className={styles.error}>{errors.email.message}</span>}
         </label>
-
         <label className={styles.label}>
           Password
           <input
@@ -82,15 +78,10 @@ function SignIn() {
           />
           {errors.password && <span className={styles.error}>{errors.password.message}</span>}
         </label>
-
-        {serverError && (
-          <div className={styles.serverError}>Такого пользователя не существует либо Вы ввели неправильный пароль</div>
-        )}
-
-        <button type="submit" className={styles.submitButton}>
+        {errors.general && <div className={styles.serverError}>{errors.general.message}</div>}
+        <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
           Login
         </button>
-
         <p className={styles.signUpLink}>
           Don’t have an account? <Link to="/sign-up">Sign Up.</Link>
         </p>

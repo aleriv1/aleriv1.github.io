@@ -1,95 +1,55 @@
-import React, { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { format } from 'date-fns'
 
 import { AuthContext } from '../../App'
+import { useGetArticleQuery, useToggleFavoriteMutation, useDeleteArticleMutation } from '../../store/api'
 
 import styles from './Article.module.scss'
-
 function ArticleDetail() {
   const { slug } = useParams()
-  const [article, setArticle] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const history = useHistory()
-  const { user } = React.useContext(AuthContext)
-
-  React.useEffect(() => {
-    const fetchArticle = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        const response = await fetch(`https://blog-platform.kata.academy/api/articles/${slug}`, {
-          headers: {
-            Authorization: `Token ${localStorage.getItem('token') || ''}`,
-          },
-        })
-        if (!response.ok) throw new Error('Ошибка загрузки')
-        const data = await response.json()
-        setArticle(data.article)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchArticle()
-  }, [slug])
-
+  const { user } = useContext(AuthContext)
+  const { data: article, isLoading: loading, error } = useGetArticleQuery(slug)
+  const [toggleFavorite, { isLoading: isLiking }] = useToggleFavoriteMutation()
+  const [deleteArticle, { isLoading: isDeleting }] = useDeleteArticleMutation()
   const handleFavorite = async () => {
     try {
-      const method = article.favorited ? 'DELETE' : 'POST'
-      const response = await fetch(`https://blog-platform.kata.academy/api/articles/${slug}/favorite`, {
-        method,
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json',
-        },
-      })
-      if (!response.ok) throw new Error('Ошибка изменения лайка')
-      const data = await response.json()
-      setArticle(data.article)
+      await toggleFavorite({ slug, favorited: article.article.favorited }).unwrap()
     } catch (err) {
-      setError(err.message)
+      console.error(err)
     }
   }
-
   const handleDelete = async () => {
-    const response = await fetch(`https://blog-platform.kata.academy/api/articles/${slug}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Token ${localStorage.getItem('token')}`,
-      },
-    })
-    if (response.ok) {
+    try {
+      await deleteArticle(slug).unwrap()
       history.push('/articles')
+    } catch (err) {
+      console.error(err)
     }
-    setShowDeleteModal(false)
   }
-
   if (loading) return <div className={styles.loading}>Загрузка...</div>
-  if (error) return <div className={styles.error}>{error}</div>
+  if (error) return <div className={styles.error}>Ошибка загрузки</div>
   if (!article) return null
-
   return (
     <div className={styles.article}>
       <div className={styles.articleHeader}>
         <div className={styles.articleTitleGroup}>
           <div className={styles.articleTitleAndLikes}>
-            <h2 className={styles.articleTitle}>{article.title}</h2>
+            <h2 className={styles.articleTitle}>{article.article.title}</h2>
             <button
               onClick={handleFavorite}
-              className={`${styles.likes} ${article.favorited ? styles.favorited : styles.unfavorited}`}
-              disabled={!localStorage.getItem('token')}
+              className={`${styles.likes} ${article.article.favorited ? styles.favorited : styles.unfavorited}`}
+              disabled={!localStorage.getItem('token') || isLiking}
             >
-              ️ {article.favoritesCount}
+              {article.article.favoritesCount}
             </button>
           </div>
           <div className={styles.tagsAndActions}>
             <span className={styles.tags}>
-              {article.tagList.map((tag) => (
+              {article.article.tagList.map((tag) => (
                 <span className={styles.tag} key={tag}>
                   {tag}
                 </span>
@@ -99,20 +59,24 @@ function ArticleDetail() {
         </div>
         <div className={styles.articleAuthorAndDate}>
           <div className={styles.userNameAndCreationDate}>
-            <span className={styles.userName}>{article.author.username}</span>
-            <span className={styles.creationDate}>{format(new Date(article.createdAt), 'MMMM d, yyyy')}</span>
+            <span className={styles.userName}>{article.article.author.username}</span>
+            <span className={styles.creationDate}>{format(new Date(article.article.createdAt), 'MMMM d, yyyy')}</span>
           </div>
-          <img className={styles.userImage} src={article.author.image} alt={article.author.username} />
+          <img className={styles.userImage} src={article.article.author.image} alt={article.article.author.username} />
         </div>
       </div>
       <div className={styles.descriptionAndControl}>
-        <span className={styles.articleDescription}>{article.description}</span>
-        {user && user.username === article.author.username && (
+        <span className={styles.articleDescription}>{article.article.description}</span>
+        {user && user.username === article.article.author.username && (
           <div className={styles.articleActions}>
-            <button onClick={() => setShowDeleteModal(true)} className={styles.deleteButton}>
+            <button onClick={() => setShowDeleteModal(true)} className={styles.deleteButton} disabled={isDeleting}>
               Delete
             </button>
-            <button onClick={() => history.push(`/articles/${slug}/edit`)} className={styles.editButton}>
+            <button
+              onClick={() => history.push(`/articles/${slug}/edit`)}
+              className={styles.editButton}
+              disabled={isDeleting}
+            >
               Edit
             </button>
           </div>
@@ -123,17 +87,17 @@ function ArticleDetail() {
           img: (props) => <img className={styles.articleImage} {...props} />,
         }}
       >
-        {article.body}
+        {article.article.body}
       </ReactMarkdown>
       {showDeleteModal && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <p>Are you sure to delete this article?</p>
             <div className={styles.modalButtons}>
-              <button onClick={() => setShowDeleteModal(false)} className={styles.noButton}>
+              <button onClick={() => setShowDeleteModal(false)} className={styles.noButton} disabled={isDeleting}>
                 No
               </button>
-              <button onClick={handleDelete} className={styles.yesButton}>
+              <button onClick={handleDelete} className={styles.yesButton} disabled={isDeleting}>
                 Yes
               </button>
             </div>
@@ -143,5 +107,4 @@ function ArticleDetail() {
     </div>
   )
 }
-
 export default ArticleDetail

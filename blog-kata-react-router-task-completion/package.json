@@ -13,6 +13,7 @@
     "format": "prettier --write src/**/*.{js,jsx,json,css,md}"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "antd": "^5.24.4",
     "date-fns": "^4.1.0",
     "eslint-plugin-react-refresh": "^0.4.20",

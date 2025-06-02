@@ -1,93 +1,89 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
 import { format } from 'date-fns'
 
+import { useGetArticlesQuery, useToggleFavoriteMutation } from '../../store/api'
+
 import styles from './ArticleList.module.scss'
-
-const API_URL = 'https://blog-platform.kata.academy/api'
-
 function ArticleList() {
-  const [articles, setArticles] = useState([])
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
   const limit = 4
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        let data
-        const offset = (page - 1) * limit
-        const response = await fetch(`${API_URL}/articles?limit=${limit}&offset=${offset}`, {
-          headers: {
-            Authorization: `Token ${localStorage.getItem('token') || ''}`,
-          },
-        })
-        if (!response.ok) throw new Error('Ошибка загрузки ArticleList')
-        data = await response.json()
-        setArticles(data.articles || data)
-        setTotalPages(Math.ceil(data.articlesCount / limit))
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchArticles()
-  }, [page])
-
+  const location = useLocation()
+  const history = useHistory()
+  const query = new URLSearchParams(location.search)
+  const page = parseInt(query.get('page') || '1', 10)
+  const { data, isLoading: loading, error } = useGetArticlesQuery({ page, limit })
+  const [toggleFavorite, { isLoading: isLiking }] = useToggleFavoriteMutation()
   const handleFavorite = async (slug, favorited) => {
     try {
-      const method = favorited ? 'DELETE' : 'POST'
-      const response = await fetch(`${API_URL}/articles/${slug}/favorite`, {
-        method,
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json',
-        },
-      })
-      if (!response.ok) throw new Error('Ошибка изменения лайка')
-      const data = await response.json()
-      setArticles((prevArticles) => prevArticles.map((article) => (article.slug === slug ? data.article : article)))
+      await toggleFavorite({ slug, favorited }).unwrap()
     } catch (err) {
-      setError(err.message)
+      console.error(err)
     }
   }
-
   const handlePageChange = (newPage) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      setPage(newPage)
+    if (newPage > 0 && newPage <= (data?.articlesCount ? Math.ceil(data.articlesCount / limit) : 1)) {
+      history.push(`/articles?page=${newPage}`)
     }
   }
-
   const renderPageButtons = () => {
     const pages = []
-    for (let i = 1; i <= totalPages; i++) {
-      {
-        pages.push(
-          <button
-            key={i}
-            onClick={() => handlePageChange(i)}
-            className={page === i ? styles.activeButton : styles.notActiveButton}
-          >
-            {i}
-          </button>
-        )
-      }
+    const maxButtons = 5
+    const totalPages = data?.articlesCount ? Math.ceil(data.articlesCount / limit) : 1
+    let startPage = Math.max(1, page - 2)
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1)
+
+    if (endPage - startPage + 1 < maxButtons) {
+      startPage = Math.max(1, endPage - maxButtons + 1)
     }
+
+    if (startPage > 1) {
+      pages.push(
+        <button
+          key={1}
+          onClick={() => handlePageChange(1)}
+          className={page === 1 ? styles.activeButton : styles.notActiveButton}
+          disabled={page === 1 || loading}
+        >
+          1
+        </button>
+      )
+      if (startPage > 2) pages.push(<span key="start-ellipsis">...</span>)
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          className={page === i ? styles.activeButton : styles.notActiveButton}
+          disabled={page === i || loading}
+        >
+          {i}
+        </button>
+      )
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) pages.push(<span key="end-ellipsis">...</span>)
+      pages.push(
+        <button
+          key={totalPages}
+          onClick={() => handlePageChange(totalPages)}
+          className={page === totalPages ? styles.activeButton : styles.notActiveButton}
+          disabled={page === totalPages || loading}
+        >
+          {totalPages}
+        </button>
+      )
+    }
+
     return pages
   }
-
   return (
     <div className={styles.articleList}>
       {loading && <div className={styles.loading}>Загрузка...</div>}
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <div className={styles.error}>Ошибка загрузки</div>}
 
-      {articles.map((article) => (
+      {data?.articles?.map((article) => (
         <div key={article.slug} className={styles.article}>
           <div className={styles.articleHeader}>
             <div className={styles.articleTitleGroup}>
@@ -98,7 +94,7 @@ function ArticleList() {
                 <button
                   onClick={() => handleFavorite(article.slug, article.favorited)}
                   className={`${styles.likes} ${article.favorited ? styles.favorited : styles.unfavorited}`}
-                  disabled={!localStorage.getItem('token')}
+                  disabled={!localStorage.getItem('token') || isLiking}
                 >
                   {article.favoritesCount}
                 </button>
@@ -119,22 +115,28 @@ function ArticleList() {
               <img className={styles.userImage} src={article.author.image} alt={article.author.username} />
             </div>
           </div>
-
           <span className={styles.articleDescription}>{article.description}</span>
         </div>
       ))}
 
       <div className={styles.pagination}>
-        <button onClick={() => handlePageChange(page - 1)} className={styles.arroButton} disabled={page === 1}>
+        <button
+          onClick={() => handlePageChange(page - 1)}
+          className={styles.arroButton}
+          disabled={page === 1 || loading}
+        >
           {'<'}
         </button>
         {renderPageButtons()}
-        <button onClick={() => handlePageChange(page + 1)} className={styles.arroButton} disabled={page === totalPages}>
+        <button
+          onClick={() => handlePageChange(page + 1)}
+          className={styles.arroButton}
+          disabled={page === (data?.articlesCount ? Math.ceil(data.articlesCount / limit) : 1) || loading}
+        >
           {'>'}
         </button>
       </div>
     </div>
   )
 }
-
 export default ArticleList

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import styles from './ArticleForm.module.scss'
 
-function ArticleForm({ onSubmit, defaultValues }) {
+function ArticleForm({ onSubmit, defaultValues, isSubmitting }) {
   const {
     register,
     handleSubmit,
@@ -12,7 +12,7 @@ function ArticleForm({ onSubmit, defaultValues }) {
     defaultValues: defaultValues || {},
   })
 
-  const [tags, setTags] = useState(defaultValues?.tags?.split(',').filter((tag) => tag) || [])
+  const [tags, setTags] = useState(defaultValues?.tags?.filter((tag) => tag) || [])
   const [newTag, setNewTag] = useState('')
 
   const handleAddTag = () => {
@@ -33,7 +33,7 @@ function ArticleForm({ onSubmit, defaultValues }) {
   const onFormSubmit = (data) => {
     onSubmit({
       ...data,
-      tags: tags.join(','),
+      tags: tags,
     })
   }
 
@@ -82,7 +82,7 @@ function ArticleForm({ onSubmit, defaultValues }) {
             </button>
           </div>
         </div>
-        <button type="submit" className={styles.submitButton}>
+        <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
           Send
         </button>
       </form>

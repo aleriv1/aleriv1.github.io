@@ -1,6 +1,8 @@
 import { useState, useEffect, createContext } from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
+import { api } from './store/api'
 import ArticleList from './components/ArticleList/ArticleList'
 import ArticleDetail from './components/Article/Article'
 import SignUp from './components/SignUp/SignUp'
@@ -15,6 +17,7 @@ export const AuthContext = createContext()
 
 function App() {
   const [user, setUser] = useState(null)
+  const disaptch = useDispatch()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -28,6 +31,7 @@ function App() {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
     setUser(null)
+    disaptch(api.util.invalidateTags(['Articles', 'Article']))
   }
 
   const PrivateRoute = ({ component: Component, ...rest }) => (

@@ -1,58 +1,53 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
+import { useRegisterMutation } from '../../store/api'
 
 import styles from './SignUp.module.scss'
-
-const API_URL = 'https://blog-platform.kata.academy/api'
 
 function SignUp() {
   const { setUser } = useContext(AuthContext)
   const history = useHistory()
-  const [serverError, setServerError] = useState(null)
+  const [registerUser, { isLoading: isSubmitting }] = useRegisterMutation()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    setError,
   } = useForm()
 
   const password = watch('password')
-
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(`${API_URL}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user: {
-            username: data.username,
-            email: data.email,
-            password: data.password,
-          },
-        }),
-      })
-
-      const result = await response.json()
-
-      if (!response.ok) {
-        throw new Error(result.errors || 'Ошибка регистрации')
-      }
-
+      const result = await registerUser({
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      }).unwrap()
       localStorage.setItem('token', result.user.token)
       localStorage.setItem('user', JSON.stringify(result.user))
       setUser(result.user)
       history.push('/')
     } catch (err) {
-      setServerError(err.message)
+      if (err.data?.errors) {
+        Object.keys(err.data.errors).forEach((field) => {
+          setError(field, {
+            type: 'server',
+            message: Array.isArray(err.data.errors[field]) ? err.data.errors[field].join(', ') : err.data.errors[field],
+          })
+        })
+      } else {
+        setError('general', {
+          type: 'server',
+          message: 'Ошибка регистрации',
+        })
+      }
     }
   }
-
   return (
     <div className={styles.signUp}>
       <h2 className={styles.title}>Create new account</h2>
@@ -77,7 +72,6 @@ function SignUp() {
           />
           {errors.username && <span className={styles.error}>{errors.username.message}</span>}
         </label>
-
         <label className={styles.label}>
           Email address
           <input
@@ -94,7 +88,6 @@ function SignUp() {
           />
           {errors.email && <span className={styles.error}>{errors.email.message}</span>}
         </label>
-
         <label className={styles.label}>
           Password
           <input
@@ -115,7 +108,6 @@ function SignUp() {
           />
           {errors.password && <span className={styles.error}>{errors.password.message}</span>}
         </label>
-
         <label className={styles.label}>
           Repeat Password
           <input
@@ -129,7 +121,6 @@ function SignUp() {
           />
           {errors.repeatPassword && <span className={styles.error}>{errors.repeatPassword.message}</span>}
         </label>
-
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
@@ -140,13 +131,10 @@ function SignUp() {
           I agree to the processing of my personal information
           {errors.agree && <span className={styles.error}>{errors.agree.message}</span>}
         </label>
-
-        {serverError && <div className={styles.serverError}>{serverError}</div>}
-
-        <button type="submit" className={styles.submitButton}>
+        {errors.general && <div className={styles.serverError}>{errors.general.message}</div>}
+        <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
           Create
         </button>
-
         <p className={styles.signInLink}>
           Already have an account? <Link to="/sign-in">Sign In.</Link>
         </p>

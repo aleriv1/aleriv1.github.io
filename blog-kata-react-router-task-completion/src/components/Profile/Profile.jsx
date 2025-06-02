@@ -1,22 +1,20 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
+import { useUpdateUserMutation } from '../../store/api'
 
 import styles from './Profile.module.scss'
-
-const API_URL = 'https://blog-platform.kata.academy/api'
-
 function Profile() {
   const { user, setUser } = useContext(AuthContext)
   const history = useHistory()
-  const [serverError, setServerError] = useState(null)
-
+  const [updateUser, { isLoading: isSubmitting }] = useUpdateUserMutation()
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm({
     defaultValues: {
       username: user?.username || '',
@@ -25,37 +23,32 @@ function Profile() {
       image: user?.image || '',
     },
   })
-
   const onSubmit = async (data) => {
     try {
-      const token = localStorage.getItem('token')
-      const response = await fetch(`${API_URL}/user`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-        body: JSON.stringify({
-          user: {
-            username: data.username,
-            email: data.email,
-            password: data.password || undefined,
-            image: data.image || undefined,
-          },
-        }),
-      })
-
-      const result = await response.json()
-
-      if (!response.ok) {
-        throw new Error(result.errors || 'Ошибка обновления профиля')
+      const userData = {
+        username: data.username,
+        email: data.email,
+        ...(data.password && { password: data.password }),
+        ...(data.image && { image: data.image }),
       }
-
+      const result = await updateUser(userData).unwrap()
       localStorage.setItem('user', JSON.stringify(result.user))
       setUser(result.user)
       history.push('/')
     } catch (err) {
-      setServerError(err.message)
+      if (err.data?.errors) {
+        Object.keys(err.data.errors).forEach((field) => {
+          setError(field, {
+            type: 'server',
+            message: Array.isArray(err.data.errors[field]) ? err.data.errors[field].join(', ') : err.data.errors[field],
+          })
+        })
+      } else {
+        setError('general', {
+          type: 'server',
+          message: 'Ошибка обновления профиля',
+        })
+      }
     }
   }
 
@@ -83,7 +76,6 @@ function Profile() {
           />
           {errors.username && <span className={styles.error}>{errors.username.message}</span>}
         </label>
-
         <label className={styles.label}>
           Email address
           <input
@@ -100,7 +92,6 @@ function Profile() {
           />
           {errors.email && <span className={styles.error}>{errors.email.message}</span>}
         </label>
-
         <label className={styles.label}>
           New password
           <input
@@ -120,7 +111,6 @@ function Profile() {
           />
           {errors.password && <span className={styles.error}>{errors.password.message}</span>}
         </label>
-
         <label className={styles.label}>
           Avatar image (url)
           <input
@@ -136,15 +126,12 @@ function Profile() {
           />
           {errors.image && <span className={styles.error}>{errors.image.message}</span>}
         </label>
-
-        {serverError && <div className={styles.serverError}>{serverError}</div>}
-
-        <button type="submit" className={styles.submitButton}>
+        {errors.general && <div className={styles.serverError}>{errors.general.message}</div>}
+        <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
           Save
         </button>
       </form>
     </div>
   )
 }
-
 export default Profile
