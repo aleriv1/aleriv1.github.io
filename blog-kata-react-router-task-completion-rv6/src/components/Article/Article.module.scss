@@ -1,0 +1,243 @@
+@use '../../variables.scss' as *;
+
+.loading {
+  display: flex;
+  padding-top: 30px;
+  justify-content: center;
+  align-items: start;
+  height: 100vh;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.article {
+  background: #fff;
+  box-shadow: 0 1px 3px #0000001a;
+  padding: 20px;
+  margin: 20px;
+
+  &Header {
+    display: flex;
+    justify-content: space-between;
+  }
+  &TitleGroup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &TitleAndLikes {
+    display: flex;
+    align-items: center;
+  }
+
+  &Title {
+    font-family: 'Inter';
+    font-weight: 600;
+    color: $info-color;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .likes {
+    font-family: 'Inter';
+    font-size: 12px;
+    line-height: 22px;
+    margin-left: 10px;
+    color: $text-color;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &:before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+      display: inline-block;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  .favorited {
+    &:before {
+      background-image: url('../../assets/heart-red.png');
+    }
+  }
+
+  .unfavorited {
+    &:before {
+      background-image: url('../../assets/heart-transparent.png');
+    }
+  }
+
+  .likes:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    &:before {
+      cursor: not-allowed;
+    }
+  }
+
+  .descriptionAndControl {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  &Description {
+    display: inline-block;
+    font-family: 'Inter';
+    font-size: 12px;
+    line-height: 22px;
+    color: $secondary-color;
+    padding-top: 16px;
+    width: 80%;
+  }
+
+  &AuthorAndDate {
+    display: flex;
+    .userNameAndCreationDate {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      .userName {
+        font-family: 'Inter';
+        font-size: 18px;
+        line-height: 28px;
+        display: block;
+        color: $heading-color;
+        font-weight: 400;
+      }
+      .creationDate {
+        font-family: 'Inter';
+        font-size: 12px;
+        line-height: 22px;
+        color: $secondary-color;
+        align-self: flex-end;
+      }
+    }
+    .userImage {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+  }
+
+  .tagsAndActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+  }
+  .tag {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid $tag-color;
+    border-radius: 3px;
+  }
+
+  &Image {
+    width: 50%;
+    height: auto;
+  }
+
+  &Actions {
+    display: flex;
+    gap: 10px;
+
+    .editButton {
+      padding: 5px 15px;
+      background: transparent;
+      color: #52c41a;
+      border: 1px solid #52c41a;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+
+    .deleteButton {
+      padding: 5px 15px;
+      background: transparent;
+      color: #ff4d4f;
+      border: 1px solid #ff4d4f;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &Content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 300px;
+      text-align: center;
+
+      p {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+    }
+
+    &Buttons {
+      display: flex;
+      gap: 10px;
+
+      .noButton {
+        padding: 5px 20px;
+        background: transparent;
+        color: #1890ff;
+        border: 1px solid #1890ff;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+
+      .yesButton {
+        padding: 5px 20px;
+        background: #ff4d4f;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+      }
+    }
+  }
+}

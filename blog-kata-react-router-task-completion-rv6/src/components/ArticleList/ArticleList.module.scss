@@ -1,0 +1,195 @@
+@use '../../variables.scss' as *;
+
+.articleList {
+  padding: 20px;
+  background-color: #e9ecef;
+
+  .article {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+
+    &Header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &TitleGroup {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &TitleAndLikes {
+      display: flex;
+      // align-items: baseline;
+      align-items: baseline;
+      line-height: 28px;
+      // align-items: center;
+    }
+
+    &Title {
+      margin: 0;
+      font-family: 'Inter';
+      font-weight: 400;
+      color: $info-color;
+      font-size: 20px;
+      line-height: 28px;
+      &Link {
+        display: inline-block;
+        text-decoration: none;
+        margin-bottom: 7px;
+      }
+    }
+
+    .likes {
+      font-family: 'Inter';
+      font-size: 12px;
+      line-height: 28px;
+
+      margin-left: 10px;
+      color: $text-color;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      &:before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    .favorited {
+      &:before {
+        background-image: url('../../assets/heart-red.png');
+      }
+    }
+
+    .unfavorited {
+      &:before {
+        background-image: url('../../assets/heart-transparent.png');
+      }
+    }
+
+    .likes:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      &:before {
+        cursor: not-allowed;
+      }
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      box-sizing: border-box;
+      padding: 5px;
+      border: 1px solid $tag-color;
+      border-radius: 3px;
+    }
+
+    &Image {
+      width: 50%;
+      height: auto;
+    }
+
+    &AuthorAndDate {
+      align-self: start;
+      display: flex;
+
+      .userNameAndCreationDate {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        .userName {
+          font-family: 'Inter';
+          font-size: 18px;
+          line-height: 28px;
+          display: block;
+          color: $heading-color;
+          font-weight: 400;
+        }
+        .creationDate {
+          font-family: 'Inter';
+          font-size: 12px;
+          line-height: 22px;
+          color: $secondary-color;
+          align-self: flex-end;
+        }
+      }
+
+      .userImage {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+    }
+
+    &Description {
+      display: inline-block;
+      font-family: 'Inter';
+      font-size: 12px;
+      line-height: 22px;
+      color: $text-color;
+      padding-top: 10px;
+      width: 80%;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  button {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 0;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    &.activeButton {
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+    }
+    &.notActiveButton {
+      background: none;
+      outline: none;
+      border: 0;
+    }
+  }
+  span {
+    margin: 0 10px;
+    font-weight: bold;
+  }
+}

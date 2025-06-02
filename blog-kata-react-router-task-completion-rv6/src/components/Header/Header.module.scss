@@ -1,0 +1,84 @@
+@use '../../variables.scss' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  height: 80px;
+
+  .logo {
+    color: rgba(0, 0, 0, 0.85);
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .logoLink {
+    text-decoration: none;
+  }
+
+  .authButtons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    button {
+      height: 50px;
+      border-radius: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 28px;
+      margin-left: 10px;
+      padding: 5px 15px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    .signIn {
+      border: 0;
+    }
+
+    .signUp {
+      border: 1px solid #52c41a;
+      color: #52c41a;
+    }
+
+    .createArticle {
+      border: 1px solid #52c41a;
+      color: $success-color;
+      font-family: 'Inter';
+      font-size: 14px;
+      line-height: 22px;
+      height: 32px;
+    }
+
+    .profileLink {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    .userName {
+      color: rgba(0, 0, 0, 0.85);
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 28px;
+      margin-right: 10px;
+    }
+
+    .userAvatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .logout {
+      border: 1px solid #000;
+      color: #000;
+    }
+  }
+}
