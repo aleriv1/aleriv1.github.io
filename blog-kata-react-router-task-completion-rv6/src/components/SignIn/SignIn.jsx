@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { AuthContext } from '../../App'
@@ -10,14 +11,13 @@ import styles from './SignIn.module.scss'
 function SignIn() {
   const [errorMessage, setErrorMessage] = useState(null)
   const { setUser } = useContext(AuthContext)
-  const history = useHistory()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [login, { isLoading: isSubmitting, reset }] = useLoginMutation()
   const {
     register,
     handleSubmit,
     formState: { errors },
-    // setError,
     clearErrors,
     reset: resetForm,
   } = useForm()
@@ -35,7 +35,7 @@ function SignIn() {
       setUser(result.user)
       dispatch(api.util.invalidateTags(['Articles', 'Article']))
       resetForm({ email: data.email, password: data.password })
-      history.push('/')
+      navigate('/')
     } catch (err) {
       console.log('Login error:', err)
       setErrorMessage('Неверный логин или пароль')

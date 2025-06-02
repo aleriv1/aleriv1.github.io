@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
 import { useGetArticleQuery, useUpdateArticleMutation } from '../../store/api'
@@ -7,13 +8,13 @@ import ArticleForm from '../ArticleForm/ArticleForm'
 function EditArticle() {
   const { slug } = useParams()
   const { user } = useContext(AuthContext)
-  const history = useHistory()
+  const navigate = useNavigate()
   const [defaultValues, setDefaultValues] = useState(null)
   const { data: article } = useGetArticleQuery(slug)
   const [updateArticle, { isLoading: isSubmitting }] = useUpdateArticleMutation()
   useEffect(() => {
     if (!user) {
-      history.push('/sign-in')
+      navigate('/sign-in')
     }
   }, [user, history])
   useEffect(() => {
@@ -37,7 +38,7 @@ function EditArticle() {
           tagList: data.tags || [],
         },
       }).unwrap()
-      history.push(`/articles/${slug}`)
+      navigate(`/articles/${slug}`)
     } catch (error) {
       console.error(error)
     }

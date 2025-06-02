@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from 'react'
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { api } from './store/api'
@@ -17,7 +18,7 @@ export const AuthContext = createContext()
 
 function App() {
   const [user, setUser] = useState(null)
-  const disaptch = useDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -31,28 +32,42 @@ function App() {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
     setUser(null)
-    disaptch(api.util.invalidateTags(['Articles', 'Article']))
+    dispatch(api.util.invalidateTags(['Articles', 'Article']))
   }
 
-  const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (user ? <Component {...props} /> : <Redirect to="/sign-in" />)} />
-  )
+  const PrivateRoute = ({ children }) => {
+    return user ? children : <Navigate to="/sign-in" replace />
+  }
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <Router>
         <div className={styles.app}>
           <Header onLogout={handleLogout} />
-          <Switch>
-            <Route exact path="/" component={ArticleList} />
-            <Route exact path="/articles" component={ArticleList} />
-            <PrivateRoute path="/articles/:slug/edit" component={EditArticle} />
-            <Route path="/articles/:slug" component={ArticleDetail} />
-            <Route path="/sign-up" component={SignUp} />
-            <Route path="/sign-in" component={SignIn} />
-            <Route path="/profile" component={Profile} />
-            <PrivateRoute path="/new-article" component={CreateArticle} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<ArticleList />} />
+            <Route path="/articles" element={<ArticleList />} />
+            <Route
+              path="/articles/:slug/edit"
+              element={
+                <PrivateRoute>
+                  <EditArticle />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/articles/:slug" element={<ArticleDetail />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/new-article"
+              element={
+                <PrivateRoute>
+                  <CreateArticle />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
         </div>
       </Router>
     </AuthContext.Provider>

@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { format } from 'date-fns'
 
@@ -10,7 +11,7 @@ import styles from './Article.module.scss'
 function ArticleDetail() {
   const { slug } = useParams()
   const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const history = useHistory()
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext)
   const { data: article, isLoading: loading, error } = useGetArticleQuery(slug)
   const [toggleFavorite, { isLoading: isLiking }] = useToggleFavoriteMutation()
@@ -25,7 +26,7 @@ function ArticleDetail() {
   const handleDelete = async () => {
     try {
       await deleteArticle(slug).unwrap()
-      history.push('/articles')
+      navigate('/articles')
     } catch (err) {
       console.error(err)
     }
@@ -73,7 +74,7 @@ function ArticleDetail() {
               Delete
             </button>
             <button
-              onClick={() => history.push(`/articles/${slug}/edit`)}
+              onClick={() => navigate(`/articles/${slug}/edit`)}
               className={styles.editButton}
               disabled={isDeleting}
             >

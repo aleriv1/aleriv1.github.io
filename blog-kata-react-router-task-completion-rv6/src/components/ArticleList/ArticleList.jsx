@@ -1,4 +1,5 @@
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 
 import { useGetArticlesQuery, useToggleFavoriteMutation } from '../../store/api'
@@ -7,7 +8,7 @@ import styles from './ArticleList.module.scss'
 function ArticleList() {
   const limit = 4
   const location = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const query = new URLSearchParams(location.search)
   const page = parseInt(query.get('page') || '1', 10)
   const { data, isLoading: loading, error } = useGetArticlesQuery({ page, limit })
@@ -21,7 +22,7 @@ function ArticleList() {
   }
   const handlePageChange = (newPage) => {
     if (newPage > 0 && newPage <= (data?.articlesCount ? Math.ceil(data.articlesCount / limit) : 1)) {
-      history.push(`/articles?page=${newPage}`)
+      navigate(`/articles?page=${newPage}`)
     }
   }
   const renderPageButtons = () => {

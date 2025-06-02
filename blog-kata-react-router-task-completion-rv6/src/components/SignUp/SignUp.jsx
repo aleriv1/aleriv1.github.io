@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
 import { useRegisterMutation } from '../../store/api'
@@ -9,7 +10,7 @@ import styles from './SignUp.module.scss'
 
 function SignUp() {
   const { setUser } = useContext(AuthContext)
-  const history = useHistory()
+  const navigate = useNavigate()
   const [registerUser, { isLoading: isSubmitting }] = useRegisterMutation()
 
   const {
@@ -31,7 +32,7 @@ function SignUp() {
       localStorage.setItem('token', result.user.token)
       localStorage.setItem('user', JSON.stringify(result.user))
       setUser(result.user)
-      history.push('/')
+      navigate('/')
     } catch (err) {
       if (err.data?.errors) {
         Object.keys(err.data.errors).forEach((field) => {

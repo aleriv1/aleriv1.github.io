@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
 import { useUpdateUserMutation } from '../../store/api'
@@ -8,7 +8,7 @@ import { useUpdateUserMutation } from '../../store/api'
 import styles from './Profile.module.scss'
 function Profile() {
   const { user, setUser } = useContext(AuthContext)
-  const history = useHistory()
+  const navigate = useNavigate()
   const [updateUser, { isLoading: isSubmitting }] = useUpdateUserMutation()
   const {
     register,
@@ -34,7 +34,7 @@ function Profile() {
       const result = await updateUser(userData).unwrap()
       localStorage.setItem('user', JSON.stringify(result.user))
       setUser(result.user)
-      history.push('/')
+      navigate('/')
     } catch (err) {
       if (err.data?.errors) {
         Object.keys(err.data.errors).forEach((field) => {

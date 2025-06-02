@@ -1,16 +1,16 @@
 import { useEffect, useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
 import { useCreateArticleMutation } from '../../store/api'
 import ArticleForm from '../ArticleForm/ArticleForm'
 function CreateArticle() {
   const { user } = useContext(AuthContext)
-  const history = useHistory()
+  const navigate = useNavigate()
   const [createArticle, { isLoading: isSubmitting }] = useCreateArticleMutation()
   useEffect(() => {
     if (!user) {
-      history.push('/sign-in')
+      navigate('/sign-in')
     }
   }, [user, history])
   const onSubmit = async (data) => {
@@ -21,7 +21,7 @@ function CreateArticle() {
         body: data.text,
         tagList: data.tags || [],
       }).unwrap()
-      history.push(`/articles/${result.article.slug}`)
+      navigate(`/articles/${result.article.slug}`)
     } catch (error) {
       console.error(error)
     }

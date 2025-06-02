@@ -25,7 +25,7 @@
     "react-hook-form": "^7.56.4",
     "react-markdown": "^10.1.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^5.3.4",
+    "react-router-dom": "^7.6.1",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "sass": "^1.86.0"
