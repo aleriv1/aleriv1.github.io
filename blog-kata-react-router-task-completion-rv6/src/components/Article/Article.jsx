@@ -8,6 +8,7 @@ import { AuthContext } from '../../App'
 import { useGetArticleQuery, useToggleFavoriteMutation, useDeleteArticleMutation } from '../../store/api'
 
 import styles from './Article.module.scss'
+
 function ArticleDetail() {
   const { slug } = useParams()
   const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -23,6 +24,7 @@ function ArticleDetail() {
       console.error(err)
     }
   }
+
   const handleDelete = async () => {
     try {
       await deleteArticle(slug).unwrap()
@@ -31,9 +33,11 @@ function ArticleDetail() {
       console.error(err)
     }
   }
+
   if (loading) return <div className={styles.loading}>Загрузка...</div>
   if (error) return <div className={styles.error}>Ошибка загрузки</div>
   if (!article) return null
+
   return (
     <div className={styles.article}>
       <div className={styles.articleHeader}>
@@ -108,4 +112,5 @@ function ArticleDetail() {
     </div>
   )
 }
+
 export default ArticleDetail

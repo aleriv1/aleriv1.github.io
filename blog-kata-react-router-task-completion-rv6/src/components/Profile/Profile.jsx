@@ -6,6 +6,7 @@ import { AuthContext } from '../../App'
 import { useUpdateUserMutation } from '../../store/api'
 
 import styles from './Profile.module.scss'
+
 function Profile() {
   const { user, setUser } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -76,6 +77,7 @@ function Profile() {
           />
           {errors.username && <span className={styles.error}>{errors.username.message}</span>}
         </label>
+
         <label className={styles.label}>
           Email address
           <input
@@ -92,6 +94,7 @@ function Profile() {
           />
           {errors.email && <span className={styles.error}>{errors.email.message}</span>}
         </label>
+
         <label className={styles.label}>
           New password
           <input
@@ -134,4 +137,5 @@ function Profile() {
     </div>
   )
 }
+
 export default Profile

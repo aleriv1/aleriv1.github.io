@@ -1,22 +1,26 @@
 import { useState, useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../App'
 import { useGetArticleQuery, useUpdateArticleMutation } from '../../store/api'
 import ArticleForm from '../ArticleForm/ArticleForm'
+
 function EditArticle() {
   const { slug } = useParams()
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const [defaultValues, setDefaultValues] = useState(null)
-  const { data: article } = useGetArticleQuery(slug)
+  const { data: article, isLoading } = useGetArticleQuery(slug)
   const [updateArticle, { isLoading: isSubmitting }] = useUpdateArticleMutation()
+
   useEffect(() => {
     if (!user) {
-      navigate('/sign-in')
+      navigate('/sign-in', { replace: true })
+    } else if (article && user.username !== article.article.author.username) {
+      navigate(`/articles/${slug}`, { replace: true })
     }
-  }, [user, history])
+  }, [user, article, navigate, slug])
+
   useEffect(() => {
     if (article) {
       setDefaultValues({
@@ -27,6 +31,7 @@ function EditArticle() {
       })
     }
   }, [article])
+
   const onSubmit = async (data) => {
     try {
       await updateArticle({
@@ -43,10 +48,12 @@ function EditArticle() {
       console.error(error)
     }
   }
-  return defaultValues ? (
-    <ArticleForm onSubmit={onSubmit} defaultValues={defaultValues} isSubmitting={isSubmitting} />
-  ) : (
+
+  return isLoading ? (
     <div>Loading...</div>
-  )
+  ) : defaultValues ? (
+    <ArticleForm onSubmit={onSubmit} defaultValues={defaultValues} isSubmitting={isSubmitting} />
+  ) : null
 }
+
 export default EditArticle

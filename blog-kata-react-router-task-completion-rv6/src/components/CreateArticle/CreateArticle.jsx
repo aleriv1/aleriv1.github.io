@@ -4,15 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../App'
 import { useCreateArticleMutation } from '../../store/api'
 import ArticleForm from '../ArticleForm/ArticleForm'
+
 function CreateArticle() {
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const [createArticle, { isLoading: isSubmitting }] = useCreateArticleMutation()
+
   useEffect(() => {
     if (!user) {
       navigate('/sign-in')
     }
-  }, [user, history])
+  }, [user, navigate])
+
   const onSubmit = async (data) => {
     try {
       const result = await createArticle({
@@ -28,4 +31,5 @@ function CreateArticle() {
   }
   return <ArticleForm onSubmit={onSubmit} isSubmitting={isSubmitting} />
 }
+
 export default CreateArticle
